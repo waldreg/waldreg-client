@@ -1,20 +1,28 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobalStyle from "./styles/GlobalStyle";
+import Login from "./routes/Auth/Login";
+import Home from "./routes/Home";
+import Board from "./routes/Board";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-import GlobalStyle from './styles/GlobalStyle';
-import Login from './routes/Auth/Login';
-import Home from './routes/Home';
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/user/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user/login" element={<Login />} />
+            <Route path="/board" element={<Board />} />
+          </Routes>
+        </BrowserRouter>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </>
   );
 }
