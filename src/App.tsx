@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import GlobalStyle from "./styles/GlobalStyle";
 import Login from "./routes/Auth/Login";
 import Home from "./routes/Home";
 import Board from "./routes/Board";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import Boards from "./routes/Boards";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/user/login" element={<Login />} />
-            <Route path="/board" element={<Board />} />
+            <Route path="/boards" element={<Boards />} />
+            <Route path="/boards/:boardId" element={<Board />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />
