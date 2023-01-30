@@ -1,5 +1,9 @@
+import styled from 'styled-components';
+import { useQuery } from 'react-query';
+
 import { waldregAxios } from '../../../apis/axios';
-import { userAPI } from '../../../apis/userAPI';
+import { fetchCharacterList } from '../../../apis/characterAPI';
+import { queryKeys } from '../../../types/queryKeys';
 
 const Character = () => {
   const handleClickSignUp = async () => {
@@ -29,12 +33,25 @@ const Character = () => {
     }
   };
 
+  const { data: charList } = useQuery<string[]>(
+    queryKeys.character,
+    fetchCharacterList
+  );
+
   return (
     <>
       <button onClick={handleClickSignUp}>회원가입</button>
       <button onClick={handleClickGetToken}>토큰 발급</button>
+
+      <Title>역할</Title>
+      {charList?.map((character, idx) => (
+        <Role key={idx}>{character}</Role>
+      ))}
     </>
   );
 };
+
+const Title = styled.div``;
+const Role = styled.div``;
 
 export default Character;

@@ -9,13 +9,6 @@ export const characterAPI = {
       console.log(error);
     }
   },
-  async getCharacterList() {
-    try {
-      const response = await waldregAxios.get('/character');
-    } catch (error) {
-      console.log(error);
-    }
-  },
   async createCharacter(newChar: ICharacter) {
     try {
       const response = await waldregAxios.post('/character', { newChar });
@@ -46,4 +39,9 @@ export const characterAPI = {
       console.log(error);
     }
   },
+};
+
+export const fetchCharacterList = async () => {
+  const response = await waldregAxios.get('/character');
+  return response.data.character_name;
 };
