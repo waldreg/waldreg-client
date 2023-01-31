@@ -45,7 +45,6 @@ function SignUp() {
         <input
           name="name"
           type="text"
-          placeholder="이름"
           {...register("name", {
             required: true,
           })}
@@ -60,7 +59,6 @@ function SignUp() {
         <input
           name="user_id"
           type="text"
-          placeholder="아이디"
           {...register("user_id", {
             required: true,
           })}
@@ -72,7 +70,7 @@ function SignUp() {
           type="password"
           {...register("user_password", {
             required: true,
-            //pattern: /(?=.[0-9])(?=.[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}/,
+            pattern: /(?=.[0-9])(?=.[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}/,
           })}
         />
         {errors.user_password && errors.user_password.type === "required" && (
@@ -102,13 +100,14 @@ function SignUp() {
         <input
           name="phone_number"
           type="text"
-          placeholder="전화번호"
           {...register("phone_number", {
             required: true,
-            //pattern: /^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$/,
+            pattern: /^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$/,
           })}
         />
-        {errors.phone_number && <p>10 ~ 11 자리의 숫자만 입력 가능합니다.</p>}
+        {errors.phone_number && errors.phone_number.type === "pattern" && (
+          <p>10 ~ 11 자리의 숫자만 입력 가능합니다.</p>
+        )}
         <input type="submit" disabled={loading} />
       </form>
     </div>
