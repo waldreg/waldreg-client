@@ -5,6 +5,8 @@ import { waldregAxios } from '../../../apis/axios';
 import { fetchCharacterList } from '../../../apis/characterAPI';
 import { queryKeys } from '../../../types/queryKeys';
 
+import { ICharacters } from '../../../interfaces/character';
+
 const Character = () => {
   const handleClickSignUp = async () => {
     try {
@@ -33,7 +35,7 @@ const Character = () => {
     }
   };
 
-  const { data: charList } = useQuery<string[]>(
+  const { data: charList } = useQuery<ICharacters[]>(
     queryKeys.character,
     fetchCharacterList
   );
@@ -44,8 +46,8 @@ const Character = () => {
       <button onClick={handleClickGetToken}>토큰 발급</button>
 
       <Title>역할</Title>
-      {charList?.map((character, idx) => (
-        <Role key={idx}>{character}</Role>
+      {charList?.map((character) => (
+        <Role key={character.id}>{character.character_name}</Role>
       ))}
     </>
   );

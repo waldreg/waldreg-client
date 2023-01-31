@@ -43,5 +43,5 @@ export const characterAPI = {
 
 export const fetchCharacterList = async () => {
   const response = await waldregAxios.get('/character');
-  return response.data.character_name;
+  return response.data.characters;
 };
