@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
+import { useInput } from '../../../hooks/useInput';
+
+import { InputAdd } from '../../../components/inputs/input_add';
 
 import { waldregAxios } from '../../../apis/axios';
 import { fetchCharacterList } from '../../../apis/characterAPI';
@@ -40,6 +43,8 @@ const Character = () => {
     fetchCharacterList
   );
 
+  const { value, handleChangeInput, reset } = useInput('');
+
   return (
     <>
       <button onClick={handleClickSignUp}>회원가입</button>
@@ -49,6 +54,12 @@ const Character = () => {
       {charList?.map((character) => (
         <Role key={character.id}>{character.character_name}</Role>
       ))}
+      <InputAdd
+        value={value}
+        placeholder={'역할을 추가하세요'}
+        onChange={handleChangeInput}
+        reset={reset}
+      />
     </>
   );
 };
