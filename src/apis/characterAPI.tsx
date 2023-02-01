@@ -40,11 +40,8 @@ export const characterAPI = {
     }
   },
 
-  async delCharacter(id: number) {
-    try {
-      const response = await waldregAxios.delete(`/character/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
+  async delCharacter(name: string) {
+    const response = await waldregAxios.delete(`/character/${name}`);
+    return response;
   },
 };

@@ -1,4 +1,3 @@
-// import styled from 'styled-components';
 import styled from 'styled-components';
 
 import { useQuery } from 'react-query';
@@ -11,11 +10,7 @@ import { waldregAxios } from '../../../apis/axios';
 import { characterAPI } from '../../../apis/characterAPI';
 import { queryKeys } from '../../../types/queryKeys';
 
-import {
-  ICharacters,
-  IPermission,
-  ICharacter,
-} from '../../../interfaces/character';
+import { IPermission, ICharacter } from '../../../interfaces/character';
 
 import { CheckBox } from '../../../components/common/checkbox/checkbox';
 
@@ -56,9 +51,13 @@ const Character = () => {
     () => characterAPI.getPermissionList()
   );
 
+  const handleClickDelete = (name: string) => {
+    characterAPI.delCharacter(name);
+  };
+
   const handleClickSubmit = () => {
     characterAPI.createCharacter({
-      id: 11,
+      id: 1,
       character_name: value,
       permissions: checkedList,
     });
@@ -74,7 +73,12 @@ const Character = () => {
 
       <Title>역할</Title>
       {charList?.map((character: ICharacter) => (
-        <Role key={character.id}>{character.character_name}</Role>
+        <Role
+          key={character.id}
+          onClick={() => handleClickDelete(character.character_name)}
+        >
+          {character.id} {character.character_name}
+        </Role>
       ))}
       <InputAdd
         value={value}
