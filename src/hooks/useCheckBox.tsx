@@ -1,13 +1,20 @@
 import { useState, ChangeEvent } from 'react';
-import { ICharacter, IPermission } from '../interfaces/character';
+
+export interface IProps {
+  permission_id: number;
+  permission_name: string;
+  permission_status: string;
+}
 
 export const useCheckBox = () => {
-  const [checkedList, setCheckedList] = useState<IPermission[]>([]);
+  const [checkedList, setCheckedList] = useState<IProps[]>([]);
 
-  const updateCheckList = (isChecked: boolean, item: IPermission) => {
+  const updateCheckList = (isChecked: boolean, item: IProps) => {
     if (isChecked) {
+      item.permission_status = 'true';
       setCheckedList([...checkedList, item]);
     } else {
+      item.permission_status = 'false';
       setCheckedList(
         checkedList.filter((prev) => prev.permission_id !== item.permission_id)
       );
@@ -17,14 +24,6 @@ export const useCheckBox = () => {
   const checkReset = () => {
     setCheckedList([]);
   };
-
-  //   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-  //     if (!event.target.value) {
-  //       reset();
-  //     } else {
-  //       setCheckedList(event.target.value);
-  //     }
-  //   };
 
   return { checkedList, updateCheckList, checkReset };
 };

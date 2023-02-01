@@ -10,9 +10,9 @@ export interface IProps {
 export const Check = (props: IProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleToggleCheck = (e: any, id: IPermission) => {
+  const handleToggleCheck = (e: any, item: IPermission) => {
     setIsChecked(!isChecked);
-    props.updateCheckList(e.target.checked, id);
+    props.updateCheckList(e.target.checked, item);
   };
 
   return (
