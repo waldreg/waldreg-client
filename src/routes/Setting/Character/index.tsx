@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 import { useQuery } from 'react-query';
 import { useInput } from '../../../hooks/useInput';
+import { useCheckBox } from '../../../hooks/useCheckBox';
 
-import { InputAdd } from '../../../components/inputs/input_add';
+import { InputAdd } from '../../../components/common/inputs/input_add';
 
 import { waldregAxios } from '../../../apis/axios';
 import { characterAPI } from '../../../apis/characterAPI';
@@ -15,7 +16,8 @@ import {
   IPermission,
   ICharacter,
 } from '../../../interfaces/character';
-import FONT from '../../../constants/fonts';
+
+import { CheckBox } from '../../../components/common/checkbox/checkbox';
 
 const Character = () => {
   const handleClickSignUp = async () => {
@@ -45,31 +47,25 @@ const Character = () => {
     }
   };
 
-  const { data: charList } = useQuery<any>(queryKeys.character, () =>
+  const { data: charList } = useQuery<ICharacter[]>(queryKeys.character, () =>
     characterAPI.getCharacterList()
   );
 
-  const { data: permissionList } = useQuery<any>(queryKeys.permissions, () =>
-    characterAPI.getPermissionList()
+  const { data: permissionList } = useQuery<IPermission[]>(
+    queryKeys.permissions,
+    () => characterAPI.getPermissionList()
   );
 
   const handleClickSubmit = () => {
     characterAPI.createCharacter({
-      id: 10,
+      id: 11,
       character_name: value,
-      permissions: [
-        {
-          permission_id: 3,
-          permission_name: 'Read other user info permission',
-          permission_status: 'true',
-        },
-      ],
+      permissions: checkedList,
     });
   };
 
   const { value, handleChangeInput, reset } = useInput('');
-
-  console.log(permissionList);
+  const { checkedList, updateCheckList, checkReset } = useCheckBox();
 
   return (
     <>
@@ -86,11 +82,19 @@ const Character = () => {
         onChange={handleChangeInput}
         reset={reset}
       />
-      <div>
-        {permissionList?.map((permission: IPermission) => (
-          <div key={permission.permission_id}>{permission.permission_name}</div>
-        ))}
-      </div>
+      <CheckBox
+        data={
+          permissionList || [
+            {
+              permission_id: 0,
+              permission_name: '권한이 없습니다',
+              permission_status: 'false',
+            },
+          ]
+        }
+        updateCheckList={updateCheckList}
+      />
+
       <button onClick={handleClickSubmit}>역할 등록</button>
     </>
   );

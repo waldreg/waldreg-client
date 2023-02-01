@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IUseInput } from '../../interfaces/basic';
+import { IUseInput } from '../../../interfaces/basic';
 
 export const InputAdd = (props: IUseInput) => {
   return (
