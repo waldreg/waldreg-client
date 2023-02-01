@@ -19,8 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/user/login" element={<Login />} />
-            <Route path="/boards" element={<Boards />} />
-            <Route path="/boards/:boardId" element={<Board />} />
+            <Route path="/board" element={<Boards />} />
+            <Route path="/board/:id" element={<Board />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

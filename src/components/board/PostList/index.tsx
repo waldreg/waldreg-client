@@ -1,5 +1,5 @@
 import React from "react";
-import { Posts } from "../../../types/board";
+import { Posts } from "../../../interfaces/board";
 import { Post, PostContainer } from "./style";
 import { useNavigate } from "react-router-dom";
 

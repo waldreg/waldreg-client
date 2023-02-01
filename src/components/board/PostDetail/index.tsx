@@ -1,5 +1,5 @@
 import React from "react";
-import { Post } from "../../../types/board";
+import { Post } from "../../../interfaces/board";
 
 interface PostDetailProps {
   post: Post;

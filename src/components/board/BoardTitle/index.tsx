@@ -3,11 +3,7 @@ import FONT from "../../../constants/fonts";
 import { Title } from "./style";
 // import {} from "styled-components/cssprop";
 
-type BoardTitleProps = {
-  children: React.ReactNode;
-};
-
-const BoardTitle: React.FC<BoardTitleProps> = ({ children }) => (
+const BoardTitle = ({ children }: { children: React.ReactNode }) => (
   <Title>{children}</Title>
 );
 
