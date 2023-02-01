@@ -1,14 +1,21 @@
+// import styled from 'styled-components';
 import styled from 'styled-components';
+
 import { useQuery } from 'react-query';
 import { useInput } from '../../../hooks/useInput';
 
 import { InputAdd } from '../../../components/inputs/input_add';
 
 import { waldregAxios } from '../../../apis/axios';
-import { fetchCharacterList } from '../../../apis/characterAPI';
+import { characterAPI } from '../../../apis/characterAPI';
 import { queryKeys } from '../../../types/queryKeys';
 
-import { ICharacters } from '../../../interfaces/character';
+import {
+  ICharacters,
+  IPermission,
+  ICharacter,
+} from '../../../interfaces/character';
+import FONT from '../../../constants/fonts';
 
 const Character = () => {
   const handleClickSignUp = async () => {
@@ -38,12 +45,31 @@ const Character = () => {
     }
   };
 
-  const { data: charList } = useQuery<ICharacters[]>(
-    queryKeys.character,
-    fetchCharacterList
+  const { data: charList } = useQuery<any>(queryKeys.character, () =>
+    characterAPI.getCharacterList()
   );
 
+  const { data: permissionList } = useQuery<any>(queryKeys.permissions, () =>
+    characterAPI.getPermissionList()
+  );
+
+  const handleClickSubmit = () => {
+    characterAPI.createCharacter({
+      id: 10,
+      character_name: value,
+      permissions: [
+        {
+          permission_id: 3,
+          permission_name: 'Read other user info permission',
+          permission_status: 'true',
+        },
+      ],
+    });
+  };
+
   const { value, handleChangeInput, reset } = useInput('');
+
+  console.log(permissionList);
 
   return (
     <>
@@ -51,7 +77,7 @@ const Character = () => {
       <button onClick={handleClickGetToken}>토큰 발급</button>
 
       <Title>역할</Title>
-      {charList?.map((character) => (
+      {charList?.map((character: ICharacter) => (
         <Role key={character.id}>{character.character_name}</Role>
       ))}
       <InputAdd
@@ -60,6 +86,12 @@ const Character = () => {
         onChange={handleChangeInput}
         reset={reset}
       />
+      <div>
+        {permissionList?.map((permission: IPermission) => (
+          <div key={permission.permission_id}>{permission.permission_name}</div>
+        ))}
+      </div>
+      <button onClick={handleClickSubmit}>역할 등록</button>
     </>
   );
 };

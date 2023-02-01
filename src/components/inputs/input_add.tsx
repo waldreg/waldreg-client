@@ -5,7 +5,6 @@ export const InputAdd = (props: IUseInput) => {
   return (
     <>
       <Input
-        id="search"
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}

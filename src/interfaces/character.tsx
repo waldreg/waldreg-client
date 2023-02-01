@@ -1,11 +1,7 @@
 export interface IPermission {
-  permissions: [
-    {
-      permission_id: number;
-      permission_name: string;
-      permission_status: boolean;
-    }
-  ];
+  permission_id: number;
+  permission_name: string;
+  permission_status: string;
 }
 
 export interface ICharacters {
@@ -14,6 +10,7 @@ export interface ICharacters {
 }
 
 export interface ICharacter {
+  id: number;
   character_name: string;
-  permissions: IPermission;
+  permissions?: IPermission[];
 }
