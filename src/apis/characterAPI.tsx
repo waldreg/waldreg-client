@@ -1,5 +1,5 @@
 import { waldregAxios } from './axios';
-import { ICharacter } from '../interfaces/character';
+import { ICharacter, IPermission } from '../interfaces/character';
 
 export const characterAPI = {
   async getPermissionList() {
@@ -22,22 +22,16 @@ export const characterAPI = {
   },
 
   async getCharacter(name: string) {
-    try {
-      const response = await waldregAxios.get(`/character/${name}`);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await waldregAxios.get(`/character/${name}`);
+    return response.data;
   },
 
-  async editCharacter(id: number, newChar: ICharacter) {
-    try {
-      const response = await waldregAxios.patch(`/character/${id}`, {
-        newChar,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  async editCharacter(
+    name: string,
+    newChar: { character_name: string; permissions: IPermission[] }
+  ) {
+    const response = await waldregAxios.patch(`/character/${name}`, newChar);
+    return response;
   },
 
   async delCharacter(name: string) {

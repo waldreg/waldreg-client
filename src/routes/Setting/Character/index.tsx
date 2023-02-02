@@ -8,7 +8,7 @@ import { InputAdd } from '../../../components/common/inputs/input_add';
 
 import { waldregAxios } from '../../../apis/axios';
 import { characterAPI } from '../../../apis/characterAPI';
-import { queryKeys } from '../../../types/queryKeys';
+import { characterKeys, permissionKeys } from '../../../types/settingKeys';
 
 import { IPermission, ICharacter } from '../../../interfaces/character';
 
@@ -42,26 +42,49 @@ const Character = () => {
     }
   };
 
-  const { data: charList } = useQuery<ICharacter[]>(queryKeys.character, () =>
+  const { data: charList } = useQuery<ICharacter[]>(characterKeys.all, () =>
     characterAPI.getCharacterList()
   );
 
   const { data: permissionList } = useQuery<IPermission[]>(
-    queryKeys.permissions,
+    permissionKeys.all,
     () => characterAPI.getPermissionList()
   );
 
+  // 요런 식으로 다 커스텀 훅으로 뺄 예정
+  const useCharQuery = (name: string) => {
+    return useQuery<ICharacter>(characterKeys.detail(name), () =>
+      characterAPI.getCharacter(name)
+    ).data;
+  };
+
+  // useMutation으로 전환예정
   const handleClickDelete = (name: string) => {
     characterAPI.delCharacter(name);
   };
 
+  const handleClickEdit = (name: string) => {
+    characterAPI.editCharacter(name, {
+      character_name: name,
+      permissions: [
+        {
+          permission_id: 8,
+          permission_name: 'Character manager',
+          permission_status: 'true',
+        },
+      ],
+    });
+  };
+
   const handleClickSubmit = () => {
     characterAPI.createCharacter({
-      id: 1,
+      id: 2,
       character_name: value,
       permissions: checkedList,
     });
   };
+
+  console.log(useCharQuery('Guest'));
 
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useCheckBox();
@@ -73,11 +96,14 @@ const Character = () => {
 
       <Title>역할</Title>
       {charList?.map((character: ICharacter) => (
-        <Role
-          key={character.id}
-          onClick={() => handleClickDelete(character.character_name)}
-        >
+        <Role key={character.id}>
           {character.id} {character.character_name}
+          <button onClick={() => handleClickEdit(character.character_name)}>
+            역할 수정하기
+          </button>
+          <button onClick={() => handleClickDelete(character.character_name)}>
+            역할 삭제하기
+          </button>
         </Role>
       ))}
       <InputAdd
@@ -100,6 +126,8 @@ const Character = () => {
       />
 
       <button onClick={handleClickSubmit}>역할 등록</button>
+
+      <div></div>
     </>
   );
 };
