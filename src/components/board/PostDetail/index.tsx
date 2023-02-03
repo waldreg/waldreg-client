@@ -18,15 +18,10 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <div>{post.last_modified_at}</div>
       <div>
         {post.images.map((image) => (
-          <div>{image}</div>
+          <div key={post.id}>{image}</div>
         ))}
       </div>
       <div>{post.exist_file}</div>
-      <div>
-        {post.files.map((file) => (
-          <div>{file}</div>
-        ))}
-      </div>
     </>
   );
 };

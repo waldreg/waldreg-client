@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BoardButtonContainer, BoardContainer, Container } from "./style";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { boardAPI } from "../../apis/boardAPI";
 import PostMenu from "../../components/board/PostMenu";
 import PostList from "../../components/board/PostList";
