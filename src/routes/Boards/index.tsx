@@ -5,8 +5,8 @@ import { boardAPI } from "../../apis/boardAPI";
 import PostMenu from "../../components/board/PostMenu";
 import PostList from "../../components/board/PostList";
 import { tokenAPI } from "../../apis/tokenAPI";
-import BoardTitle from "../../components/board/BoardTitle/index";
-import PostCreateButton from "../../components/board/PostCreateButton";
+import BoardTitle from "../../components/common/PageTitle/index";
+import PostCreateButton from "../../components/common/CreateButton";
 
 function Boards() {
   const [categoryId, setCategoryId] = useState(1);

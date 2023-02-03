@@ -12,7 +12,7 @@ const PostList = ({ posts }: PostListProps) => {
 
   const handlePostClick = (e: React.MouseEvent) => {
     console.log(e.currentTarget.firstChild?.textContent);
-    navigate(`/boards/${e.currentTarget.firstChild?.textContent}`);
+    navigate(`/board/${e.currentTarget.firstChild?.textContent}`);
   };
 
   return (
