@@ -1,28 +1,3 @@
-export interface Posts {
-  boards: Post[];
-  id: number;
-  title: string;
-  category: string;
-  content: string;
-  author: {
-    id: string;
-    name: string;
-  };
-  created_at: string;
-  last_modified_at: string;
-  member_tier: string;
-  images: [];
-  exist_file: boolean;
-  reactions: {
-    good: number;
-    bad: number;
-    check: number;
-    heart: number;
-    smile: number;
-    sad: number;
-  };
-}
-
 export interface Post {
   id: number;
   title: string;
@@ -34,7 +9,6 @@ export interface Post {
   };
   created_at: string;
   last_modified_at: string;
-  member_tier: string;
   images: [];
   exist_file: boolean;
   files: [];
@@ -47,4 +21,8 @@ export interface Post {
     sad: number;
     users: [];
   };
+}
+
+export interface PostLists extends Post {
+  max_idx: number;
 }
