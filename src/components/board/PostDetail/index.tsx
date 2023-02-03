@@ -16,11 +16,6 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <div>{post.author.name}</div>
       <div>{post.created_at}</div>
       <div>{post.last_modified_at}</div>
-      <div>
-        {post.images.map((image) => (
-          <div key={post.id}>{image}</div>
-        ))}
-      </div>
       <div>{post.exist_file}</div>
     </>
   );
