@@ -2,6 +2,8 @@ import React from "react";
 import { PostLists } from "../../../interfaces/board";
 import { Post, PostContainer } from "./style";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { boardDetailState } from "../../../states/board";
 
 interface PostListProps {
   posts: PostLists[];
@@ -9,10 +11,12 @@ interface PostListProps {
 
 function PostList({ posts }: PostListProps) {
   const navigate = useNavigate();
+  const setBoardDetail = useSetRecoilState(boardDetailState);
 
   const handlePostClick = (e: React.MouseEvent) => {
-    console.log(e.currentTarget.firstChild?.textContent);
-    navigate(`/board/${e.currentTarget.firstChild?.textContent}`);
+    const post = e.currentTarget.firstChild?.textContent;
+    setBoardDetail(post);
+    navigate(`/board/${post}`);
   };
 
   return (
@@ -21,9 +25,10 @@ function PostList({ posts }: PostListProps) {
         <PostContainer key={post.id} onClick={handlePostClick}>
           <Post>{post.id}</Post>
           <Post>{post.title}</Post>
-          <Post>{post.author.name}</Post>
+          <Post>{post.category}</Post>
+          {/* <Post>{post.author.name}</Post>
           <Post>{post.created_at}</Post>
-          <Post>{post.created_at}</Post>
+          <Post>{post.last_modifed_at}</Post> */}
         </PostContainer>
       ))}
     </div>
