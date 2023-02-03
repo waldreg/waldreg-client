@@ -8,6 +8,7 @@ import Home from "./routes/Home";
 import BoardCreate from "./routes/Board/BoardCreate";
 import BoardList from "./routes/Board/BoardList/index";
 import BoardDetail from "./routes/Board/BoardDetail/index";
+import BoardUpdate from "./routes/Board/BoardUpdate";
 
 const queryClient = new QueryClient();
 
@@ -22,8 +23,9 @@ function App() {
             <Route path="/user/login" element={<Login />} />
             {/* TODO: board routes 합치기 */}
             <Route path="/board" element={<BoardList />} />
+            <Route path="/board/create" element={<BoardCreate />} />
             <Route path="/board/:id" element={<BoardDetail />} />
-            <Route path="/board/:id/create" element={<BoardCreate />} />
+            <Route path="/board/:id/update" element={<BoardUpdate />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

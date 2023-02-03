@@ -48,10 +48,10 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <div>{post.title}</div>
       <div>{post.category}</div>
       <div>{post.content}</div>
-      <div>{post.author.user_id}</div>
+      {/* <div>{post.author.user_id}</div>
       <div>{post.author.name}</div>
       <div>작성일: {post.created_at}</div>
-      <div>수정일: {post.last_modifed_at}</div>
+      <div>수정일: {post.last_modifed_at}</div> */}
 
       <button onClick={handleDeleteButtonClick}>삭제</button>
       <button onClick={handleUpdatebuttonClick}>수정</button>

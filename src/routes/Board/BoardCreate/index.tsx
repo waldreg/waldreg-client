@@ -1,36 +1,37 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { boardAPI } from "../../../apis/boardAPI";
+import { useNavigate } from "react-router-dom";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
-  // const createMutation = useMutation(
-  //   (PostData) => boardAPI.createPost(PostData),
-  //   {
-  //     onSuccess: () => {
-  //       console.log("게시글 생성 성공");
-  //     },
-  //     onError: () => {
-  //       console.log("게시글 생성 실패");
-  //     },
-  //   }
-  // );
+  const PostData = {
+    title,
+    category,
+    content,
+  };
 
-  // const handleCreateSubmit = (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   const PostData = {
-  //     title,
-  //     category,
-  //     content,
-  //   };
-  //   createMutation.mutate(PostData);
-  // };
+  const createMutation = useMutation(() => boardAPI.createPost(PostData), {
+    onSuccess: () => {
+      console.log("게시글 생성 성공");
+    },
+    onError: () => {
+      console.log("게시글 생성 실패");
+    },
+  });
+
+  const handleCreateSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    createMutation.mutate();
+    navigate("/board");
+  };
 
   return (
-    <form>
+    <form onSubmit={handleCreateSubmit}>
       <h1>게시글 작성</h1>
 
       <label>제목</label>
@@ -53,6 +54,8 @@ const BoardCreate = () => {
         name="content"
         onChange={(e) => setContent(e.target.value)}
       />
+
+      <button onSubmit={handleCreateSubmit}>작성</button>
     </form>
   );
 };

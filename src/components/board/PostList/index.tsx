@@ -25,9 +25,10 @@ function PostList({ posts }: PostListProps) {
         <PostContainer key={post.id} onClick={handlePostClick}>
           <Post>{post.id}</Post>
           <Post>{post.title}</Post>
-          <Post>{post.author.name}</Post>
+          <Post>{post.category}</Post>
+          {/* <Post>{post.author.name}</Post>
           <Post>{post.created_at}</Post>
-          <Post>{post.last_modifed_at}</Post>
+          <Post>{post.last_modifed_at}</Post> */}
         </PostContainer>
       ))}
     </div>
