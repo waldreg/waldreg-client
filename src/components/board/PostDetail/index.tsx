@@ -16,7 +16,6 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <div>{post.author.name}</div>
       <div>{post.created_at}</div>
       <div>{post.last_modified_at}</div>
-      <div>{post.member_tier}</div>
       <div>
         {post.images.map((image) => (
           <div>{image}</div>

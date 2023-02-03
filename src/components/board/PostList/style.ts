@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import COLOR from "../../../constants/color";
-import FONT from "../../../constants/fonts";
 
 const PostContainer = styled.div`
   display: flex;
@@ -12,8 +11,6 @@ const PostContainer = styled.div`
 
 const Post = styled.div`
   color: ${COLOR.GRAY5};
-  font-size: ${FONT.BODY1};
-  width: ${(props: { width: string }) => props.width};
 `;
 
 export { PostContainer, Post };
