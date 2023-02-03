@@ -8,7 +8,7 @@ export interface Post {
     name: string;
   };
   created_at: string;
-  last_modified_at: string;
+  last_modifed_at: string;
   images: [];
   exist_file: boolean;
   files: [];

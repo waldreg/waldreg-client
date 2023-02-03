@@ -27,7 +27,7 @@ function PostList({ posts }: PostListProps) {
           <Post>{post.title}</Post>
           <Post>{post.author.name}</Post>
           <Post>{post.created_at}</Post>
-          <Post>{post.created_at}</Post>
+          <Post>{post.last_modifed_at}</Post>
         </PostContainer>
       ))}
     </div>

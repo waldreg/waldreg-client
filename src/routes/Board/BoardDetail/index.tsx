@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { boardAPI } from "../../apis/boardAPI";
-import PostDetail from "./../../components/board/PostDetail/index";
 import { BoardContainer, Container } from "./style";
 import { useRecoilValue } from "recoil";
-import { boardDetailState } from "../../states/board";
+import { boardDetailState } from "../../../states/board";
+import PostDetail from "../../../components/board/PostDetail";
+import { boardAPI } from "../../../apis/boardAPI";
 
-const Board = () => {
+const BoardDetail = () => {
   const postDetail = useRecoilValue(boardDetailState);
 
   const { data: post } = useQuery("post", () => boardAPI.getPost(postDetail), {
@@ -25,4 +25,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default BoardDetail;

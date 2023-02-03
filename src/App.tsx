@@ -5,8 +5,9 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import GlobalStyle from "./styles/GlobalStyle";
 import Login from "./routes/Auth/Login";
 import Home from "./routes/Home";
-import Board from "./routes/Board";
-import Boards from "./routes/Boards";
+import BoardCreate from "./routes/Board/BoardCreate";
+import BoardList from "./routes/Board/BoardList/index";
+import BoardDetail from "./routes/Board/BoardDetail/index";
 
 const queryClient = new QueryClient();
 
@@ -19,8 +20,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/user/login" element={<Login />} />
-            <Route path="/board" element={<Boards />} />
-            <Route path="/board/:id" element={<Board />} />
+            {/* TODO: board routes 합치기 */}
+            <Route path="/board" element={<BoardList />} />
+            <Route path="/board/:id" element={<BoardDetail />} />
+            <Route path="/board/:id/create" element={<BoardCreate />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

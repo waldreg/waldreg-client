@@ -14,7 +14,7 @@ const PostDetail = ({ post }: PostDetailProps) => {
   const postDetail = useRecoilValue(boardDetailState);
   const navigate = useNavigate();
 
-  const deleteMutation = useMutation(() => boardAPI.deletePost(postDetail), {
+  const deletePost = useMutation(() => boardAPI.deletePost(postDetail), {
     onSuccess: () => {
       console.log("게시글 삭제 성공");
     },
@@ -23,9 +23,23 @@ const PostDetail = ({ post }: PostDetailProps) => {
     },
   });
 
+  const updatePost = useMutation(() => boardAPI.updatePost(postDetail), {
+    onSuccess: () => {
+      console.log("게시글 수정 성공");
+    },
+    onError: () => {
+      console.log("게시글 수정 실패");
+    },
+  });
+
   const handleDeleteButtonClick = () => {
-    deleteMutation.mutate(postDetail);
+    deletePost.mutate(postDetail);
     navigate(`/board`);
+  };
+
+  const handleUpdatebuttonClick = () => {
+    updatePost.mutate(postDetail);
+    navigate(`/board/${post.id}/update`);
   };
 
   return (
@@ -40,7 +54,7 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <div>수정일: {post.last_modifed_at}</div>
 
       <button onClick={handleDeleteButtonClick}>삭제</button>
-      <button>수정</button>
+      <button onClick={handleUpdatebuttonClick}>수정</button>
     </>
   );
 };

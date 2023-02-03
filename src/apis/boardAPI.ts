@@ -3,8 +3,6 @@ import axios from "axios";
 interface BoardAPI {
   getPostList: (category_id: number, from: number, to: number) => Promise<any>;
   getPost: (id: number) => Promise<any>;
-  createPost: () => Promise<any>;
-  updatePost: (id: number) => Promise<any>;
   deletePost: (id: number) => Promise<void>;
 }
 
