@@ -30,28 +30,6 @@
   },
   "boards": [
     {
-      "id": 1,
-      "title": "hello world",
-      "category": "질문 카테고리",
-      "content": "hello world too",
-      "author": {
-        "user_id": "hong gil dong",
-        "name": "홍 길 동"
-      },
-      "created_at": "2023-01-24",
-      "last_modifed_at": "2023-01-24",
-      "images": ["/image?id=1", "/image?id=2"],
-      "exist_file": "true",
-      "reactions": {
-        "good": 3,
-        "bad": 3,
-        "check": 3,
-        "heart": 3,
-        "smile": 3,
-        "sad": 3
-      }
-    },
-    {
       "id": 2,
       "title": "hello world2",
       "category": "질문 카테고리",
@@ -63,7 +41,10 @@
       "created_at": "2023-01-24",
       "last_modifed_at": "2023-01-24",
       "member_tier": "tier 3",
-      "images": ["/image?id=1", "/image?id=2"],
+      "images": [
+        "/image?id=1",
+        "/image?id=2"
+      ],
       "exist_file": "true",
       "reactions": {
         "good": 3,
