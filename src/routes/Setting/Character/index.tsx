@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useInput } from '../../../hooks/useInput';
 import { useCheckBox } from '../../../hooks/useCheckBox';
 
@@ -58,10 +58,19 @@ const Character = () => {
     ).data;
   };
 
-  // useMutation으로 전환예정
-  const handleClickDelete = (name: string) => {
-    characterAPI.delCharacter(name);
-  };
+  const queryClient = useQueryClient();
+  // const { mutate } = useMutation(characterAPI.delCharacter, {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(characterKeys.all);
+  //   },
+  //   onError: (error) => {
+  //     console.error(error);
+  //   },
+  // });
+
+  // const handleClickDelete = (name: string) => {
+  //   mutate(name);
+  // };
 
   const handleClickEdit = (name: string) => {
     characterAPI.editCharacter(name, {
@@ -76,12 +85,18 @@ const Character = () => {
     });
   };
 
+  const { mutate } = useMutation(characterAPI.createCharacter, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(characterKeys.all);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const handleClickSubmit = () => {
-    characterAPI.createCharacter({
-      id: 2,
-      character_name: value,
-      permissions: checkedList,
-    });
+    mutate({ id: 2, character_name: value, permissions: checkedList });
+    checkReset();
   };
 
   console.log(useCharQuery('Guest'));
@@ -101,9 +116,9 @@ const Character = () => {
           <button onClick={() => handleClickEdit(character.character_name)}>
             역할 수정하기
           </button>
-          <button onClick={() => handleClickDelete(character.character_name)}>
+          {/* <button onClick={() => handleClickDelete(character.character_name)}>
             역할 삭제하기
-          </button>
+          </button> */}
         </Role>
       ))}
       <InputAdd
