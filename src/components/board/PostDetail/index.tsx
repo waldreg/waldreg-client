@@ -1,33 +1,60 @@
 import React from "react";
-import { Post } from "../../../types/board";
+import { useMutation } from "react-query";
+import { boardAPI } from "../../../apis/boardAPI";
+import { Post } from "../../../interfaces/board";
+import { useRecoilValue } from "recoil";
+import { boardDetailState } from "../../../states/board";
+import { useNavigate } from "react-router-dom";
 
 interface PostDetailProps {
   post: Post;
 }
 
 const PostDetail = ({ post }: PostDetailProps) => {
+  const postDetail = useRecoilValue(boardDetailState);
+  const navigate = useNavigate();
+
+  const deletePost = useMutation(() => boardAPI.deletePost(postDetail), {
+    onSuccess: () => {
+      console.log("게시글 삭제 성공");
+    },
+    onError: () => {
+      console.log("게시글 삭제 실패");
+    },
+  });
+
+  const updatePost = useMutation(() => boardAPI.updatePost(postDetail), {
+    onSuccess: () => {
+      console.log("게시글 수정 성공");
+    },
+    onError: () => {
+      console.log("게시글 수정 실패");
+    },
+  });
+
+  const handleDeleteButtonClick = () => {
+    deletePost.mutate(postDetail);
+    navigate(`/board`);
+  };
+
+  const handleUpdatebuttonClick = () => {
+    updatePost.mutate(postDetail);
+    navigate(`/board/${post.id}/update`);
+  };
+
   return (
     <>
       <div>{post.id}</div>
       <div>{post.title}</div>
       <div>{post.category}</div>
       <div>{post.content}</div>
-      <div>{post.author.user_id}</div>
+      {/* <div>{post.author.user_id}</div>
       <div>{post.author.name}</div>
-      <div>{post.created_at}</div>
-      <div>{post.last_modified_at}</div>
-      <div>{post.member_tier}</div>
-      <div>
-        {post.images.map((image) => (
-          <div>{image}</div>
-        ))}
-      </div>
-      <div>{post.exist_file}</div>
-      <div>
-        {post.files.map((file) => (
-          <div>{file}</div>
-        ))}
-      </div>
+      <div>작성일: {post.created_at}</div>
+      <div>수정일: {post.last_modifed_at}</div> */}
+
+      <button onClick={handleDeleteButtonClick}>삭제</button>
+      <button onClick={handleUpdatebuttonClick}>수정</button>
     </>
   );
 };

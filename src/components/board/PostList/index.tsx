@@ -1,33 +1,38 @@
 import React from "react";
-import { Posts } from "../../../types/board";
+import { PostLists } from "../../../interfaces/board";
 import { Post, PostContainer } from "./style";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { boardDetailState } from "../../../states/board";
 
 interface PostListProps {
-  posts: Posts[];
+  posts: PostLists[];
 }
 
-const PostList = ({ posts }: PostListProps) => {
+function PostList({ posts }: PostListProps) {
   const navigate = useNavigate();
+  const setBoardDetail = useSetRecoilState(boardDetailState);
 
   const handlePostClick = (e: React.MouseEvent) => {
-    console.log(e.currentTarget.firstChild?.textContent);
-    navigate(`/boards/${e.currentTarget.firstChild?.textContent}`);
+    const post = e.currentTarget.firstChild?.textContent;
+    setBoardDetail(post);
+    navigate(`/board/${post}`);
   };
 
   return (
     <div>
       {posts.map((post) => (
         <PostContainer key={post.id} onClick={handlePostClick}>
-          <Post width={"10%"}>{post.id}</Post>
-          <Post width={"40%"}>{post.title}</Post>
-          <Post width={"10%"}>{post.author.name}</Post>
-          <Post width={"10%"}>{post.created_at}</Post>
-          <Post width={"10%"}>{post.created_at}</Post>
+          <Post>{post.id}</Post>
+          <Post>{post.title}</Post>
+          <Post>{post.category}</Post>
+          {/* <Post>{post.author.name}</Post>
+          <Post>{post.created_at}</Post>
+          <Post>{post.last_modifed_at}</Post> */}
         </PostContainer>
       ))}
     </div>
   );
-};
+}
 
 export default PostList;
