@@ -5,6 +5,7 @@ import { Post } from "../../../interfaces/board";
 import { useRecoilValue } from "recoil";
 import { boardDetailState } from "../../../states/board";
 import { useNavigate } from "react-router-dom";
+import { useDeletePost } from "./../../../hooks/board/useDeletePost";
 
 interface PostDetailProps {
   post: Post;
@@ -14,14 +15,12 @@ const PostDetail = ({ post }: PostDetailProps) => {
   const postDetail = useRecoilValue(boardDetailState);
   const navigate = useNavigate();
 
-  const deletePost = useMutation(() => boardAPI.deletePost(postDetail), {
-    onSuccess: () => {
-      console.log("게시글 삭제 성공");
-    },
-    onError: () => {
-      console.log("게시글 삭제 실패");
-    },
-  });
+  const deletePost = useDeletePost(postDetail);
+
+  const handleDeleteButtonClick = () => {
+    deletePost.mutate();
+    navigate(`/board`);
+  };
 
   const updatePost = useMutation(() => boardAPI.updatePost(postDetail), {
     onSuccess: () => {
@@ -31,11 +30,6 @@ const PostDetail = ({ post }: PostDetailProps) => {
       console.log("게시글 수정 실패");
     },
   });
-
-  const handleDeleteButtonClick = () => {
-    deletePost.mutate(postDetail);
-    navigate(`/board`);
-  };
 
   const handleUpdatebuttonClick = () => {
     updatePost.mutate(postDetail);
