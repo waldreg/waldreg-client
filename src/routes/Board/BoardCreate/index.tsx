@@ -1,9 +1,7 @@
 import { BoardContainer, Container } from "../BoardList/style";
 import React, { useState } from "react";
-import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { boardAPI } from "../../../apis/boardAPI";
-import CreateButton from "../../../components/common/CreateButton";
+import { useCreatePost } from "./../../../hooks/board/useCreatePost";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
@@ -17,14 +15,7 @@ const BoardCreate = () => {
     content,
   };
 
-  const createMutation = useMutation(() => boardAPI.createPost(PostData), {
-    onSuccess: () => {
-      console.log("게시글 생성 성공");
-    },
-    onError: () => {
-      console.log("게시글 생성 실패");
-    },
-  });
+  const createMutation = useCreatePost(PostData);
 
   const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();

@@ -4,7 +4,7 @@ import { Post } from "../interfaces/board";
 interface BoardAPI {
   getPostList: () => Promise<Post[]>; // 전체 게시글 조회
   getPost: (id: number) => Promise<Post>; // 특정 게시글 조회
-  createPost: (post: any) => Promise<void>; // 게시글 작성
+  createPost: (post: Post) => Promise<void>; // 게시글 작성
   updatePost: (id: number) => Promise<Post>; // 게시글 수정
   deletePost: (id: number) => Promise<void>; // 게시글 삭제
 }
@@ -26,7 +26,7 @@ export const boardAPI: BoardAPI = {
     return data;
   },
 
-  async createPost(post: any) {
+  async createPost(post: Post) {
     const { data } = await axios.post(
       // `/board`
       "http://localhost:8001/boards",
