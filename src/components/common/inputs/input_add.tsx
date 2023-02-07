@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import COLOR from '../../../constants/color';
 import { IUseInput } from '../../../interfaces/basic';
 
 export const InputAdd = (props: IUseInput) => {
@@ -10,7 +11,6 @@ export const InputAdd = (props: IUseInput) => {
         onChange={props.onChange}
         autoFocus
       />
-      <IconWrapper onClick={props.reset}>x</IconWrapper>
     </>
   );
 };
@@ -19,13 +19,10 @@ const Input = styled.input`
   width: 100%;
   padding: 0.75rem 0.75rem 0.75rem 1rem;
 
+  border: 0;
   border-radius: 0.5rem;
-`;
 
-const IconWrapper = styled.div`
-  position: absolute;
-  right: 2.5rem;
+  background: ${COLOR.GRAY1};
 
-  display: flex;
-  justify-content: center;
+  font-size: 0.75rem;
 `;
