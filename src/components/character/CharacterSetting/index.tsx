@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { useCharacter } from '../../../hooks/useCharQuery';
 
 import { Title } from '../../common/PageTitle/style';
+import Toggle from '../../common/toggles/toggle';
 
 import { IPermission } from '../../../interfaces/character';
+
 import COLOR from '../../../constants/color';
 
 const CharacterSetting = ({ name }: { name: string }) => {
@@ -17,7 +19,7 @@ const CharacterSetting = ({ name }: { name: string }) => {
         {character?.permissions?.map((permission: IPermission) => (
           <Permission key={permission.permission_id}>
             <div>{permission.permission_name}</div>
-            <div>{permission.permission_status}</div>
+            <Toggle state={permission.permission_status === 'true'} />
           </Permission>
         ))}
       </Permissions>
