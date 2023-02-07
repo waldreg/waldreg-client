@@ -5,7 +5,6 @@ import {
   Container,
 } from "../../../routes/Board/Announcement/style";
 import { useCreateBoard } from "../../../hooks/board/useCreateBoard";
-import Layout from "../../global/Layout/index";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
@@ -28,45 +27,43 @@ const BoardCreate = () => {
   };
 
   return (
-    <Layout>
-      <Container>
-        <BoardContainer>
-          <form onSubmit={handleCreateSubmit}>
-            <h1>게시글 작성</h1>
+    <Container>
+      <BoardContainer>
+        <form onSubmit={handleCreateSubmit}>
+          <h1>게시글 작성</h1>
 
-            <label>제목</label>
-            <input
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTitle(e.target.value)
-              }
-            />
-            <br />
+          <label>제목</label>
+          <input
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTitle(e.target.value)
+            }
+          />
+          <br />
 
-            <label>카테고리</label>
-            <input
-              type="text"
-              name="category"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setCategory(e.target.value)
-              }
-            />
-            <br />
+          <label>카테고리</label>
+          <input
+            type="text"
+            name="category"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setCategory(e.target.value)
+            }
+          />
+          <br />
 
-            <label>내용</label>
-            <input
-              type="text"
-              name="content"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setContent(e.target.value)
-              }
-            />
-            <br />
+          <label>내용</label>
+          <input
+            type="text"
+            name="content"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setContent(e.target.value)
+            }
+          />
+          <br />
 
-            <button onSubmit={handleCreateSubmit}>작성</button>
-          </form>
-        </BoardContainer>
-      </Container>
-    </Layout>
+          <button onSubmit={handleCreateSubmit}>작성</button>
+        </form>
+      </BoardContainer>
+    </Container>
   );
 };
 

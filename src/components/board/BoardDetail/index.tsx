@@ -18,15 +18,13 @@ const BoardDetail = () => {
 
   return (
     <>
-      <Layout>
-        <BoardContainer>
-          <div>{board?.id}</div>
-          <div>{board?.title}</div>
-          <div>{board?.category}</div>
-          <div>{board?.content}</div>
-          <button onClick={handleDeleteButtonClick}>삭제</button>
-        </BoardContainer>
-      </Layout>
+      <BoardContainer>
+        <div>{board?.id}</div>
+        <div>{board?.title}</div>
+        <div>{board?.category}</div>
+        <div>{board?.content}</div>
+        <button onClick={handleDeleteButtonClick}>삭제</button>
+      </BoardContainer>
     </>
   );
 };
