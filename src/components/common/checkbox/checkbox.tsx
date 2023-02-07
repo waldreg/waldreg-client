@@ -15,7 +15,6 @@ export const CheckBox = (props: IProps) => {
       {props.data.map((item: IPermission) => {
         return (
           <div key={item.permission_id}>
-            {item.permission_id}
             <Check item={item} updateCheckList={props.updateCheckList} />
           </div>
         );

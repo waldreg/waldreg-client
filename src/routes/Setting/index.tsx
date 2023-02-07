@@ -3,11 +3,9 @@ import Character from './Character';
 
 const Setting = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/character" element={<Character />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/character" element={<Character />} />
+    </Routes>
   );
 };
 

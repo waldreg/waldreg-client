@@ -15,24 +15,22 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/user/login" element={<Login />} />
-            {/* TODO: board routes 합치기 */}
-            <Route path="/board" element={<BoardList />} />
-            <Route path="/board/create" element={<BoardCreate />} />
-            <Route path="/board/:id" element={<BoardDetail />} />
-            <Route path="/board/:id/update" element={<BoardUpdate />} />
-            <Route path="/setting/*" element={<Setting />} />
-          </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user/login" element={<Login />} />
+          {/* TODO: board routes 합치기 */}
+          <Route path="/board" element={<BoardList />} />
+          <Route path="/board/create" element={<BoardCreate />} />
+          <Route path="/board/:id" element={<BoardDetail />} />
+          <Route path="/board/:id/update" element={<BoardUpdate />} />
+          <Route path="/setting/*" element={<Setting />} />
+        </Routes>
+      </BrowserRouter>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 
