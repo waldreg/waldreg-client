@@ -107,8 +107,8 @@ const GlobalStyle = createGlobalStyle`
     display: block;
   }
   html {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
   }
   body {
     width: 100%;
@@ -172,6 +172,11 @@ const GlobalStyle = createGlobalStyle`
   
   input:focus {
     outline: none;
+  }
+
+  #root{
+    width:100%;
+    height:100%;
   }
 `;
 
