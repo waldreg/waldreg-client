@@ -1,16 +1,16 @@
 import axios from "axios";
-import { Post } from "../interfaces/board";
+import { Board } from "../interfaces/board";
 
 interface BoardAPI {
-  getPostList: () => Promise<Post[]>; // 전체 게시글 조회
-  getPost: (id: number) => Promise<Post>; // 특정 게시글 조회
-  createPost: (post: Post) => Promise<void>; // 게시글 작성
-  updatePost: (id: number) => Promise<Post>; // 게시글 수정
-  deletePost: (id: number) => Promise<void>; // 게시글 삭제
+  getBoardList: () => Promise<Board[]>; // 전체 게시글 조회
+  getBoard: (id: number) => Promise<Board>; // 특정 게시글 조회
+  createBoard: (Board: Board) => Promise<void>; // 게시글 작성
+  updateBoard: (id: number) => Promise<Board>; // 게시글 수정
+  deleteBoard: (id: number) => Promise<void>; // 게시글 삭제
 }
 
 export const boardAPI: BoardAPI = {
-  async getPostList() {
+  async getBoardList() {
     const { data } = await axios.get(
       // `/boards?category=${category_id}&from=${from}&to=${to}`
       "http://localhost:8001/boards"
@@ -18,7 +18,7 @@ export const boardAPI: BoardAPI = {
     return data;
   },
 
-  async getPost(id: number) {
+  async getBoard(id: number) {
     const { data } = await axios.get(
       // `/board/${id}`
       `http://localhost:8001/boards/${id}`
@@ -26,16 +26,16 @@ export const boardAPI: BoardAPI = {
     return data;
   },
 
-  async createPost(post: Post) {
+  async createBoard(board: Board) {
     const { data } = await axios.post(
       // `/board`
       "http://localhost:8001/boards",
-      post
+      board
     );
     return data;
   },
 
-  async updatePost(id: number) {
+  async updateBoard(id: number) {
     const { data } = await axios.post(
       // `/board/${id}`
       `http://localhost:8001/boards/${id}`
@@ -43,7 +43,7 @@ export const boardAPI: BoardAPI = {
     return data;
   },
 
-  async deletePost(id: number) {
+  async deleteBoard(id: number) {
     const { data } = await axios.delete(
       // `/board/${id}`
       `http://localhost:8001/boards/${id}`

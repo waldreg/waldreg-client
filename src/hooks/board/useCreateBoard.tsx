@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient } from "react-query";
-import { boardAPI } from "../../apis/boardAPI";
 import { boardKeys } from "../../types/settingKeys";
+import { boardAPI } from "../../apis/boardAPI";
 
-interface UseDeletePost {
+interface UseCreateBoard {
   mutate: () => void;
 }
 
-export function useDeletePost(id: number): UseDeletePost {
+export function useCreateBoard(BoardData: any): UseCreateBoard {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => boardAPI.deletePost(id), {
+  const { mutate } = useMutation(() => boardAPI.createBoard(BoardData), {
     onSuccess: () => {
       queryClient.invalidateQueries(boardKeys.all); // Invalidate and refetch
     },

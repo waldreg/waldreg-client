@@ -1,4 +1,4 @@
-export interface Post {
+export interface Board {
   id: number;
   title: string;
   category: string;
@@ -23,6 +23,6 @@ export interface Post {
   };
 }
 
-export interface PostLists extends Post {
+export interface BoardList extends Board {
   max_idx: number;
 }

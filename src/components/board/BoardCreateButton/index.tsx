@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { PencilIcon } from "../../Icons/BoardIcons";
 import { Button } from "./style";
 
-const PostCreateButton = () => {
+const BoardCreateButton = () => {
   const navigate = useNavigate();
 
   const handleCreateButtonClick = () => {
-    navigate(`/board/create`);
+    navigate("create");
   };
 
   return (
@@ -17,4 +17,4 @@ const PostCreateButton = () => {
   );
 };
 
-export default PostCreateButton;
+export default BoardCreateButton;
