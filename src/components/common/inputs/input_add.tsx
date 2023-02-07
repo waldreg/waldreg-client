@@ -11,7 +11,6 @@ export const InputAdd = (props: IUseInput) => {
         onChange={props.onChange}
         autoFocus
       />
-      <IconWrapper onClick={props.reset}>x</IconWrapper>
     </>
   );
 };
@@ -26,12 +25,4 @@ const Input = styled.input`
   background: ${COLOR.GRAY1};
 
   font-size: 0.75rem;
-`;
-
-const IconWrapper = styled.div`
-  position: absolute;
-  right: 2.5rem;
-
-  display: flex;
-  justify-content: center;
 `;
