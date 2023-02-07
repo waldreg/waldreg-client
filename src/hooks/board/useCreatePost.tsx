@@ -1,4 +1,5 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import { boardKeys } from "../../types/settingKeys";
 import { boardAPI } from "./../../apis/boardAPI";
 
 interface UseCreatePost {
@@ -6,6 +7,12 @@ interface UseCreatePost {
 }
 
 export function useCreatePost(PostData: any): UseCreatePost {
-  const { mutate } = useMutation(() => boardAPI.createPost(PostData));
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(() => boardAPI.createPost(PostData), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(boardKeys.all); // Invalidate and refetch
+    },
+  });
   return { mutate };
 }
