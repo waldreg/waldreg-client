@@ -3,11 +3,11 @@ import { BoardContainer, Container } from "./style";
 import { useRecoilValue } from "recoil";
 import { boardDetailState } from "../../../states/board";
 import PostDetail from "../../../components/board/PostDetail";
-import { usePost } from "../../../hooks/board/usePost";
+import { usePostDetail } from "../../../hooks/board/usePostDetail";
 
 const BoardDetail = () => {
   const postDetail = useRecoilValue(boardDetailState);
-  const { post } = usePost(postDetail);
+  const { post } = usePostDetail(postDetail);
 
   return (
     <Container>
