@@ -17,7 +17,7 @@ import { InputAdd } from '../../common/inputs/input_add';
 import { CheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
 
-const CharacterList = () => {
+const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
   const perList = usePermissionList();
   const { mutate } = useCreateCharacter();
@@ -49,7 +49,12 @@ const CharacterList = () => {
       <Title>역할</Title>
       <Characters>
         {charList?.map((character: ICharacter) => (
-          <Character key={character.id}>{character.character_name}</Character>
+          <Character
+            key={character.id}
+            onClick={() => handleClickChangeChar(character.character_name)}
+          >
+            {character.character_name}
+          </Character>
         ))}
       </Characters>
       <InputAdd

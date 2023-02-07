@@ -1,13 +1,26 @@
 import styled from 'styled-components';
 
-import COLOR from '../../../constants/color';
+import { useCharacter } from '../../../hooks/useCharQuery';
 
 import { Title } from '../../common/PageTitle/style';
 
-const CharacterSetting = () => {
+import { IPermission } from '../../../interfaces/character';
+import COLOR from '../../../constants/color';
+
+const CharacterSetting = ({ name }: { name: string }) => {
+  const character = useCharacter(name);
+
   return (
     <Container>
       <Title>역할 설정</Title>
+      <Permissions>
+        {character?.permissions?.map((permission: IPermission) => (
+          <Permission key={permission.permission_id}>
+            <div>{permission.permission_name}</div>
+            <div>{permission.permission_status}</div>
+          </Permission>
+        ))}
+      </Permissions>
     </Container>
   );
 };
@@ -22,6 +35,14 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+`;
+
+const Permissions = styled.div``;
+
+const Permission = styled.div`
+  padding: 0.5rem;
+  display: flex;
+  gap: 1rem;
 `;
 
 export default CharacterSetting;
