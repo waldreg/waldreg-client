@@ -64,7 +64,11 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
         placeholder={'추가할 역할 이름을 입력하세요'}
       />
       <CheckBox data={perList || []} updateCheckList={updateCheckList} />
-      <ButtonBig content="역할 추가하기" onClick={handleClickCreateChar} />
+      <ButtonBig
+        content="역할 추가하기"
+        color={COLOR.GREEN4}
+        onClick={handleClickCreateChar}
+      />
     </Container>
   );
 };

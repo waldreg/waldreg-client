@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-import { useCharacter } from '../../../hooks/useCharQuery';
+import { useCharacter, useDeleteCharacter } from '../../../hooks/useCharQuery';
 
 import { Title } from '../../common/PageTitle/style';
 import Toggle from '../../common/toggles/toggle';
+import { ButtonBig } from '../../common/buttons/button_big';
 
 import { IPermission } from '../../../interfaces/character';
 
@@ -11,6 +12,7 @@ import COLOR from '../../../constants/color';
 
 const CharacterSetting = ({ name }: { name: string }) => {
   const character = useCharacter(name);
+  const { mutate } = useDeleteCharacter();
 
   return (
     <Container>
@@ -23,6 +25,11 @@ const CharacterSetting = ({ name }: { name: string }) => {
           </Permission>
         ))}
       </Permissions>
+      <ButtonBig
+        content={'역할 삭제하기'}
+        color={COLOR.RED2}
+        onClick={() => mutate(name)}
+      />
     </Container>
   );
 };

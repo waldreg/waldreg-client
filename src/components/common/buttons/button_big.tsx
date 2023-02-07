@@ -3,15 +3,21 @@ import COLOR from '../../../constants/color';
 
 export const ButtonBig = ({
   content,
+  color,
   onClick,
 }: {
   content: string;
+  color: string;
   onClick: any;
 }) => {
-  return <Wrapper onClick={onClick}>{content}</Wrapper>;
+  return (
+    <Wrapper onClick={onClick} color={color}>
+      {content}
+    </Wrapper>
+  );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ color: string }>`
   width: 100%;
   padding: 0.75rem;
 
@@ -19,7 +25,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: ${COLOR.GREEN4};
+  background: ${(props) => props.color};
   border-radius: 0.5rem;
 
   color: ${COLOR.WHITE};
