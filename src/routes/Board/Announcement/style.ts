@@ -2,10 +2,9 @@ import styled from "styled-components";
 import COLOR from "../../../constants/color";
 
 const Container = styled.div`
-  background: ${COLOR.GRAY1};
   height: 100vh;
   width: 100%;
-  padding: 2.2rem;
+  padding-top: 1.5rem;
 `;
 
 const BoardContainer = styled.div`

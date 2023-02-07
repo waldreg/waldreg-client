@@ -1,14 +1,11 @@
 import React from "react";
-import BoardCategory from "../../components/category/BoardCategory";
-import { useBoardCategories } from "./../../hooks/category/useBoardCategories";
+import Layout from "../../components/global/Layout";
 
 const Home = () => {
-  const { boardCategories } = useBoardCategories();
-
   return (
-    <div>
-      {boardCategories && <BoardCategory categories={boardCategories} />}
-    </div>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 };
 

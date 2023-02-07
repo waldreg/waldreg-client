@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import COLOR from '../../../constants/color';
+import COLOR from "../../../constants/color";
 
-import { LogoIcon } from '../../Icons/LogoIcons';
+import { LogoIcon } from "../../Icons/LogoIcons";
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -12,7 +12,7 @@ import {
   CalIcon,
   MedalIcon,
   EyeIcon,
-} from '../../Icons/BasicIcons';
+} from "../../Icons/BasicIcons";
 
 const NavBar = () => {
   return (
@@ -22,7 +22,7 @@ const NavBar = () => {
         <DoubleLeftIcon />
       </Top>
       <Links>
-        <Link to="/">
+        <Link to="/home">
           <HomeIcon />홈
         </Link>
         <BaseLink>
@@ -53,6 +53,26 @@ const NavBar = () => {
           <BoardIcon />
           게시판
         </BaseLink>
+        <Link to="/board/announcement">
+          <Blank />
+          공지사항
+        </Link>
+        <Link to="/board/question">
+          <Blank />
+          질문게시판
+        </Link>
+        <Link to="/board/free">
+          <Blank />
+          자유게시판
+        </Link>
+        <Link to="/board/bug">
+          <Blank />
+          버그가 있어요!
+        </Link>
+        <Link to="/board/changelog">
+          <Blank />
+          체인지 로그
+        </Link>
         <Link to="/">
           <CalIcon />
           일정표
