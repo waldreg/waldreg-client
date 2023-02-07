@@ -1,7 +1,25 @@
 import { waldregAxios } from './axios';
 import { ICharacter, IPermission } from '../interfaces/character';
 
-export const characterAPI = {
+interface ICharacterAPI {
+  getPermissionList: () => Promise<IPermission[]>;
+  getCharacterList: () => Promise<ICharacter[]>;
+  getCharacter: (name: string) => Promise<ICharacter>;
+  createCharacter: (newChar: ICharacter) => Promise<void>;
+  editCharacter: ({
+    name,
+    newChar,
+  }: {
+    name: string;
+    newChar: {
+      character_name: string;
+      permissions: IPermission[];
+    };
+  }) => Promise<void>;
+  delCharacter: (name: string) => Promise<void>;
+}
+
+export const characterAPI: ICharacterAPI = {
   async getPermissionList() {
     const response = await waldregAxios.get('/permission');
     return response.data.permissions;
@@ -12,30 +30,29 @@ export const characterAPI = {
     return response.data.characters;
   },
 
-  async createCharacter(newChar: ICharacter) {
-    console.log(newChar);
-    try {
-      const response = await waldregAxios.post('/character', newChar);
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   async getCharacter(name: string) {
     const response = await waldregAxios.get(`/character/${name}`);
     return response.data;
   },
 
-  async editCharacter(
-    name: string,
-    newChar: { character_name: string; permissions: IPermission[] }
-  ) {
-    const response = await waldregAxios.patch(`/character/${name}`, newChar);
-    return response;
+  async createCharacter(newChar: ICharacter) {
+    await waldregAxios.post('/character', newChar);
+  },
+
+  async editCharacter({
+    name,
+    newChar,
+  }: {
+    name: string;
+    newChar: {
+      character_name: string;
+      permissions: IPermission[];
+    };
+  }) {
+    await waldregAxios.patch(`/character/${name}`, newChar);
   },
 
   async delCharacter(name: string) {
-    const response = await waldregAxios.delete(`/character/${name}`);
-    return response;
+    await waldregAxios.delete(`/character/${name}`);
   },
 };
