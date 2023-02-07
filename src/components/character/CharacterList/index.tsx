@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import COLOR from '../../../constants/color';
 
 import { waldregAxios } from '../../../apis/axios';
@@ -16,6 +16,7 @@ import { Title } from '../../common/PageTitle/style';
 import { InputAdd } from '../../common/inputs/input_add';
 import { CheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
+import FONT from '../../../constants/fonts';
 
 const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
@@ -46,7 +47,7 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
   return (
     <Container>
       <button onClick={handleClickGetToken}>토큰 발급</button>
-      <Title>역할</Title>
+      <Title style={FONT.SUBTITLE1}>역할</Title>
       <Characters>
         {charList?.map((character: ICharacter) => (
           <Character

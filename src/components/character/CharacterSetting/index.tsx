@@ -28,7 +28,7 @@ const CharacterSetting = ({ name }: { name: string }) => {
       <ButtonBig
         content={'역할 삭제하기'}
         color={COLOR.RED2}
-        onClick={() => mutate(name)}
+        onClick={() => mutate(name, { onError: (error) => console.log(error) })}
       />
     </Container>
   );
