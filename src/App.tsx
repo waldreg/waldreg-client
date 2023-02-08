@@ -7,6 +7,7 @@ import Login from "./routes/Auth/Login";
 import Home from "./routes/Home";
 import Setting from "./routes/Setting";
 import Board from "./routes/Board";
+import Layout from "./components/global/Layout/index";
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/user/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/board/*" element={<Board />} />
-          <Route path="/setting/*" element={<Setting />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/board/*" element={<Board />} />
+            <Route path="/setting/*" element={<Setting />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools />
