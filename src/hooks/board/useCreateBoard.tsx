@@ -1,6 +1,16 @@
 import { useMutation, useQueryClient } from "react-query";
 import { boardKeys } from "../../types/settingKeys";
-import { boardAPI } from "../../apis/boardAPI";
+import { Board } from "../../interfaces/board";
+import axios from "axios";
+
+async function createBoard(board: Board): Promise<void> {
+  const { data } = await axios.post(
+    // `/board`
+    "http://localhost:8001/boards",
+    board
+  );
+  return data;
+}
 
 interface UseCreateBoard {
   mutate: () => void;
@@ -9,9 +19,9 @@ interface UseCreateBoard {
 export function useCreateBoard(BoardData: any): UseCreateBoard {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => boardAPI.createBoard(BoardData), {
+  const { mutate } = useMutation(() => createBoard(BoardData), {
     onSuccess: () => {
-      queryClient.invalidateQueries(boardKeys.all); // Invalidate and refetch
+      queryClient.invalidateQueries(boardKeys.all);
     },
   });
   return { mutate };

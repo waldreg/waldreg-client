@@ -1,6 +1,14 @@
+import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
-import { boardAPI } from "../../apis/boardAPI";
 import { boardKeys } from "../../types/settingKeys";
+
+async function deleteBoard(id: number) {
+  const { data } = await axios.delete(
+    // `/board/${id}`
+    `http://localhost:8001/boards/${id}`
+  );
+  return data;
+}
 
 interface UseDeletePost {
   mutate: () => void;
@@ -9,9 +17,9 @@ interface UseDeletePost {
 export function useDeletePost(id: number): UseDeletePost {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => boardAPI.deleteBoard(id), {
+  const { mutate } = useMutation(() => deleteBoard(id), {
     onSuccess: () => {
-      queryClient.invalidateQueries(boardKeys.all); // Invalidate and refetch
+      queryClient.invalidateQueries(boardKeys.all);
     },
   });
   return { mutate };
