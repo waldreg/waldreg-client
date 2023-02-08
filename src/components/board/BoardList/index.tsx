@@ -13,7 +13,7 @@ function BoardList({ boardList }: BoardListProps) {
   const navigate = useNavigate();
   const setBoardId = useSetRecoilState(boardIdState);
 
-  const handlePostClick = (e: React.MouseEvent) => {
+  const handleBoardClick = (e: React.MouseEvent) => {
     const boardId = e.currentTarget.firstChild?.textContent;
     setBoardId(boardId);
     navigate(`${boardId}`);
@@ -22,7 +22,7 @@ function BoardList({ boardList }: BoardListProps) {
   return (
     <div>
       {boardList.map((board) => (
-        <BoardContainer key={board.id} onClick={handlePostClick}>
+        <BoardContainer key={board.id} onClick={handleBoardClick}>
           <div>{board.id}</div>
           <div>{board.title}</div>
           <div>{board.category}</div>

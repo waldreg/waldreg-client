@@ -4,7 +4,7 @@ import {
   BoardContainer,
   Container,
 } from "../../../routes/Board/Announcement/style";
-import { useCreateBoard } from "../../../hooks/board/useCreateBoard";
+import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ const BoardCreate = () => {
     content,
   };
 
-  const createMutation = useCreateBoard(BoardData);
+  const createMutation = useBoardCreate(BoardData);
 
   const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
