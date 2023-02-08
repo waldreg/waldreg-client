@@ -1,4 +1,5 @@
 export interface Schedule {
+  id?: number;
   schedule_title: string;
   schedule_content: string;
   started_at: string;

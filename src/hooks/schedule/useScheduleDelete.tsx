@@ -1,20 +1,19 @@
 import { useMutation, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "../../apis/axios";
-import { Schedule } from "../../interfaces/schedule";
 import { scheduleKeys } from "../../types/scheduleKye";
 
-async function scheduleCreate(schedule: Schedule): Promise<void> {
-  await axios.post(`/schedule`, schedule);
+async function scheduleDelete(scheduleId: number): Promise<void> {
+  await axios.delete(`/schedule/${scheduleId}`);
 }
 
-interface UseScheduleCreate {
+interface UseScheduleDelete {
   mutate: () => void;
 }
 
-export function useScheduleCreate(schedule: Schedule): UseScheduleCreate {
+export function useScheduleDelete(scheduleId: number): UseScheduleDelete {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => scheduleCreate(schedule), {
+  const { mutate } = useMutation(() => scheduleDelete(scheduleId), {
     onSuccess: () => {
       queryClient.invalidateQueries(scheduleKeys.all);
     },
