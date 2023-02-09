@@ -3,7 +3,7 @@ import { Board } from "../../interfaces/board";
 import { boardKeys } from "../../types/settingKeys";
 import axios from "axios";
 
-async function getBoard(id: number): Promise<Board> {
+async function getBoardDetail(id: number): Promise<Board> {
   const { data } = await axios.get(
     // `/board/${id}`
     `http://localhost:8001/boards/${id}`
@@ -17,7 +17,7 @@ interface UseBoardDetail {
 
 export function useBoardDetail(id: number): UseBoardDetail {
   const { data: board } = useQuery<Board>(boardKeys.detail(id), () =>
-    getBoard(id)
+    getBoardDetail(id)
   );
   return { board };
 }

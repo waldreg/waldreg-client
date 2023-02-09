@@ -3,7 +3,7 @@ import { boardKeys } from "../../types/settingKeys";
 import { Board } from "../../interfaces/board";
 import axios from "axios";
 
-async function createBoard(board: Board): Promise<void> {
+async function boardCreate(board: Board): Promise<void> {
   const { data } = await axios.post(
     // `/board`
     "http://localhost:8001/boards",
@@ -12,14 +12,14 @@ async function createBoard(board: Board): Promise<void> {
   return data;
 }
 
-interface UseCreateBoard {
+interface UseBoardCreate {
   mutate: () => void;
 }
 
-export function useCreateBoard(BoardData: any): UseCreateBoard {
+export function useBoardCreate(BoardData: any): UseBoardCreate {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => createBoard(BoardData), {
+  const { mutate } = useMutation(() => boardCreate(BoardData), {
     onSuccess: () => {
       queryClient.invalidateQueries(boardKeys.all);
     },

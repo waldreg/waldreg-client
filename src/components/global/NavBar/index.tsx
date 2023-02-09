@@ -73,7 +73,7 @@ const NavBar = () => {
           <Blank />
           체인지 로그
         </Link>
-        <Link to="/">
+        <Link to="/schedule">
           <CalIcon />
           일정표
         </Link>
