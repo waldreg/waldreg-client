@@ -4,8 +4,8 @@ import useCharacter from '../../../hooks/character/useCharacter';
 import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
 
 import { Title } from '../../common/PageTitle/style';
-import Toggle from '../../common/toggles/toggle';
 import { ButtonBig } from '../../common/buttons/button_big';
+import Toggle from '../../common/toggles/toggle';
 
 import { IPermission } from '../../../interfaces/character';
 
@@ -18,11 +18,12 @@ const CharacterSetting = ({ name }: { name: string }) => {
   return (
     <Container>
       <Title>역할 설정</Title>
+      <div>{name}</div>
       <Permissions>
         {character?.permissions?.map((permission: IPermission) => (
           <Permission key={permission.permission_id}>
             <div>{permission.permission_name}</div>
-            <Toggle state={permission.permission_status === 'true'} />
+            <Toggle state={permission.permission_status === 'true'}></Toggle>
           </Permission>
         ))}
       </Permissions>
