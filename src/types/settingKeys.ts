@@ -11,12 +11,3 @@ export const userKeys = {
   all: ["users"] as const,
   detail: (id: number) => [...userKeys.all, id] as const,
 };
-
-export const boardKeys = {
-  all: ["posts"] as const,
-  detail: (id: number) => [...boardKeys.all, id] as const,
-};
-
-export const boardCategoryKeys = {
-  all: ["boardCategories"] as const,
-};

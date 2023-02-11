@@ -1,23 +1,26 @@
 import React from "react";
 import BoardCreateButton from "../../../components/board/BoardCreateButton";
 import BoardList from "../../../components/board/BoardList";
-import PageTitle from "../../../components/common/PageTitle";
 import { useBoardList } from "../../../hooks/board/useBoardList";
-import { BoardButtonContainer, BoardContainer, Container } from "./style";
+import { BoardButtonContainer, BoardContainer } from "./style";
+import { useSetRecoilState } from "recoil";
+import { boardCategoryState } from "../../../states/board";
 
 const Announcement = () => {
-  const { boardList } = useBoardList();
+  const { boardList } = useBoardList(1, 1, 1);
+
+  const setBoardCategory = useSetRecoilState(boardCategoryState);
+  setBoardCategory(1);
 
   return (
-    <Container>
-      <PageTitle>공지사항</PageTitle>
+    <>
       <BoardContainer>
         {boardList && <BoardList boardList={boardList} />}
       </BoardContainer>
       <BoardButtonContainer>
         <BoardCreateButton />
       </BoardButtonContainer>
-    </Container>
+    </>
   );
 };
 
