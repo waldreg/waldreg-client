@@ -3,11 +3,9 @@ import COLOR from '../../../constants/color';
 
 import { waldregAxios } from '../../../apis/axios';
 
-import {
-  usePermissionList,
-  useCharacterList,
-  useCreateCharacter,
-} from '../../../hooks/useCharQuery';
+import usePermissionList from '../../../hooks/character/usePermissionList';
+import useCharacterList from '../../../hooks/character/useCharacterList';
+import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
 import { useInput } from '../../../hooks/common/useInput';
 import { useCheckBox } from '../../../hooks/common/useCheckBox';
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { useCharacter, useDeleteCharacter } from '../../../hooks/useCharQuery';
+import useCharacter from '../../../hooks/character/useCharacter';
+import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
 
 import { Title } from '../../common/PageTitle/style';
 import Toggle from '../../common/toggles/toggle';
