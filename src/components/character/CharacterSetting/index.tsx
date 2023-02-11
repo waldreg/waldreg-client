@@ -5,13 +5,19 @@ import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
 
 import { Title } from '../../common/PageTitle/style';
 import { ButtonBig } from '../../common/buttons/button_big';
-import Toggle from '../../common/toggles/toggle';
+import Permission from '../Permission';
 
 import { IPermission } from '../../../interfaces/character';
 
 import COLOR from '../../../constants/color';
 
-const CharacterSetting = ({ name }: { name: string }) => {
+const CharacterSetting = ({
+  name,
+  setChar,
+}: {
+  name: string;
+  setChar: any;
+}) => {
   const character = useCharacter(name);
   const { mutate } = useDeleteCharacter();
 
@@ -21,16 +27,16 @@ const CharacterSetting = ({ name }: { name: string }) => {
       <div>{name}</div>
       <Permissions>
         {character?.permissions?.map((permission: IPermission) => (
-          <Permission key={permission.permission_id}>
-            <div>{permission.permission_name}</div>
-            <Toggle state={permission.permission_status === 'true'}></Toggle>
-          </Permission>
+          <Permission key={permission.permission_id} {...permission} />
         ))}
       </Permissions>
       <ButtonBig
         content={'역할 삭제하기'}
         color={COLOR.RED2}
-        onClick={() => mutate(name, { onError: (error) => console.log(error) })}
+        onClick={() => {
+          mutate(name);
+          setChar('Admin');
+        }}
       />
     </Container>
   );
@@ -49,11 +55,5 @@ const Container = styled.div`
 `;
 
 const Permissions = styled.div``;
-
-const Permission = styled.div`
-  padding: 0.5rem;
-  display: flex;
-  gap: 1rem;
-`;
 
 export default CharacterSetting;
