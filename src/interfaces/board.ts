@@ -1,5 +1,5 @@
 export interface Board {
-  id: number;
+  id?: number;
   title: string;
   category: string;
   content: string;
@@ -9,10 +9,10 @@ export interface Board {
   };
   created_at: string;
   last_modifed_at: string;
-  images: [];
+  images?: [];
   exist_file: boolean;
-  files: [];
-  reactions: {
+  files?: [];
+  reactions?: {
     good: number;
     bad: number;
     check: number;
@@ -23,6 +23,17 @@ export interface Board {
   };
 }
 
-export interface BoardList extends Board {
+export interface BoardLists extends Board {
   max_idx: number;
+  boards: Board[];
+}
+
+export interface BoardCategory {
+  category_id: number;
+  category_name: string;
+  category_boards: number;
+}
+
+export interface BoardCategoryLists extends BoardCategory {
+  categories: BoardCategory[];
 }

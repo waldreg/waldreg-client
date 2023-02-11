@@ -1,21 +1,30 @@
 import { useQuery } from "react-query";
-import { Board } from "../../interfaces/board";
-import { boardKeys } from "../../types/settingKeys";
-import axios from "axios";
+import { waldregAxios as axios } from "./../../apis/axios";
+import { boardKeys } from "../../types/boardKey";
+import { BoardLists } from "../../interfaces/board";
 
-async function getBoardList(): Promise<Board[]> {
+async function getBoardList(
+  category_id: number,
+  from: number,
+  to: number
+): Promise<BoardLists> {
   const { data } = await axios.get(
-    // `/boards?category=${category_id}&from=${from}&to=${to}`
-    "http://localhost:8001/boards"
+    `/boards?category=${category_id}&from=${from}&to=${to}`
   );
   return data;
 }
 
 interface UseBoardList {
-  boardList?: Board[];
+  boardList?: BoardLists;
 }
 
-export function useBoardList(): UseBoardList {
-  const { data: boardList } = useQuery<Board[]>(boardKeys.all, getBoardList);
+export function useBoardList(
+  category_id: number,
+  from: number,
+  to: number
+): UseBoardList {
+  const { data: boardList } = useQuery<BoardLists>(boardKeys.all, () =>
+    getBoardList(category_id, from, to)
+  );
   return { boardList };
 }
