@@ -1,24 +1,35 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  BoardContainer,
-  Container,
-} from "../../../routes/Board/Announcement/style";
+import { BoardContainer } from "../../../routes/Board/Announcement/style";
 import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
+import { useRecoilValue } from "recoil";
+import { boardCategoryState } from "../../../states/board";
+import FONT from "../../../constants/fonts";
+import { PencilWhiteIcon } from "../../Icons/BoardIcons";
+import { Button, ButtonContainer, Input, TextArea } from "./style";
+import { useBoardCategoryCreate } from "./../../../hooks/category/useBoardCategoryCreate";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const category_id = useRecoilValue(boardCategoryState);
   const navigate = useNavigate();
 
-  const BoardData = {
-    title,
-    category,
-    content,
+  const formData = new FormData();
+
+  const data = {
+    title: title,
+    content: content,
+    category_id: category_id,
   };
 
-  const createMutation = useBoardCreate(BoardData);
+  formData.append(
+    "boardCreateRequest",
+    new Blob([JSON.stringify(data)], { type: "application/json" })
+  );
+
+  const createMutation = useBoardCreate(formData);
 
   const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -27,43 +38,41 @@ const BoardCreate = () => {
   };
 
   return (
-    <Container>
-      <BoardContainer>
-        <form onSubmit={handleCreateSubmit}>
-          <h1>게시글 작성</h1>
-
-          <label>제목</label>
-          <input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTitle(e.target.value)
+    <BoardContainer>
+      <form onSubmit={handleCreateSubmit}>
+        <Input
+          style={FONT.SUBTITLE2}
+          type="text"
+          placeholder="제목"
+          onChange={(e: React.FormEvent<HTMLInputElement>) =>
+            setTitle(e.currentTarget.value)
+          }
+        />
+        <TextArea
+          style={FONT.SUBTITLE1}
+          placeholder="내용을 작성해주세요"
+          onChange={(e: React.FormEvent<HTMLTextAreaElement>) =>
+            setContent(e.currentTarget.value)
+          }
+        />
+        <input
+          style={FONT.SUBTITLE2}
+          type="file"
+          placeholder="파일"
+          onChange={(e: React.FormEvent<HTMLInputElement>) => {
+            if (e.currentTarget.files) {
+              setFile(e.currentTarget.files[0]);
             }
-          />
-          <br />
-
-          <label>카테고리</label>
-          <input
-            type="text"
-            name="category"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCategory(e.target.value)
-            }
-          />
-          <br />
-
-          <label>내용</label>
-          <input
-            type="text"
-            name="content"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setContent(e.target.value)
-            }
-          />
-          <br />
-
-          <button onSubmit={handleCreateSubmit}>작성</button>
-        </form>
-      </BoardContainer>
-    </Container>
+          }}
+        />
+        <ButtonContainer>
+          <Button onSubmit={handleCreateSubmit} style={FONT.SUBTITLE1}>
+            <PencilWhiteIcon />
+            작성
+          </Button>
+        </ButtonContainer>
+      </form>
+    </BoardContainer>
   );
 };
 

@@ -1,12 +1,9 @@
-import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
-import { boardKeys } from "../../types/settingKeys";
+import { boardKeys } from "../../types/boardKey";
+import { waldregAxios as axios } from "./../../apis/axios";
 
 async function boardDelete(id: number) {
-  const { data } = await axios.delete(
-    // `/board/${id}`
-    `http://localhost:8001/boards/${id}`
-  );
+  const { data } = await axios.delete(`/board/${id}`);
   return data;
 }
 
