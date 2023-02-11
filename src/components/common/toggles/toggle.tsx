@@ -1,19 +1,13 @@
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
 
-import useToggle from '../../../hooks/common/useToggle';
-
-const Toggle = ({ state }: { state: boolean }) => {
-  const { toggle, onToggle } = useToggle(state);
-
+const Toggle = (props: any) => {
   return (
-    <ToggleContainer onClick={() => onToggle()} selected={toggle}>
-      <Circle selected={toggle} />
+    <ToggleContainer onClick={props.onClick} selected={props.toggle}>
+      <Circle selected={props.toggle} />
     </ToggleContainer>
   );
 };
-
-export default Toggle;
 
 const ToggleContainer = styled.div<{ selected: boolean }>`
   position: relative;
@@ -40,3 +34,5 @@ const Circle = styled.div<{ selected: boolean }>`
   border-radius: 50%;
   background: ${COLOR.WHITE};
 `;
+
+export default Toggle;
