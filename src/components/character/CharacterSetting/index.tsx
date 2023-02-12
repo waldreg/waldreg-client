@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 import useCharacter from '../../../hooks/character/useCharacter';
 import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
+import { useInput } from '../../../hooks/common/useInput';
 
 import { Title } from '../../common/PageTitle/style';
+import { InputAdd } from '../../common/inputs/input_add';
 import { ButtonBig } from '../../common/buttons/button_big';
 import Permission from '../Permission';
 
@@ -20,11 +22,18 @@ const CharacterSetting = ({
 }) => {
   const character = useCharacter(name);
   const { mutate } = useDeleteCharacter();
+  const { value, handleChangeInput, reset } = useInput(name);
 
   return (
     <Container>
       <Title>역할 설정</Title>
-      <div>{name}</div>
+
+      <InputAdd
+        value={value}
+        placeholder={''}
+        onChange={handleChangeInput}
+        reset={reset}
+      />
       <Permissions>
         {character?.permissions?.map((permission: IPermission) => (
           <Permission key={permission.permission_id} {...permission} />
