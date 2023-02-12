@@ -3,11 +3,9 @@ import COLOR from '../../../constants/color';
 
 import { waldregAxios } from '../../../apis/axios';
 
-import {
-  usePermissionList,
-  useCharacterList,
-  useCreateCharacter,
-} from '../../../hooks/useCharQuery';
+import usePermissionList from '../../../hooks/character/usePermissionList';
+import useCharacterList from '../../../hooks/character/useCharacterList';
+import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
 import { useInput } from '../../../hooks/common/useInput';
 import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
@@ -16,7 +14,6 @@ import { Title } from '../../common/PageTitle/style';
 import { InputAdd } from '../../common/inputs/input_add';
 import { CheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
-import FONT from '../../../constants/fonts';
 
 const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
@@ -46,25 +43,27 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
 
   return (
     <Container>
-      <button onClick={handleClickGetToken}>토큰 발급</button>
-      <Title style={FONT.SUBTITLE1}>역할</Title>
-      <Characters>
-        {charList?.map((character: ICharacter) => (
-          <Character
-            key={character.id}
-            onClick={() => handleClickChangeChar(character.character_name)}
-          >
-            {character.character_name}
-          </Character>
-        ))}
-      </Characters>
-      <InputAdd
-        value={value}
-        onChange={handleChangeInput}
-        reset={reset}
-        placeholder={'추가할 역할 이름을 입력하세요'}
-      />
-      <CheckBox data={perList || []} updateCheckList={updateCheckList} />
+      <Content>
+        <button onClick={handleClickGetToken}>토큰 발급</button>
+        <Title>역할</Title>
+        <Characters>
+          {charList?.map((character: ICharacter) => (
+            <Character
+              key={character.id}
+              onClick={() => handleClickChangeChar(character.character_name)}
+            >
+              {character.character_name}
+            </Character>
+          ))}
+        </Characters>
+        <InputAdd
+          value={value}
+          onChange={handleChangeInput}
+          reset={reset}
+          placeholder={'추가할 역할 이름을 입력하세요'}
+        />
+        <CheckBox data={perList || []} updateCheckList={updateCheckList} />
+      </Content>
       <ButtonBig
         content="역할 추가하기"
         color={COLOR.GREEN4}
@@ -84,7 +83,12 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 2rem;
+`;
+
+const Content = styled.div`
+  overflow: auto;
 `;
 
 const Characters = styled.div`

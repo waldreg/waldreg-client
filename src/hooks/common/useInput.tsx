@@ -1,7 +1,8 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 
 export const useInput = (initialState: string) => {
   const [value, setValue] = useState(initialState);
+  useEffect(() => setValue(initialState), [initialState]);
 
   const reset = () => {
     setValue('');

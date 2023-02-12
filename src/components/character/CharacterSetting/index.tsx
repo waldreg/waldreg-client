@@ -1,34 +1,76 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import { useCharacter, useDeleteCharacter } from '../../../hooks/useCharQuery';
+import useCharacter from '../../../hooks/character/useCharacter';
+import useEditCharacter from '../../../hooks/character/useEditCharacter';
+import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
+import { useInput } from '../../../hooks/common/useInput';
+import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
 import { Title } from '../../common/PageTitle/style';
-import Toggle from '../../common/toggles/toggle';
+import { InputAdd } from '../../common/inputs/input_add';
 import { ButtonBig } from '../../common/buttons/button_big';
+import Permission from '../Permission';
 
 import { IPermission } from '../../../interfaces/character';
 
 import COLOR from '../../../constants/color';
 
-const CharacterSetting = ({ name }: { name: string }) => {
+const CharacterSetting = ({
+  name,
+  setChar,
+}: {
+  name: string;
+  setChar: any;
+}) => {
   const character = useCharacter(name);
-  const { mutate } = useDeleteCharacter();
+  const editMutation = useEditCharacter(name);
+  const deleteMutation = useDeleteCharacter();
+  const { value, handleChangeInput, reset } = useInput(name);
+  const { checkedList, updateCheckList } = useToggleBox(
+    character?.permissions || []
+  );
 
   return (
     <Container>
       <Title>역할 설정</Title>
-      <Permissions>
-        {character?.permissions?.map((permission: IPermission) => (
-          <Permission key={permission.permission_id}>
-            <div>{permission.permission_name}</div>
-            <Toggle state={permission.permission_status === 'true'} />
-          </Permission>
-        ))}
-      </Permissions>
+      <Content>
+        <InputAdd
+          value={value}
+          placeholder={''}
+          onChange={handleChangeInput}
+          reset={reset}
+        />
+        <Permissions>
+          {checkedList?.map((permission: IPermission) => (
+            <Permission
+              key={permission.permission_id}
+              per={permission}
+              updateCheckList={updateCheckList}
+            />
+          ))}
+        </Permissions>
+      </Content>
+      <ButtonBig
+        content={'역할 수정하기'}
+        color={COLOR.GREEN4}
+        onClick={() => {
+          editMutation.mutate({
+            name: name,
+            newChar: {
+              character_name: value,
+              permissions: character?.permissions || [],
+            },
+          });
+        }}
+      />
       <ButtonBig
         content={'역할 삭제하기'}
         color={COLOR.RED2}
-        onClick={() => mutate(name, { onError: (error) => console.log(error) })}
+        onClick={() => {
+          deleteMutation.mutate(name);
+          setChar('Admin');
+        }}
       />
     </Container>
   );
@@ -44,14 +86,13 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+`;
+
+const Content = styled.div`
+  overflow: auto;
 `;
 
 const Permissions = styled.div``;
-
-const Permission = styled.div`
-  padding: 0.5rem;
-  display: flex;
-  gap: 1rem;
-`;
 
 export default CharacterSetting;
