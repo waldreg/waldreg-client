@@ -22,7 +22,7 @@ const Permission = ({
         toggle={toggle}
         onClick={(e: any) => {
           onToggle();
-          updateCheckList(e.target, per);
+          updateCheckList(e.target.selected, per);
         }}
       ></Toggle>
     </Content>

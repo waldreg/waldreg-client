@@ -24,10 +24,10 @@ const CharacterSetting = ({
   setChar: any;
 }) => {
   const character = useCharacter(name);
-  const editMutation = useEditCharacter();
+  const editMutation = useEditCharacter(name);
   const deleteMutation = useDeleteCharacter();
   const { value, handleChangeInput, reset } = useInput(name);
-  const { checkedList, updateCheckList, checkReset } = useToggleBox(
+  const { checkedList, updateCheckList } = useToggleBox(
     character?.permissions || []
   );
 

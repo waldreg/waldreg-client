@@ -35,18 +35,17 @@ export const useToggleBox = (initialState: IProps[]) => {
   }, [initialState]);
 
   const updateCheckList = (isChecked: boolean, item: IProps) => {
+    const prevList = checkedList.filter(
+      (check) => check.permission_id !== item.permission_id
+    );
     if (isChecked) {
-      item.permission_status = 'true';
-      setCheckedList([...checkedList.filter((check) => check !== item), item]);
-    } else {
       item.permission_status = 'false';
-      setCheckedList([...checkedList.filter((check) => check !== item), item]);
+      setCheckedList([...prevList, item]);
+    } else {
+      item.permission_status = 'true';
+      setCheckedList([...prevList, item]);
     }
   };
 
-  const checkReset = () => {
-    setCheckedList([]);
-  };
-
-  return { checkedList, updateCheckList, checkReset };
+  return { checkedList, updateCheckList };
 };
