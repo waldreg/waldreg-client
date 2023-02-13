@@ -6,6 +6,8 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Home from "./routes/Home";
 import Setting from "./routes/Setting";
 import Board from "./routes/Board";
+import Layout from "./components/global/Layout/index";
+import Schedule from "./routes/Schedule";
 
 const queryClient = new QueryClient();
 
@@ -15,9 +17,13 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/board/*" element={<Board />} />
-          <Route path="/setting/*" element={<Setting />} />
+          <Route path="/user/login" element={<Login />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/board/*" element={<Board />} />
+            <Route path="/setting/*" element={<Setting />} />
+            <Route path="/schedule/*" element={<Schedule />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools />

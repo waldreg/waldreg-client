@@ -6,19 +6,21 @@ import Bug from "./Bug";
 import BoardCreate from "../../components/board/BoardCreate/index";
 import Free from "./Free";
 import BoardDetail from "../../components/board/BoardDetail";
+import AnnouncementLayout from "./Announcement/AnnouncementLayout";
 
 const Board = () => {
   return (
     <Routes>
-      {/* TODO: 생성, 디테일 route 합치기 */}
-      <Route path="/announcement" element={<Announcement />} />
-      <Route path="/announcement/create" element={<BoardCreate />} />
-      <Route path="/announcement/:id" element={<BoardDetail />} />
+      <Route element={<AnnouncementLayout />}>
+        <Route path="/announcement" element={<Announcement />} />
+        <Route path="/announcement/create" element={<BoardCreate />} />
+        <Route path="/announcement/:id" element={<BoardDetail />} />
+      </Route>
+
       <Route path="/question" element={<Question />} />
       <Route path="/free" element={<Free />} />
       <Route path="/bug" element={<Bug />} />
       <Route path="/changelog" element={<Changelog />} />
-      <Route path="/create" element={<BoardCreate />} />
     </Routes>
   );
 };

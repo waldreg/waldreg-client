@@ -1,7 +1,12 @@
 import { useQuery } from "react-query";
 import { Board } from "../../interfaces/board";
-import { boardAPI } from "../../apis/boardAPI";
-import { boardKeys } from "../../types/settingKeys";
+import { waldregAxios as axios } from "./../../apis/axios";
+import { boardKeys } from "../../types/boardKey";
+
+async function getBoardDetail(id: number): Promise<Board> {
+  const { data } = await axios.get(`/board/${id}`);
+  return data;
+}
 
 interface UseBoardDetail {
   board?: Board;
@@ -9,7 +14,7 @@ interface UseBoardDetail {
 
 export function useBoardDetail(id: number): UseBoardDetail {
   const { data: board } = useQuery<Board>(boardKeys.detail(id), () =>
-    boardAPI.getBoard(id)
+    getBoardDetail(id)
   );
   return { board };
 }

@@ -2,18 +2,18 @@ import React from "react";
 import { BoardContainer } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { Board } from "../../../interfaces/board";
+import { BoardLists } from "../../../interfaces/board";
 import { boardIdState } from "../../../states/board";
 
 interface BoardListProps {
-  boardList: Board[];
+  boardList: BoardLists;
 }
 
 function BoardList({ boardList }: BoardListProps) {
   const navigate = useNavigate();
   const setBoardId = useSetRecoilState(boardIdState);
 
-  const handlePostClick = (e: React.MouseEvent) => {
+  const handleBoardClick = (e: React.MouseEvent) => {
     const boardId = e.currentTarget.firstChild?.textContent;
     setBoardId(boardId);
     navigate(`${boardId}`);
@@ -21,8 +21,8 @@ function BoardList({ boardList }: BoardListProps) {
 
   return (
     <div>
-      {boardList.map((board) => (
-        <BoardContainer key={board.id} onClick={handlePostClick}>
+      {boardList.boards.map((board) => (
+        <BoardContainer key={board.id} onClick={handleBoardClick}>
           <div>{board.id}</div>
           <div>{board.title}</div>
           <div>{board.category}</div>

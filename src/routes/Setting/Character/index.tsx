@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import Layout from '../../../components/global/Layout';
+import { useCallback, useState } from 'react';
 import CharacterList from '../../../components/character/CharacterList';
 import CharacterSetting from '../../../components/character/CharacterSetting';
 import CharacterUser from '../../../components/character/CharacterUser';
@@ -13,11 +11,11 @@ const Character = () => {
   };
 
   return (
-    <Layout>
+    <>
       <CharacterList handleClickChangeChar={handleClickChangeChar} />
-      <CharacterSetting name={char} />
+      <CharacterSetting name={char} setChar={setChar} />
       <CharacterUser />
-    </Layout>
+    </>
   );
 };
 

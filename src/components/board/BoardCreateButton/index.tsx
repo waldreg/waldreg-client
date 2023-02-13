@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { PencilIcon } from "../../Icons/BoardIcons";
+import { PencilGreenIcon } from "../../Icons/BoardIcons";
 import { Button } from "./style";
 
 const BoardCreateButton = () => {
@@ -12,7 +12,7 @@ const BoardCreateButton = () => {
 
   return (
     <Button onClick={handleCreateButtonClick}>
-      <PencilIcon />글 작성하기
+      <PencilGreenIcon />글 작성하기
     </Button>
   );
 };
