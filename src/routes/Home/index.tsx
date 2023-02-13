@@ -1,9 +1,11 @@
+import React from "react";
+import Layout from "../../components/global/Layout";
+
 const Home = () => {
   return (
-    <>
-      <div>Home</div>
-      <p>토큰 값 : {localStorage.getItem("access_token")}</p>
-    </>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 };
 
