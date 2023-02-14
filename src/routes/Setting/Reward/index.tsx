@@ -4,6 +4,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
 import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
 import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
+import useEditRewardTag from '../../../hooks/reward/useEditRewardTag';
 
 import { InputAdd } from '../../../components/common/inputs/input_add';
 
@@ -14,6 +15,7 @@ const RewardSettingPage = () => {
   const rewards = useRewardTags();
   const createMutation = useCreateRewardTag();
   const deleteMutation = useDeleteRewardTag();
+  const editMutation = useEditRewardTag();
   const { value, handleChangeInput, reset } = useInput('');
 
   const handleClickSubmit = () => {
@@ -23,6 +25,13 @@ const RewardSettingPage = () => {
 
   const handleClickDelete = (id: number) => {
     deleteMutation.mutate(id);
+  };
+
+  const handleClickEdit = (id: number) => {
+    editMutation.mutate({
+      id: id,
+      newReward: { reward_tag_title: 'test', reward_point: 2 },
+    });
   };
 
   return (
@@ -49,6 +58,9 @@ const RewardSettingPage = () => {
             </div>
             <button onClick={() => handleClickDelete(reward.reward_tag_id)}>
               삭제하기
+            </button>
+            <button onClick={() => handleClickEdit(reward.reward_tag_id)}>
+              수정하기
             </button>
           </div>
         ))
