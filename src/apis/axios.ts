@@ -17,7 +17,6 @@ export const waldregAxios = axios.create({
 waldregAxios.interceptors.request.use(
   (request) => {
     if (!!localStorage.getItem("accessToken")) {
-      console.log(localStorage.getItem("accessToken"));
       request.headers["Authorization"] = `Bearer ${localStorage.getItem(
         "accessToken"
       )}`;

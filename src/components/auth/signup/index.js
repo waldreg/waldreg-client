@@ -1,7 +1,9 @@
 import { useRef } from "react";
 import { waldregAxios } from "../../../apis/axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const nameInputRef = useRef();
   const userIdInputRef = useRef();
   const userPasswordInputRef = useRef();
@@ -20,6 +22,7 @@ const SignupForm = () => {
         user_password: enteredUserPassword,
         phone_number: enteredPhoneNumber,
       });
+      navigate("/", true);
     } catch (error) {
       const errorMessage = error.response.data.messages;
       alert(errorMessage);
