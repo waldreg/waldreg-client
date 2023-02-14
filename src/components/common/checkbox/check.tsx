@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { IPermission } from '../../../interfaces/character';
+import { Permission } from '../../../interfaces/character';
 
 export interface IProps {
-  item: IPermission;
+  item: Permission;
   updateCheckList: any;
 }
 
 export const Check = (props: IProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleToggleCheck = (e: any, item: IPermission) => {
+  const handleToggleCheck = (e: any, item: Permission) => {
     setIsChecked(!isChecked);
     props.updateCheckList(e.target.checked, item);
   };

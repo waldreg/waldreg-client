@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { IPermission } from '../../interfaces/character';
+import { Permission } from '../../interfaces/character';
 import { characterKeys, permissionKeys } from '../../types/settingKeys';
 
 const editCharacter = async ({
@@ -11,7 +11,7 @@ const editCharacter = async ({
   name: string;
   newChar: {
     character_name: string;
-    permissions: IPermission[];
+    permissions: Permission[];
   };
 }) => {
   await waldregAxios.patch(`/character/${name}`, newChar);
