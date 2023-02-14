@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+
+import { useContext } from 'react';
+import AuthContext from '../../../states/auth-context';
+
 import { NavLink } from 'react-router-dom';
-
 import COLOR from '../../../constants/color';
-
 import { LogoIcon } from '../../Icons/LogoIcons';
+import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
+
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -13,8 +17,18 @@ import {
   MedalIcon,
   EyeIcon,
 } from '../../Icons/BasicIcons';
+import BoardCategory from '../../board/BoardCategory';
 
 const NavBar = () => {
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
+
+  const { boardCategoryList } = useBoardCategoryList();
+
   return (
     <Wrapper>
       <Top>
@@ -22,7 +36,7 @@ const NavBar = () => {
         <DoubleLeftIcon />
       </Top>
       <Links>
-        <Link to="/home">
+        <Link to="/">
           <HomeIcon />홈
         </Link>
         <BaseLink>
@@ -37,13 +51,13 @@ const NavBar = () => {
           <Blank />
           역할 관리
         </Link>
+        <Link to="/setting/board">
+          <Blank />
+          게시판 관리
+        </Link>
         <Link to="/setting/reward">
           <Blank />
           상벌점 관리
-        </Link>
-        <Link to="/setting/character">
-          <Blank />
-          역할 관리
         </Link>
         <BaseLink>
           <CheckRoundIcon />
@@ -53,25 +67,11 @@ const NavBar = () => {
           <BoardIcon />
           게시판
         </BaseLink>
-        <Link to="/board/announcement">
+        <Link to="/board">
           <Blank />
-          공지사항
-        </Link>
-        <Link to="/board/question">
-          <Blank />
-          질문게시판
-        </Link>
-        <Link to="/board/free">
-          <Blank />
-          자유게시판
-        </Link>
-        <Link to="/board/bug">
-          <Blank />
-          버그가 있어요!
-        </Link>
-        <Link to="/board/changelog">
-          <Blank />
-          체인지 로그
+          {boardCategoryList && (
+            <BoardCategory boardCategoryList={boardCategoryList} />
+          )}
         </Link>
         <Link to="/schedule">
           <CalIcon />
@@ -85,6 +85,13 @@ const NavBar = () => {
           <EyeIcon />
           상벌점 조회
         </Link>
+        {!isLoggedIn && <Link to="/login">로그인</Link>}
+        {!isLoggedIn && <Link to="/signup">회원가입</Link>}
+        {isLoggedIn && (
+          <Link to="/" onClick={logoutHandler}>
+            로그아웃
+          </Link>
+        )}
       </Links>
     </Wrapper>
   );

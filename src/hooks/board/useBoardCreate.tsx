@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "react-query";
-import { Board } from "../../interfaces/board";
 import { boardKeys } from "../../types/boardKey";
 import { waldregAxios as axios } from "./../../apis/axios";
 
