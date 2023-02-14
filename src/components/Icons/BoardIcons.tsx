@@ -42,13 +42,13 @@ export const CommentIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M5 12C4.99988 14.613 6.45512 17.0085 8.7741 18.2127C11.0931 19.4169 13.8897 19.2292 16.027 17.726L19 18V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12Z"
         stroke="#939393"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9 13.25C8.58579 13.25 8.25 13.5858 8.25 14C8.25 14.4142 8.58579 14.75 9 14.75V13.25ZM13 14.75C13.4142 14.75 13.75 14.4142 13.75 14C13.75 13.5858 13.4142 13.25 13 13.25V14.75ZM9 10.25C8.58579 10.25 8.25 10.5858 8.25 11C8.25 11.4142 8.58579 11.75 9 11.75V10.25ZM15 11.75C15.4142 11.75 15.75 11.4142 15.75 11C15.75 10.5858 15.4142 10.25 15 10.25V11.75ZM9 14.75H13V13.25H9V14.75ZM9 11.75H15V10.25H9V11.75Z"
@@ -68,22 +68,22 @@ export const ViewIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M15 5.5C15 7.985 11.866 10 8 10C4.134 10 1 7.985 1 5.5C1 3.015 4.134 1 8 1C11.866 1 15 3.015 15 5.5Z"
         stroke="#939393"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M9.75003 5.50011C9.77164 6.13943 9.4429 6.73967 8.89256 7.06573C8.34221 7.3918 7.65785 7.3918 7.1075 7.06573C6.55715 6.73967 6.22841 6.13943 6.25003 5.50011C6.22841 4.86079 6.55715 4.26056 7.1075 3.93449C7.65785 3.60843 8.34221 3.60843 8.89256 3.93449C9.4429 4.26056 9.77164 4.86079 9.75003 5.50011V5.50011Z"
         stroke="#939393"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
