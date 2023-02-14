@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BoardContainer } from "../../../routes/Board/Announcement/style";
 import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
 import { useRecoilValue } from "recoil";
 import { boardCategoryState } from "../../../states/board";
@@ -13,6 +12,7 @@ import {
   BoardFileInput,
   BoardTitleInput,
 } from "./style";
+import { BoardContainer } from "../BoardDetail/style";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
