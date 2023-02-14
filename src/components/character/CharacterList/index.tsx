@@ -46,16 +46,16 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
       <Content>
         <button onClick={handleClickGetToken}>토큰 발급</button>
         <Title>역할</Title>
-        <Characters>
+        <Items>
           {charList?.map((character: Character) => (
-            <Character
+            <Item
               key={character.id}
               onClick={() => handleClickChangeChar(character.character_name)}
             >
               {character.character_name}
-            </Character>
+            </Item>
           ))}
-        </Characters>
+        </Items>
         <InputAdd
           value={value}
           onChange={handleChangeInput}
@@ -91,7 +91,7 @@ const Content = styled.div`
   overflow: auto;
 `;
 
-const Characters = styled.div`
+const Items = styled.div`
   display: flex;
   flex-direction: column;
   algin-items: center;
@@ -99,7 +99,7 @@ const Characters = styled.div`
   gap: 0.5rem;
 `;
 
-const Character = styled.div`
+const Item = styled.div`
   width: 100%;
   padding: 1rem 0;
 
