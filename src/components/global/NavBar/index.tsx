@@ -37,9 +37,9 @@ const NavBar = () => {
           <Blank />
           역할 관리
         </Link>
-        <Link to="/setting/character">
+        <Link to="/setting/reward">
           <Blank />
-          역할 관리
+          상벌점 관리
         </Link>
         <Link to="/setting/character">
           <Blank />

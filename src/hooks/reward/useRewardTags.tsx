@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { Reward } from '../../interfaces/reward';
+import { Rewards } from '../../interfaces/reward';
 import { rewardKeys } from '../../types/rewardKeys';
 
 const getRewardTags = async () => {
@@ -10,8 +10,8 @@ const getRewardTags = async () => {
 };
 
 const useRewardTags = () => {
-  const { data } = useQuery<Reward[]>(rewardKeys.all, () => getRewardTags());
-  return data;
+  const { data } = useQuery<Rewards>(rewardKeys.all, () => getRewardTags());
+  return data?.reward_tags;
 };
 
 export default useRewardTags;
