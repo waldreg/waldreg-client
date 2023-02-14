@@ -12,7 +12,7 @@ import { InputAdd } from '../../common/inputs/input_add';
 import { ButtonBig } from '../../common/buttons/button_big';
 import Permission from '../Permission';
 
-import { IPermission } from '../../../interfaces/character';
+import { Permission } from '../../../interfaces/character';
 
 import COLOR from '../../../constants/color';
 
@@ -42,7 +42,7 @@ const CharacterSetting = ({
           reset={reset}
         />
         <Permissions>
-          {checkedList?.map((permission: IPermission) => (
+          {checkedList?.map((permission: Permission) => (
             <Permission
               key={permission.permission_id}
               per={permission}

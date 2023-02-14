@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { ICharacter } from '../../interfaces/character';
+import { Character } from '../../interfaces/character';
 import { characterKeys } from '../../types/settingKeys';
 
-const createCharacter = async (newChar: ICharacter) => {
+const createCharacter = async (newChar: Character) => {
   await waldregAxios.post('/character', newChar);
 };
 

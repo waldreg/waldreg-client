@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import CharacterList from '../../../components/character/CharacterList';
 import CharacterSetting from '../../../components/character/CharacterSetting';
 import CharacterUser from '../../../components/character/CharacterUser';
