@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 
+import { useContext } from "react";
 import AuthContext from "../../../states/auth-context";
 
+import { NavLink } from "react-router-dom";
 import COLOR from "../../../constants/color";
+import { LogoIcon } from "../../Icons/LogoIcons";
+import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
 
-import { LogoIcon } from '../../Icons/LogoIcons';
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -15,15 +16,20 @@ import {
   CalIcon,
   MedalIcon,
   EyeIcon,
-} from '../../Icons/BasicIcons';
+} from "../../Icons/BasicIcons";
+import BoardCategory from "../../board/BoardCategory";
 
 const NavBar = () => {
+
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
   const logoutHandler = () => {
     authCtx.logout();
   };
+
+  const { boardCategoryList } = useBoardCategoryList();
+
 
   return (
     <Wrapper>
@@ -32,7 +38,7 @@ const NavBar = () => {
         <DoubleLeftIcon />
       </Top>
       <Links>
-        <Link to="/home">
+        <Link to="/">
           <HomeIcon />홈
         </Link>
         <BaseLink>
@@ -47,13 +53,9 @@ const NavBar = () => {
           <Blank />
           역할 관리
         </Link>
-        <Link to="/setting/character">
+        <Link to="/setting/board">
           <Blank />
-          역할 관리
-        </Link>
-        <Link to="/setting/character">
-          <Blank />
-          역할 관리
+          게시판 관리
         </Link>
         <BaseLink>
           <CheckRoundIcon />
@@ -63,25 +65,11 @@ const NavBar = () => {
           <BoardIcon />
           게시판
         </BaseLink>
-        <Link to="/board/announcement">
+        <Link to="/board">
           <Blank />
-          공지사항
-        </Link>
-        <Link to="/board/question">
-          <Blank />
-          질문게시판
-        </Link>
-        <Link to="/board/free">
-          <Blank />
-          자유게시판
-        </Link>
-        <Link to="/board/bug">
-          <Blank />
-          버그가 있어요!
-        </Link>
-        <Link to="/board/changelog">
-          <Blank />
-          체인지 로그
+          {boardCategoryList && (
+            <BoardCategory boardCategoryList={boardCategoryList} />
+          )}
         </Link>
         <Link to="/schedule">
           <CalIcon />

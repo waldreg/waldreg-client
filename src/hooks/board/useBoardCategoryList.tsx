@@ -15,7 +15,7 @@ interface UseBoardCategoryList {
 export function useBoardCategoryList(): UseBoardCategoryList {
   const { data: boardCategoryList } = useQuery<BoardCategoryLists>(
     boardCategoryKeys.all,
-    () => getBoardCategoryList()
+    getBoardCategoryList
   );
   return { boardCategoryList };
 }

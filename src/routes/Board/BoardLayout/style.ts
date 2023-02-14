@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import COLOR from "../../../../constants/color";
+import COLOR from "../../../constants/color";
 
 const Container = styled.div`
   height: 100%;

@@ -2,19 +2,18 @@ import { useMutation, useQueryClient } from "react-query";
 import { boardCategoryKeys } from "../../types/boardKey";
 import { waldregAxios as axios } from "./../../apis/axios";
 
-async function boardCategoryDelete(id: number) {
-  const { data } = await axios.delete(`/category/${id}`);
-  return data;
+async function deleteBoardCategory(id: number) {
+  await axios.delete(`/category/${id}`);
 }
 
 interface UseBoardCategoryDelete {
-  mutate: () => void;
+  mutate: (id: number) => void;
 }
 
-export function useBoardCategoryDelete(id: number): UseBoardCategoryDelete {
+export function useBoardCategoryDelete(): UseBoardCategoryDelete {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => boardCategoryDelete(id), {
+  const { mutate } = useMutation((id: number) => deleteBoardCategory(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(boardCategoryKeys.all);
     },
