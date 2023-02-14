@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useInput } from '../../../hooks/common/useInput';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
 import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
+import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
 
 import { InputAdd } from '../../../components/common/inputs/input_add';
 
@@ -12,10 +13,16 @@ import { ButtonBig } from '../../../components/common/buttons/button_big';
 const RewardSettingPage = () => {
   const rewards = useRewardTags();
   const createMutation = useCreateRewardTag();
+  const deleteMutation = useDeleteRewardTag();
   const { value, handleChangeInput, reset } = useInput('');
+
   const handleClickSubmit = () => {
     createMutation.mutate({ reward_tag_title: value, reward_point: -2 });
     reset();
+  };
+
+  const handleClickDelete = (id: number) => {
+    deleteMutation.mutate(id);
   };
 
   return (
@@ -40,6 +47,9 @@ const RewardSettingPage = () => {
               {reward.reward_tag_title}
               {reward.reward_point}
             </div>
+            <button onClick={() => handleClickDelete(reward.reward_tag_id)}>
+              삭제하기
+            </button>
           </div>
         ))
       ) : (
