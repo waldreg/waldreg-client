@@ -1,3 +1,3 @@
 export const rewardKeys = {
-  all: ['character'] as const,
+  all: ['reward'] as const,
 };
