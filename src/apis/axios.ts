@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const token = localStorage.getItem("accessToken");
-console.log(token);
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export const waldregAxios = axios.create({
@@ -14,3 +13,25 @@ export const waldregAxios = axios.create({
   },
   withCredentials: false,
 });
+
+waldregAxios.interceptors.request.use(
+  (request) => {
+    if (!!localStorage.getItem("accessToken")) {
+      console.log(localStorage.getItem("accessToken"));
+      request.headers["Authorization"] = `Bearer ${localStorage.getItem(
+        "accessToken"
+      )}`;
+      request.headers["accept"] = "application/json";
+    }
+    return request;
+  },
+  (err) => Promise.reject(err)
+);
+
+waldregAxios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
