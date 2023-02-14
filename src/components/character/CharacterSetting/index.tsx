@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 import useCharacter from '../../../hooks/character/useCharacter';
@@ -10,7 +9,7 @@ import { useToggleBox } from '../../../hooks/common/useCheckBox';
 import { Title } from '../../common/PageTitle/style';
 import { InputAdd } from '../../common/inputs/input_add';
 import { ButtonBig } from '../../common/buttons/button_big';
-import Permission from '../Permission';
+import PermissionItem from '../Permission';
 
 import { Permission } from '../../../interfaces/character';
 
@@ -41,15 +40,15 @@ const CharacterSetting = ({
           onChange={handleChangeInput}
           reset={reset}
         />
-        <Permissions>
+        <Items>
           {checkedList?.map((permission: Permission) => (
-            <Permission
+            <PermissionItem
               key={permission.permission_id}
               per={permission}
               updateCheckList={updateCheckList}
             />
           ))}
-        </Permissions>
+        </Items>
       </Content>
       <ButtonBig
         content={'역할 수정하기'}
@@ -93,6 +92,6 @@ const Content = styled.div`
   overflow: auto;
 `;
 
-const Permissions = styled.div``;
+const Items = styled.div``;
 
 export default CharacterSetting;

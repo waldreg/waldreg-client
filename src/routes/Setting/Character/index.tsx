@@ -3,7 +3,7 @@ import CharacterList from '../../../components/character/CharacterList';
 import CharacterSetting from '../../../components/character/CharacterSetting';
 import CharacterUser from '../../../components/character/CharacterUser';
 
-const Character = () => {
+const CharacterPage = () => {
   const [char, setChar] = useState('Admin');
 
   const handleClickChangeChar = (name: string) => {
@@ -19,4 +19,4 @@ const Character = () => {
   );
 };
 
-export default Character;
+export default CharacterPage;

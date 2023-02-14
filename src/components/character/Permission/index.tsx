@@ -5,7 +5,7 @@ import useToggle from '../../../hooks/common/useToggle';
 import { Permission } from '../../../interfaces/character';
 import Toggle from '../../common/toggles/toggle';
 
-const Permission = ({
+const PermissionItem = ({
   per,
   updateCheckList,
 }: {
@@ -35,4 +35,4 @@ const Content = styled.div`
   gap: 1rem;
 `;
 
-export default Permission;
+export default PermissionItem;
