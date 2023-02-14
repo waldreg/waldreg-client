@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import useToggle from '../../../hooks/common/useToggle';
 
-import { IPermission } from '../../../interfaces/character';
+import { Permission } from '../../../interfaces/character';
 import Toggle from '../../common/toggles/toggle';
 
-const Permission = ({
+const PermissionItem = ({
   per,
   updateCheckList,
 }: {
-  per: IPermission;
+  per: Permission;
   updateCheckList: any;
 }) => {
   const { toggle, onToggle } = useToggle(per.permission_status === 'true');
@@ -35,4 +35,4 @@ const Content = styled.div`
   gap: 1rem;
 `;
 
-export default Permission;
+export default PermissionItem;

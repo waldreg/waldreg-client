@@ -6,7 +6,7 @@ import AuthContext from "../../../states/auth-context";
 
 import COLOR from "../../../constants/color";
 
-import { LogoIcon } from "../../Icons/LogoIcons";
+import { LogoIcon } from '../../Icons/LogoIcons';
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -15,7 +15,7 @@ import {
   CalIcon,
   MedalIcon,
   EyeIcon,
-} from "../../Icons/BasicIcons";
+} from '../../Icons/BasicIcons';
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
@@ -39,9 +39,9 @@ const NavBar = () => {
           <CheckRoundIcon />
           설정
         </BaseLink>
-        <Link to="/setting/character">
+        <Link to="/setting/user">
           <Blank />
-          역할 관리
+          유저 관리
         </Link>
         <Link to="/setting/character">
           <Blank />

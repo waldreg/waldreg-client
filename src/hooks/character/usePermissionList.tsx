@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { IPermission } from '../../interfaces/character';
+import { Permission } from '../../interfaces/character';
 import { permissionKeys } from '../../types/settingKeys';
 
 const getPermissionList = async () => {
@@ -10,7 +10,7 @@ const getPermissionList = async () => {
 };
 
 const usePermissionList = () => {
-  const { data } = useQuery<IPermission[]>(permissionKeys.all, () =>
+  const { data } = useQuery<Permission[]>(permissionKeys.all, () =>
     getPermissionList()
   );
   return data;

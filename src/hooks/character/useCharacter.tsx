@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { ICharacter } from '../../interfaces/character';
+import { Character } from '../../interfaces/character';
 import { characterKeys } from '../../types/settingKeys';
 
 const getCharacter = async (name: string) => {
@@ -10,7 +10,7 @@ const getCharacter = async (name: string) => {
 };
 
 const useCharacter = (name: string) => {
-  const { data } = useQuery<ICharacter>(characterKeys.detail(name), () =>
+  const { data } = useQuery<Character>(characterKeys.detail(name), () =>
     getCharacter(name)
   );
   return data;

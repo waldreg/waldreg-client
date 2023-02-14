@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Character from './Character';
+import UserSettingPage from './User';
+import CharacterPage from './Character';
 
 const Setting = () => {
   return (
     <Routes>
-      <Route path="/character" element={<Character />} />
+      <Route path="/user" element={<UserSettingPage />} />
+      <Route path="/character" element={<CharacterPage />} />
     </Routes>
   );
 };
