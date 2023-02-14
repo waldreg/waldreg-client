@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { waldregAxios } from '../../apis/axios';
-import { User } from '../../interfaces/user';
+import { Users } from '../../interfaces/user';
 import { userKeys } from '../../types/userKeys';
 
 const getUserList = async (startIdx: number, endIdx: number) => {
@@ -12,7 +12,7 @@ const getUserList = async (startIdx: number, endIdx: number) => {
 };
 
 const useUserList = (startIdx: number, endIdx: number) => {
-  const { data } = useQuery<User>(userKeys.all, () =>
+  const { data } = useQuery<Users>(userKeys.all, () =>
     getUserList(startIdx, endIdx)
   );
   return data;

@@ -19,7 +19,7 @@ const useEditUserCharacter = (userId: string) => {
   const queryClient = useQueryClient();
   return useMutation(editUserCharacter, {
     onSuccess: () => {
-      queryClient.invalidateQueries(userKeys.detail(userId));
+      queryClient.invalidateQueries(userKeys.all);
     },
     onError: (error) => {
       console.error(error);
