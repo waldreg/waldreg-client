@@ -1,5 +1,8 @@
 import styled from "styled-components";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+
+import AuthContext from "../../../states/auth-context";
 
 import COLOR from "../../../constants/color";
 
@@ -15,6 +18,13 @@ import {
 } from "../../Icons/BasicIcons";
 
 const NavBar = () => {
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
+
   return (
     <Wrapper>
       <Top>
@@ -85,6 +95,13 @@ const NavBar = () => {
           <EyeIcon />
           상벌점 조회
         </Link>
+        {!isLoggedIn && <Link to="/login">로그인</Link>}
+        {!isLoggedIn && <Link to="/signup">회원가입</Link>}
+        {isLoggedIn && (
+          <Link to="/" onClick={logoutHandler}>
+            로그아웃
+          </Link>
+        )}
       </Links>
     </Wrapper>
   );
