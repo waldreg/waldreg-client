@@ -6,8 +6,13 @@ import { useRecoilValue } from "recoil";
 import { boardCategoryState } from "../../../states/board";
 import FONT from "../../../constants/fonts";
 import { PencilWhiteIcon } from "../../Icons/BoardIcons";
-import { Button, ButtonContainer, Input, TextArea } from "./style";
-import { useBoardCategoryCreate } from "./../../../hooks/category/useBoardCategoryCreate";
+import {
+  BoardButtonContainer,
+  BoardContentTextArea,
+  BoardCreateButton,
+  BoardFileInput,
+  BoardTitleInput,
+} from "./style";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
@@ -40,7 +45,7 @@ const BoardCreate = () => {
   return (
     <BoardContainer>
       <form onSubmit={handleCreateSubmit}>
-        <Input
+        <BoardTitleInput
           style={FONT.SUBTITLE2}
           type="text"
           placeholder="제목"
@@ -48,14 +53,14 @@ const BoardCreate = () => {
             setTitle(e.currentTarget.value)
           }
         />
-        <TextArea
+        <BoardContentTextArea
           style={FONT.SUBTITLE1}
           placeholder="내용을 작성해주세요"
           onChange={(e: React.FormEvent<HTMLTextAreaElement>) =>
             setContent(e.currentTarget.value)
           }
         />
-        <input
+        <BoardFileInput
           style={FONT.SUBTITLE2}
           type="file"
           placeholder="파일"
@@ -65,12 +70,15 @@ const BoardCreate = () => {
             }
           }}
         />
-        <ButtonContainer>
-          <Button onSubmit={handleCreateSubmit} style={FONT.SUBTITLE1}>
+        <BoardButtonContainer>
+          <BoardCreateButton
+            onSubmit={handleCreateSubmit}
+            style={FONT.SUBTITLE1}
+          >
             <PencilWhiteIcon />
             작성
-          </Button>
-        </ButtonContainer>
+          </BoardCreateButton>
+        </BoardButtonContainer>
       </form>
     </BoardContainer>
   );
