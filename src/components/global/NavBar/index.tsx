@@ -1,8 +1,14 @@
 import styled from 'styled-components';
+import { useContext, useState } from 'react';
+import AuthContext from '../../../states/auth-context';
 import { NavLink } from 'react-router-dom';
 import 'tw-elements';
 
+import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
+import BoardCategory from '../../board/BoardCategory';
+
 import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
 import { LogoIcon } from '../../Icons/LogoIcons';
 import {
@@ -14,12 +20,22 @@ import {
   MedalIcon,
   EyeIcon,
 } from '../../Icons/BasicIcons';
-import FONT from '../../../constants/fonts';
 
 const NavBar = () => {
-  return (
-    <Wrapper className="absolute">
-      <Top>
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
+
+  const { boardCategoryList } = useBoardCategoryList();
+
+  const [width, setWidth] = useState(true);
+
+  return width ? (
+    <Wrapper>
+      <Top onClick={() => setWidth(false)}>
         <LogoIcon />
         <DoubleLeftIcon />
       </Top>
@@ -77,6 +93,12 @@ const NavBar = () => {
                   <Text style={FONT.BODY1}>역할 관리</Text>
                 </Link>
               </li>
+              <li className="relative">
+                <Link to="/setting/board">
+                  <Blank />
+                  게시판 관리
+                </Link>
+              </li>
             </ul>
           </li>
           <li className="relative" id="SideNav2">
@@ -122,76 +144,80 @@ const NavBar = () => {
               </li>
             </ul>
           </li>
+          <li className="relative" id="SideNav3">
+            <BaseLink
+              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              data-mdb-ripple="true"
+              data-mdb-ripple-color="primary"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSideNav3"
+              aria-expanded="false"
+              aria-controls="collapseSideNav3"
+            >
+              <BoardIcon />
+              <Text style={FONT.SUBTITLE1}>게시판</Text>
+            </BaseLink>
+            <ul
+              className="relative accordion-collapse collapse"
+              id="collapseSideNav3"
+              aria-labelledby="SideNav3"
+              data-bs-parent="#sidenavSecExample"
+            >
+              <li className="relative">
+                <Link to="/board">
+                  <Blank />
+                  {boardCategoryList && (
+                    <BoardCategory boardCategoryList={boardCategoryList} />
+                  )}
+                </Link>
+              </li>
+            </ul>
+          </li>
+
+          <li className="relative">
+            <Link
+              to="/schedule"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              data-mdb-ripple="true"
+              data-mdb-ripple-color="primary"
+            >
+              <CalIcon />
+              일정표
+            </Link>
+          </li>
+          <li className="relative">
+            <Link
+              to="/"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+            >
+              <MedalIcon />
+              상벌점
+            </Link>
+          </li>
+        </ul>
+        <ul className="relative px-2">
+          {!isLoggedIn && (
+            <li>
+              <Link to="/login">로그인</Link>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <Link to="/signup">회원가입</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <Link to="/" onClick={logoutHandler}>
+                로그아웃
+              </Link>
+            </li>
+          )}
         </ul>
       </Links>
     </Wrapper>
-    // <Wrapper>
-    //   <Links>
-    //     <Link to="/home">
-    //       <HomeIcon />홈
-    //     </Link>
-    //     <BaseLink>
-    //       <CheckRoundIcon />
-    //       설정
-    //     </BaseLink>
-    //     <Link to="/setting/user">
-    //       <Blank />
-    //       유저 관리
-    //     </Link>
-    //     <Link to="/setting/character">
-    //       <Blank />
-    //       역할 관리
-    //     </Link>
-    //     <Link to="/setting/character">
-    //       <Blank />
-    //       역할 관리
-    //     </Link>
-    //     <Link to="/setting/character">
-    //       <Blank />
-    //       역할 관리
-    //     </Link>
-    //     <BaseLink>
-    //       <CheckRoundIcon />
-    //       출석
-    //     </BaseLink>
-    //     <BaseLink>
-    //       <BoardIcon />
-    //       게시판
-    //     </BaseLink>
-    //     <Link to="/board/announcement">
-    //       <Blank />
-    //       공지사항
-    //     </Link>
-    //     <Link to="/board/question">
-    //       <Blank />
-    //       질문게시판
-    //     </Link>
-    //     <Link to="/board/free">
-    //       <Blank />
-    //       자유게시판
-    //     </Link>
-    //     <Link to="/board/bug">
-    //       <Blank />
-    //       버그가 있어요!
-    //     </Link>
-    //     <Link to="/board/changelog">
-    //       <Blank />
-    //       체인지 로그
-    //     </Link>
-    //     <Link to="/schedule">
-    //       <CalIcon />
-    //       일정표
-    //     </Link>
-    //     <Link to="/">
-    //       <MedalIcon />
-    //       상벌점
-    //     </Link>
-    //     <Link to="/">
-    //       <EyeIcon />
-    //       상벌점 조회
-    //     </Link>
-    //   </Links>
-    // </Wrapper>
+  ) : (
+    <div onClick={() => setWidth(true)}>열기</div>
   );
 };
 
@@ -213,7 +239,7 @@ const Top = styled.div`
 const Links = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 40vh;
 `;
 
 const BaseLink = styled.div`

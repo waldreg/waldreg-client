@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
+import { AuthContextProvider } from './states/auth-context';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <AuthContextProvider>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
