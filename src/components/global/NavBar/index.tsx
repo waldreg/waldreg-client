@@ -19,6 +19,7 @@ import {
   CalIcon,
   MedalIcon,
   EyeIcon,
+  SettingIcon,
 } from '../../Icons/BasicIcons';
 
 const NavBar = () => {
@@ -44,7 +45,7 @@ const NavBar = () => {
           <li className="relative">
             <Link
               to="/home"
-              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
               data-mdb-ripple="true"
               data-mdb-ripple-color="primary"
             >
@@ -54,7 +55,7 @@ const NavBar = () => {
           </li>
           <li className="relative" id="SideNav1">
             <BaseLink
-              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
               data-mdb-ripple="true"
               data-mdb-ripple-color="primary"
               data-bs-toggle="collapse"
@@ -62,7 +63,7 @@ const NavBar = () => {
               aria-expanded="false"
               aria-controls="collapseSideNav1"
             >
-              <CheckRoundIcon />
+              <SettingIcon />
               <Text style={FONT.SUBTITLE1}>설정</Text>
             </BaseLink>
             <ul
@@ -74,7 +75,7 @@ const NavBar = () => {
               <li className="relative">
                 <Link
                   to="/setting/user"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
+                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="primary"
                 >
@@ -85,7 +86,7 @@ const NavBar = () => {
               <li className="relative">
                 <Link
                   to="/setting/character"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
+                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="primary"
                 >
@@ -182,7 +183,7 @@ const NavBar = () => {
               data-mdb-ripple-color="primary"
             >
               <CalIcon />
-              일정표
+              <Text style={FONT.SUBTITLE1}>일정표</Text>
             </Link>
           </li>
           <li className="relative">
@@ -191,7 +192,7 @@ const NavBar = () => {
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
               <MedalIcon />
-              상벌점
+              <Text style={FONT.SUBTITLE1}>상벌점</Text>
             </Link>
           </li>
         </ul>
@@ -265,7 +266,7 @@ const BaseLink = styled.div`
 `;
 
 const Link = styled(NavLink)`
-  color: ${COLOR.GRAY3};
+  color: ${COLOR.GRAY3} !important;
   padding: 0.8rem 0.5rem;
 
   border-radius: 0.5rem;
@@ -275,7 +276,7 @@ const Link = styled(NavLink)`
 
   &:hover {
     background: ${COLOR.GREEN2};
-    color: ${COLOR.BLACK};
+    color: ${COLOR.BLACK} !important;
   }
 
   &:active {
