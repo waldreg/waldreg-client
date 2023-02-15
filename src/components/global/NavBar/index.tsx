@@ -140,9 +140,9 @@ const NavBar = () => {
               aria-labelledby="SideNav2"
               data-bs-parent="#sidenavSecExample"
             >
-              <Item className="relative">
+              <Item className="relative" selected={location === '/'}>
                 <Link
-                  to="/setting/user"
+                  to="/"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color={COLOR.GREEN4}
@@ -151,9 +151,9 @@ const NavBar = () => {
                   <Text style={FONT.BODY1}>일별출석현황</Text>
                 </Link>
               </Item>
-              <Item className="relative">
+              <Item className="relative" selected={location === '/schedule'}>
                 <Link
-                  to="/setting/character"
+                  to="/schedule"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color={COLOR.GREEN4}
