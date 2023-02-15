@@ -146,7 +146,7 @@ const NavBar = () => {
           </li>
           <li className="relative" id="SideNav3">
             <BaseLink
-              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded cursor-pointer"
               data-mdb-ripple="true"
               data-mdb-ripple-color="primary"
               data-bs-toggle="collapse"
@@ -177,7 +177,7 @@ const NavBar = () => {
           <li className="relative">
             <Link
               to="/schedule"
-              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
               data-mdb-ripple="true"
               data-mdb-ripple-color="primary"
             >
@@ -188,7 +188,7 @@ const NavBar = () => {
           <li className="relative">
             <Link
               to="/"
-              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
               <MedalIcon />
               상벌점
@@ -243,25 +243,26 @@ const Links = styled.div`
 `;
 
 const BaseLink = styled.div`
-color: ${COLOR.GRAY3};
-padding: 0.8rem 0.5rem;
+  color: ${COLOR.GRAY3};
+  padding: 0.8rem 0.5rem;
 
-border-radius: 0.5rem;
-display: flex;
-align-items: center;
-gap: 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 
-&:link {
-  transition: 0.5s;
-  text-decoration: none;
-}
-&:hover {
-  color: ${COLOR.BLACK};
-}
-&:active {
-  background: ${COLOR.GREEN2}
-  position: relative;
-}`;
+  &:link {
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  &:hover {
+    background: ${COLOR.GREEN2};
+    color: ${COLOR.BLACK};
+  }
+  &:active {
+    background: ${COLOR.GREEN2};
+  }
+`;
 
 const Link = styled(NavLink)`
   color: ${COLOR.GRAY3};
@@ -273,12 +274,12 @@ const Link = styled(NavLink)`
   gap: 0.75rem;
 
   &:hover {
-    background: ${COLOR.GREEN2}
+    background: ${COLOR.GREEN2};
     color: ${COLOR.BLACK};
   }
 
   &:active {
-    background: ${COLOR.GREEN2}
+    background: ${COLOR.GREEN2};
   }
 `;
 
