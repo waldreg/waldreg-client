@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useContext, useState } from 'react';
 import AuthContext from '../../../states/auth-context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import 'tw-elements';
 
 import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
@@ -20,6 +20,7 @@ import {
   MedalIcon,
   EyeIcon,
   SettingIcon,
+  LogOutIcon,
 } from '../../Icons/BasicIcons';
 
 const NavBar = () => {
@@ -33,6 +34,7 @@ const NavBar = () => {
   const { boardCategoryList } = useBoardCategoryList();
 
   const [width, setWidth] = useState(true);
+  const location = useLocation().pathname;
 
   return width ? (
     <Wrapper>
@@ -41,8 +43,8 @@ const NavBar = () => {
         <DoubleLeftIcon />
       </Top>
       <Links>
-        <ul className="relative px-1">
-          <li className="relative">
+        <Items className="relative px-1">
+          <Item className="relative" selected={location === '/home'}>
             <Link
               to="/home"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
@@ -52,7 +54,7 @@ const NavBar = () => {
               <HomeIcon />
               <Text style={FONT.SUBTITLE1}>홈</Text>
             </Link>
-          </li>
+          </Item>
           <li className="relative" id="SideNav1">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
@@ -72,7 +74,10 @@ const NavBar = () => {
               aria-labelledby="SideNav1"
               data-bs-parent="#sidenavSecExample"
             >
-              <li className="relative">
+              <Item
+                className="relative"
+                selected={location === '/setting/user'}
+              >
                 <Link
                   to="/setting/user"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
@@ -82,8 +87,11 @@ const NavBar = () => {
                   <Blank />
                   <Text style={FONT.BODY1}>유저 관리</Text>
                 </Link>
-              </li>
-              <li className="relative">
+              </Item>
+              <Item
+                className="relative"
+                selected={location === '/setting/character'}
+              >
                 <Link
                   to="/setting/character"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
@@ -93,13 +101,16 @@ const NavBar = () => {
                   <Blank />
                   <Text style={FONT.BODY1}>역할 관리</Text>
                 </Link>
-              </li>
-              <li className="relative">
+              </Item>
+              <Item
+                className="relative"
+                selected={location === '/setting/board'}
+              >
                 <Link to="/setting/board">
                   <Blank />
-                  게시판 관리
+                  <Text style={FONT.BODY1}>게시판 관리</Text>
                 </Link>
-              </li>
+              </Item>
             </ul>
           </li>
           <li className="relative" id="SideNav2">
@@ -121,7 +132,7 @@ const NavBar = () => {
               aria-labelledby="SideNav2"
               data-bs-parent="#sidenavSecExample"
             >
-              <li className="relative">
+              <Item className="relative">
                 <Link
                   to="/setting/user"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
@@ -131,8 +142,8 @@ const NavBar = () => {
                   <Blank />
                   <Text style={FONT.BODY1}>일별출석현황</Text>
                 </Link>
-              </li>
-              <li className="relative">
+              </Item>
+              <Item className="relative">
                 <Link
                   to="/setting/character"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
@@ -142,7 +153,7 @@ const NavBar = () => {
                   <Blank />
                   <Text style={FONT.BODY1}>월별출석현황</Text>
                 </Link>
-              </li>
+              </Item>
             </ul>
           </li>
           <li className="relative" id="SideNav3">
@@ -158,7 +169,7 @@ const NavBar = () => {
               <BoardIcon />
               <Text style={FONT.SUBTITLE1}>게시판</Text>
             </BaseLink>
-            <ul
+            <Items
               className="relative accordion-collapse collapse"
               id="collapseSideNav3"
               aria-labelledby="SideNav3"
@@ -172,7 +183,7 @@ const NavBar = () => {
                   )}
                 </Link>
               </li>
-            </ul>
+            </Items>
           </li>
 
           <li className="relative">
@@ -195,26 +206,41 @@ const NavBar = () => {
               <Text style={FONT.SUBTITLE1}>상벌점</Text>
             </Link>
           </li>
-        </ul>
-        <ul className="relative px-2">
+        </Items>
+        <Items className="relative px-2">
           {!isLoggedIn && (
-            <li>
-              <Link to="/login">로그인</Link>
-            </li>
+            <Item className="relative">
+              <Link
+                to="/login"
+                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+              >
+                <Text style={FONT.SUBTITLE1}>로그인</Text>
+              </Link>
+            </Item>
           )}
           {!isLoggedIn && (
-            <li>
-              <Link to="/signup">회원가입</Link>
-            </li>
+            <Item className="relative" selected={location === '/signup'}>
+              <Link
+                to="/signup"
+                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+              >
+                <Text style={FONT.SUBTITLE1}>회원가입</Text>
+              </Link>
+            </Item>
           )}
           {isLoggedIn && (
-            <li>
-              <Link to="/" onClick={logoutHandler}>
-                로그아웃
+            <Item className="relative">
+              <Link
+                to="/"
+                onClick={logoutHandler}
+                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+              >
+                <LogOutIcon />
+                <Text style={FONT.SUBTITLE1}>로그아웃</Text>
               </Link>
-            </li>
+            </Item>
           )}
-        </ul>
+        </Items>
       </Links>
     </Wrapper>
   ) : (
@@ -243,6 +269,17 @@ const Links = styled.div`
   gap: 40vh;
 `;
 
+const Items = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+const Item = styled.li<{ selected?: boolean }>`
+  border-radius: 0.5rem;
+  background: ${(props) => (props.selected ? COLOR.GREEN2 : COLOR.WHITE)};
+`;
+
 const BaseLink = styled.div`
   color: ${COLOR.GRAY3};
   padding: 0.8rem 0.5rem;
@@ -258,10 +295,7 @@ const BaseLink = styled.div`
   }
   &:hover {
     background: ${COLOR.GREEN2};
-    color: ${COLOR.BLACK};
-  }
-  &:active {
-    background: ${COLOR.GREEN2};
+    color: ${COLOR.BLACK} !important;
   }
 `;
 
@@ -277,10 +311,6 @@ const Link = styled(NavLink)`
   &:hover {
     background: ${COLOR.GREEN2};
     color: ${COLOR.BLACK} !important;
-  }
-
-  &:active {
-    background: ${COLOR.GREEN2};
   }
 `;
 
