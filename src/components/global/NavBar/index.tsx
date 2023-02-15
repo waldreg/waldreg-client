@@ -110,6 +110,15 @@ const NavBar = () => {
                   <Text style={FONT.BODY1}>게시판 관리</Text>
                 </Link>
               </Item>
+              <Item
+                className="relative"
+                selected={location === '/setting/reward'}
+              >
+                <Link to="/setting/reward">
+                  <Blank />
+                  <Text style={FONT.BODY1}>상벌점 관리</Text>
+                </Link>
+              </Item>
             </ul>
           </li>
           <li className="relative" id="SideNav2">
@@ -134,9 +143,9 @@ const NavBar = () => {
               <Item className="relative">
                 <Link
                   to="/setting/user"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
+                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
-                  data-mdb-ripple-color="primary"
+                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>일별출석현황</Text>
@@ -145,9 +154,9 @@ const NavBar = () => {
               <Item className="relative">
                 <Link
                   to="/setting/character"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
+                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                   data-mdb-ripple="true"
-                  data-mdb-ripple-color="primary"
+                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>월별출석현황</Text>
