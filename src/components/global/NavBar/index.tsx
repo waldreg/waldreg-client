@@ -207,40 +207,34 @@ const NavBar = () => {
             </Link>
           </li>
         </Items>
-        <Items className="relative px-2">
+        <Bottom>
           {!isLoggedIn && (
-            <Item className="relative">
-              <Link
-                to="/login"
-                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              >
-                <Text style={FONT.SUBTITLE1}>로그인</Text>
-              </Link>
-            </Item>
+            <Link
+              to="/login"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+            >
+              <Text style={FONT.SUBTITLE1}>로그인</Text>
+            </Link>
           )}
           {!isLoggedIn && (
-            <Item className="relative" selected={location === '/signup'}>
-              <Link
-                to="/signup"
-                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              >
-                <Text style={FONT.SUBTITLE1}>회원가입</Text>
-              </Link>
-            </Item>
+            <Link
+              to="/signup"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+            >
+              <Text style={FONT.SUBTITLE1}>회원가입</Text>
+            </Link>
           )}
           {isLoggedIn && (
-            <Item className="relative">
-              <Link
-                to="/"
-                onClick={logoutHandler}
-                className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              >
-                <LogOutIcon />
-                <Text style={FONT.SUBTITLE1}>로그아웃</Text>
-              </Link>
-            </Item>
+            <Link
+              to="/"
+              onClick={logoutHandler}
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+            >
+              <LogOutIcon />
+              <Text style={FONT.SUBTITLE1}>로그아웃</Text>
+            </Link>
           )}
-        </Items>
+        </Bottom>
       </Links>
     </Wrapper>
   ) : (
@@ -251,7 +245,7 @@ const NavBar = () => {
 const Wrapper = styled.div`
   min-width: 16rem;
   height: 100vh;
-  padding: 1.75rem;
+  padding: 1.5rem;
 
   background: ${COLOR.WHITE};
 `;
@@ -263,10 +257,15 @@ const Top = styled.div`
   justify-content: space-between;
 `;
 
+const Bottom = styled.div``;
+
 const Links = styled.div`
+  width: 100%;
+  height: 80vh;
+
   display: flex;
   flex-direction: column;
-  gap: 40vh;
+  justify-content: space-between;
 `;
 
 const Items = styled.ul`
@@ -314,7 +313,9 @@ const Link = styled(NavLink)`
   }
 `;
 
-const Text = styled.div``;
+const Text = styled.div`
+  width: 100%;
+`;
 
 const Blank = styled.div`
   width: 20px;
