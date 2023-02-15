@@ -18,7 +18,6 @@ import {
   BoardIcon,
   CalIcon,
   MedalIcon,
-  EyeIcon,
   SettingIcon,
   LogOutIcon,
 } from '../../Icons/BasicIcons';
