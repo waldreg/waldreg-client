@@ -30,6 +30,7 @@ const BoardUpdate = () => {
     title: title,
     content: content,
     category_id: category_id,
+    delete_file_urls: [],
   };
 
   formData.append(
