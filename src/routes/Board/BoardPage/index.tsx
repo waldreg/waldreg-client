@@ -1,4 +1,3 @@
-import React from "react";
 import BoardCreateButton from "../../../components/board/BoardCreateButton";
 import BoardList from "../../../components/board/BoardList";
 import { useBoardList } from "../../../hooks/board/useBoardList";
