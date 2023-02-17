@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useContext } from "react";
-import AuthContext from "../../../states/auth-context";
+import { useContext } from 'react';
+import AuthContext from '../../../states/auth-context';
 
-import { NavLink } from "react-router-dom";
-import COLOR from "../../../constants/color";
-import { LogoIcon } from "../../Icons/LogoIcons";
-import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
+import { NavLink } from 'react-router-dom';
+import COLOR from '../../../constants/color';
+import { LogoIcon } from '../../Icons/LogoIcons';
+import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
 
 import {
   DoubleLeftIcon,
@@ -16,11 +16,10 @@ import {
   CalIcon,
   MedalIcon,
   EyeIcon,
-} from "../../Icons/BasicIcons";
-import BoardCategory from "../../board/BoardCategory";
+} from '../../Icons/BasicIcons';
+import BoardCategory from '../../board/BoardCategory';
 
 const NavBar = () => {
-
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
@@ -29,7 +28,6 @@ const NavBar = () => {
   };
 
   const { boardCategoryList } = useBoardCategoryList();
-
 
   return (
     <Wrapper>
@@ -56,6 +54,10 @@ const NavBar = () => {
         <Link to="/setting/board">
           <Blank />
           게시판 관리
+        </Link>
+        <Link to="/setting/reward">
+          <Blank />
+          상벌점 관리
         </Link>
         <BaseLink>
           <CheckRoundIcon />
