@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import COLOR from "../../../constants/color";
 import FONT from "../../../constants/fonts";
 import { BoardCategoryLists } from "../../../interfaces/board";
@@ -8,6 +9,8 @@ interface BoardCategoryProps {
 }
 
 function BoardCategory({ boardCategoryList }: BoardCategoryProps) {
+  const location = useLocation().pathname;
+
   return (
     <ul
       className="relative accordion-collapse collapse"
@@ -17,7 +20,11 @@ function BoardCategory({ boardCategoryList }: BoardCategoryProps) {
     >
       {boardCategoryList.categories.map((category) => {
         return (
-          <Item className="relative" key={category.category_id}>
+          <Item
+            className="relative"
+            key={category.category_id}
+            selected={location === `/board/${category.category_id}`}
+          >
             <Link
               to={`board/${category.category_id}`}
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
