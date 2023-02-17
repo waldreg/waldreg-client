@@ -31,6 +31,7 @@ import {
   Link,
   Text,
   Blank,
+  Open,
 } from './style';
 
 const NavBar = () => {
@@ -228,7 +229,7 @@ const NavBar = () => {
       </Links>
     </Wrapper>
   ) : (
-    <div onClick={() => setWidth(true)}>열기</div>
+    <Open onClick={() => setWidth(true)}>열기</Open>
   );
 };
 
