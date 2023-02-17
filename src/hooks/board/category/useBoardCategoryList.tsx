@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
-import { waldregAxios as axios } from "../../apis/axios";
-import { BoardCategoryLists } from "../../interfaces/board.js";
-import { boardCategoryKeys } from "../../types/boardKey";
+import { waldregAxios as axios } from "../../../apis/axios";
+import { BoardCategoryLists } from "../../../interfaces/board";
+import { boardCategoryKeys } from "../../../types/boardKey";
 
 async function getBoardCategoryList(): Promise<BoardCategoryLists> {
   const { data } = await axios.get("/category");

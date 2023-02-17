@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import { boardCategoryKeys } from "../../types/boardKey";
-import { waldregAxios as axios } from "./../../apis/axios";
+import { waldregAxios as axios } from "../../../apis/axios";
+import { boardCategoryKeys } from "../../../types/boardKey";
 
 async function deleteBoardCategory(id: number) {
   await axios.delete(`/category/${id}`);

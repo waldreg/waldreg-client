@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import BoardCategoryList from "../../../components/board/BoardCategoryList";
 import { PlusIcon } from "../../../components/Icons/SettingIcons";
-import { useBoardCategoryCreate } from "../../../hooks/board/useBoardCategoryCreate";
-import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
+import { useBoardCategoryCreate } from "../../../hooks/board/category/useBoardCategoryCreate";
+import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
 import { Container } from "../../Board/BoardLayout/style";
 
 const BoardManagement = () => {

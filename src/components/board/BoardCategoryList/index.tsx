@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { useBoardCategoryDelete } from "../../../hooks/board/useBoardCategoryDelete";
-import { useBoardCategoryUpdate } from "../../../hooks/board/useBoardCategoryUpdate";
+import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
+import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
 import { BoardCategoryLists } from "../../../interfaces/board";
 import Modal from "../../common/modal";
 
