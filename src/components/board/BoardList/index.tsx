@@ -21,7 +21,10 @@ function BoardList({ boardList }: BoardListProps) {
   return (
     <>
       {boardList.boards.map((board) => (
-        <BoardContainer key={board.id} onClick={() => navigate(`${board.id}`)}>
+        <BoardContainer
+          key={board.id}
+          onClick={() => navigate(`detail/${board.id}`)}
+        >
           <BoardInformationBox>
             <BoardInformation style={FONT.SUBTITLE1}>ham0__0</BoardInformation>
             <BoardInformation style={FONT.SUBTITLE1}>
