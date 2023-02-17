@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
-import { Outlet } from "react-router-dom";
-import styled from "styled-components";
-import COLOR from "../../../constants/color";
+import React, { ReactElement } from 'react';
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+import COLOR from '../../../constants/color';
 
-import NavBar from "../NavBar";
+import NavBar from '../NavBar';
 
 const Layout = ({ children }: { children?: ReactElement }) => {
   return (
