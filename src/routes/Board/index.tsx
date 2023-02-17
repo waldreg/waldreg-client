@@ -9,10 +9,10 @@ const Board = () => {
   return (
     <Routes>
       <Route element={<BoardLayout />}>
-        <Route path="/" element={<BoardPage />} />
-        <Route path="/create" element={<BoardCreate />} />
-        <Route path="/update/:id" element={<BoardUpdate />} />
-        <Route path="/:id" element={<BoardDetail />} />
+        <Route path="/:categoryId" element={<BoardPage />} />
+        <Route path="/:categoryId/create" element={<BoardCreate />} />
+        <Route path="/:categoryId/update/:id" element={<BoardUpdate />} />
+        <Route path="/:categoryId/detail/:id" element={<BoardDetail />} />
       </Route>
     </Routes>
   );

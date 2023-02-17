@@ -15,11 +15,11 @@ import FONT from "./../../../constants/fonts";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
-  const { id } = useParams<Params>();
+  const { id, categoryId } = useParams<Params>();
   const { board } = useBoardDetail(parseInt(id!!));
 
   const handleUpdateButtonClick = () => {
-    navigate(`/board/update/${id}`);
+    navigate(`/board/${categoryId}/update/${id}`);
   };
 
   const boardDelete = useBoardDelete(parseInt(id!!));
