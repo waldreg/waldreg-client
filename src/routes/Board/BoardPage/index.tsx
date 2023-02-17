@@ -4,7 +4,7 @@ import { useBoardList } from "../../../hooks/board/useBoardList";
 import { BoardButtonContainer, BoardContainer } from "./style";
 
 const BoardPage = () => {
-  const { boardList } = useBoardList(1, 1, 5);
+  const { boardList } = useBoardList(1, 1, 6);
 
   return (
     <>

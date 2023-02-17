@@ -1,16 +1,15 @@
-import styled from 'styled-components';
-import { useContext, useState } from 'react';
-import AuthContext from '../../../states/auth-context';
-import { NavLink, useLocation } from 'react-router-dom';
-import 'tw-elements';
+import { useContext, useState } from "react";
+import AuthContext from "../../../states/auth-context";
+import { useLocation } from "react-router-dom";
+import "tw-elements";
 
-import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
-import BoardCategory from '../../board/BoardCategory';
+import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
+import BoardCategory from "../../board/BoardCategory";
 
-import COLOR from '../../../constants/color';
-import FONT from '../../../constants/fonts';
+import COLOR from "../../../constants/color";
+import FONT from "../../../constants/fonts";
 
-import { LogoIcon } from '../../Icons/LogoIcons';
+import { LogoIcon } from "../../Icons/LogoIcons";
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -20,7 +19,19 @@ import {
   MedalIcon,
   SettingIcon,
   LogOutIcon,
-} from '../../Icons/BasicIcons';
+} from "../../Icons/BasicIcons";
+import {
+  Wrapper,
+  Top,
+  Bottom,
+  Links,
+  Items,
+  Item,
+  BaseLink,
+  Link,
+  Text,
+  Blank,
+} from "./style";
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
@@ -43,9 +54,9 @@ const NavBar = () => {
       </Top>
       <Links>
         <Items className="relative px-1">
-          <Item className="relative" selected={location === '/home'}>
+          <Item className="relative" selected={location === "/home"}>
             <Link
-              to="/home"
+              to="/"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
               data-mdb-ripple="true"
               data-mdb-ripple-color={COLOR.GREEN4}
@@ -75,7 +86,7 @@ const NavBar = () => {
             >
               <Item
                 className="relative"
-                selected={location === '/setting/user'}
+                selected={location === "/setting/user"}
               >
                 <Link
                   to="/setting/user"
@@ -89,7 +100,7 @@ const NavBar = () => {
               </Item>
               <Item
                 className="relative"
-                selected={location === '/setting/character'}
+                selected={location === "/setting/character"}
               >
                 <Link
                   to="/setting/character"
@@ -103,7 +114,7 @@ const NavBar = () => {
               </Item>
               <Item
                 className="relative"
-                selected={location === '/setting/board'}
+                selected={location === "/setting/board"}
               >
                 <Link to="/setting/board">
                   <Blank />
@@ -112,7 +123,7 @@ const NavBar = () => {
               </Item>
               <Item
                 className="relative"
-                selected={location === '/setting/reward'}
+                selected={location === "/setting/reward"}
               >
                 <Link to="/setting/reward">
                   <Blank />
@@ -140,7 +151,7 @@ const NavBar = () => {
               aria-labelledby="SideNav2"
               data-bs-parent="#sidenavSecExample"
             >
-              <Item className="relative" selected={location === '/'}>
+              <Item className="relative" selected={location === "/"}>
                 <Link
                   to="/"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
@@ -151,7 +162,7 @@ const NavBar = () => {
                   <Text style={FONT.BODY1}>일별출석현황</Text>
                 </Link>
               </Item>
-              <Item className="relative" selected={location === '/schedule'}>
+              <Item className="relative" selected={location === "/schedule"}>
                 <Link
                   to="/schedule"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
@@ -177,21 +188,9 @@ const NavBar = () => {
               <BoardIcon />
               <Text style={FONT.SUBTITLE1}>게시판</Text>
             </BaseLink>
-            <Items
-              className="relative accordion-collapse collapse"
-              id="collapseSideNav3"
-              aria-labelledby="SideNav3"
-              data-bs-parent="#sidenavSecExample"
-            >
-              <li className="relative">
-                <Link to="/board">
-                  <Blank />
-                  {boardCategoryList && (
-                    <BoardCategory boardCategoryList={boardCategoryList} />
-                  )}
-                </Link>
-              </li>
-            </Items>
+            {boardCategoryList && (
+              <BoardCategory boardCategoryList={boardCategoryList} />
+            )}
           </li>
 
           <li className="relative">
@@ -249,85 +248,5 @@ const NavBar = () => {
     <div onClick={() => setWidth(true)}>열기</div>
   );
 };
-
-const Wrapper = styled.div`
-  min-width: 16rem;
-  height: 100vh;
-  padding: 1.5rem;
-
-  background: ${COLOR.WHITE};
-`;
-
-const Top = styled.div`
-  padding-bottom: 8vh;
-
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Bottom = styled.div``;
-
-const Links = styled.div`
-  width: 100%;
-  height: 80vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const Items = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-`;
-
-const Item = styled.li<{ selected?: boolean }>`
-  border-radius: 0.5rem;
-  background: ${(props) => (props.selected ? COLOR.GREEN2 : COLOR.WHITE)};
-`;
-
-const BaseLink = styled.div`
-  color: ${COLOR.GRAY3};
-  padding: 0.8rem 0.5rem;
-
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-  &:hover {
-    background: ${COLOR.GREEN2};
-    color: ${COLOR.BLACK} !important;
-  }
-`;
-
-const Link = styled(NavLink)`
-  color: ${COLOR.GRAY3} !important;
-  padding: 0.8rem 0.5rem;
-
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  &:hover {
-    background: ${COLOR.GREEN2};
-    color: ${COLOR.BLACK} !important;
-  }
-`;
-
-const Text = styled.div`
-  width: 100%;
-`;
-
-const Blank = styled.div`
-  width: 20px;
-  height: 20px;
-`;
 
 export default NavBar;
