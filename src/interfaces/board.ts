@@ -37,3 +37,13 @@ export interface BoardCategory {
 export interface BoardCategoryLists extends BoardCategory {
   categories: BoardCategory[];
 }
+
+export interface BoardComment {
+  board_id?: number;
+  content: string;
+}
+
+export interface BoardCommentLists extends BoardComment {
+  max_idx: number;
+  comments: BoardComment[];
+}
