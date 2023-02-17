@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BoardCategoryList from "../../../components/board/BoardCategoryList";
+import { PlusIcon } from "../../../components/Icons/SettingIcons";
 import { useBoardCategoryCreate } from "../../../hooks/board/useBoardCategoryCreate";
 import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
 import { Container } from "../../Board/BoardLayout/style";
@@ -28,7 +29,9 @@ const BoardManagement = () => {
             setBoardName(e.currentTarget.value)
           }
         />
-        <button onClick={handleCreateCategory}>게시판 생성</button>
+        <div onClick={handleCreateCategory}>
+          <PlusIcon />
+        </div>
 
         <CategoryListBox>
           {boardCategoryList && (

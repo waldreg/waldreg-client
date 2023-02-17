@@ -16,9 +16,13 @@ import FONT from "./../../../constants/fonts";
 const BoardDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams<Params>();
-  const { board } = useBoardDetail(id ? parseInt(id) : 0);
+  const { board } = useBoardDetail(parseInt(id!!));
 
-  const boardDelete = useBoardDelete(id ? parseInt(id) : 0);
+  const handleUpdateButtonClick = () => {
+    navigate(`/board/update/${id}`);
+  };
+
+  const boardDelete = useBoardDelete(parseInt(id!!));
   const handleDeleteButtonClick = () => {
     boardDelete.mutate();
     navigate(-1);
@@ -41,7 +45,7 @@ const BoardDetail = () => {
           <BoardButtonBox>
             <BoardButton
               style={FONT.SUBTITLE1}
-              onClick={handleDeleteButtonClick}
+              onClick={handleUpdateButtonClick}
             >
               수정
             </BoardButton>
