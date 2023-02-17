@@ -47,8 +47,6 @@ const NavBar = () => {
             <Link
               to="/home"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
             >
               <HomeIcon />
               <Text style={FONT.SUBTITLE1}>홈</Text>
@@ -57,8 +55,6 @@ const NavBar = () => {
           <li className="relative" id="SideNav1">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
               data-bs-toggle="collapse"
               data-bs-target="#collapseSideNav1"
               aria-expanded="false"
@@ -80,8 +76,6 @@ const NavBar = () => {
                 <Link
                   to="/setting/user"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>유저 관리</Text>
@@ -94,8 +88,6 @@ const NavBar = () => {
                 <Link
                   to="/setting/character"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>역할 관리</Text>
@@ -123,9 +115,7 @@ const NavBar = () => {
           </li>
           <li className="relative" id="SideNav2">
             <BaseLink
-              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
+              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
               data-bs-toggle="collapse"
               data-bs-target="#collapseSideNav2"
               aria-expanded="false"
@@ -144,8 +134,6 @@ const NavBar = () => {
                 <Link
                   to="/"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>일별출석현황</Text>
@@ -155,8 +143,6 @@ const NavBar = () => {
                 <Link
                   to="/schedule"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>월별출석현황</Text>
@@ -167,8 +153,6 @@ const NavBar = () => {
           <li className="relative" id="SideNav3">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
               data-bs-toggle="collapse"
               data-bs-target="#collapseSideNav3"
               aria-expanded="false"
@@ -198,8 +182,6 @@ const NavBar = () => {
             <Link
               to="/schedule"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
             >
               <CalIcon />
               <Text style={FONT.SUBTITLE1}>일정표</Text>
