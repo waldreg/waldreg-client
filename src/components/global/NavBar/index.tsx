@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
-import AuthContext from "../../../states/auth-context";
-import { useLocation } from "react-router-dom";
-import "tw-elements";
+import { useContext, useState } from 'react';
+import AuthContext from '../../../states/auth-context';
+import { useLocation } from 'react-router-dom';
+import 'tw-elements';
 
-import { useBoardCategoryList } from "../../../hooks/board/useBoardCategoryList";
-import BoardCategory from "../../board/BoardCategory";
+import { useBoardCategoryList } from '../../../hooks/board/useBoardCategoryList';
+import BoardCategory from '../../board/BoardCategory';
 
-import COLOR from "../../../constants/color";
-import FONT from "../../../constants/fonts";
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
-import { LogoIcon } from "../../Icons/LogoIcons";
+import { LogoIcon } from '../../Icons/LogoIcons';
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -19,7 +19,7 @@ import {
   MedalIcon,
   SettingIcon,
   LogOutIcon,
-} from "../../Icons/BasicIcons";
+} from '../../Icons/BasicIcons';
 import {
   Wrapper,
   Top,
@@ -31,7 +31,7 @@ import {
   Link,
   Text,
   Blank,
-} from "./style";
+} from './style';
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
@@ -151,7 +151,7 @@ const NavBar = () => {
               </Item>
               <Item className="relative">
                 <Link
-                  to="/schedule"
+                  to="/"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                 >
                   <Blank />
@@ -160,7 +160,7 @@ const NavBar = () => {
               </Item>
             </Items>
           </Item>
-          <li className="relative" id="sidenavSecEx4">
+          <Item className="relative" id="sidenavSecEx4">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded cursor-pointer"
               data-bs-toggle="collapse"
@@ -175,7 +175,7 @@ const NavBar = () => {
             {boardCategoryList && (
               <BoardCategory boardCategoryList={boardCategoryList} />
             )}
-          </li>
+          </Item>
 
           <li className="relative">
             <Link
