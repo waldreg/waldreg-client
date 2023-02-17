@@ -34,6 +34,7 @@ const NavBar = () => {
 
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
+  const startLocation = location.split('/')[1];
 
   return width ? (
     <Wrapper>
@@ -41,156 +42,139 @@ const NavBar = () => {
         <LogoIcon />
         <DoubleLeftIcon />
       </Top>
-      <Links>
+      <Links className="h-full" id="sidenavSecExample">
         <Items className="relative px-1">
-          <Item className="relative" selected={location === '/home'}>
+          <Item className="relative">
             <Link
-              to="/home"
+              to="/"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
+              selected={location === '/'}
             >
               <HomeIcon />
               <Text style={FONT.SUBTITLE1}>홈</Text>
             </Link>
           </Item>
-          <li className="relative" id="SideNav1">
+          <Item className="relative" id="sidenavSecEx2">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
               data-bs-toggle="collapse"
-              data-bs-target="#collapseSideNav1"
+              data-bs-target="#collapseSidenavSecEx2"
               aria-expanded="false"
-              aria-controls="collapseSideNav1"
+              aria-controls="collapseSidenavSecEx2"
+              selected={startLocation === 'setting'}
             >
               <SettingIcon />
               <Text style={FONT.SUBTITLE1}>설정</Text>
             </BaseLink>
-            <ul
+            <Items
               className="relative accordion-collapse collapse"
-              id="collapseSideNav1"
-              aria-labelledby="SideNav1"
+              id="collapseSidenavSecEx2"
+              aria-labelledby="sidenavSecEx2"
               data-bs-parent="#sidenavSecExample"
             >
-              <Item
-                className="relative"
-                selected={location === '/setting/user'}
-              >
+              <Item className="relative">
                 <Link
                   to="/setting/user"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
+                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
+                  selected={location === '/setting/user'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>유저 관리</Text>
                 </Link>
               </Item>
-              <Item
-                className="relative"
-                selected={location === '/setting/character'}
-              >
+              <Item className="relative">
                 <Link
                   to="/setting/character"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
+                  selected={location === '/setting/character'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>역할 관리</Text>
                 </Link>
               </Item>
-              <Item
-                className="relative"
-                selected={location === '/setting/board'}
-              >
-                <Link to="/setting/board">
+              <Item className="relative">
+                <Link
+                  to="/setting/board"
+                  selected={location === '/setting/board'}
+                >
                   <Blank />
                   <Text style={FONT.BODY1}>게시판 관리</Text>
                 </Link>
               </Item>
-              <Item
-                className="relative"
-                selected={location === '/setting/reward'}
-              >
-                <Link to="/setting/reward">
+              <Item className="relative">
+                <Link
+                  to="/setting/reward"
+                  selected={location === '/setting/reward'}
+                >
                   <Blank />
                   <Text style={FONT.BODY1}>상벌점 관리</Text>
                 </Link>
               </Item>
-            </ul>
-          </li>
-          <li className="relative" id="SideNav2">
+            </Items>
+          </Item>
+          <Item className="relative" id="sidenavSecEx3">
             <BaseLink
-              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
+              className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
               data-bs-toggle="collapse"
-              data-bs-target="#collapseSideNav2"
+              data-bs-target="#collapseSidenavSecEx3"
               aria-expanded="false"
-              aria-controls="collapseSideNav2"
+              aria-controls="collapseSidenavSecEx3"
             >
               <CheckRoundIcon />
               <Text style={FONT.SUBTITLE1}>출석</Text>
             </BaseLink>
-            <ul
+            <Items
               className="relative accordion-collapse collapse"
-              id="collapseSideNav2"
-              aria-labelledby="SideNav2"
+              id="collapseSidenavSecEx3"
+              aria-labelledby="sidenavSecEx3"
               data-bs-parent="#sidenavSecExample"
             >
-              <Item className="relative" selected={location === '/'}>
+              <Item className="relative">
                 <Link
                   to="/"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>일별출석현황</Text>
                 </Link>
               </Item>
-              <Item className="relative" selected={location === '/schedule'}>
+              <Item className="relative">
                 <Link
                   to="/schedule"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color={COLOR.GREEN4}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>월별출석현황</Text>
                 </Link>
               </Item>
-            </ul>
-          </li>
-          <li className="relative" id="SideNav3">
+            </Items>
+          </Item>
+          <li className="relative" id="sidenavSecEx4">
             <BaseLink
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
               data-bs-toggle="collapse"
-              data-bs-target="#collapseSideNav3"
+              data-bs-target="#collapseSidenavSecEx4"
               aria-expanded="false"
-              aria-controls="collapseSideNav3"
+              aria-controls="collapseSidenavSecEx4"
+              selected={startLocation === 'board'}
             >
               <BoardIcon />
               <Text style={FONT.SUBTITLE1}>게시판</Text>
             </BaseLink>
             <Items
               className="relative accordion-collapse collapse"
-              id="collapseSideNav3"
-              aria-labelledby="SideNav3"
+              id="collapseSidenavSecEx4"
+              aria-labelledby="sidenavSecEx4"
               data-bs-parent="#sidenavSecExample"
             >
-              <li className="relative">
+              <Items className="relative">
                 <Link to="/board">
                   <Blank />
                   {boardCategoryList && (
                     <BoardCategory boardCategoryList={boardCategoryList} />
                   )}
                 </Link>
-              </li>
+              </Items>
             </Items>
           </li>
 
@@ -198,8 +182,7 @@ const NavBar = () => {
             <Link
               to="/schedule"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color={COLOR.GREEN4}
+              selected={location === '/schedule'}
             >
               <CalIcon />
               <Text style={FONT.SUBTITLE1}>일정표</Text>
@@ -279,15 +262,17 @@ const Links = styled.div`
 const Items = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 `;
 
-const Item = styled.li<{ selected?: boolean }>`
+const Item = styled.li`
   border-radius: 0.5rem;
-  background: ${(props) => (props.selected ? COLOR.GREEN2 : COLOR.WHITE)};
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
-const BaseLink = styled.div`
+const BaseLink = styled.div<{ selected?: boolean }>`
   color: ${COLOR.GRAY3};
   padding: 0.8rem 0.5rem;
 
@@ -300,13 +285,16 @@ const BaseLink = styled.div`
     transition: 0.5s;
     text-decoration: none;
   }
+
   &:hover {
     background: ${COLOR.GREEN2};
     color: ${COLOR.BLACK} !important;
   }
+
+  color: ${(props) => (props.selected ? COLOR.BLACK : COLOR.GRAY3)} !important;
 `;
 
-const Link = styled(NavLink)`
+const Link = styled(NavLink)<{ selected?: boolean }>`
   color: ${COLOR.GRAY3} !important;
   padding: 0.8rem 0.5rem;
 
@@ -319,6 +307,9 @@ const Link = styled(NavLink)`
     background: ${COLOR.GREEN2};
     color: ${COLOR.BLACK} !important;
   }
+
+  background: ${(props) => (props.selected ? COLOR.GREEN2 : COLOR.WHITE)};
+  color: ${(props) => (props.selected ? COLOR.BLACK : COLOR.GRAY3)} !important;
 `;
 
 const Text = styled.div`
