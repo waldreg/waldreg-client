@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "./style";
 import { PencilWhiteIcon } from "../../Icons/BoardIcons";
+import { Button } from "./style";
 
-const CreateButton = () => {
+const CreateButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <Button>
-      <PencilWhiteIcon /> 작성
+      <PencilWhiteIcon style={{ marginRight: "1rem" }} /> 작성
     </Button>
   );
 };

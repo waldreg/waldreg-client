@@ -13,6 +13,7 @@ import {
   BoardTitleInput,
 } from "./style";
 import { BoardContainer } from "../BoardDetail/style";
+import CreateButton from "../../common/createbutton";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState("");
@@ -71,13 +72,7 @@ const BoardCreate = () => {
           }}
         />
         <BoardButtonContainer>
-          <BoardCreateButton
-            onSubmit={handleCreateSubmit}
-            style={FONT.SUBTITLE1}
-          >
-            <PencilWhiteIcon />
-            작성
-          </BoardCreateButton>
+          <CreateButton style={FONT.SUBTITLE1} onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>
       </form>
     </BoardContainer>
