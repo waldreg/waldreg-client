@@ -39,7 +39,7 @@ export interface BoardCategoryLists extends BoardCategory {
 }
 
 export interface BoardComment {
-  board_id?: number;
+  id?: number;
   content: string;
 }
 
