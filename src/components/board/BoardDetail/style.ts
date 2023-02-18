@@ -51,6 +51,12 @@ const BoardContent = styled.div`
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 
+const BoardCommentCount = styled.div`
+  color: ${COLOR.GRAY3};
+  padding: 1rem 0;
+  border-bottom: 2px solid ${COLOR.GRAY0};
+`;
+
 export {
   BoardContainer,
   BoardTitle,
@@ -60,4 +66,5 @@ export {
   BoardButtonBox,
   BoardButton,
   BoardContent,
+  BoardCommentCount,
 };

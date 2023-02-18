@@ -3,6 +3,7 @@ import { useBoardDetail } from "./../../../hooks/board/useBoardDetail";
 import {
   BoardButton,
   BoardButtonBox,
+  BoardCommentCount,
   BoardContainer,
   BoardContent,
   BoardInformation,
@@ -12,6 +13,9 @@ import {
 } from "./style";
 import { useBoardDelete } from "./../../../hooks/board/useBoardDelete";
 import FONT from "./../../../constants/fonts";
+import BoardCommentCreate from "./../BoardCommentCreate/index";
+import BoardCommentList from "./../BoardCommentList/index";
+import { useCommentList } from "../../../hooks/board/comment/useCommentList";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -27,6 +31,8 @@ const BoardDetail = () => {
     boardDelete.mutate();
     navigate(-1);
   };
+
+  const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
 
   return (
     <>
@@ -58,6 +64,12 @@ const BoardDetail = () => {
           </BoardButtonBox>
         </BoardTopBox>
         <BoardContent style={FONT.BODY1}>{board?.content}</BoardContent>
+
+        <BoardCommentCount style={FONT.SUBTITLE2}>
+          {commentLists?.max_idx}개의 댓글
+        </BoardCommentCount>
+        <BoardCommentCreate />
+        <BoardCommentList />
       </BoardContainer>
     </>
   );
