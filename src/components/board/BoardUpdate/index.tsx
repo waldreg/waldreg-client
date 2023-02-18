@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import FONT from "../../../constants/fonts";
 import { useBoardDetail } from "../../../hooks/board/useBoardDetail";
 import { boardCategoryState } from "../../../states/board";
+import CreateButton from "../../common/createbutton";
 import { PencilWhiteIcon } from "../../Icons/BoardIcons";
 import {
   BoardButtonContainer,
@@ -74,13 +75,7 @@ const BoardUpdate = () => {
           }}
         />
         <BoardButtonContainer>
-          <BoardCreateButton
-            onSubmit={handleUpdateSubmit}
-            style={FONT.SUBTITLE1}
-          >
-            <PencilWhiteIcon />
-            작성
-          </BoardCreateButton>
+          <CreateButton onSubmit={handleUpdateSubmit} style={FONT.SUBTITLE1} />
         </BoardButtonContainer>
       </form>
     </BoardContainer>

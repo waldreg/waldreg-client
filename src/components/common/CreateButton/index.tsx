@@ -5,7 +5,7 @@ import { Button } from "./style";
 const CreateButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <Button>
-      <PencilWhiteIcon style={{ marginRight: "1rem" }} /> 작성
+      <PencilWhiteIcon style={{ marginRight: "0.5rem" }} /> 작성
     </Button>
   );
 };
