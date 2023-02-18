@@ -7,16 +7,19 @@ async function commentDelete(comment_id: number): Promise<void> {
 }
 
 interface UseCommentDelete {
-  mutate: () => void;
+  mutate: (comment_id: number) => void;
 }
 
 export function useCommentDelete(comment_id: number): UseCommentDelete {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => commentDelete(comment_id), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(boardCommentKeys.all);
-    },
-  });
+  const { mutate } = useMutation(
+    (comment_id: number) => commentDelete(comment_id),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(boardCommentKeys.all);
+      },
+    }
+  );
   return { mutate };
 }
