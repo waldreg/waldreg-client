@@ -14,7 +14,7 @@ const CharacterPage = () => {
     <>
       <CharacterList handleClickChangeChar={handleClickChangeChar} />
       <CharacterSetting name={char} setChar={setChar} />
-      <CharacterUser />
+      <CharacterUser name={char} />
     </>
   );
 };

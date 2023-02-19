@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
+import useUserList from '../../../hooks/user/useUserList';
+
 import COLOR from '../../../constants/color';
 
-const CharacterUser = () => {
-  return <Container></Container>;
+const CharacterUser = ({ name }: { name: string }) => {
+  const userList = useUserList(1, 50);
+  const filterUserList = userList?.users.filter(
+    (user) => user.character === name
+  );
+
+  return <Container>{filterUserList?.map((user) => user.name)}</Container>;
 };
 
 const Container = styled.div`
