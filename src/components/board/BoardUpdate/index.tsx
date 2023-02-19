@@ -4,15 +4,14 @@ import { useRecoilValue } from "recoil";
 import FONT from "../../../constants/fonts";
 import { useBoardDetail } from "../../../hooks/board/useBoardDetail";
 import { boardCategoryState } from "../../../states/board";
-import { PencilWhiteIcon } from "../../Icons/BoardIcons";
+import CreateButton from "../../common/createbutton";
 import {
   BoardButtonContainer,
   BoardContentTextArea,
-  BoardCreateButton,
-  BoardFileInput,
   BoardTitleInput,
 } from "../BoardCreate/style";
 import { BoardContainer } from "../BoardDetail/style";
+import BoardFileUpload from "../BoardFileUpload";
 import { useBoardUpdate } from "./../../../hooks/board/useBoardUpdate";
 
 const BoardUpdate = () => {
@@ -37,6 +36,8 @@ const BoardUpdate = () => {
     "boardUpdateRequest",
     new Blob([JSON.stringify(data)], { type: "application/json" })
   );
+
+  formData.append("file", file!!);
 
   const updateMutation = useBoardUpdate(parseInt(id!!), formData);
 
@@ -64,7 +65,8 @@ const BoardUpdate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileInput
+        <BoardFileUpload />
+        {/* <BoardFileInput
           style={FONT.SUBTITLE2}
           type="file"
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
@@ -72,15 +74,9 @@ const BoardUpdate = () => {
               setFile(e.currentTarget.files[0]);
             }
           }}
-        />
+        /> */}
         <BoardButtonContainer>
-          <BoardCreateButton
-            onSubmit={handleUpdateSubmit}
-            style={FONT.SUBTITLE1}
-          >
-            <PencilWhiteIcon />
-            작성
-          </BoardCreateButton>
+          <CreateButton onSubmit={handleUpdateSubmit} style={FONT.SUBTITLE1} />
         </BoardButtonContainer>
       </form>
     </BoardContainer>

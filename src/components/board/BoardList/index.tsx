@@ -26,9 +26,11 @@ function BoardList({ boardList }: BoardListProps) {
           onClick={() => navigate(`detail/${board.id}`)}
         >
           <BoardInformationBox>
-            <BoardInformation style={FONT.SUBTITLE1}>ham0__0</BoardInformation>
             <BoardInformation style={FONT.SUBTITLE1}>
-              2023.02.02
+              {board.author.name}
+            </BoardInformation>
+            <BoardInformation style={FONT.SUBTITLE1}>
+              {board.created_at.slice(0, 10)}
             </BoardInformation>
           </BoardInformationBox>
           <BoardContentBox>
