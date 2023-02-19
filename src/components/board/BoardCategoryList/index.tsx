@@ -1,8 +1,12 @@
 import { useCallback, useState } from "react";
+import styled from "styled-components";
 import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
 import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
 import { BoardCategoryLists } from "../../../interfaces/board";
 import Modal from "../../common/modal";
+import { BoardCategory } from "./../../../interfaces/board";
+import COLOR from "./../../../constants/color";
+import FONT from "./../../../constants/fonts";
 
 interface BoardCategoryListsProps {
   boardCategoryList: BoardCategoryLists;
@@ -23,21 +27,29 @@ function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
   return (
     <>
       {boardCategoryList.categories.map((category) => (
-        <div key={category.category_id}>
-          {category.category_name}
-          <button
-            onClick={() => {
-              onClickUpdateModal();
-              setCategoryId(category.category_id!);
-              setCategoryName(category.category_name);
-            }}
-          >
-            수정
-          </button>
-          <button onClick={() => categoryDelete.mutate(category.category_id!)}>
-            삭제
-          </button>
-        </div>
+        <Category key={category.category_id}>
+          <CategoryTitle style={FONT.SUBTITLE2}>
+            {category.category_name}
+          </CategoryTitle>
+          <CategoryButtonBox>
+            <CategoryButton
+              onClick={() => {
+                onClickUpdateModal();
+                setCategoryId(category.category_id!);
+                setCategoryName(category.category_name);
+              }}
+              style={FONT.SUBTITLE2}
+            >
+              수정
+            </CategoryButton>
+            <CategoryButton
+              onClick={() => categoryDelete.mutate(category.category_id!)}
+              style={FONT.SUBTITLE2}
+            >
+              삭제
+            </CategoryButton>
+          </CategoryButtonBox>
+        </Category>
       ))}
 
       <div>
@@ -66,5 +78,26 @@ function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
     </>
   );
 }
+
+const Category = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+`;
+
+const CategoryTitle = styled.div`
+  color: ${COLOR.GRAY3};
+`;
+
+const CategoryButtonBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CategoryButton = styled.button`
+  margin-left: 0.5rem;
+  color: ${COLOR.GREEN4};
+`;
 
 export default BoardCategoryList;
