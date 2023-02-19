@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 import useCharacter from '../../../hooks/character/useCharacter';
 import useEditCharacter from '../../../hooks/character/useEditCharacter';
@@ -10,7 +11,7 @@ import { Title } from '../../common/pagetitle/style';
 import { InputLine } from '../../common/inputs/input_line';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
-import { Top } from '../CharacterList/style';
+import { Top, Item } from '../CharacterList/style';
 
 import { Permission } from '../../../interfaces/character';
 
@@ -31,6 +32,19 @@ const CharacterSetting = ({
   const { checkedList, updateCheckList } = useToggleBox(
     character?.permissions || []
   );
+
+  const perThemeList = [
+    { name: '유저', range: [0, 3] },
+    { name: '게시판', range: [4, 15] },
+    { name: '일정', range: [16, 18] },
+    { name: '상벌점', range: [19, 19] },
+  ];
+  const [perTheme, setPerTheme] = useState(perThemeList[0]);
+
+  checkedList.sort((prev, cur) => {
+    if (prev.permission_id > cur.permission_id) return 1;
+    else return -1;
+  });
 
   return (
     <Container>
@@ -58,14 +72,31 @@ const CharacterSetting = ({
           onChange={handleChangeInput}
           reset={reset}
         />
-        <Items>
-          {checkedList?.map((permission: Permission) => (
-            <PermissionItem
-              key={permission.permission_id}
-              per={permission}
-              updateCheckList={updateCheckList}
-            />
+        <PerThemeList style={FONT.SUBTITLE2}>
+          {perThemeList.map((theme) => (
+            <Item
+              key={theme.name}
+              onClick={() => setPerTheme(theme)}
+              selected={theme.name === perTheme.name}
+            >
+              {theme.name}
+            </Item>
           ))}
+        </PerThemeList>
+        <Items>
+          {checkedList
+            .filter(
+              (per) =>
+                per.permission_id >= perTheme.range[0] &&
+                per.permission_id <= perTheme.range[1]
+            )
+            .map((permission: Permission) => (
+              <PermissionItem
+                key={permission.permission_id}
+                per={permission}
+                updateCheckList={updateCheckList}
+              />
+            ))}
         </Items>
       </Content>
       <ButtonBig
@@ -98,6 +129,11 @@ const Content = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   overflow: auto;
+`;
+
+const PerThemeList = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 const Items = styled.div``;
