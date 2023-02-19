@@ -3,14 +3,7 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const TopBar = () => {
-  return (
-    <Wrapper>
-      <User>
-        <Text style={FONT.SUBTITLE1}>이현영 님</Text>
-        <Btn style={FONT.BODY1}>로그아웃</Btn>
-      </User>
-    </Wrapper>
-  );
+  return <Wrapper></Wrapper>;
 };
 
 const Wrapper = styled.div`
