@@ -7,11 +7,11 @@ import FONT from "../../../constants/fonts";
 import {
   BoardButtonContainer,
   BoardContentTextArea,
-  BoardFileInput,
   BoardTitleInput,
 } from "./style";
 import { BoardContainer } from "../BoardDetail/style";
 import CreateButton from "../../common/createbutton";
+import BoardFileUpload from "../BoardFileUpload";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
@@ -32,6 +32,8 @@ const BoardCreate = () => {
     "boardCreateRequest",
     new Blob([JSON.stringify(data)], { type: "application/json" })
   );
+
+  formData.append("file", file!!);
 
   const createMutation = useBoardCreate(formData);
 
@@ -59,16 +61,7 @@ const BoardCreate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileInput
-          style={FONT.SUBTITLE2}
-          type="file"
-          placeholder="파일"
-          onChange={(e: React.FormEvent<HTMLInputElement>) => {
-            if (e.currentTarget.files) {
-              setFile(e.currentTarget.files[0]);
-            }
-          }}
-        />
+        <BoardFileUpload />
         <BoardButtonContainer>
           <CreateButton style={FONT.SUBTITLE1} onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>

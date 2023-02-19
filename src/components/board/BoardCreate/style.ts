@@ -37,18 +37,9 @@ const BoardCreateButton = styled.button`
   align-items: center;
 `;
 
-const BoardFileInput = styled.input`
-  width: 100%;
-  border: 2px solid ${COLOR.GRAY0};
-  margin-bottom: 1rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-`;
-
 export {
   BoardTitleInput,
   BoardContentTextArea,
   BoardButtonContainer,
   BoardCreateButton,
-  BoardFileInput,
 };
