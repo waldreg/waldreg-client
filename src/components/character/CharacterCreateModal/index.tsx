@@ -6,7 +6,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
 import Modal from '../../common/modal';
-import { InputAdd } from '../../common/inputs/input_fill';
+import { InputFillThin } from '../../common/inputs/input_fill';
 import { CheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
@@ -30,7 +30,7 @@ const CharacterCreateModal = ({
 
   return (
     <Modal onClickToggleModal={() => setIsOpenCreateModal(false)}>
-      <InputAdd
+      <InputFillThin
         value={value}
         onChange={handleChangeInput}
         reset={reset}

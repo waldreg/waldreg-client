@@ -1,21 +1,44 @@
 import styled from 'styled-components';
 
 import useUserList from '../../../hooks/user/useUserList';
+import { useInput } from '../../../hooks/common/useInput';
+
+import { PlusIcon } from '../../Icons/SettingIcons';
+import { InputFillBold } from '../../common/inputs/input_fill';
 
 import { Title } from '../../common/pagetitle/style';
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
+
+import { Top } from '../CharacterList/style';
 
 const CharacterUser = ({ name }: { name: string }) => {
   const userList = useUserList(1, 50);
   const filterUserList = userList?.users.filter(
     (user) => user.character === name
   );
+  const { value, handleChangeInput, reset } = useInput('');
 
   return (
     <Container>
-      <Title style={FONT.HEADING}>소속 유저</Title>
-      {filterUserList?.map((user) => user.name)}
+      <Top>
+        <Title style={FONT.HEADING}>소속 유저</Title>
+        <IconWrapper>
+          <PlusIcon />
+        </IconWrapper>
+      </Top>
+      <InputFillBold
+        value={value}
+        placeholder={'유저 검색하기'}
+        onChange={handleChangeInput}
+        reset={reset}
+      />
+      {filterUserList?.map((user) => (
+        <User key={user.id}>
+          <Text style={FONT.SUBTITLE2}>{user.name}</Text>
+          <Id style={FONT.SUBTITLE1}>{user.user_id}</Id>
+        </User>
+      ))}
     </Container>
   );
 };
@@ -30,6 +53,21 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+`;
+
+const IconWrapper = styled.button``;
+
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const Text = styled.div``;
+
+const Id = styled.div`
+  color: ${COLOR.GRAY2};
 `;
 
 export default CharacterUser;
