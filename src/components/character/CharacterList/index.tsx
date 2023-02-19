@@ -1,18 +1,23 @@
 import styled from 'styled-components/macro';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 import useCharacterList from '../../../hooks/character/useCharacterList';
 
 import { Character } from '../../../interfaces/character';
 import { Title } from '../../common/pagetitle/style';
-
 import CharacterCreateModal from '../CharacterCreateModal';
 
 import { PlusIcon } from '../../Icons/SettingIcons';
 import FONT from '../../../constants/fonts';
 import COLOR from '../../../constants/color';
 
-const CharacterList = ({ handleClickChangeChar }: any) => {
+const CharacterList = ({
+  name,
+  handleClickChangeChar,
+}: {
+  name: string;
+  handleClickChangeChar: any;
+}) => {
   const charList = useCharacterList();
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
@@ -38,6 +43,8 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
             <Item
               key={character.id}
               onClick={() => handleClickChangeChar(character.character_name)}
+              style={FONT.SUBTITLE1}
+              selected={character.character_name === name}
             >
               {character.character_name}
             </Item>
@@ -49,7 +56,7 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
 };
 
 const Container = styled.div`
-  width: 70%;
+  width: 50%;
   height: 100%;
   background: ${COLOR.WHITE};
 
@@ -63,6 +70,10 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
   overflow: auto;
 `;
 
@@ -71,7 +82,7 @@ const Top = styled.div`
   justify-content: space-between;
 `;
 
-const IconWrapper = styled.div``;
+const IconWrapper = styled.button``;
 
 const Items = styled.div`
   display: flex;
@@ -81,10 +92,24 @@ const Items = styled.div`
   gap: 0.5rem;
 `;
 
-const Item = styled.div`
-  width: 100%;
-  padding: 1rem 0;
+const Item = styled.div<{ selected?: boolean }>`
+  color: ${COLOR.GRAY3};
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 
+  &:link {
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  &:hover {
+    background: ${COLOR.GREEN2};
+    color: ${COLOR.BLACK};
+  }
+  background: ${(props) => (props.selected ? COLOR.GREEN2 : COLOR.WHITE)};
+  color: ${(props) => (props.selected ? COLOR.BLACK : COLOR.GRAY3)};
   cursor: pointer;
 `;
 

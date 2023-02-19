@@ -12,7 +12,10 @@ const CharacterPage = () => {
 
   return (
     <>
-      <CharacterList handleClickChangeChar={handleClickChangeChar} />
+      <CharacterList
+        name={char}
+        handleClickChangeChar={handleClickChangeChar}
+      />
       <CharacterSetting name={char} setChar={setChar} />
       <CharacterUser name={char} />
     </>
