@@ -2,8 +2,8 @@ import { CSSProperties } from 'react';
 
 const HEADING: CSSProperties = {
   fontFamily: 'Pretendard',
-  fontSize: '1.75rem',
-  fontWeight: 'bold',
+  fontSize: '1.5rem',
+  fontWeight: '600',
   lineHeight: '150%',
   letterSpacing: '-0.4px',
 };
