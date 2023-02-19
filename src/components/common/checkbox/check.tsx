@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+
 import { Permission } from '../../../interfaces/character';
 import { User } from '../../../interfaces/user';
+
+import { CheckIcon } from '../../Icons/BasicIcons';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
@@ -33,6 +36,8 @@ export const PermissionCheck = (props: IProps) => {
         onChange={(e: any) => handleToggleCheck(e, props.item)}
         checked={isChecked}
       />
+      <IconWrapper>{isChecked && <CheckIcon />}</IconWrapper>
+
       <label htmlFor={props.item.permission_name}>
         {props.item.permission_name}
       </label>
@@ -57,6 +62,8 @@ export const UserCheck = (props: UserProps) => {
         onChange={(e: any) => handleToggleCheck(e, props.item)}
         checked={isChecked}
       />
+      <IconWrapper>{isChecked && <CheckIcon />}</IconWrapper>
+
       <Text htmlFor={props.item.name} style={FONT.SUBTITLE2}>
         {props.item.name}
       </Text>
@@ -72,9 +79,25 @@ const CheckWrapper = styled.div`
 `;
 
 const CheckBox = styled.input<{ checked: boolean }>`
-  width: 10px;
-  height: 10px;
-  background: ${(props) => (props.checked === true ? 'green' : 'white')};
+  width: 25px;
+  height: 25px;
+
+  border: 2px solid
+    ${(props) =>
+      props.checked === true ? `${COLOR.GREEN4}` : `${COLOR.GRAY2}`};
+  border-radius: 0.5rem;
+
+  background: ${(props) =>
+    props.checked === true ? `${COLOR.GREEN4}` : 'white'};
+
+  cursor: pointer;
+`;
+
+const IconWrapper = styled.div`
+  padding: 5px;
+
+  position: absolute;
+  pointer-events: none;
 `;
 
 const Text = styled.label``;
