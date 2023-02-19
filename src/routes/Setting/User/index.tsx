@@ -7,21 +7,6 @@ import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 import { User } from '../../../interfaces/user';
 
 const UserSettingPage = () => {
-  const handleCLickSignUp = async () => {
-    try {
-      const response = await waldregAxios.post('/user', {
-        name: '이현영',
-        user_id: 'ham',
-        user_password: '1234!a5678',
-        phone_number: '010-1234-1234',
-      });
-
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const userList = useUserList(1, 100);
   const kickMutation = useKickUser();
   const editMutation = useEditUserCharacter('ham');
@@ -36,7 +21,6 @@ const UserSettingPage = () => {
 
   return (
     <>
-      <div onClick={handleCLickSignUp}>회원가입</div>
       {userList?.users?.map((user: User) => (
         <div key={user.id}>
           <UserName>유저이름:{user.name}</UserName>
