@@ -1,8 +1,6 @@
 import styled from 'styled-components/macro';
 import COLOR from '../../../constants/color';
 
-import { waldregAxios } from '../../../apis/axios';
-
 import usePermissionList from '../../../hooks/character/usePermissionList';
 import useCharacterList from '../../../hooks/character/useCharacterList';
 import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
@@ -14,6 +12,7 @@ import { Title } from '../../common/pagetitle/style';
 import { InputAdd } from '../../common/inputs/input_add';
 import { CheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
+import FONT from '../../../constants/fonts';
 
 const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
@@ -32,7 +31,7 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
   return (
     <Container>
       <Content>
-        <Title>역할</Title>
+        <Title style={FONT.HEADING}>역할</Title>
         <Items>
           {charList?.map((character: Character) => (
             <Item

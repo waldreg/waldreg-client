@@ -1,19 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import useCharacter from "../../../hooks/character/useCharacter";
-import useEditCharacter from "../../../hooks/character/useEditCharacter";
-import useDeleteCharacter from "../../../hooks/character/useDeleteCharacter";
-import { useInput } from "../../../hooks/common/useInput";
-import { useToggleBox } from "../../../hooks/common/useCheckBox";
+import useCharacter from '../../../hooks/character/useCharacter';
+import useEditCharacter from '../../../hooks/character/useEditCharacter';
+import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
+import { useInput } from '../../../hooks/common/useInput';
+import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
-import { Title } from "../../common/pagetitle/style";
-import { InputAdd } from "../../common/inputs/input_add";
-import { ButtonBig } from "../../common/buttons/button_big";
-import PermissionItem from "../Permission";
+import { Title } from '../../common/pagetitle/style';
+import { InputAdd } from '../../common/inputs/input_add';
+import { ButtonBig } from '../../common/buttons/button_big';
+import PermissionItem from '../Permission';
 
-import { Permission } from "../../../interfaces/character";
+import { Permission } from '../../../interfaces/character';
 
-import COLOR from "../../../constants/color";
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
 const CharacterSetting = ({
   name,
@@ -32,11 +33,11 @@ const CharacterSetting = ({
 
   return (
     <Container>
-      <Title>역할 설정</Title>
+      <Title style={FONT.HEADING}>설정</Title>
       <Content>
         <InputAdd
           value={value}
-          placeholder={""}
+          placeholder={''}
           onChange={handleChangeInput}
           reset={reset}
         />
@@ -51,7 +52,7 @@ const CharacterSetting = ({
         </Items>
       </Content>
       <ButtonBig
-        content={"역할 수정하기"}
+        content={'역할 수정하기'}
         color={COLOR.GREEN4}
         onClick={() => {
           editMutation.mutate({
@@ -64,11 +65,11 @@ const CharacterSetting = ({
         }}
       />
       <ButtonBig
-        content={"역할 삭제하기"}
+        content={'역할 삭제하기'}
         color={COLOR.RED2}
         onClick={() => {
           deleteMutation.mutate(name);
-          setChar("Admin");
+          setChar('Admin');
         }}
       />
     </Container>
