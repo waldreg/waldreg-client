@@ -23,8 +23,6 @@ function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
   const setCategoryId = useSetRecoilState(settingCategoryId);
   const setSettingForm = useSetRecoilState(settingFromState);
 
-  const categoryDelete = useBoardCategoryDelete();
-
   return (
     <>
       {boardCategoryList.categories.map((category) => (
@@ -42,12 +40,6 @@ function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
               style={FONT.SUBTITLE2}
             >
               수정
-            </CategoryButton>
-            <CategoryButton
-              onClick={() => categoryDelete.mutate(category.category_id!)}
-              style={FONT.SUBTITLE2}
-            >
-              삭제
             </CategoryButton>
           </CategoryButtonBox>
         </Category>

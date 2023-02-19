@@ -8,6 +8,12 @@ const SettingContainer = styled.div`
   border-radius: 1rem;
 `;
 
+const SettingFormContainer = styled(SettingContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const SettingTop = styled.div`
   display: flex;
   align-items: center;
@@ -23,7 +29,7 @@ const SettingInput = styled.input`
   width: 100%;
   height: 2.5rem;
   border-bottom: 1px solid ${COLOR.GRAY0};
-  margin: 3rem 1rem;
+  margin: 3rem 0;
 `;
 
 const SettingButton = styled.button`
@@ -41,7 +47,7 @@ const SettingCancelButton = styled.button`
   background: ${COLOR.GRAY2};
   color: ${COLOR.WHITE};
   width: 50%;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   border-radius: 0.5rem;
   margin-right: 1rem;
 `;
@@ -50,7 +56,7 @@ const SettingSaveButton = styled.button`
   background: ${COLOR.GREEN4};
   color: ${COLOR.WHITE};
   width: 50%;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   border-radius: 0.5rem;
 `;
 
@@ -59,8 +65,25 @@ const CategoryListBox = styled.div`
   flex-direction: column;
 `;
 
+const CategoryDeleteButton = styled.button`
+  background: ${COLOR.GREEN4};
+  color: ${COLOR.WHITE};
+  width: 100%;
+  padding: 0.7rem 0;
+  border-radius: 0.5rem;
+`;
+
+const CategoryDeleteContent = styled.div`
+  color: ${COLOR.GRAY5};
+`;
+
+const CategoryDeleteSpan = styled.span`
+  color: ${COLOR.GREEN4};
+`;
+
 export {
   SettingContainer,
+  SettingFormContainer,
   SettingTop,
   SettingTitle,
   SettingInput,
@@ -69,4 +92,7 @@ export {
   SettingCancelButton,
   SettingSaveButton,
   CategoryListBox,
+  CategoryDeleteButton,
+  CategoryDeleteContent,
+  CategoryDeleteSpan,
 };
