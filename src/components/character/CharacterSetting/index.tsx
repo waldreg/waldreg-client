@@ -10,6 +10,7 @@ import { Title } from '../../common/pagetitle/style';
 import { InputLine } from '../../common/inputs/input_line';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
+import { Top } from '../CharacterList/style';
 
 import { Permission } from '../../../interfaces/character';
 
@@ -34,20 +35,23 @@ const CharacterSetting = ({
   return (
     <Container>
       <Content>
-        <Title style={FONT.HEADING}>설정</Title>
-        <div
-          onClick={() => {
-            editMutation.mutate({
-              name: name,
-              newChar: {
-                character_name: value,
-                permissions: character?.permissions || [],
-              },
-            });
-          }}
-        >
-          변경사항 저장
-        </div>
+        <Top>
+          <Title style={FONT.HEADING}>설정</Title>
+          <Text
+            onClick={() => {
+              editMutation.mutate({
+                name: name,
+                newChar: {
+                  character_name: value,
+                  permissions: character?.permissions || [],
+                },
+              });
+            }}
+            style={FONT.SUBTITLE2}
+          >
+            변경사항 저장
+          </Text>
+        </Top>
         <InputLine
           value={value}
           placeholder={''}
@@ -97,5 +101,9 @@ const Content = styled.div`
 `;
 
 const Items = styled.div``;
+
+const Text = styled.div`
+  color: ${COLOR.GREEN4};
+`;
 
 export default CharacterSetting;
