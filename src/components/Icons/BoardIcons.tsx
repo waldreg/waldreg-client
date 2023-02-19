@@ -1,4 +1,4 @@
-export const PencilWhiteIcon = () => {
+export const PencilWhiteIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="14"
