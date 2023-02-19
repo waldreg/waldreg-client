@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
 export const ButtonBig = ({
   content,
@@ -11,7 +12,7 @@ export const ButtonBig = ({
   onClick: any;
 }) => {
   return (
-    <Wrapper onClick={onClick} color={color}>
+    <Wrapper onClick={onClick} color={color} style={FONT.SUBTITLE1}>
       {content}
     </Wrapper>
   );

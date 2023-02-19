@@ -13,7 +13,7 @@ export const InputLine = (props: UseInput) => {
         value={props.value}
         onChange={props.onChange}
         autoFocus
-        style={FONT.SUBTITLE1}
+        style={FONT.SUBTITLE2}
       />
     </>
   );

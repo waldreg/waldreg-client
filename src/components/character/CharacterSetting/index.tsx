@@ -102,7 +102,7 @@ const Content = styled.div`
 
 const Items = styled.div``;
 
-const Text = styled.div`
+const Text = styled.button`
   color: ${COLOR.GREEN4};
 `;
 

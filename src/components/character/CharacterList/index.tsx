@@ -43,7 +43,7 @@ const CharacterList = ({
             <Item
               key={character.id}
               onClick={() => handleClickChangeChar(character.character_name)}
-              style={FONT.SUBTITLE1}
+              style={FONT.SUBTITLE2}
               selected={character.character_name === name}
             >
               {character.character_name}
