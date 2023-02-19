@@ -7,7 +7,7 @@ import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
 import Modal from '../../common/modal';
 import { InputFillThin } from '../../common/inputs/input_fill';
-import { CheckBox } from '../../common/checkbox/checkbox';
+import { PermissionCheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
 
@@ -36,7 +36,10 @@ const CharacterCreateModal = ({
         reset={reset}
         placeholder={'추가할 역할 이름을 입력하세요'}
       />
-      <CheckBox data={perList || []} updateCheckList={updateCheckList} />
+      <PermissionCheckBox
+        data={perList || []}
+        updateCheckList={updateCheckList}
+      />
       <Buttons>
         <ButtonBig
           content={'취소'}

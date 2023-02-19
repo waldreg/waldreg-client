@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 import useUserList from '../../../hooks/user/useUserList';
 import { useInput } from '../../../hooks/common/useInput';
+import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
 import { PlusIcon } from '../../Icons/SettingIcons';
 import { InputFillBold } from '../../common/inputs/input_fill';
+import { UserCheckBox } from '../../common/checkbox/checkbox';
 
 import { Title } from '../../common/pagetitle/style';
 import COLOR from '../../../constants/color';
@@ -18,6 +20,7 @@ const CharacterUser = ({ name }: { name: string }) => {
     (user) => user.character === name
   );
   const { value, handleChangeInput, reset } = useInput('');
+  const { checkedList, updateCheckList, checkReset } = useCheckBox();
 
   return (
     <Container>
@@ -33,12 +36,16 @@ const CharacterUser = ({ name }: { name: string }) => {
         onChange={handleChangeInput}
         reset={reset}
       />
-      {filterUserList?.map((user) => (
+      <UserCheckBox
+        data={filterUserList || []}
+        updateCheckList={updateCheckList}
+      />
+      {/* {filterUserList?.map((user) => (
         <User key={user.id}>
           <Text style={FONT.SUBTITLE2}>{user.name}</Text>
           <Id style={FONT.SUBTITLE1}>{user.user_id}</Id>
         </User>
-      ))}
+      ))} */}
     </Container>
   );
 };
@@ -57,17 +64,5 @@ const Container = styled.div`
 `;
 
 const IconWrapper = styled.button``;
-
-const User = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const Text = styled.div``;
-
-const Id = styled.div`
-  color: ${COLOR.GRAY2};
-`;
 
 export default CharacterUser;
