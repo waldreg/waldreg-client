@@ -7,7 +7,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
 import { Title } from '../../common/pagetitle/style';
-import { InputAdd } from '../../common/inputs/input_fill';
+import { InputLine } from '../../common/inputs/input_line';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
 
@@ -33,9 +33,9 @@ const CharacterSetting = ({
 
   return (
     <Container>
-      <Title style={FONT.HEADING}>설정</Title>
       <Content>
-        <InputAdd
+        <Title style={FONT.HEADING}>설정</Title>
+        <InputLine
           value={value}
           placeholder={''}
           onChange={handleChangeInput}
@@ -90,6 +90,9 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   overflow: auto;
 `;
 

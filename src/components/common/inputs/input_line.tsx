@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import COLOR from '../../../constants/color';
+
 import { UseInput } from '../../../interfaces/basic';
 
-export const InputAdd = (props: UseInput) => {
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
+
+export const InputLine = (props: UseInput) => {
   return (
     <>
       <Input
@@ -10,6 +13,7 @@ export const InputAdd = (props: UseInput) => {
         value={props.value}
         onChange={props.onChange}
         autoFocus
+        style={FONT.SUBTITLE1}
       />
     </>
   );
@@ -17,12 +21,9 @@ export const InputAdd = (props: UseInput) => {
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 1rem;
+  padding: 0.5rem;
 
-  border: 0;
-  border-radius: 0.5rem;
+  border-bottom: 2px solid ${COLOR.GRAY0};
 
-  background: ${COLOR.GRAY1};
-
-  font-size: 0.75rem;
+  color: ${COLOR.GRAY5};
 `;

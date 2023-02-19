@@ -11,7 +11,7 @@ const HEADING: CSSProperties = {
 const SUBTITLE1: CSSProperties = {
   fontFamily: 'Pretendard',
   fontSize: '1rem',
-  fontWeight: 'medium',
+  fontWeight: '500',
   lineHeight: '140%',
   letterSpacing: '-0.4px',
 };
@@ -19,7 +19,7 @@ const SUBTITLE1: CSSProperties = {
 const SUBTITLE2: CSSProperties = {
   fontFamily: 'Pretendard',
   fontSize: '1.125rem',
-  fontWeight: 'medium',
+  fontWeight: '500',
   lineHeight: '140%',
 };
 
