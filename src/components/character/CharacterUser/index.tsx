@@ -40,12 +40,6 @@ const CharacterUser = ({ name }: { name: string }) => {
         data={filterUserList || []}
         updateCheckList={updateCheckList}
       />
-      {/* {filterUserList?.map((user) => (
-        <User key={user.id}>
-          <Text style={FONT.SUBTITLE2}>{user.name}</Text>
-          <Id style={FONT.SUBTITLE1}>{user.user_id}</Id>
-        </User>
-      ))} */}
     </Container>
   );
 };

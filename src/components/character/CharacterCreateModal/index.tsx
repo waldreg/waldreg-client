@@ -29,7 +29,7 @@ const CharacterCreateModal = ({
   };
 
   return (
-    <Modal onClickToggleModal={() => setIsOpenCreateModal(false)}>
+    <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={'big'}>
       <InputFillThin
         value={value}
         onChange={handleChangeInput}
