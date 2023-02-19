@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { Params, useNavigate, useParams } from "react-router";
-import { useRecoilValue } from "recoil";
-import FONT from "../../../constants/fonts";
-import { useBoardDetail } from "../../../hooks/board/useBoardDetail";
-import { boardCategoryState } from "../../../states/board";
-import CreateButton from "../../common/createbutton";
+import { useState } from 'react';
+import { Params, useNavigate, useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
+import FONT from '../../../constants/fonts';
+import { useBoardDetail } from '../../../hooks/board/useBoardDetail';
+import { boardCategoryState } from '../../../states/board';
+import CreateButton from '../../common/createbutton';
 import {
   BoardButtonContainer,
   BoardContentTextArea,
   BoardTitleInput,
-} from "../BoardCreate/style";
-import { BoardContainer } from "../BoardDetail/style";
-import BoardFileUpload from "../BoardFileUpload";
-import { useBoardUpdate } from "./../../../hooks/board/useBoardUpdate";
+} from '../BoardCreate/style';
+import { BoardContainer } from '../BoardDetail/style';
+import BoardFileUpload from '../BoardFileUpload';
+import { useBoardUpdate } from './../../../hooks/board/useBoardUpdate';
 
 const BoardUpdate = () => {
   const { id } = useParams<Params>();
@@ -33,11 +33,11 @@ const BoardUpdate = () => {
   };
 
   formData.append(
-    "boardUpdateRequest",
-    new Blob([JSON.stringify(data)], { type: "application/json" })
+    'boardUpdateRequest',
+    new Blob([JSON.stringify(data)], { type: 'application/json' })
   );
 
-  formData.append("file", file!!);
+  formData.append('file', file!!);
 
   const updateMutation = useBoardUpdate(parseInt(id!!), formData);
 
