@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 const DialogBox = styled.dialog`
-  width: 35rem;
-  height: 25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  width: 28rem;
+  height: 19rem;
   padding: 2rem;
   border: none;
-  border-radius: 1.6rem;
+  border-radius: 1rem;
   box-shadow: 0 0 3rem rgba(30, 30, 30, 0.185);
   box-sizing: border-box;
   background-color: white;

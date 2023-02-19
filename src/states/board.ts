@@ -14,3 +14,18 @@ export const boardCategoryState = atom({
   default: 0,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const settingFromState = atom({
+  key: "settingFromState",
+  default: false,
+});
+
+export const settingCategoryId = atom({
+  key: "settingCategoryId",
+  default: 0,
+});
+
+export const settingCategoryName = atom({
+  key: "settingCategoryName",
+  default: "",
+});

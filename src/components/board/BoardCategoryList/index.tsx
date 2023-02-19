@@ -1,68 +1,63 @@
-import { useCallback, useState } from "react";
-import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
-import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
+import { useLocation } from "react-router";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { BoardCategoryLists } from "../../../interfaces/board";
-import Modal from "../../common/modal";
+import {
+  settingCategoryId,
+  settingCategoryName,
+  settingFromState,
+} from "../../../states/board";
+import { BaseLink, Item, Items, Link } from "../../global/NavBar/style";
+import FONT from "./../../../constants/fonts";
+import {
+  Category,
+  CategoryButton,
+  CategoryButtonBox,
+  CategoryTitle,
+} from "./style";
 
 interface BoardCategoryListsProps {
   boardCategoryList: BoardCategoryLists;
 }
 
 function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
-  const [isOpenModal, setOpenModal] = useState(false);
-  const [categoryName, setCategoryName] = useState<string>("");
-  const [categoryId, setCategoryId] = useState<number>(0);
+  const setCategoryName = useSetRecoilState(settingCategoryName);
+  const [categoryId, setCategoryId] = useRecoilState(settingCategoryId);
+  const setSettingForm = useSetRecoilState(settingFromState);
 
-  const categoryDelete = useBoardCategoryDelete();
-  const categoryUpdate = useBoardCategoryUpdate(categoryId, categoryName);
-
-  const onClickUpdateModal = useCallback(() => {
-    setOpenModal(!isOpenModal);
-  }, [isOpenModal]);
+  const location = useLocation().pathname;
 
   return (
     <>
-      {boardCategoryList.categories.map((category) => (
-        <div key={category.category_id}>
-          {category.category_name}
-          <button
-            onClick={() => {
-              onClickUpdateModal();
-              setCategoryId(category.category_id!);
-              setCategoryName(category.category_name);
-            }}
-          >
-            수정
-          </button>
-          <button onClick={() => categoryDelete.mutate(category.category_id!)}>
-            삭제
-          </button>
-        </div>
-      ))}
-
-      <div>
-        {isOpenModal && (
-          <Modal onClickToggleModal={onClickUpdateModal}>
-            게시판 이름 수정
-            <input
-              type="text"
-              value={categoryName}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setCategoryName(e.currentTarget.value)
-              }
-            />
-            <button onClick={() => setOpenModal(false)}>취소</button>
-            <button
-              onClick={() => {
-                categoryUpdate.mutate();
-                setOpenModal(false);
-              }}
+      {boardCategoryList.categories.map((category) => {
+        return (
+          <Item className="relative" key={category.category_id}>
+            <Link
+              to={`/setting/board/${categoryId}`}
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
+              selected={location === `/setting/board/${categoryId}`}
             >
-              확인
-            </button>
-          </Modal>
-        )}
-      </div>
+              <Category>
+                <CategoryTitle style={FONT.SUBTITLE2}>
+                  {category.category_name}
+                </CategoryTitle>
+              </Category>
+            </Link>
+          </Item>
+        );
+      })}
+
+      {/* <CategoryButtonBox>
+            <CategoryButton
+              onClick={() => {
+                setSettingForm((prev) => !prev);
+                setCategoryId(category.category_id!);
+                setCategoryName(category.category_name);
+              }}
+              style={FONT.SUBTITLE2}
+            >
+              수정
+            </CategoryButton>
+          </CategoryButtonBox> */}
     </>
   );
 }
