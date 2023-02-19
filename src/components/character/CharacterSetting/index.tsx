@@ -35,6 +35,19 @@ const CharacterSetting = ({
     <Container>
       <Content>
         <Title style={FONT.HEADING}>설정</Title>
+        <div
+          onClick={() => {
+            editMutation.mutate({
+              name: name,
+              newChar: {
+                character_name: value,
+                permissions: character?.permissions || [],
+              },
+            });
+          }}
+        >
+          변경사항 저장
+        </div>
         <InputLine
           value={value}
           placeholder={''}
@@ -52,21 +65,8 @@ const CharacterSetting = ({
         </Items>
       </Content>
       <ButtonBig
-        content={'역할 수정하기'}
-        color={COLOR.GREEN4}
-        onClick={() => {
-          editMutation.mutate({
-            name: name,
-            newChar: {
-              character_name: value,
-              permissions: character?.permissions || [],
-            },
-          });
-        }}
-      />
-      <ButtonBig
         content={'역할 삭제하기'}
-        color={COLOR.RED2}
+        color={COLOR.GREEN4}
         onClick={() => {
           deleteMutation.mutate(name);
           setChar('Admin');
