@@ -4,11 +4,9 @@ import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
 import { useRecoilValue } from "recoil";
 import { boardCategoryState } from "../../../states/board";
 import FONT from "../../../constants/fonts";
-import { PencilWhiteIcon } from "../../Icons/BoardIcons";
 import {
   BoardButtonContainer,
   BoardContentTextArea,
-  BoardCreateButton,
   BoardFileInput,
   BoardTitleInput,
 } from "./style";
@@ -16,8 +14,8 @@ import { BoardContainer } from "../BoardDetail/style";
 import CreateButton from "../../common/createbutton";
 
 const BoardCreate = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
   const category_id = useRecoilValue(boardCategoryState);
   const navigate = useNavigate();
