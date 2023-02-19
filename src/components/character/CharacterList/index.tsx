@@ -1,38 +1,26 @@
-import styled from "styled-components/macro";
-import COLOR from "../../../constants/color";
+import styled from 'styled-components/macro';
+import COLOR from '../../../constants/color';
 
-import { waldregAxios } from "../../../apis/axios";
+import { waldregAxios } from '../../../apis/axios';
 
-import usePermissionList from "../../../hooks/character/usePermissionList";
-import useCharacterList from "../../../hooks/character/useCharacterList";
-import useCreateCharacter from "../../../hooks/character/useCreateCharacter";
-import { useInput } from "../../../hooks/common/useInput";
-import { useCheckBox } from "../../../hooks/common/useCheckBox";
+import usePermissionList from '../../../hooks/character/usePermissionList';
+import useCharacterList from '../../../hooks/character/useCharacterList';
+import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
+import { useInput } from '../../../hooks/common/useInput';
+import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
-import { Character } from "../../../interfaces/character";
-import { Title } from "../../common/pagetitle/style";
-import { InputAdd } from "../../common/inputs/input_add";
-import { CheckBox } from "../../common/checkbox/checkbox";
-import { ButtonBig } from "../../common/buttons/button_big";
+import { Character } from '../../../interfaces/character';
+import { Title } from '../../common/pagetitle/style';
+import { InputAdd } from '../../common/inputs/input_add';
+import { CheckBox } from '../../common/checkbox/checkbox';
+import { ButtonBig } from '../../common/buttons/button_big';
 
 const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
   const perList = usePermissionList();
   const { mutate } = useCreateCharacter();
 
-  const handleClickGetToken = async () => {
-    try {
-      const response = await waldregAxios.post("/token", {
-        user_id: "Admin",
-        user_password: "0000",
-      });
-      localStorage.setItem("accessToken", response.data.access_token);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { value, handleChangeInput, reset } = useInput("");
+  const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useCheckBox();
 
   const handleClickCreateChar = () => {
@@ -44,7 +32,6 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
   return (
     <Container>
       <Content>
-        <button onClick={handleClickGetToken}>토큰 발급</button>
         <Title>역할</Title>
         <Items>
           {charList?.map((character: Character) => (
@@ -60,7 +47,7 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
           value={value}
           onChange={handleChangeInput}
           reset={reset}
-          placeholder={"추가할 역할 이름을 입력하세요"}
+          placeholder={'추가할 역할 이름을 입력하세요'}
         />
         <CheckBox data={perList || []} updateCheckList={updateCheckList} />
       </Content>
