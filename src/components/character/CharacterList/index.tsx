@@ -1,37 +1,38 @@
 import styled from 'styled-components/macro';
-import COLOR from '../../../constants/color';
+import { useState, useCallback } from 'react';
 
-import usePermissionList from '../../../hooks/character/usePermissionList';
 import useCharacterList from '../../../hooks/character/useCharacterList';
-import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
-import { useInput } from '../../../hooks/common/useInput';
-import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
 import { Character } from '../../../interfaces/character';
 import { Title } from '../../common/pagetitle/style';
-import { InputAdd } from '../../common/inputs/input_add';
-import { CheckBox } from '../../common/checkbox/checkbox';
-import { ButtonBig } from '../../common/buttons/button_big';
+
+import CharacterCreateModal from '../CharacterCreateModal';
+
+import { PlusIcon } from '../../Icons/SettingIcons';
 import FONT from '../../../constants/fonts';
+import COLOR from '../../../constants/color';
 
 const CharacterList = ({ handleClickChangeChar }: any) => {
   const charList = useCharacterList();
-  const perList = usePermissionList();
-  const { mutate } = useCreateCharacter();
 
-  const { value, handleChangeInput, reset } = useInput('');
-  const { checkedList, updateCheckList, checkReset } = useCheckBox();
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
-  const handleClickCreateChar = () => {
-    mutate({ id: Date.now(), character_name: value, permissions: checkedList });
-    reset();
-    checkReset();
+  const handleClickCreateModal = () => {
+    setIsOpenCreateModal(!isOpenCreateModal);
   };
 
   return (
     <Container>
       <Content>
-        <Title style={FONT.HEADING}>역할</Title>
+        <Top>
+          <Title style={FONT.HEADING}>역할</Title>
+          {isOpenCreateModal && (
+            <CharacterCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
+          )}
+          <IconWrapper onClick={handleClickCreateModal}>
+            <PlusIcon />
+          </IconWrapper>
+        </Top>
         <Items>
           {charList?.map((character: Character) => (
             <Item
@@ -42,19 +43,7 @@ const CharacterList = ({ handleClickChangeChar }: any) => {
             </Item>
           ))}
         </Items>
-        <InputAdd
-          value={value}
-          onChange={handleChangeInput}
-          reset={reset}
-          placeholder={'추가할 역할 이름을 입력하세요'}
-        />
-        <CheckBox data={perList || []} updateCheckList={updateCheckList} />
       </Content>
-      <ButtonBig
-        content="역할 추가하기"
-        color={COLOR.GREEN4}
-        onClick={handleClickCreateChar}
-      />
     </Container>
   );
 };
@@ -76,6 +65,13 @@ const Container = styled.div`
 const Content = styled.div`
   overflow: auto;
 `;
+
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconWrapper = styled.div``;
 
 const Items = styled.div`
   display: flex;
