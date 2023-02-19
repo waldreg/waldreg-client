@@ -13,13 +13,18 @@ import {
 import {
   CategoryListBox,
   SettingButton,
+  SettingButtonBox,
+  SettingCancelButton,
   SettingContainer,
   SettingInput,
+  SettingSaveButton,
   SettingTitle,
   SettingTop,
 } from "./style";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
+import styled from "styled-components";
+import COLOR from "./../../../constants/color";
 
 const BoardManagement = () => {
   const [boardName, setBoardName] = useState<string>("");
@@ -43,6 +48,7 @@ const BoardManagement = () => {
 
   const handleClickCreateModal = useCallback(() => {
     setIsOpenModal(!isOpenModal);
+    setBoardName("");
   }, [isOpenModal]);
 
   return (
@@ -63,18 +69,30 @@ const BoardManagement = () => {
 
       {isOpenModal && (
         <Modal onClickToggleModal={handleClickCreateModal}>
-          <SettingTitle>게시판 생성</SettingTitle>
+          <SettingTitle style={FONT.HEADING}>게시판 추가하기</SettingTitle>
           <SettingInput
             type="text"
             value={boardName}
             style={FONT.SUBTITLE2}
+            placeholder="게시판 이름"
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               setBoardName(e.currentTarget.value)
             }
           />
-          <SettingButton style={FONT.SUBTITLE2} onClick={handleCreateCategory}>
-            저장
-          </SettingButton>
+          <SettingButtonBox>
+            <SettingCancelButton
+              style={FONT.SUBTITLE2}
+              onClick={handleClickCreateModal}
+            >
+              취소
+            </SettingCancelButton>
+            <SettingSaveButton
+              style={FONT.SUBTITLE2}
+              onClick={handleCreateCategory}
+            >
+              저장
+            </SettingSaveButton>
+          </SettingButtonBox>
         </Modal>
       )}
 

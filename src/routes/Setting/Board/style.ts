@@ -21,13 +21,37 @@ const SettingTitle = styled.div`
 
 const SettingInput = styled.input`
   width: 100%;
-  height: 3rem;
+  height: 2.5rem;
   border-bottom: 1px solid ${COLOR.GRAY0};
-  margin-bottom: 1rem;
+  margin: 3rem 1rem;
 `;
 
 const SettingButton = styled.button`
   color: ${COLOR.GREEN4};
+`;
+
+const SettingButtonBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const SettingCancelButton = styled.button`
+  background: ${COLOR.GRAY2};
+  color: ${COLOR.WHITE};
+  width: 50%;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+`;
+
+const SettingSaveButton = styled.button`
+  background: ${COLOR.GREEN4};
+  color: ${COLOR.WHITE};
+  width: 50%;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
 `;
 
 const CategoryListBox = styled.div`
@@ -41,5 +65,8 @@ export {
   SettingTitle,
   SettingInput,
   SettingButton,
+  SettingButtonBox,
+  SettingCancelButton,
+  SettingSaveButton,
   CategoryListBox,
 };
