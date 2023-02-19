@@ -6,7 +6,7 @@ import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
 import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
 import useEditRewardTag from '../../../hooks/reward/useEditRewardTag';
 
-import { InputAdd } from '../../../components/common/inputs/input_add';
+import { InputAdd } from '../../../components/common/inputs/input_fill';
 
 import COLOR from '../../../constants/color';
 import { ButtonBig } from '../../../components/common/buttons/button_big';

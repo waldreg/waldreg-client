@@ -7,7 +7,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
 import { Title } from '../../common/pagetitle/style';
-import { InputAdd } from '../../common/inputs/input_add';
+import { InputAdd } from '../../common/inputs/input_fill';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
 

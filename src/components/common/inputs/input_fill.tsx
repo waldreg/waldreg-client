@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
-import { IUseInput } from '../../../interfaces/basic';
+import { UseInput } from '../../../interfaces/basic';
 
-export const InputAdd = (props: IUseInput) => {
+export const InputAdd = (props: UseInput) => {
   return (
     <>
       <Input
