@@ -16,7 +16,7 @@ export interface UsersProps {
 
 export const PermissionCheckBox = (props: IProps) => {
   return (
-    <div>
+    <PermissionItems>
       {props.data.map((item: Permission) => {
         return (
           <div key={item.permission_id}>
@@ -27,7 +27,7 @@ export const PermissionCheckBox = (props: IProps) => {
           </div>
         );
       })}
-    </div>
+    </PermissionItems>
   );
 };
 
@@ -45,4 +45,14 @@ export const UserCheckBox = (props: UsersProps) => {
   );
 };
 
+const PermissionItems = styled.div`
+  width: 100%;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  overflow: auto;
+`;
 const UserItems = styled.div``;

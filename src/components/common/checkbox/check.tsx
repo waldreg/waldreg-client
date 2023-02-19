@@ -38,9 +38,9 @@ export const PermissionCheck = (props: IProps) => {
       />
       <IconWrapper>{isChecked && <CheckIcon />}</IconWrapper>
 
-      <label htmlFor={props.item.permission_name}>
+      <Text htmlFor={props.item.permission_name} style={FONT.SUBTITLE2}>
         {props.item.permission_name}
-      </label>
+      </Text>
     </CheckWrapper>
   );
 };

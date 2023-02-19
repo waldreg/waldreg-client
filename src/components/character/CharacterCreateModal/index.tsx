@@ -6,7 +6,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { useCheckBox } from '../../../hooks/common/useCheckBox';
 
 import Modal from '../../common/modal';
-import { InputFillThin } from '../../common/inputs/input_fill';
+import { InputLine } from '../../common/inputs/input_line';
 import { PermissionCheckBox } from '../../common/checkbox/checkbox';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
@@ -22,6 +22,11 @@ const CharacterCreateModal = ({
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useCheckBox();
 
+  perList?.sort((prev, cur) => {
+    if (prev.permission_id > cur.permission_id) return 1;
+    else return -1;
+  });
+
   const handleClickCreateChar = () => {
     mutate({ id: Date.now(), character_name: value, permissions: checkedList });
     reset();
@@ -30,12 +35,14 @@ const CharacterCreateModal = ({
 
   return (
     <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={'big'}>
-      <InputFillThin
-        value={value}
-        onChange={handleChangeInput}
-        reset={reset}
-        placeholder={'추가할 역할 이름을 입력하세요'}
-      />
+      <InputWrapper>
+        <InputLine
+          value={value}
+          onChange={handleChangeInput}
+          reset={reset}
+          placeholder={'역할 이름'}
+        />
+      </InputWrapper>
       <PermissionCheckBox
         data={perList || []}
         updateCheckList={updateCheckList}
@@ -49,15 +56,27 @@ const CharacterCreateModal = ({
         <ButtonBig
           content={'추가'}
           color={COLOR.GREEN4}
-          onClick={handleClickCreateChar}
+          onClick={() => {
+            handleClickCreateChar();
+            setIsOpenCreateModal(false);
+          }}
         />
       </Buttons>
     </Modal>
   );
 };
 
+const InputWrapper = styled.div`
+  width: 100%;
+  padding-bottom: 0.75rem;
+`;
+
 const Buttons = styled.div`
+  width: 100%;
+  padding-top: 2rem;
+
   display: flex;
+  gap: 2rem;
 `;
 
 export default CharacterCreateModal;
