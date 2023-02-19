@@ -5,7 +5,8 @@ const Category = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 0;
+  padding: 0.1rem 0;
+  margin: 0.3rem 0;
 `;
 
 const CategoryTitle = styled.div`

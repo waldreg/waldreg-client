@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
-import UserSettingPage from './User';
-import CharacterPage from './Character';
-import BoardManagement from './Board';
-import RewardSettingPage from './Reward';
+import { Routes, Route } from "react-router-dom";
+import UserSettingPage from "./User";
+import CharacterPage from "./Character";
+import BoardManagement from "./Board";
+import RewardSettingPage from "./Reward";
 
 const Setting = () => {
   return (
