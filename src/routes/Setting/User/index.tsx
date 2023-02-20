@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import UserList from '../../../components/user/userList';
-import UserSetting from '../../../components/user/userSetting';
+import UserList from '../../../components/user/UserList';
+import UserSetting from '../../../components/user/UserSetting';
 
 const UserSettingPage = () => {
   const [user, setUser] = useState('Admin');
@@ -9,6 +9,7 @@ const UserSettingPage = () => {
   const handleClickChangeUser = (name: string) => {
     setUser(name);
   };
+
   return (
     <>
       <UserList handleClickChangeUser={handleClickChangeUser} />

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import useUserList from '../../hooks/user/useUserList';
-import { useInput } from '../../hooks/common/useInput';
+import useUserList from '../../../hooks/user/useUserList';
+import { useInput } from '../../../hooks/common/useInput';
 
-import { User } from '../../interfaces/user';
+import { User } from '../../../interfaces/user';
 
-import { InputFillThin } from '../../components/common/inputs/input_fill';
+import { InputFillThin } from '../../common/inputs/input_fill';
 
-import COLOR from '../../constants/color';
-import FONT from '../../constants/fonts';
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
   const userList = useUserList(1, 100);
@@ -33,7 +33,10 @@ const UserList = ({ handleClickChangeUser }: any) => {
         <div>검색된 유저가 없습니다</div>
       ) : (
         searched.map((user: User) => (
-          <div key={user.id} onClick={() => handleClickChangeUser(user.id)}>
+          <div
+            key={user.id}
+            onClick={() => handleClickChangeUser(user.user_id)}
+          >
             <UserName>유저이름:{user.name}</UserName>
             <UserId>유저아이디:{user.user_id}</UserId>
             <div>유저역할:{user.character}</div>
