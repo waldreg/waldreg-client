@@ -6,7 +6,14 @@ import { REGEX } from "../../../../utils/regex";
 import AuthFormInput from "../../../common/authforminput";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../../common/errormessage";
-import { Container, Form, Fields, Field, Label, Button } from "./style";
+import {
+  Container,
+  Form,
+  Fields,
+  Field,
+  Label,
+  Button,
+} from "../../login/LoginForm/style";
 import FONT from "../../../../constants/fonts";
 
 interface SignupForm {

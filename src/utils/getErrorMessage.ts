@@ -5,6 +5,8 @@ type SignupFormField =
   | "userPasswordConfirm"
   | "phoneNumber";
 
+type LoginFormField = "userId" | "userPassword";
+
 export function getSignupFormFieldErrorMessage(
   field: SignupFormField,
   errorType: string
@@ -65,6 +67,36 @@ export function getSignupFormFieldErrorMessage(
       }
     }
 
+    default:
+      throw new Error();
+  }
+}
+
+export function getLoginFormFieldErrorMessage(
+  field: LoginFormField,
+  errorType: string
+) {
+  switch (field) {
+    case "userId": {
+      switch (errorType) {
+        case "required":
+          return "아이디를 입력해주세요";
+        case "invalid":
+          return "아이디와 비밀번호가 일치하지 않습니다";
+        case "unknown":
+          return "존재하지 않거나 승인되지 않은 회원입니다";
+        default:
+          throw new Error();
+      }
+    }
+    case "userPassword": {
+      switch (errorType) {
+        case "required":
+          return "비밀번호를 입력해주세요";
+        default:
+          throw new Error();
+      }
+    }
     default:
       throw new Error();
   }
