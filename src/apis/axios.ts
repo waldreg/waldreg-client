@@ -30,7 +30,6 @@ waldregAxios.interceptors.request.use(
 waldregAxios.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log(error);
     return Promise.reject(error);
   }
 );
