@@ -59,11 +59,12 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  width: 12vw;
+  width: max-content;
+  white-space: nowrap;
 `;
 
 const Top = styled.div`
-  width: 50%;
+  width: 30rem;
   display: flex;
   align-items: center;
   gap: 5rem;
