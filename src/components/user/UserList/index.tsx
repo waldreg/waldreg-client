@@ -6,6 +6,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { User } from '../../../interfaces/user';
 
 import { InputFillThin } from '../../common/inputs/input_fill';
+import UserInfo from '../UserInfo';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
@@ -37,9 +38,7 @@ const UserList = ({ handleClickChangeUser }: any) => {
             key={user.id}
             onClick={() => handleClickChangeUser(user.user_id)}
           >
-            <UserName>유저이름:{user.name}</UserName>
-            <UserId>유저아이디:{user.user_id}</UserId>
-            <div>유저역할:{user.character}</div>
+            <UserInfo user={user} />
           </div>
         ))
       )}

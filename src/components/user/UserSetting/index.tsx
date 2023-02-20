@@ -9,6 +9,7 @@ import useCharacterList from '../../../hooks/character/useCharacterList';
 import { ButtonBig } from '../../common/buttons/button_big';
 import CharacterRadio from '../../common/radio';
 import { Top } from '../../character/CharacterList/style';
+import UserInfo from '../UserInfo';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
@@ -44,14 +45,7 @@ const UserSetting = ({ name }: { name: string }) => {
                 유저 강제 퇴장
               </Text>
             </Top>
-            <UserInfo>
-              <Name>
-                <UserName style={FONT.SUBTITLE3}>{user.name}</UserName>
-                <UserId style={FONT.SUBTITLE2}>{user.user_id}</UserId>
-              </Name>
-              <Tag style={FONT.SUBTITLE1}>{user.character}</Tag>
-            </UserInfo>
-
+            <UserInfo user={user} />
             <CharacterRadio
               data={characterList || []}
               selected={selected}
@@ -99,41 +93,6 @@ const Title = styled.div`
 const Text = styled.button`
   width: max-content;
   color: ${COLOR.GREEN4};
-`;
-
-const UserInfo = styled.div`
-  width: 100%;
-  padding: 2rem;
-
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: ${COLOR.GRAY0};
-`;
-
-const Name = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const UserName = styled.div`
-  color: ${COLOR.GRAY4};
-`;
-const UserId = styled.div`
-  color: ${COLOR.GRAY3};
-`;
-
-const Tag = styled.div`
-  width: max-content;
-  padding: 0.25rem 0.5rem;
-
-  border: 2px solid ${COLOR.GREEN4};
-  border-radius: 0.5rem;
-  color: ${COLOR.GREEN4};
-  background: ${COLOR.GREEN1};
 `;
 
 export default UserSetting;
