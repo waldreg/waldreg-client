@@ -1,19 +1,27 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const DialogBox = styled.dialog`
+const DialogBox = styled.dialog<{ size?: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 28rem;
-  height: 19rem;
+
+  ${(props) =>
+    props.size === 'small'
+      ? `  
+      width: 28rem;
+      height: 19rem;`
+      : `
+      width: 36rem;
+      height: 70vh;`}
+
   padding: 2rem;
   border: none;
   border-radius: 1rem;
   box-shadow: 0 0 3rem rgba(30, 30, 30, 0.185);
   box-sizing: border-box;
   background-color: white;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const Backdrop = styled.div`
@@ -23,6 +31,7 @@ const Backdrop = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;
 
 export { DialogBox, Backdrop };
