@@ -10,16 +10,16 @@ const HEADING: CSSProperties = {
 
 const SUBTITLE1: CSSProperties = {
   fontFamily: 'Pretendard',
-  fontSize: '1rem',
-  fontWeight: 'medium',
+  fontSize: '0.875rem',
+  fontWeight: '500',
   lineHeight: '140%',
   letterSpacing: '-0.4px',
 };
 
 const SUBTITLE2: CSSProperties = {
   fontFamily: 'Pretendard',
-  fontSize: '1.125rem',
-  fontWeight: 'medium',
+  fontSize: '1rem',
+  fontWeight: '500',
   lineHeight: '140%',
 };
 

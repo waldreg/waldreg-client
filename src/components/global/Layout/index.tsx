@@ -4,10 +4,12 @@ import styled from 'styled-components';
 import COLOR from '../../../constants/color';
 
 import NavBar from '../NavBar';
+import TopBar from '../TopBar';
 
 const Layout = ({ children }: { children?: ReactElement }) => {
   return (
     <Wrapper>
+      <TopBar />
       <NavBar />
       {children ? (
         <Container>{children}</Container>
@@ -29,7 +31,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  padding: 3rem;
+  padding: 7.5rem 3rem 3rem 3rem;
 
   background: ${COLOR.BG};
 

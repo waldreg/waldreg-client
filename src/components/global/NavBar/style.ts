@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   min-width: 16rem;
   height: 100vh;
   padding: 1.5rem;
+  z-index: 1;
   background: ${COLOR.WHITE};
 `;
 
@@ -80,6 +81,10 @@ const Blank = styled.div`
   height: 20px;
 `;
 
+const Open = styled.div`
+  z-index: 1;
+`;
+
 export {
   Wrapper,
   Top,
@@ -91,4 +96,5 @@ export {
   Link,
   Text,
   Blank,
+  Open,
 };

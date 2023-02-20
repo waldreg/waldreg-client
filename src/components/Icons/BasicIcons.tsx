@@ -354,3 +354,28 @@ export const DoubleLeftIcon = () => {
     </svg>
   );
 };
+
+export const CheckIcon = () => {
+  return (
+    <svg
+      width="15"
+      height="11"
+      viewBox="0 0 15 11"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.5305 1.47314L5.47656 9.52711"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M5.47656 9.52722L1.44958 5.50024"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};

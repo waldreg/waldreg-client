@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
-import AuthContext from "../../../states/auth-context";
-import { useLocation } from "react-router-dom";
-import "tw-elements";
+import { useContext, useState } from 'react';
+import AuthContext from '../../../states/auth-context';
+import { useLocation } from 'react-router-dom';
+import 'tw-elements';
 
-import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
-import BoardCategory from "../../board/BoardCategory";
+import { useBoardCategoryList } from '../../../hooks/board/category/useBoardCategoryList';
+import BoardCategory from '../../board/BoardCategory';
 
-import COLOR from "../../../constants/color";
-import FONT from "../../../constants/fonts";
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 
-import { LogoIcon } from "../../Icons/LogoIcons";
+import { LogoIcon } from '../../Icons/LogoIcons';
 import {
   DoubleLeftIcon,
   HomeIcon,
@@ -19,7 +19,7 @@ import {
   MedalIcon,
   SettingIcon,
   LogOutIcon,
-} from "../../Icons/BasicIcons";
+} from '../../Icons/BasicIcons';
 import {
   Wrapper,
   Top,
@@ -31,7 +31,8 @@ import {
   Link,
   Text,
   Blank,
-} from "./style";
+  Open,
+} from './style';
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
@@ -45,7 +46,7 @@ const NavBar = () => {
 
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
-  const startLocation = location.split("/")[1];
+  const startLocation = location.split('/')[1];
 
   return width ? (
     <Wrapper>
@@ -59,10 +60,10 @@ const NavBar = () => {
             <Link
               to="/"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
-              selected={location === "/"}
+              selected={location === '/'}
             >
               <HomeIcon />
-              <Text style={FONT.SUBTITLE1}>홈</Text>
+              <Text style={FONT.SUBTITLE2}>홈</Text>
             </Link>
           </Item>
           <Item className="relative" id="sidenavSecEx2">
@@ -72,10 +73,10 @@ const NavBar = () => {
               data-bs-target="#collapseSidenavSecEx2"
               aria-expanded="false"
               aria-controls="collapseSidenavSecEx2"
-              selected={startLocation === "setting"}
+              selected={startLocation === 'setting'}
             >
               <SettingIcon />
-              <Text style={FONT.SUBTITLE1}>설정</Text>
+              <Text style={FONT.SUBTITLE2}>설정</Text>
             </BaseLink>
             <Items
               className="relative accordion-collapse collapse"
@@ -87,7 +88,7 @@ const NavBar = () => {
                 <Link
                   to="/setting/user"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                  selected={location === "/setting/user"}
+                  selected={location === '/setting/user'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>유저 관리</Text>
@@ -97,7 +98,7 @@ const NavBar = () => {
                 <Link
                   to="/setting/character"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                  selected={location === "/setting/character"}
+                  selected={location === '/setting/character'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>역할 관리</Text>
@@ -106,7 +107,7 @@ const NavBar = () => {
               <Item className="relative">
                 <Link
                   to="/setting/board"
-                  selected={location === "/setting/board"}
+                  selected={location === '/setting/board'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>게시판 관리</Text>
@@ -115,7 +116,7 @@ const NavBar = () => {
               <Item className="relative">
                 <Link
                   to="/setting/reward"
-                  selected={location === "/setting/reward"}
+                  selected={location === '/setting/reward'}
                 >
                   <Blank />
                   <Text style={FONT.BODY1}>상벌점 관리</Text>
@@ -132,7 +133,7 @@ const NavBar = () => {
               aria-controls="collapseSidenavSecEx3"
             >
               <CheckRoundIcon />
-              <Text style={FONT.SUBTITLE1}>출석</Text>
+              <Text style={FONT.SUBTITLE2}>출석</Text>
             </BaseLink>
             <Items
               className="relative accordion-collapse collapse"
@@ -167,10 +168,10 @@ const NavBar = () => {
               data-bs-target="#collapseSidenavSecEx4"
               aria-expanded="false"
               aria-controls="collapseSidenavSecEx4"
-              selected={startLocation === "board"}
+              selected={startLocation === 'board'}
             >
               <BoardIcon />
-              <Text style={FONT.SUBTITLE1}>게시판</Text>
+              <Text style={FONT.SUBTITLE2}>게시판</Text>
             </BaseLink>
             {boardCategoryList && (
               <BoardCategory boardCategoryList={boardCategoryList} />
@@ -181,10 +182,10 @@ const NavBar = () => {
             <Link
               to="/schedule"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-              selected={location === "/schedule"}
+              selected={location === '/schedule'}
             >
               <CalIcon />
-              <Text style={FONT.SUBTITLE1}>일정표</Text>
+              <Text style={FONT.SUBTITLE2}>일정표</Text>
             </Link>
           </li>
           <li className="relative">
@@ -193,7 +194,7 @@ const NavBar = () => {
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
               <MedalIcon />
-              <Text style={FONT.SUBTITLE1}>상벌점</Text>
+              <Text style={FONT.SUBTITLE2}>상벌점</Text>
             </Link>
           </li>
         </Items>
@@ -203,7 +204,7 @@ const NavBar = () => {
               to="/login"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
-              <Text style={FONT.SUBTITLE1}>로그인</Text>
+              <Text style={FONT.SUBTITLE2}>로그인</Text>
             </Link>
           )}
           {!isLoggedIn && (
@@ -211,7 +212,7 @@ const NavBar = () => {
               to="/signup"
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
-              <Text style={FONT.SUBTITLE1}>회원가입</Text>
+              <Text style={FONT.SUBTITLE2}>회원가입</Text>
             </Link>
           )}
           {isLoggedIn && (
@@ -221,14 +222,14 @@ const NavBar = () => {
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
               <LogOutIcon />
-              <Text style={FONT.SUBTITLE1}>로그아웃</Text>
+              <Text style={FONT.SUBTITLE2}>로그아웃</Text>
             </Link>
           )}
         </Bottom>
       </Links>
     </Wrapper>
   ) : (
-    <div onClick={() => setWidth(true)}>열기</div>
+    <Open onClick={() => setWidth(true)}>열기</Open>
   );
 };
 

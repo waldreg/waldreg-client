@@ -6,7 +6,7 @@ import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
 import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
 import useEditRewardTag from '../../../hooks/reward/useEditRewardTag';
 
-import { InputAdd } from '../../../components/common/inputs/input_add';
+import { InputFillThin } from '../../../components/common/inputs/input_fill';
 
 import COLOR from '../../../constants/color';
 import { ButtonBig } from '../../../components/common/buttons/button_big';
@@ -37,7 +37,7 @@ const RewardSettingPage = () => {
   return (
     <Container>
       <InputContainer>
-        <InputAdd
+        <InputFillThin
           value={value}
           placeholder={'상벌점 태그를 추가하세요'}
           onChange={handleChangeInput}
