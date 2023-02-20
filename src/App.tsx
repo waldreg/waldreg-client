@@ -9,7 +9,7 @@ import Setting from "./routes/Setting";
 import Board from "./routes/Board";
 import Layout from "./components/global/Layout/index";
 import Schedule from "./routes/Schedule";
-import SignupForm from "./components/auth/signup";
+import SignupForm from "./components/auth/signup/SignupForm";
 import LoginForm from "./components/auth/login";
 import AuthContext from "./states/auth-context";
 
@@ -22,14 +22,14 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
+          {!authCtx.isLoggedIn && (
+            <>
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/login" element={<LoginForm />} />
+            </>
+          )}
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            {!authCtx.isLoggedIn && (
-              <>
-                <Route path="/signup" element={<SignupForm />} />
-                <Route path="/login" element={<LoginForm />} />
-              </>
-            )}
             {authCtx.isLoggedIn && (
               <>
                 <Route path="/board/*" element={<Board />} />
