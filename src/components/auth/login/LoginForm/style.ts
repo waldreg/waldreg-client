@@ -36,4 +36,31 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export { Container, Form, Fields, Field, Label, Button };
+const Text = styled.p`
+  color: ${COLOR.GRAY3};
+  margin-right: 0.5rem;
+`;
+
+const SignupButton = styled.div`
+  cursor: pointer;
+  color: ${COLOR.GREEN4};
+  font-weight: 600 !important;
+`;
+
+const Signup = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+`;
+
+export {
+  Container,
+  Form,
+  Fields,
+  Field,
+  Label,
+  Button,
+  Text,
+  SignupButton,
+  Signup,
+};

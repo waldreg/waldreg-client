@@ -2,11 +2,21 @@ import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { authAPI } from "../../../../apis/authAPI";
 import { getLoginFormFieldErrorMessage } from "../../../../utils/getErrorMessage";
 import AuthFormInput from "../../../common/authforminput";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../../../states/auth-context";
 import ErrorMessage from "../../../common/errormessage";
-import { Container, Form, Fields, Field, Label, Button } from "./style";
+import {
+  Container,
+  Form,
+  Fields,
+  Field,
+  Label,
+  Button,
+  Text,
+  SignupButton,
+  Signup,
+} from "./style";
 import FONT from "../../../../constants/fonts";
 
 interface LoginForm {
@@ -128,6 +138,13 @@ const LoginForm = () => {
         <Button type="submit" style={FONT.SUBTITLE1}>
           로그인
         </Button>
+
+        <Signup>
+          <Text style={FONT.SUBTITLE1}>아직 회원이 아니신가요?</Text>
+          <SignupButton style={FONT.SUBTITLE1}>
+            <Link to="/signup">가입하기</Link>
+          </SignupButton>
+        </Signup>
       </Form>
     </Container>
   );
