@@ -10,7 +10,7 @@ import Board from "./routes/Board";
 import Layout from "./components/global/Layout/index";
 import Schedule from "./routes/Schedule";
 import SignupForm from "./components/auth/signup/SignupForm";
-import LoginForm from "./components/auth/login";
+import LoginForm from "./components/auth/login/LoginForm";
 import AuthContext from "./states/auth-context";
 
 const queryClient = new QueryClient();
