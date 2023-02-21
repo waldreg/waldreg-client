@@ -30,18 +30,20 @@ const UserList = ({ handleClickChangeUser }: any) => {
           reset={reset}
         />
       </Top>
-      {searched?.length === 0 || searched === undefined ? (
-        <div>검색된 유저가 없습니다</div>
-      ) : (
-        searched.map((user: User) => (
-          <div
-            key={user.id}
-            onClick={() => handleClickChangeUser(user.user_id)}
-          >
-            <UserInfo user={user} />
-          </div>
-        ))
-      )}
+      <UserItems>
+        {searched?.length === 0 || searched === undefined ? (
+          <div>검색된 유저가 없습니다</div>
+        ) : (
+          searched.map((user: User) => (
+            <UserItem
+              key={user.id}
+              onClick={() => handleClickChangeUser(user.user_id)}
+            >
+              <UserInfo user={user} />
+            </UserItem>
+          ))
+        )}
+      </UserItems>
     </Container>
   );
 };
@@ -56,7 +58,7 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   gap: 2rem;
 `;
 
@@ -72,7 +74,17 @@ const Top = styled.div`
   gap: 5rem;
 `;
 
-const UserName = styled.div``;
-const UserId = styled.div``;
+const UserItems = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const UserItem = styled.div`
+  width: 100%;
+  cursor: pointer;
+`;
 
 export default UserList;
