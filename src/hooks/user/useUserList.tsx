@@ -12,7 +12,7 @@ const getUserList = async (startIdx: number, endIdx: number) => {
 };
 
 const useUserList = (startIdx: number, endIdx: number) => {
-  const { data } = useQuery<Users>(userKeys.all, () =>
+  const { data } = useQuery<Users>(userKeys.page(startIdx), () =>
     getUserList(startIdx, endIdx)
   );
   return data;
