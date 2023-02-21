@@ -63,23 +63,29 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  width: max-content;
+  min-width: max-content;
+  width: 140%;
   white-space: nowrap;
 `;
 
 const Top = styled.div`
-  width: 30rem;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5rem;
 `;
 
 const UserItems = styled.div`
   width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+
+  overflow: auto;
 `;
 
 const UserItem = styled.div`
