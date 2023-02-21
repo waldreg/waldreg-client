@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 import { useInput } from '../../../hooks/common/useInput';
 
 import { User } from '../../../interfaces/user';
@@ -14,10 +15,10 @@ import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
   const [page, setPage] = useState<number>(1);
-  const allUserList = useUserList(1, 100)?.users;
-  const userList = useUserList(page, page + 5)?.users;
-  const max = useUserList(page, page + 5)?.max_idx || 1;
-  const numPages = Math.ceil(max / 6);
+  const allUserList = useAllUserList(1, 100)?.users;
+  const userList = useUserList(page, page + 7)?.users;
+  const max = useUserList(page, page + 7)?.max_idx || 1;
+  const numPages = Math.ceil(max / 8);
   const pageNums = Array(numPages)
     .fill(0)
     .map((v, i) => i + 1);
@@ -51,7 +52,7 @@ const UserList = ({ handleClickChangeUser }: any) => {
               key={user.id}
               onClick={() => handleClickChangeUser(user.user_id)}
             >
-              <UserInfo user={user} />
+              <UserInfo user={user} size={'small'} />
             </UserItem>
           ))
         )}
@@ -61,10 +62,10 @@ const UserList = ({ handleClickChangeUser }: any) => {
           <PageBtn
             key={num}
             onClick={(e: any) => {
-              setPage(Number(e.target.innerText) * 6 - 5);
+              setPage(Number(e.target.innerText) * 8 - 7);
             }}
             style={FONT.DETAIL1}
-            selected={num * 6 - 5 === page}
+            selected={num * 8 - 7 === page}
           >
             {num}
           </PageBtn>
@@ -85,7 +86,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  gap: 1.8rem;
+  gap: 1.6rem;
 `;
 
 const Title = styled.div`
@@ -103,7 +104,7 @@ const Top = styled.div`
 
 const UserItems = styled.div`
   width: 100%;
-  height: 46rem;
+  height: 48rem;
 
   display: flex;
   flex-direction: column;
@@ -115,6 +116,7 @@ const UserItems = styled.div`
 
 const UserItem = styled.div`
   width: 100%;
+
   cursor: pointer;
 `;
 

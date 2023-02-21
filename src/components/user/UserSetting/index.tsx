@@ -45,7 +45,7 @@ const UserSetting = ({ name }: { name: string }) => {
                 유저 강제 퇴장
               </Text>
             </Top>
-            <UserInfo user={user} />
+            <UserInfo user={user} size={'big'} />
             <CharacterRadio
               data={characterList || []}
               selected={selected}

@@ -4,9 +4,9 @@ import { User } from '../../../interfaces/user';
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
-const UserInfo = ({ user }: { user: User }) => {
+const UserInfo = ({ user, size }: { user: User; size: string }) => {
   return (
-    <Content>
+    <Content size={size}>
       <Name>
         <UserName style={FONT.SUBTITLE3}>{user.name}</UserName>
         <UserId style={FONT.SUBTITLE2}>{user.user_id}</UserId>
@@ -16,9 +16,9 @@ const UserInfo = ({ user }: { user: User }) => {
   );
 };
 
-const Content = styled.div`
+const Content = styled.div<{ size: string }>`
   width: 100%;
-  padding: 2rem;
+  padding: ${(props) => (props.size === 'small' ? `1.1rem` : `2rem`)};
 
   border-radius: 0.5rem;
   display: flex;
