@@ -6,7 +6,7 @@ import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
 
 import { PlusIcon } from '../../Icons/SettingIcons';
-import { InputFillBold } from '../../common/inputs/input_fill';
+import { InputFillThin } from '../../common/inputs/input_fill';
 import { UserCheckBox } from '../../common/checkbox/checkbox';
 import UserCreateCharacterModal from '../UserCreateCharacterModal';
 import { ButtonBig } from '../../common/buttons/button_big';
@@ -18,12 +18,19 @@ import FONT from '../../../constants/fonts';
 import { Top, Content } from '../CharacterList/style';
 
 const CharacterUser = ({ name }: { name: string }) => {
+  const { value, handleChangeInput, reset } = useInput('');
+  const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
+
   const userList = useUserList(1, 50);
   const filterUserList = userList?.users.filter(
     (user) => user.character === name
   );
-  const { value, handleChangeInput, reset } = useInput('');
-  const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
+  const searchUserList =
+    value === ''
+      ? filterUserList
+      : filterUserList?.filter((user) =>
+          user.name.toLowerCase().includes(value.toLowerCase())
+        );
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
@@ -45,14 +52,14 @@ const CharacterUser = ({ name }: { name: string }) => {
             <PlusIcon />
           </IconWrapper>
         </Top>
-        <InputFillBold
+        <InputFillThin
           value={value}
           placeholder={'유저 검색하기'}
           onChange={handleChangeInput}
           reset={reset}
         />
         <UserCheckBox
-          data={filterUserList || []}
+          data={searchUserList || []}
           updateCheckList={updateCheckList}
         />
       </Content>
