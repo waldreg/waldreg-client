@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import useUserList from '../../../hooks/user/useUserList';
@@ -22,6 +22,12 @@ const CharacterUser = ({ name }: { name: string }) => {
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
   const { mutate } = useEditUserCharacter();
+
+  useEffect(() => {
+    return () => {
+      checkReset();
+    };
+  }, [name]);
 
   const userList = useUserList(1, 50);
   const filterUserList = userList?.users.filter(
