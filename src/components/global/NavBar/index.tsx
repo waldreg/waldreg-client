@@ -217,7 +217,7 @@ const NavBar = () => {
           )}
           {isLoggedIn && (
             <Link
-              to="/"
+              to="/login"
               onClick={logoutHandler}
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
             >
