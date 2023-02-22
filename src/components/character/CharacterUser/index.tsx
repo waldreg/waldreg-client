@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useUserList from '../../../hooks/user/useUserList';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
+import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 
 import { PlusIcon } from '../../Icons/SettingIcons';
 import { InputFillThin } from '../../common/inputs/input_fill';
@@ -20,6 +21,7 @@ import { Top, Content } from '../CharacterList/style';
 const CharacterUser = ({ name }: { name: string }) => {
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
+  const { mutate } = useEditUserCharacter();
 
   const userList = useUserList(1, 50);
   const filterUserList = userList?.users.filter(
@@ -36,6 +38,10 @@ const CharacterUser = ({ name }: { name: string }) => {
 
   const handleClickCreateModal = () => {
     setIsOpenCreateModal(!isOpenCreateModal);
+  };
+
+  const handleClickDeleteCharacterUser = (id: number, char: string) => {
+    mutate({ id: id, character: char });
   };
 
   return (
@@ -64,9 +70,17 @@ const CharacterUser = ({ name }: { name: string }) => {
         />
       </Content>
       <ButtonBig
-        content="유저 역할 해제"
-        color={COLOR.GRAY2}
-        onClick={() => {}}
+        content={
+          checkedList.length
+            ? `${checkedList.length}명의 유저 역할 해제`
+            : '유저 역할 해제'
+        }
+        color={checkedList.length ? COLOR.GREEN4 : COLOR.GRAY2}
+        onClick={() => {
+          checkedList.map((user) =>
+            handleClickDeleteCharacterUser(user.id, 'Guest')
+          );
+        }}
       />
     </Container>
   );
