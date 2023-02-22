@@ -11,11 +11,11 @@ const getUserList = async (startIdx: number, endIdx: number) => {
   return response.data;
 };
 
-const useUserList = (startIdx: number, endIdx: number) => {
-  const { data } = useQuery<Users>(userKeys.page(startIdx), () =>
+const useAllUserList = (startIdx: number, endIdx: number) => {
+  const { data } = useQuery<Users>(userKeys.all, () =>
     getUserList(startIdx, endIdx)
   );
   return data;
 };
 
-export default useUserList;
+export default useAllUserList;
