@@ -1,7 +1,8 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Permission } from '../../interfaces/character';
+import { User } from '../../interfaces/user';
 
-export const useCheckBox = () => {
+export const usePermissionCheckBox = () => {
   const [checkedList, setCheckedList] = useState<Permission[]>([]);
 
   const updateCheckList = (isChecked: boolean, item: Permission) => {
@@ -13,6 +14,24 @@ export const useCheckBox = () => {
       setCheckedList(
         checkedList.filter((prev) => prev.permission_id !== item.permission_id)
       );
+    }
+  };
+
+  const checkReset = () => {
+    setCheckedList([]);
+  };
+
+  return { checkedList, updateCheckList, checkReset };
+};
+
+export const useUserCheckBox = () => {
+  const [checkedList, setCheckedList] = useState<User[]>([]);
+
+  const updateCheckList = (isChecked: boolean, item: User) => {
+    if (isChecked) {
+      setCheckedList([...checkedList, item]);
+    } else {
+      setCheckedList(checkedList.filter((prev) => prev.id !== item.id));
     }
   };
 

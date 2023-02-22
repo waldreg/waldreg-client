@@ -35,6 +35,7 @@ export const InputFillBold = (props: UseInput) => {
 
 const Input = styled.input<{ theme: string }>`
   width: 100%;
+  height: ${(props) => (props.theme === 'thin' ? `3rem` : `3.4rem;`)};
   padding: 
   ${(props) =>
     props.theme === 'thin' ? `0.75rem 0.75rem 0.75rem 1rem;` : `1rem;`}

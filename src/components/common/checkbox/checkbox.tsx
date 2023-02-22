@@ -55,4 +55,8 @@ const PermissionItems = styled.div`
 
   overflow: auto;
 `;
-const UserItems = styled.div``;
+const UserItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;

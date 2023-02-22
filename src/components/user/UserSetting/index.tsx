@@ -17,7 +17,7 @@ import FONT from '../../../constants/fonts';
 const UserSetting = ({ name }: { name: string }) => {
   const user = useUser(name);
   const kickMutation = useKickUser();
-  const editMutation = useEditUserCharacter(name);
+  const editMutation = useEditUserCharacter();
   const characterList = useCharacterList();
   const [selected, setSelected] = useState(user?.character || 'Admin');
 
@@ -25,7 +25,7 @@ const UserSetting = ({ name }: { name: string }) => {
     kickMutation.mutate(id);
   };
 
-  const handleClickEditUser = (id: number, userId: string, char: string) => {
+  const handleClickEditUser = (id: number, char: string) => {
     editMutation.mutate({ id: id, character: char });
   };
 
@@ -55,7 +55,7 @@ const UserSetting = ({ name }: { name: string }) => {
           <ButtonBig
             content="유저 역할 수정"
             color={COLOR.GREEN4}
-            onClick={() => handleClickEditUser(user.id, user.user_id, selected)}
+            onClick={() => handleClickEditUser(user.id, selected)}
           />
         </>
       )}
