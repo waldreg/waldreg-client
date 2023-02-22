@@ -13,7 +13,7 @@ const DialogBox = styled.dialog<{ size?: string }>`
       height: 19rem;`
       : `
       width: 36rem;
-      height: 70vh;`}
+      height: 40rem;`}
 
   padding: 2rem;
   border: none;

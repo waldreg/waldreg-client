@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
 import { UseInput } from '../../../interfaces/basic';
 
 export const InputFillThin = (props: UseInput) => {
@@ -10,6 +11,7 @@ export const InputFillThin = (props: UseInput) => {
         value={props.value}
         onChange={props.onChange}
         theme={'thin'}
+        style={FONT.SUBTITLE2}
         autoFocus
       />
     </>
@@ -24,6 +26,7 @@ export const InputFillBold = (props: UseInput) => {
         value={props.value}
         onChange={props.onChange}
         theme={'bold'}
+        style={FONT.SUBTITLE2}
         autoFocus
       />
     </>

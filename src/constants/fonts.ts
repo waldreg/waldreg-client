@@ -24,6 +24,13 @@ const SUBTITLE2: CSSProperties = {
 
 };
 
+const SUBTITLE3: CSSProperties = {
+  fontFamily: 'Pretendard',
+  fontSize: '1.25rem',
+  fontWeight: '500',
+  lineHeight: '140%',
+};
+
 const BODY1: CSSProperties = {
   fontFamily: "Pretendard",
   fontSize: "1rem",
@@ -58,6 +65,7 @@ const FONT = {
   HEADING,
   SUBTITLE1,
   SUBTITLE2,
+  SUBTITLE3,
   BODY1,
   BODY_2,
   DETAIL1,
