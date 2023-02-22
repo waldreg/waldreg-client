@@ -33,6 +33,8 @@ const CharacterSetting = ({
     character?.permissions || []
   );
 
+  console.log(checkedList);
+
   const perThemeList = [
     { name: '유저', range: [0, 3] },
     { name: '게시판', range: [4, 15] },
