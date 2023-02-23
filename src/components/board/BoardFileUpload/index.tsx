@@ -1,3 +1,4 @@
+import React from "react";
 import { ChangeEvent, DragEvent, useState } from "react";
 import { FileDeleteIcon, FileIcon } from "../../Icons/BoardIcons";
 import { PlusIcon } from "../../Icons/SettingIcons";

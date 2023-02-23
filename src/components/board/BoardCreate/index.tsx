@@ -16,7 +16,7 @@ import BoardFileUpload from "../BoardFileUpload";
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [file, setFile] = useState<File | null>(null);
+  const [fileList, setFileList] = useState<FileList | null>(null);
   const category_id = useRecoilValue(boardCategoryState);
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const BoardCreate = () => {
     new Blob([JSON.stringify(data)], { type: "application/json" })
   );
 
-  formData.append("file", file!!);
+  // formData.append("file", fileList!![0]);
 
   const createMutation = useBoardCreate(formData);
 
