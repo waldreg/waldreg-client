@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useBoardCreate } from '../../../hooks/board/useBoardCreate';
-import { useRecoilValue } from 'recoil';
-import { boardCategoryState } from '../../../states/board';
-import FONT from '../../../constants/fonts';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
+import { useRecoilValue } from "recoil";
+import { boardCategoryState } from "../../../states/board";
+import FONT from "../../../constants/fonts";
 import {
   BoardButtonContainer,
   BoardContentTextArea,
   BoardTitleInput,
-} from './style';
-import { BoardContainer } from '../BoardDetail/style';
-import CreateButton from '../../common/createbutton';
-import BoardFileUpload from '../BoardFileUpload';
+} from "./style";
+import { BoardContainer } from "../BoardDetail/style";
+import CreateButton from "../../common/createbutton";
+import BoardFileUpload from "../BoardFileUpload";
 
 const BoardCreate = () => {
-  const [title, setTitle] = useState<string>('');
-  const [content, setContent] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
   const category_id = useRecoilValue(boardCategoryState);
   const navigate = useNavigate();
@@ -26,14 +26,16 @@ const BoardCreate = () => {
     title: title,
     content: content,
     category_id: category_id,
+    views: 0,
+    comment_count: 0,
   };
 
   formData.append(
-    'boardCreateRequest',
-    new Blob([JSON.stringify(data)], { type: 'application/json' })
+    "boardCreateRequest",
+    new Blob([JSON.stringify(data)], { type: "application/json" })
   );
 
-  formData.append('file', file!!);
+  formData.append("file", file!!);
 
   const createMutation = useBoardCreate(formData);
 

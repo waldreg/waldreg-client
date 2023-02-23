@@ -9,6 +9,8 @@ export interface Board {
   };
   created_at: string;
   last_modified_at: string;
+  views: number;
+  comment_count: number;
   images?: [];
   exist_file: boolean;
   files?: [];

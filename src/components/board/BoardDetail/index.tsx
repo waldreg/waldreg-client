@@ -52,7 +52,7 @@ const BoardDetail = () => {
               </BoardInformation>
             )}
             <BoardInformation style={FONT.SUBTITLE1}>
-              조회수 : 152
+              조회수 : {board?.views}
             </BoardInformation>
           </BoardInformationBox>
           <BoardButtonBox>
