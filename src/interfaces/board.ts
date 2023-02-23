@@ -43,6 +43,9 @@ export interface BoardCategoryLists extends BoardCategory {
 export interface BoardComment {
   id?: number;
   content: string;
+  name: string;
+  created_at: string;
+  last_modified_at: string;
 }
 
 export interface BoardCommentLists extends BoardComment {
