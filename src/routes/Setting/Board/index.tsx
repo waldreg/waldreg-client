@@ -1,15 +1,15 @@
-import React, { useCallback, useState } from 'react';
-import BoardCategoryList from '../../../components/board/BoardCategoryList';
-import { PlusIcon } from '../../../components/Icons/SettingIcons';
-import { useBoardCategoryCreate } from '../../../hooks/board/category/useBoardCategoryCreate';
-import { useBoardCategoryList } from '../../../hooks/board/category/useBoardCategoryList';
-import FONT from './../../../constants/fonts';
-import Modal from '../../../components/common/modal';
+import React, { useCallback, useState } from "react";
+import BoardCategoryList from "../../../components/board/BoardCategoryList";
+import { PlusIcon } from "../../../components/Icons/SettingIcons";
+import { useBoardCategoryCreate } from "../../../hooks/board/category/useBoardCategoryCreate";
+import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
+import FONT from "./../../../constants/fonts";
+import Modal from "../../../components/common/modal";
 import {
   settingCategoryId,
   settingCategoryName,
   settingFromState,
-} from './../../../states/board';
+} from "./../../../states/board";
 import {
   CategoryDeleteButton,
   CategoryDeleteContent,
@@ -24,13 +24,13 @@ import {
   SettingSaveButton,
   SettingTitle,
   SettingTop,
-} from './style';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { useBoardCategoryUpdate } from '../../../hooks/board/category/useBoardCategoryUpdate';
-import { useBoardCategoryDelete } from '../../../hooks/board/category/useBoardCategoryDelete';
+} from "./style";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
+import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
 
 const BoardManagement = () => {
-  const [boardName, setBoardName] = useState<string>('');
+  const [boardName, setBoardName] = useState<string>("");
   const { boardCategoryList } = useBoardCategoryList();
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
@@ -46,7 +46,7 @@ const BoardManagement = () => {
 
   const handleCreateCategory = () => {
     createMutation.mutate();
-    setBoardName('');
+    setBoardName("");
     setIsOpenCreateModal(false);
   };
 
@@ -57,7 +57,7 @@ const BoardManagement = () => {
 
   const handleClickCreateModal = useCallback(() => {
     setIsOpenCreateModal(!isOpenCreateModal);
-    setBoardName('');
+    setBoardName("");
   }, [isOpenCreateModal]);
 
   const handleClickDeleteModal = useCallback(() => {
@@ -66,7 +66,7 @@ const BoardManagement = () => {
 
   return (
     <>
-      <SettingContainer style={{ width: '30%' }}>
+      <SettingContainer style={{ width: "30%" }}>
         <SettingTop>
           <SettingTitle style={FONT.HEADING}>게시판</SettingTitle>
           <button onClick={handleClickCreateModal}>
@@ -81,7 +81,7 @@ const BoardManagement = () => {
       </SettingContainer>
 
       {settingForm && (
-        <SettingFormContainer style={{ width: '50%' }}>
+        <SettingFormContainer style={{ width: "50%" }}>
           <div>
             <SettingTop>
               <SettingTitle style={FONT.HEADING}>설정</SettingTitle>
@@ -116,7 +116,7 @@ const BoardManagement = () => {
       )}
 
       {isOpenCreateModal && (
-        <Modal onClickToggleModal={handleClickCreateModal} size={'small'}>
+        <Modal onClickToggleModal={handleClickCreateModal} size={"small"}>
           <SettingTitle style={FONT.HEADING}>게시판 추가</SettingTitle>
           <SettingInput
             type="text"
@@ -145,7 +145,7 @@ const BoardManagement = () => {
       )}
 
       {isOpenDeleteModal && (
-        <Modal onClickToggleModal={handleClickDeleteModal}>
+        <Modal onClickToggleModal={handleClickDeleteModal} size={"small"}>
           <SettingTitle style={FONT.HEADING}>게시판 삭제</SettingTitle>
           <CategoryDeleteContent style={FONT.SUBTITLE2}>
             <CategoryDeleteSpan>{categoryName}</CategoryDeleteSpan> 게시판을
