@@ -24,6 +24,7 @@ export const Content = styled.div`
 `;
 
 export const Top = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
 `;

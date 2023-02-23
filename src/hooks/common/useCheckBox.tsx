@@ -1,15 +1,11 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Permission } from '../../interfaces/character';
+import { User } from '../../interfaces/user';
 
-export interface IProps {
-  permission_id: number;
-  permission_name: string;
-  permission_status: string;
-}
+export const usePermissionCheckBox = () => {
+  const [checkedList, setCheckedList] = useState<Permission[]>([]);
 
-export const useCheckBox = () => {
-  const [checkedList, setCheckedList] = useState<IProps[]>([]);
-
-  const updateCheckList = (isChecked: boolean, item: IProps) => {
+  const updateCheckList = (isChecked: boolean, item: Permission) => {
     if (isChecked) {
       item.permission_status = 'true';
       setCheckedList([...checkedList, item]);
@@ -28,13 +24,31 @@ export const useCheckBox = () => {
   return { checkedList, updateCheckList, checkReset };
 };
 
-export const useToggleBox = (initialState: IProps[]) => {
-  const [checkedList, setCheckedList] = useState<IProps[]>(initialState);
+export const useUserCheckBox = () => {
+  const [checkedList, setCheckedList] = useState<User[]>([]);
+
+  const updateCheckList = (isChecked: boolean, item: User) => {
+    if (isChecked) {
+      setCheckedList([...checkedList, item]);
+    } else {
+      setCheckedList(checkedList.filter((prev) => prev.id !== item.id));
+    }
+  };
+
+  const checkReset = () => {
+    setCheckedList([]);
+  };
+
+  return { checkedList, updateCheckList, checkReset };
+};
+
+export const useToggleBox = (initialState: Permission[]) => {
+  const [checkedList, setCheckedList] = useState<Permission[]>(initialState);
   useEffect(() => {
     setCheckedList(initialState);
   }, [initialState]);
 
-  const updateCheckList = (isChecked: boolean, item: IProps) => {
+  const updateCheckList = (isChecked: boolean, item: Permission) => {
     const prevList = checkedList.filter(
       (check) => check.permission_id !== item.permission_id
     );

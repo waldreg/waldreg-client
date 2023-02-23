@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import usePermissionList from '../../../hooks/character/usePermissionList';
 import useCreateCharacter from '../../../hooks/character/useCreateCharacter';
 import { useInput } from '../../../hooks/common/useInput';
-import { useCheckBox } from '../../../hooks/common/useCheckBox';
+import { usePermissionCheckBox } from '../../../hooks/common/useCheckBox';
 
 import Modal from '../../common/modal';
 import { InputLine } from '../../common/inputs/input_line';
@@ -20,7 +20,7 @@ const CharacterCreateModal = ({
   const { mutate } = useCreateCharacter();
 
   const { value, handleChangeInput, reset } = useInput('');
-  const { checkedList, updateCheckList, checkReset } = useCheckBox();
+  const { checkedList, updateCheckList, checkReset } = usePermissionCheckBox();
 
   perList?.sort((prev, cur) => {
     if (prev.permission_id > cur.permission_id) return 1;
