@@ -55,6 +55,7 @@ const FileDetailBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.4rem;
 `;
 
 const FileDetailTitle = styled.div`
@@ -67,6 +68,7 @@ const FilePlusLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0.4rem;
 `;
 
 export {
