@@ -16,8 +16,12 @@ import {
   FileTitleBox,
 } from "./style";
 
-const BoardFileUpload = () => {
-  const [fileList, setFileList] = useState<Array<File>>([]);
+interface BoardFileUploadProps {
+  formData: FormData;
+}
+
+const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
+  const [fileList, setFileList] = useState<File[]>([]);
 
   // TODO: 파일 다중 업로드 구현
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,15 +40,17 @@ const BoardFileUpload = () => {
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
       setFileList([...fileList, file]);
+      formData.append("file", file);
     }
-  };
-
-  const dragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
   };
 
   const handleDeleteFile = (index: number) => {
     setFileList(fileList.filter((_, i) => i !== index));
+    formData.delete("file");
+  };
+
+  const dragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
   };
 
   return (

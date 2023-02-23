@@ -20,7 +20,7 @@ const BoardUpdate = () => {
 
   const [title, setTitle] = useState(board?.title);
   const [content, setContent] = useState(board?.content);
-  const [file, setFile] = useState<File | null>(null);
+  const [fileList, setFileList] = useState<File[]>([]);
   const category_id = useRecoilValue(boardCategoryState);
   const formData = new FormData();
   const navigate = useNavigate();
@@ -36,8 +36,6 @@ const BoardUpdate = () => {
     "boardUpdateRequest",
     new Blob([JSON.stringify(data)], { type: "application/json" })
   );
-
-  formData.append("file", file!!);
 
   const updateMutation = useBoardUpdate(parseInt(id!!), formData);
 
@@ -65,16 +63,8 @@ const BoardUpdate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileUpload />
-        {/* <BoardFileInput
-          style={FONT.SUBTITLE2}
-          type="file"
-          onChange={(e: React.FormEvent<HTMLInputElement>) => {
-            if (e.currentTarget.files) {
-              setFile(e.currentTarget.files[0]);
-            }
-          }}
-        /> */}
+        <BoardFileUpload formData={formData} />
+
         <BoardButtonContainer>
           <CreateButton onSubmit={handleUpdateSubmit} style={FONT.SUBTITLE1} />
         </BoardButtonContainer>
