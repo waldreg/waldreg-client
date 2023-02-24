@@ -1,3 +1,4 @@
+import React from "react";
 import { ChangeEvent, DragEvent, useState } from "react";
 import { FileDeleteIcon, FileIcon } from "../../Icons/BoardIcons";
 import { PlusIcon } from "../../Icons/SettingIcons";
@@ -15,87 +16,41 @@ import {
   FileTitleBox,
 } from "./style";
 
-const BoardFileUpload = () => {
-  const [fileList, setFileList] = useState<Array<File>>([]);
+interface BoardFileUploadProps {
+  formData: FormData;
+}
 
+const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
+  const [fileList, setFileList] = useState<File[]>([]);
+
+  // TODO: 파일 다중 업로드 구현
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    handleFiles(e.target.files as FileList);
-  };
-
-  const handleInputFile = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    handleFile(e.target.files![0]);
+    const files = e.target.files;
+    handleUpdateFiles(files!!);
   };
 
   const handleDropFiles = (e: DragEvent<HTMLDivElement>) => {
-    console.log({ e }, e.dataTransfer.files);
     e.preventDefault();
-
-    handleFiles(e.dataTransfer.files);
+    const files = e.dataTransfer.files;
+    handleUpdateFiles(files!!);
   };
 
-  const handleFiles = (files: FileList) => {
-    let fileList: Array<File> = [];
-
-    if (files.length > 5) {
-      alert(`파일 개수가 초과되었습니다.(최대 5개)`);
-      return;
-    }
-
+  const handleUpdateFiles = (files: FileList) => {
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
-      const format: string = `${file.name.split(".").slice(-1)}`.toUpperCase();
-
-      if (
-        format === "JPG" ||
-        format === "JPEG" ||
-        format === "PNG" ||
-        format === "PDF"
-      ) {
-        fileList = [...fileList, file];
-      } else {
-        alert(
-          `파일 포맷을 확인해주세요.업로드 된 파일 이름 ${file.name} / 포맷 ${format}`
-        );
-        return;
-      }
+      setFileList([...fileList, file]);
+      formData.append("file", file);
     }
-
-    if (fileList.length > 0) {
-      setFileList(fileList);
-    }
-  };
-
-  const handleFile = (file: File): void => {
-    if (fileList.length > 4) {
-      alert(`파일 개수가 초과되었습니다`);
-      return;
-    }
-    const updateFile: File = file;
-    const format: string = `${file.name.split(".").slice(-1)}`.toUpperCase();
-
-    if (
-      format === "JPG" ||
-      format === "JPEG" ||
-      format === "PNG" ||
-      format === "PDF"
-    ) {
-      setFileList([...fileList, updateFile]);
-    } else {
-      alert(
-        `파일 포맷을 확인해주세요.업로드 된 파일 이름 ${file.name} / 포맷 ${format}`
-      );
-      return;
-    }
-  };
-
-  const dragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
   };
 
   const handleDeleteFile = (index: number) => {
     setFileList(fileList.filter((_, i) => i !== index));
+    formData.delete("file");
+  };
+
+  const dragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -133,7 +88,6 @@ const BoardFileUpload = () => {
               </FileDetailBox>
             );
           })}
-
           <FilePlusLabel htmlFor="input_file" className="span">
             <PlusIcon />
           </FilePlusLabel>
@@ -141,7 +95,7 @@ const BoardFileUpload = () => {
             id="input_file"
             type="file"
             multiple
-            onChange={handleInputFile}
+            onChange={handleInputFiles}
           />
         </FileListBox>
       )}

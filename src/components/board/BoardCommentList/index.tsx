@@ -24,8 +24,10 @@ const BoardCommentList = () => {
       {commentLists?.comments.map((comment) => (
         <CommentDetail key={comment.id}>
           <CommentInformation>
-            <CommentUser style={FONT.SUBTITLE1}>ham0__0</CommentUser>
-            <CommentDate style={FONT.SUBTITLE1}>2023.02.02</CommentDate>
+            <CommentUser style={FONT.SUBTITLE1}>{comment.name}</CommentUser>
+            <CommentDate style={FONT.SUBTITLE1}>
+              {comment.created_at.slice(0, 10)}
+            </CommentDate>
           </CommentInformation>
           <CommentContentBox style={FONT.BODY1}>
             <div>{comment.content}</div>

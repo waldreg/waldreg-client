@@ -4,6 +4,7 @@ import {
   BoardContentBox,
   BoardInformation,
   BoardInformationBox,
+  BoardInformationText,
   BoardTitle,
 } from "./style";
 import { useNavigate } from "react-router-dom";
@@ -37,11 +38,11 @@ function BoardList({ boardList }: BoardListProps) {
             <BoardTitle style={FONT.SUBTITLE2}>{board.title}</BoardTitle>
             <BoardContent style={FONT.SUBTITLE2}>
               <CommentIcon />
-              12
+              {board.comment_count}
             </BoardContent>
             <BoardContent style={FONT.SUBTITLE2}>
               <ViewIcon />
-              152
+              <BoardInformationText>{board.views}</BoardInformationText>
             </BoardContent>
           </BoardContentBox>
         </BoardContainer>
