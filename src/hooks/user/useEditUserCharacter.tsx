@@ -15,7 +15,7 @@ const editUserCharacter = async ({
   });
 };
 
-const useEditUserCharacter = (userId: string) => {
+const useEditUserCharacter = () => {
   const queryClient = useQueryClient();
   return useMutation(editUserCharacter, {
     onSuccess: () => {
