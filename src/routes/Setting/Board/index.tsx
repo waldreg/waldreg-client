@@ -8,7 +8,6 @@ import Modal from "../../../components/common/modal";
 import {
   settingCategoryId,
   settingCategoryName,
-  settingFromState,
 } from "./../../../states/board";
 import {
   CategoryDeleteButton,
@@ -37,7 +36,6 @@ const BoardManagement = () => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   const categoryId = useRecoilValue(settingCategoryId);
-  const [settingForm, setSettingForm] = useRecoilState(settingFromState);
   const [categoryName, setCategoryName] = useRecoilState(settingCategoryName);
 
   const createMutation = useBoardCategoryCreate(boardName);
@@ -80,40 +78,31 @@ const BoardManagement = () => {
         </CategoryListBox>
       </SettingContainer>
 
-      {settingForm && (
-        <SettingFormContainer style={{ width: "50%" }}>
-          <div>
-            <SettingTop>
-              <SettingTitle style={FONT.HEADING}>설정</SettingTitle>
-              <SettingButton
-                style={FONT.SUBTITLE2}
-                onClick={() => {
-                  categoryUpdate.mutate();
-                  setSettingForm((prev) => !prev);
-                }}
-              >
-                변경사항 저장
-              </SettingButton>
-            </SettingTop>
-            <SettingInput
-              type="text"
-              value={categoryName}
-              style={FONT.SUBTITLE2}
-              onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                setCategoryName(e.currentTarget.value)
-              }
-            />
-          </div>
-          <div>
-            <CategoryDeleteButton
-              onClick={handleClickDeleteModal}
-              style={FONT.SUBTITLE2}
-            >
-              게시판 삭제하기
-            </CategoryDeleteButton>
-          </div>
-        </SettingFormContainer>
-      )}
+      <SettingFormContainer style={{ width: "50%" }}>
+        <div>
+          <SettingTop>
+            <SettingTitle style={FONT.HEADING}>설정</SettingTitle>
+          </SettingTop>
+          <SettingInput
+            type="text"
+            value={categoryName}
+            style={FONT.SUBTITLE2}
+            onChange={(e: React.FormEvent<HTMLInputElement>) =>
+              setCategoryName(e.currentTarget.value)
+            }
+          />
+        </div>
+        <div>
+          <CategoryDeleteButton
+            style={FONT.SUBTITLE2}
+            onClick={() => {
+              categoryUpdate.mutate();
+            }}
+          >
+            변경사항 저장
+          </CategoryDeleteButton>
+        </div>
+      </SettingFormContainer>
 
       {isOpenCreateModal && (
         <Modal onClickToggleModal={handleClickCreateModal} size={"small"}>
@@ -160,10 +149,7 @@ const BoardManagement = () => {
             </SettingCancelButton>
             <SettingSaveButton
               style={FONT.SUBTITLE2}
-              onClick={() => {
-                handleDeleteCategory();
-                setSettingForm((prev) => !prev);
-              }}
+              onClick={handleDeleteCategory}
             >
               확인
             </SettingSaveButton>
