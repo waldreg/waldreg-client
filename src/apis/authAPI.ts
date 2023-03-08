@@ -14,8 +14,14 @@ export const authAPI = (() => {
     return data;
   };
 
+  const join = async(user_id:string) => {
+    const {data} = await axios.get("/user/joiningpool/"+user_id);
+    return data;
+  }
+
   return {
     signup,
     login,
+    join,
   };
 })();
