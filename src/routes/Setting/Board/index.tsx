@@ -14,7 +14,6 @@ import {
   CategoryDeleteContent,
   CategoryDeleteSpan,
   CategoryListBox,
-  SettingButton,
   SettingButtonBox,
   SettingCancelButton,
   SettingContainer,
