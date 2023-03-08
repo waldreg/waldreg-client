@@ -6,12 +6,14 @@ const SettingContainer = styled.div`
   background: ${COLOR.WHITE};
   padding: 2rem;
   border-radius: 1rem;
+  min-width: 15rem;
 `;
 
 const SettingFormContainer = styled(SettingContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 15rem;
 `;
 
 const SettingTop = styled.div`
