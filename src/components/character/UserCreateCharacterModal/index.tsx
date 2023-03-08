@@ -57,10 +57,23 @@ const UserCreateCharacterModal = ({
           ))
         )}
       </UserItems> */}
+
       <UserCheckBox
         data={userList?.users || []}
         updateCheckList={updateCheckList}
       />
+      <div>
+        <div style={FONT.DETAIL1}>
+          {checkedList.length === 0 ? (
+            <></>
+          ) : (
+            <div>
+              {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저의
+              역할을 {'Admin'} 으로 전환합니다
+            </div>
+          )}
+        </div>
+      </div>
       <Buttons>
         <ButtonBig
           content={'취소'}
