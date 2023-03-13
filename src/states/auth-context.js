@@ -1,19 +1,19 @@
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
 const AuthContext = React.createContext({
-  token: "",
+  token: '',
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
-  window.onload = function() {
-    localStorage.clear();
-  };
-  const initialToken = localStorage.getItem("accessToken");
+  // window.onload = function() {
+  //   localStorage.clear();
+  // };
+  const initialToken = localStorage.getItem('accessToken');
   const [token, setToken] = useState(initialToken);
 
   console.log(token);
@@ -30,12 +30,12 @@ export const AuthContextProvider = (props) => {
 
   const loginHandler = (token) => {
     setToken(token);
-    localStorage.setItem("accessToken", token);
+    localStorage.setItem('accessToken', token);
   };
 
   const logoutHandler = () => {
     setToken(null);
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem('accessToken');
   };
 
   const contextValue = {

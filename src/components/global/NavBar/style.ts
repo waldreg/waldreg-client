@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
 
-const Wrapper = styled.div`
-  min-width: 16rem;
+const Wrapper = styled.div<{ width: boolean }>`
+  width: ${(props) => (props.width ? `18rem` : `0`)};
   height: 100vh;
-  padding: 1.5rem;
+  padding: ${(props) => (props.width ? `1.5rem` : `0`)};
   z-index: 1;
   background: ${COLOR.WHITE};
 `;
@@ -81,8 +81,8 @@ const Blank = styled.div`
   height: 20px;
 `;
 
-const Open = styled.div`
-  z-index: 1;
+const RightIconWrapper = styled.div`
+  padding: 1.5rem;
 `;
 
 export {
@@ -96,5 +96,5 @@ export {
   Link,
   Text,
   Blank,
-  Open,
+  RightIconWrapper,
 };
