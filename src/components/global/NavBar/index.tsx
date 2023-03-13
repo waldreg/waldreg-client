@@ -48,8 +48,6 @@ const NavBar = () => {
   const { boardCategoryList } = useBoardCategoryList();
   const curUser = useCurUser();
 
-  console.log(curUser);
-
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
   const startLocation = location.split('/')[1];
@@ -85,64 +83,66 @@ const NavBar = () => {
                   <Text style={FONT.SUBTITLE2}>홈</Text>
                 </Link>
               </Item>
-              <Item className="relative" id="sidenavSecEx2">
-                <BaseLink
-                  className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSidenavSecEx2"
-                  aria-expanded="false"
-                  aria-controls="collapseSidenavSecEx2"
-                  selected={startLocation === 'setting'}
-                >
-                  <SettingIcon />
-                  <Text style={FONT.SUBTITLE2}>설정</Text>
-                </BaseLink>
-                <Items
-                  className="relative accordion-collapse collapse"
-                  id="collapseSidenavSecEx2"
-                  aria-labelledby="sidenavSecEx2"
-                  data-bs-parent="#sidenavSecExample"
-                >
-                  <Item className="relative">
-                    <Link
-                      to="/setting/user"
-                      className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-                      selected={location === '/setting/user'}
-                    >
-                      <Blank />
-                      <Text style={FONT.BODY1}>유저 관리</Text>
-                    </Link>
-                  </Item>
-                  <Item className="relative">
-                    <Link
-                      to="/setting/character"
-                      className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
-                      selected={location === '/setting/character'}
-                    >
-                      <Blank />
-                      <Text style={FONT.BODY1}>역할 관리</Text>
-                    </Link>
-                  </Item>
-                  <Item className="relative">
-                    <Link
-                      to="/setting/board"
-                      selected={location === '/setting/board'}
-                    >
-                      <Blank />
-                      <Text style={FONT.BODY1}>게시판 관리</Text>
-                    </Link>
-                  </Item>
-                  <Item className="relative">
-                    <Link
-                      to="/setting/reward"
-                      selected={location === '/setting/reward'}
-                    >
-                      <Blank />
-                      <Text style={FONT.BODY1}>상벌점 관리</Text>
-                    </Link>
-                  </Item>
-                </Items>
-              </Item>
+              {curUser?.character === 'Admin' && (
+                <Item className="relative" id="sidenavSecEx2">
+                  <BaseLink
+                    className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSidenavSecEx2"
+                    aria-expanded="false"
+                    aria-controls="collapseSidenavSecEx2"
+                    selected={startLocation === 'setting'}
+                  >
+                    <SettingIcon />
+                    <Text style={FONT.SUBTITLE2}>설정</Text>
+                  </BaseLink>
+                  <Items
+                    className="relative accordion-collapse collapse"
+                    id="collapseSidenavSecEx2"
+                    aria-labelledby="sidenavSecEx2"
+                    data-bs-parent="#sidenavSecExample"
+                  >
+                    <Item className="relative">
+                      <Link
+                        to="/setting/user"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
+                        selected={location === '/setting/user'}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>유저 관리</Text>
+                      </Link>
+                    </Item>
+                    <Item className="relative">
+                      <Link
+                        to="/setting/character"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
+                        selected={location === '/setting/character'}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>역할 관리</Text>
+                      </Link>
+                    </Item>
+                    <Item className="relative">
+                      <Link
+                        to="/setting/board"
+                        selected={location === '/setting/board'}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>게시판 관리</Text>
+                      </Link>
+                    </Item>
+                    <Item className="relative">
+                      <Link
+                        to="/setting/reward"
+                        selected={location === '/setting/reward'}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>상벌점 관리</Text>
+                      </Link>
+                    </Item>
+                  </Items>
+                </Item>
+              )}
               <Item className="relative" id="sidenavSecEx3">
                 <BaseLink
                   className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
