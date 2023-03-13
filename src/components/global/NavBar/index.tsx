@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import 'tw-elements';
 
 import { useBoardCategoryList } from '../../../hooks/board/category/useBoardCategoryList';
+import useCurUser from '../../../hooks/curuser/useCurUser';
 import BoardCategory from '../../board/BoardCategory';
 
 import COLOR from '../../../constants/color';
@@ -45,6 +46,9 @@ const NavBar = () => {
   };
 
   const { boardCategoryList } = useBoardCategoryList();
+  const curUser = useCurUser();
+
+  console.log(curUser);
 
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
