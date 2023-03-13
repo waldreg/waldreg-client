@@ -53,17 +53,12 @@ const CharacterSetting = ({
           <Title style={FONT.HEADING}>설정</Title>
           <Text
             onClick={() => {
-              editMutation.mutate({
-                name: name,
-                newChar: {
-                  character_name: value,
-                  permissions: character?.permissions || [],
-                },
-              });
+              deleteMutation.mutate(name);
+              setChar('Admin');
             }}
             style={FONT.SUBTITLE2}
           >
-            변경사항 저장
+            역할 삭제
           </Text>
         </Top>
         <InputLine
@@ -100,11 +95,16 @@ const CharacterSetting = ({
         </Items>
       </Content>
       <ButtonBig
-        content={'역할 삭제하기'}
+        content={'변경사항 저장'}
         color={COLOR.GREEN4}
         onClick={() => {
-          deleteMutation.mutate(name);
-          setChar('Admin');
+          editMutation.mutate({
+            name: name,
+            newChar: {
+              character_name: value,
+              permissions: character?.permissions || [],
+            },
+          });
         }}
       />
     </Container>

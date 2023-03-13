@@ -58,7 +58,7 @@ const UserCreateCharacterModal = ({
 
       <UserItems>
         {searchUserList?.length === 0 || searchUserList === undefined ? (
-          <div>검색된 유저가 없습니다</div>
+          <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
         ) : (
           <UserCheckBox
             data={searchUserList || []}
@@ -68,7 +68,7 @@ const UserCreateCharacterModal = ({
       </UserItems>
 
       <Description>
-        <div style={FONT.DETAIL1}>
+        <div style={FONT.SUBTITLE1}>
           {checkedList.length === 0 ? (
             <></>
           ) : checkedList.length === 1 ? (
@@ -125,7 +125,7 @@ const Description = styled.div`
 
 const Buttons = styled.div`
   width: 100%;
-  padding-top: 2rem;
+  padding-top: 1rem;
 
   display: flex;
   gap: 2rem;

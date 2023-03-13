@@ -14,11 +14,13 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
+  const NUMBER = 7;
+
   const [page, setPage] = useState<number>(1);
   const allUserList = useAllUserList(1, 100)?.users;
-  const userList = useUserList(page, page + 7)?.users;
-  const max = useUserList(page, page + 7)?.max_idx || 1;
-  const numPages = Math.ceil(max / 8);
+  const userList = useUserList(page, page + (NUMBER - 1))?.users;
+  const max = useUserList(page, page + (NUMBER - 1))?.max_idx || 1;
+  const numPages = Math.ceil(max / NUMBER);
   const pageNums = Array(numPages)
     .fill(0)
     .map((v, i) => i + 1);
@@ -34,38 +36,40 @@ const UserList = ({ handleClickChangeUser }: any) => {
 
   return (
     <Container>
-      <Top>
-        <Title style={FONT.HEADING}>유저 목록</Title>
-        <InputFillThin
-          value={value}
-          placeholder={'유저 이름'}
-          onChange={handleChangeInput}
-          reset={reset}
-        />
-      </Top>
-      <UserItems>
-        {filterList?.length === 0 || filterList === undefined ? (
-          <div>검색된 유저가 없습니다</div>
-        ) : (
-          filterList.map((user: User) => (
-            <UserItem
-              key={user.id}
-              onClick={() => handleClickChangeUser(user.user_id)}
-            >
-              <UserInfo user={user} size={'small'} />
-            </UserItem>
-          ))
-        )}
-      </UserItems>
+      <Content>
+        <Top>
+          <Title style={FONT.HEADING}>유저 목록</Title>
+          <InputFillThin
+            value={value}
+            placeholder={'유저 이름'}
+            onChange={handleChangeInput}
+            reset={reset}
+          />
+        </Top>
+        <UserItems>
+          {filterList?.length === 0 || filterList === undefined ? (
+            <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
+          ) : (
+            filterList.map((user: User) => (
+              <UserItem
+                key={user.id}
+                onClick={() => handleClickChangeUser(user.user_id)}
+              >
+                <UserInfo user={user} size={'small'} />
+              </UserItem>
+            ))
+          )}
+        </UserItems>
+      </Content>
       <PageNav>
         {pageNums.map((num) => (
           <PageBtn
             key={num}
             onClick={(e: any) => {
-              setPage(Number(e.target.innerText) * 8 - 7);
+              setPage(Number(e.target.innerText) * NUMBER - (NUMBER - 1));
             }}
             style={FONT.DETAIL1}
-            selected={num * 8 - 7 === page}
+            selected={num * NUMBER - (NUMBER - 1) === page}
           >
             {num}
           </PageBtn>
@@ -85,7 +89,12 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+`;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 1.6rem;
 `;
 
@@ -104,7 +113,6 @@ const Top = styled.div`
 
 const UserItems = styled.div`
   width: 100%;
-  height: 48rem;
 
   display: flex;
   flex-direction: column;
@@ -116,12 +124,14 @@ const UserItems = styled.div`
 
 const UserItem = styled.div`
   width: 100%;
+  height: 100%;
 
   cursor: pointer;
 `;
 
 const PageNav = styled.div`
   width: 100%;
+
   display: flex;
   justify-content: center;
   gap: 0.5rem;
