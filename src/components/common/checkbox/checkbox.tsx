@@ -36,9 +36,9 @@ export const UserCheckBox = (props: UsersProps) => {
     <UserItems>
       {props.data.map((item: User) => {
         return (
-          <div key={item.user_id}>
+          <UserItem key={item.user_id}>
             <UserCheck item={item} updateCheckList={props.updateCheckList} />
-          </div>
+          </UserItem>
         );
       })}
     </UserItems>
@@ -55,8 +55,14 @@ const PermissionItems = styled.div`
 
   overflow: auto;
 `;
+
 const UserItems = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`;
+
+const UserItem = styled.div`
+  width: 100%;
 `;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useUser from '../../../hooks/user/useUser';
-import useKickUser from '../../../hooks/user/useKickUser';
 import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 import useCharacterList from '../../../hooks/character/useCharacterList';
 
@@ -10,19 +9,20 @@ import { ButtonBig } from '../../common/buttons/button_big';
 import CharacterRadio from '../../common/radio';
 import { Top } from '../../character/CharacterList/style';
 import UserInfo from '../UserInfo';
+import UserDelModal from '../UserDelModal';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserSetting = ({ name }: { name: string }) => {
   const user = useUser(name);
-  const kickMutation = useKickUser();
   const editMutation = useEditUserCharacter();
   const characterList = useCharacterList();
   const [selected, setSelected] = useState(user?.character || 'Admin');
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
-  const handleClickKickUser = (id: number) => {
-    kickMutation.mutate(id);
+  const handleClickModal = () => {
+    setIsOpenCreateModal(!isOpenCreateModal);
   };
 
   const handleClickEditUser = (id: number, char: string) => {
@@ -36,12 +36,15 @@ const UserSetting = ({ name }: { name: string }) => {
       ) : (
         <>
           <Content>
+            {isOpenCreateModal && (
+              <UserDelModal
+                setIsOpenCreateModal={setIsOpenCreateModal}
+                user={user}
+              />
+            )}
             <Top>
               <Title style={FONT.HEADING}>유저 관리</Title>
-              <Text
-                onClick={() => handleClickKickUser(user.id)}
-                style={FONT.SUBTITLE2}
-              >
+              <Text onClick={() => handleClickModal()} style={FONT.SUBTITLE2}>
                 유저 강제 퇴장
               </Text>
             </Top>
