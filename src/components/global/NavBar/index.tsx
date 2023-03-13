@@ -197,6 +197,15 @@ const NavBar = () => {
               <Text style={FONT.SUBTITLE2}>상벌점</Text>
             </Link>
           </li>
+          <li className="relative">
+            <Link
+              to="/joiningpool"
+              className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+            >
+              <MedalIcon />
+              <Text style={FONT.SUBTITLE2}>가입 승인</Text>
+            </Link>
+          </li>
         </Items>
         <Bottom>
           {!isLoggedIn && (
