@@ -58,6 +58,7 @@ const CharacterUser = ({ name }: { name: string }) => {
           {isOpenCreateModal && (
             <UserCreateCharacterModal
               setIsOpenCreateModal={setIsOpenCreateModal}
+              name={name}
             />
           )}
           <IconWrapper onClick={handleClickCreateModal}>
