@@ -38,10 +38,10 @@ const UserCreateCharacterModal = ({
           user.name.toLowerCase().includes(value.toLowerCase())
         );
 
-  const handleClickEditUserChar = () => {
-    // mutate({ id: Date.now(), character_name: value, permissions: checkedList });
-    // reset();
-    // checkReset();
+  const handleClickEditUserChar = (id: number) => {
+    mutate({ id: id, character: name });
+    reset();
+    checkReset();
   };
 
   return (
@@ -94,7 +94,7 @@ const UserCreateCharacterModal = ({
           content={'추가'}
           color={COLOR.GREEN4}
           onClick={() => {
-            handleClickEditUserChar();
+            checkedList.map((user) => handleClickEditUserChar(user.id));
             setIsOpenCreateModal(false);
           }}
         />
