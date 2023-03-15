@@ -59,7 +59,7 @@ const NavBar = () => {
       className={`text-white ease-in-out duration-200 ${
         width ? 'translate-x-0' : '-translate-x-0'
       }`}
-      width={width}
+      open={width}
     >
       {width ? (
         <>
@@ -263,10 +263,6 @@ const NavBar = () => {
       )}
     </Wrapper>
   );
-  // )
-  // : (
-  //   <Open onClick={() => setWidth(true)}>열기</Open>
-  // );
 };
 
 export default NavBar;
