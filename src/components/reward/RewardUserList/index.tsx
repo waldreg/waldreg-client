@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
-import useRewardTags from '../../../hooks/reward/useRewardTags';
-import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
-
-import RewardTagCreateModal from '../../../components/reward/RewardTagCreateModal';
 
 import { Top } from '../../../components/character/CharacterList/style';
 import { Title } from '../../../components/common/pagetitle/style';
@@ -13,27 +9,14 @@ import { PlusIcon } from '../../../components/Icons/SettingIcons';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
-import { RoundDelIcon, RoundEditIcon } from '../../Icons/BasicIcons';
-import { RewardWithId } from '../../../interfaces/reward';
+
+import UserCreateRewardModal from '../UserCreateRewardModal';
 
 const RewardUserList = () => {
-  const rewards = useRewardTags();
-  const deleteMutation = useDeleteRewardTag();
-
-  const handleClickDelete = (id: number) => {
-    deleteMutation.mutate(id);
-  };
-
-  const [curReward, setCurReward] = useState<RewardWithId>();
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
-  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
 
   const handleClickCreateModal = () => {
     setIsOpenCreateModal(!isOpenCreateModal);
-  };
-
-  const handleClickEditModal = () => {
-    setIsOpenEditModal(!isOpenEditModal);
   };
 
   return (
@@ -45,29 +28,8 @@ const RewardUserList = () => {
         </IconWrapper>
       </Top>
       {isOpenCreateModal && (
-        <RewardTagCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
+        <UserCreateRewardModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
-
-      <Tags>
-        {rewards?.length ? (
-          rewards?.map((reward) => (
-            <Tag key={reward.reward_tag_id}>
-              <Text style={FONT.SUBTITLE3}>
-                <Title>{reward.reward_tag_title}</Title>
-                <Point>{reward.reward_point}</Point>
-              </Text>
-
-              <IconWrapper
-                onClick={() => handleClickDelete(reward.reward_tag_id)}
-              >
-                <RoundDelIcon />
-              </IconWrapper>
-            </Tag>
-          ))
-        ) : (
-          <div style={FONT.SUBTITLE1}>상벌점 태그가 없어요</div>
-        )}
-      </Tags>
     </Container>
   );
 };
@@ -84,30 +46,5 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
 `;
-
-const Tags = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const Tag = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const Text = styled.div`
-  width: 100%;
-  padding: 1.5rem;
-
-  border-radius: 0.5rem;
-
-  display: flex;
-  justify-content: space-between;
-
-  background: ${COLOR.GRAY1};
-`;
-
-const Point = styled.div``;
 
 export default RewardUserList;

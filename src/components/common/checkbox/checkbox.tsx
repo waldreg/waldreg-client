@@ -12,6 +12,7 @@ export interface IProps {
 export interface UsersProps {
   data: User[];
   updateCheckList: any;
+  type?: string;
 }
 
 export const PermissionCheckBox = (props: IProps) => {
@@ -33,7 +34,7 @@ export const PermissionCheckBox = (props: IProps) => {
 
 export const UserCheckBox = (props: UsersProps) => {
   return (
-    <UserItems>
+    <UserItems type={props.type}>
       {props.data.map((item: User) => {
         return (
           <UserItem key={item.user_id}>
@@ -56,11 +57,15 @@ const PermissionItems = styled.div`
   overflow: auto;
 `;
 
-const UserItems = styled.div`
+const UserItems = styled.div<{ type: any }>`
   width: 100%;
-  display: flex;
+  display: ${(props) => (props.type === 'grid' ? 'grid' : 'flex')};
   flex-direction: column;
   gap: 1rem;
+
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  column-gap: 1rem;
 `;
 
 const UserItem = styled.div`
