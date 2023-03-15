@@ -4,11 +4,9 @@ import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
 import { useInput } from '../../../hooks/common/useInput';
 
 import Modal from '../../common/modal';
-import { InputLine } from '../../common/inputs/input_line';
 import { InputFillThin } from '../../../components/common/inputs/input_fill';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
-import useInputs from '../../../hooks/common/useInputs';
 
 const RewardTagCreateModal = ({
   setIsOpenCreateModal,
@@ -17,15 +15,16 @@ const RewardTagCreateModal = ({
 }) => {
   const createMutation = useCreateRewardTag();
 
-  const [form, onChange, reset] = useInputs({
-    name: '',
-    point: '',
-  });
-  const { name, point } = form;
+  const name = useInput('');
+  const point = useInput('');
 
   const handleClickSubmit = () => {
-    createMutation.mutate({ reward_tag_title: name, reward_point: point });
-    reset();
+    createMutation.mutate({
+      reward_tag_title: name.value,
+      reward_point: point.value,
+    });
+    name.reset();
+    point.reset();
   };
 
   return (
@@ -35,16 +34,16 @@ const RewardTagCreateModal = ({
     >
       <InputWrapper>
         <InputFillThin
-          value={name}
+          value={name.value}
           placeholder={'상벌점 이름'}
-          onChange={onChange}
-          reset={reset}
+          onChange={name.handleChangeInput}
+          reset={name.reset}
         />
         <InputFillThin
-          value={point}
+          value={point.value}
           placeholder={'상벌점 점수'}
-          onChange={onChange}
-          reset={reset}
+          onChange={point.handleChangeInput}
+          reset={point.reset}
         />
       </InputWrapper>
 

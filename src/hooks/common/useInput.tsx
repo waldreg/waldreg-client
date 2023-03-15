@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useEffect } from 'react';
 
-export const useInput = (initialState: string) => {
+export const useInput = (initialState: any) => {
   const [value, setValue] = useState(initialState);
   useEffect(() => setValue(initialState), [initialState]);
 
