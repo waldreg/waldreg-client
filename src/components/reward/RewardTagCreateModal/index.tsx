@@ -8,6 +8,7 @@ import { InputLine } from '../../common/inputs/input_line';
 import { InputFillThin } from '../../../components/common/inputs/input_fill';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
+import useInputs from '../../../hooks/common/useInputs';
 
 const RewardTagCreateModal = ({
   setIsOpenCreateModal,
@@ -16,10 +17,14 @@ const RewardTagCreateModal = ({
 }) => {
   const createMutation = useCreateRewardTag();
 
-  const { value, handleChangeInput, reset } = useInput('');
+  const [form, onChange, reset] = useInputs({
+    name: '',
+    point: '',
+  });
+  const { name, point } = form;
 
   const handleClickSubmit = () => {
-    createMutation.mutate({ reward_tag_title: value, reward_point: -2 });
+    createMutation.mutate({ reward_tag_title: name, reward_point: point });
     reset();
   };
 
@@ -30,9 +35,15 @@ const RewardTagCreateModal = ({
     >
       <InputWrapper>
         <InputFillThin
-          value={value}
+          value={name}
           placeholder={'상벌점 이름'}
-          onChange={handleChangeInput}
+          onChange={onChange}
+          reset={reset}
+        />
+        <InputFillThin
+          value={point}
+          placeholder={'상벌점 점수'}
+          onChange={onChange}
           reset={reset}
         />
       </InputWrapper>
@@ -59,6 +70,10 @@ const RewardTagCreateModal = ({
 const InputWrapper = styled.div`
   width: 100%;
   padding-bottom: 0.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 const Buttons = styled.div`
