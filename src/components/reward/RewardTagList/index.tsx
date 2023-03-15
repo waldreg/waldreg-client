@@ -58,7 +58,7 @@ const RewardTagList = () => {
         {rewards?.length ? (
           rewards?.map((reward) => (
             <Tag key={reward.reward_tag_id}>
-              <Text style={FONT.SUBTITLE1}>
+              <Text style={FONT.SUBTITLE2}>
                 <Title>{reward.reward_tag_title}</Title>
                 <Point>{reward.reward_point}</Point>
               </Text>
