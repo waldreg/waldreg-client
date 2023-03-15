@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 
+import { useState } from 'react';
 import { useInput } from '../../../hooks/common/useInput';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
-import useCreateRewardTag from '../../../hooks/reward/useCreateRewardTag';
+
 import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
 import useEditRewardTag from '../../../hooks/reward/useEditRewardTag';
 
-import { InputFillThin } from '../../../components/common/inputs/input_fill';
-
-import COLOR from '../../../constants/color';
 import { ButtonBig } from '../../../components/common/buttons/button_big';
+import { Top } from '../../../components/character/CharacterList/style';
+import { Title } from '../../../components/common/pagetitle/style';
+import { IconWrapper } from '../../../components/character/CharacterList/style';
+
+import { PlusIcon } from '../../../components/Icons/SettingIcons';
+import COLOR from '../../../constants/color';
+import FONT from '../../../constants/fonts';
+import RewardTagCreateModal from '../../../components/reward/RewardTagCreateModal';
 
 const RewardSettingPage = () => {
   const rewards = useRewardTags();
-  const createMutation = useCreateRewardTag();
+
   const deleteMutation = useDeleteRewardTag();
   const editMutation = useEditRewardTag();
-  const { value, handleChangeInput, reset } = useInput('');
-
-  const handleClickSubmit = () => {
-    createMutation.mutate({ reward_tag_title: value, reward_point: -2 });
-    reset();
-  };
 
   const handleClickDelete = (id: number) => {
     deleteMutation.mutate(id);
@@ -34,21 +34,23 @@ const RewardSettingPage = () => {
     });
   };
 
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
+
+  const handleClickCreateModal = () => {
+    setIsOpenCreateModal(!isOpenCreateModal);
+  };
+
   return (
     <Container>
-      <InputContainer>
-        <InputFillThin
-          value={value}
-          placeholder={'상벌점 태그를 추가하세요'}
-          onChange={handleChangeInput}
-          reset={reset}
-        />
-        <ButtonBig
-          content={'추가하기'}
-          color={COLOR.GREEN4}
-          onClick={handleClickSubmit}
-        />
-      </InputContainer>
+      <Top>
+        <Title style={FONT.HEADING}>상벌점 태그</Title>
+        <IconWrapper onClick={handleClickCreateModal}>
+          <PlusIcon />
+        </IconWrapper>
+      </Top>
+      {isOpenCreateModal && (
+        <RewardTagCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
+      )}
       {rewards?.length ? (
         rewards?.map((reward) => (
           <div key={reward.reward_tag_id}>
