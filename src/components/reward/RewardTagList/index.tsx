@@ -14,6 +14,7 @@ import { PlusIcon } from '../../../components/Icons/SettingIcons';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
+import { RoundDelIcon, RoundEditIcon } from '../../Icons/BasicIcons';
 
 const RewardTagList = () => {
   const rewards = useRewardTags();
@@ -49,24 +50,30 @@ const RewardTagList = () => {
       {isOpenCreateModal && (
         <RewardTagCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
-      {rewards?.length ? (
-        rewards?.map((reward) => (
-          <div key={reward.reward_tag_id}>
-            <div>
-              {reward.reward_tag_title}
-              {reward.reward_point}
-            </div>
-            <button onClick={() => handleClickDelete(reward.reward_tag_id)}>
-              삭제하기
-            </button>
-            <button onClick={() => handleClickEdit(reward.reward_tag_id)}>
-              수정하기
-            </button>
-          </div>
-        ))
-      ) : (
-        <div>상벌점 태그가 없어요</div>
-      )}
+      <Tags>
+        {rewards?.length ? (
+          rewards?.map((reward) => (
+            <Tag key={reward.reward_tag_id}>
+              <Text style={FONT.SUBTITLE3}>
+                <Title>{reward.reward_tag_title}</Title>
+                <Point>{reward.reward_point}</Point>
+              </Text>
+              <IconWrapper
+                onClick={() => handleClickEdit(reward.reward_tag_id)}
+              >
+                <RoundEditIcon />
+              </IconWrapper>
+              <IconWrapper
+                onClick={() => handleClickDelete(reward.reward_tag_id)}
+              >
+                <RoundDelIcon />
+              </IconWrapper>
+            </Tag>
+          ))
+        ) : (
+          <div style={FONT.SUBTITLE1}>상벌점 태그가 없어요</div>
+        )}
+      </Tags>
     </Container>
   );
 };
@@ -81,8 +88,32 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 2rem;
 `;
+
+const Tags = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const Tag = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const Text = styled.div`
+  width: 100%;
+  padding: 1.5rem;
+
+  border-radius: 0.5rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  background: ${COLOR.GRAY1};
+`;
+
+const Point = styled.div``;
 
 export default RewardTagList;
