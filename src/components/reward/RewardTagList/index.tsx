@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
 import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
-import useEditRewardTag from '../../../hooks/reward/useEditRewardTag';
 
 import RewardTagCreateModal from '../../../components/reward/RewardTagCreateModal';
 
@@ -15,28 +14,27 @@ import { PlusIcon } from '../../../components/Icons/SettingIcons';
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 import { RoundDelIcon, RoundEditIcon } from '../../Icons/BasicIcons';
+import RewardTagEditModal from '../RewardTagEditModal';
+import { RewardWithId } from '../../../interfaces/reward';
 
 const RewardTagList = () => {
   const rewards = useRewardTags();
-
   const deleteMutation = useDeleteRewardTag();
-  const editMutation = useEditRewardTag();
 
   const handleClickDelete = (id: number) => {
     deleteMutation.mutate(id);
   };
 
-  const handleClickEdit = (id: number) => {
-    editMutation.mutate({
-      id: id,
-      newReward: { reward_tag_title: 'test', reward_point: 2 },
-    });
-  };
-
+  const [curReward, setCurReward] = useState<RewardWithId>();
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
 
   const handleClickCreateModal = () => {
     setIsOpenCreateModal(!isOpenCreateModal);
+  };
+
+  const handleClickEditModal = () => {
+    setIsOpenEditModal(!isOpenEditModal);
   };
 
   return (
@@ -50,6 +48,12 @@ const RewardTagList = () => {
       {isOpenCreateModal && (
         <RewardTagCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
+      {isOpenEditModal && (
+        <RewardTagEditModal
+          setIsOpenEditModal={setIsOpenEditModal}
+          reward={curReward}
+        />
+      )}
       <Tags>
         {rewards?.length ? (
           rewards?.map((reward) => (
@@ -59,7 +63,10 @@ const RewardTagList = () => {
                 <Point>{reward.reward_point}</Point>
               </Text>
               <IconWrapper
-                onClick={() => handleClickEdit(reward.reward_tag_id)}
+                onClick={() => {
+                  handleClickEditModal();
+                  setCurReward(reward);
+                }}
               >
                 <RoundEditIcon />
               </IconWrapper>
