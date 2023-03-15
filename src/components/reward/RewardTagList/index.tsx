@@ -111,7 +111,7 @@ const Tag = styled.div`
 
 const Text = styled.div`
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 1.4rem 1rem;
 
   border-radius: 0.5rem;
 
