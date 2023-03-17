@@ -16,11 +16,13 @@ export interface UserRewards {
   name: string;
   user_id: string;
   reward: number;
-  reward_infos: {
-    reward_id: number;
-    reward_tag_id: number;
-    reward_tag_title: string;
-    reward_presented_at: string;
-    reward_point: number;
-  };
+  reward_infos: RewardInfos[];
+}
+
+export interface RewardInfos {
+  reward_id: number;
+  reward_tag_id: number;
+  reward_tag_title: string;
+  reward_presented_at: string;
+  reward_point: number;
 }
