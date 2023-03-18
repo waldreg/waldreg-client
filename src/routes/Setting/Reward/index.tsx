@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import RewardTagList from '../../../components/reward/RewardTagList';
 import RewardUserList from '../../../components/reward/RewardUserList';
+import RewardUser from '../../../components/reward/RewardUser';
 
 const RewardSettingPage = () => {
+  const [user, setUser] = useState<number>(1);
+
   return (
     <>
-      <RewardUserList />
       <RewardTagList />
+      <RewardUserList setUser={setUser} />
+      <RewardUser user={user} />
     </>
   );
 };
