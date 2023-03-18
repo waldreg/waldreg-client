@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
+import useUserList from '../../../hooks/user/useUserList';
+
+import { User } from '../../../interfaces/user';
 
 import { Top } from '../../../components/character/CharacterList/style';
 import { Title } from '../../../components/common/pagetitle/style';
@@ -11,8 +14,11 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 import UserCreateRewardModal from '../UserCreateRewardModal';
+import { UserRewards } from '../../user/UserRewards';
 
-const RewardUserList = () => {
+const RewardUserList = ({ setUser }: { setUser: any }) => {
+  const userList = useUserList(1, 50)?.users;
+
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
   const handleClickCreateModal = () => {
@@ -22,7 +28,7 @@ const RewardUserList = () => {
   return (
     <Container>
       <Top>
-        <Title style={FONT.HEADING}>상벌점 목록</Title>
+        <Title style={FONT.HEADING}>상벌점 관리</Title>
         <IconWrapper onClick={handleClickCreateModal}>
           <PlusIcon />
         </IconWrapper>
@@ -30,12 +36,23 @@ const RewardUserList = () => {
       {isOpenCreateModal && (
         <UserCreateRewardModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
+      <UserItems>
+        {userList?.length === 0 || userList === undefined ? (
+          <></>
+        ) : (
+          userList.map((user: User) => (
+            <UserItem key={user.id} onClick={() => setUser(user.id)}>
+              <UserRewards user={user} size={'small'} />
+            </UserItem>
+          ))
+        )}
+      </UserItems>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
   height: 100%;
   background: ${COLOR.WHITE};
 
@@ -45,6 +62,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
+
+const UserItems = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  overflow: auto;
+`;
+
+const UserItem = styled.div`
+  width: 100%;
+  height: 100%;
+
+  cursor: pointer;
 `;
 
 export default RewardUserList;
