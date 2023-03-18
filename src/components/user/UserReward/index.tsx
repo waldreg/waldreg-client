@@ -8,7 +8,13 @@ import { Tags, Tag, Text } from '../../reward/RewardTagList/style';
 import { RoundDelIcon } from '../../Icons/BasicIcons';
 import { IconWrapper } from '../../character/CharacterList/style';
 
-export const UserReward = ({ user }: { user?: UserRewards }) => {
+export const UserReward = ({
+  user,
+  icon,
+}: {
+  user?: UserRewards;
+  icon?: boolean;
+}) => {
   return (
     <Container>
       <Content>
@@ -41,9 +47,11 @@ export const UserReward = ({ user }: { user?: UserRewards }) => {
                 {reward.reward_presented_at.split('T')[0]}
               </Date>
             </Text>
-            <IconWrapper>
-              <RoundDelIcon />
-            </IconWrapper>
+            {icon && (
+              <IconWrapper>
+                <RoundDelIcon />
+              </IconWrapper>
+            )}
           </Tag>
         ))}
       </Tags>
