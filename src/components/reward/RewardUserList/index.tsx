@@ -49,7 +49,11 @@ const RewardUserList = ({ setUser }: { setUser: any }) => {
           <></>
         ) : (
           userList.map((user: User) => (
-            <UserItem key={user.id} onClick={() => setUser(user.id)}>
+            <UserItem
+              key={user.id}
+              onClick={() => setUser(user.id)}
+              positive={user.reward_point >= 0}
+            >
               <UserRewards user={user} size={'small'} />
             </UserItem>
           ))
@@ -83,10 +87,14 @@ const UserItems = styled.div`
   overflow: auto;
 `;
 
-const UserItem = styled.div`
+const UserItem = styled.div<{ positive: boolean }>`
   width: 100%;
   height: 100%;
 
+  border-radius: 0.5rem;
+
+  background: ${(props) => (props.positive ? COLOR.GREEN1 : COLOR.RED1)};
+  color: ${(props) => (props.positive ? COLOR.GREEN4 : COLOR.RED2)};
   cursor: pointer;
 `;
 
