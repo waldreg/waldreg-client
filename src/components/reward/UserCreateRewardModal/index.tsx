@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+import { useState } from 'react';
+
 import useUserList from '../../../hooks/user/useUserList';
-import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
+import useRewardTags from '../../../hooks/reward/useRewardTags';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
 
@@ -14,6 +16,10 @@ import COLOR from '../../../constants/color';
 import { Title } from '../../common/pagetitle/style';
 
 import FONT from '../../../constants/fonts';
+import { RewardWithId } from '../../../interfaces/reward';
+import useCreateUserReward from '../../../hooks/reward/useCreateUserReward';
+
+import { waldregAxios } from '../../../apis/axios';
 
 const UserCreateRewardModal = ({
   setIsOpenCreateModal,
@@ -21,9 +27,12 @@ const UserCreateRewardModal = ({
   setIsOpenCreateModal: any;
 }) => {
   const userList = useUserList(1, 50)?.users;
+  const rewardTags = useRewardTags();
 
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
+
+  const [selectTag, setSelectTag] = useState<RewardWithId>();
 
   const searchUserList =
     value === ''
@@ -31,6 +40,12 @@ const UserCreateRewardModal = ({
       : userList?.filter((user) =>
           user.name.toLowerCase().includes(value.toLowerCase())
         );
+
+  const handleClickSubmit = async (userId: number) => {
+    await waldregAxios.get(
+      `/reward-tag/users?id=${userId}&reward-tag-id=${selectTag?.reward_tag_id}`
+    );
+  };
 
   return (
     <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={'big'}>
@@ -45,7 +60,13 @@ const UserCreateRewardModal = ({
       </Top>
 
       <Top>
-        <div>태그명 드롭다운</div>
+        <div>
+          {rewardTags?.map((tag) => (
+            <div key={tag.reward_tag_id} onClick={() => setSelectTag(tag)}>
+              {tag.reward_tag_title}
+            </div>
+          ))}
+        </div>
       </Top>
 
       <UserItems>
@@ -65,11 +86,14 @@ const UserCreateRewardModal = ({
           {checkedList.length === 0 ? (
             <></>
           ) : checkedList.length === 1 ? (
-            <div>{checkedList[0].name} 유저에게 어쩌구 태그를 부여합니다</div>
+            <div>
+              {checkedList[0].name} 유저에게 {selectTag?.reward_tag_title}{' '}
+              태그를 부여합니다
+            </div>
           ) : (
             <div>
-              {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저에게
-              어쩌구 태그를 부여합니다
+              {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저에게{' '}
+              {selectTag?.reward_tag_title} 태그를 부여합니다
             </div>
           )}
         </div>
@@ -85,6 +109,7 @@ const UserCreateRewardModal = ({
           content={'추가'}
           color={COLOR.GREEN4}
           onClick={() => {
+            checkedList.map((user) => handleClickSubmit(user.id));
             setIsOpenCreateModal(false);
           }}
         />
