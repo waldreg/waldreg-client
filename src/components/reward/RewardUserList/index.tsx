@@ -17,8 +17,11 @@ import FONT from '../../../constants/fonts';
 import UserCreateRewardModal from '../UserCreateRewardModal';
 import { UserRewards } from '../../user/UserRewards';
 
+import useUserReward from '../../../hooks/reward/useUserReward';
+
 const RewardUserList = ({ setUser }: { setUser: any }) => {
   const userList = useUserList(1, 50)?.users;
+
   const delRewardsMutation = useDeleteAllUserReward();
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
@@ -90,6 +93,7 @@ const UserItems = styled.div`
 const UserItem = styled.div<{ positive: boolean }>`
   width: 100%;
   height: 100%;
+  padding: 0 0.5rem;
 
   border-radius: 0.5rem;
 
