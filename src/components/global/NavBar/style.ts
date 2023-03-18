@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
 
-const Wrapper = styled.div<{ width: boolean }>`
-  width: ${(props) => (props.width ? `18rem` : `0`)};
+const Wrapper = styled.div<{ open: boolean }>`
+  width: ${(props) => (props.open ? `18rem` : `0`)};
   height: 100vh;
-  padding: ${(props) => (props.width ? `1.5rem` : `0`)};
+  padding: ${(props) => (props.open ? `1.5rem` : `0`)};
   z-index: 1;
   background: ${COLOR.WHITE};
 `;
