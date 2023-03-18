@@ -18,6 +18,7 @@ import { Title } from '../../common/pagetitle/style';
 import FONT from '../../../constants/fonts';
 import { RewardWithId } from '../../../interfaces/reward';
 import useCreateUserReward from '../../../hooks/reward/useCreateUserReward';
+import useDeleteAllUserReward from '../../../hooks/reward/useDeleteAllUserReward';
 
 import { waldregAxios } from '../../../apis/axios';
 
@@ -28,6 +29,7 @@ const UserCreateRewardModal = ({
 }) => {
   const userList = useUserList(1, 50)?.users;
   const rewardTags = useRewardTags();
+  const delRewardsMutation = useDeleteAllUserReward();
 
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
@@ -67,6 +69,9 @@ const UserCreateRewardModal = ({
             </div>
           ))}
         </div>
+        <button onClick={() => delRewardsMutation.mutate()}>
+          상벌점 초기화
+        </button>
       </Top>
 
       <UserItems>
