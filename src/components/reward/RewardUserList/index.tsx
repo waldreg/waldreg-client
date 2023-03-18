@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { useState } from 'react';
 import useUserList from '../../../hooks/user/useUserList';
+import useDeleteAllUserReward from '../../../hooks/reward/useDeleteAllUserReward';
 
 import { User } from '../../../interfaces/user';
 
@@ -18,6 +19,7 @@ import { UserRewards } from '../../user/UserRewards';
 
 const RewardUserList = ({ setUser }: { setUser: any }) => {
   const userList = useUserList(1, 50)?.users;
+  const delRewardsMutation = useDeleteAllUserReward();
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
@@ -29,9 +31,15 @@ const RewardUserList = ({ setUser }: { setUser: any }) => {
     <Container>
       <Top>
         <Title style={FONT.HEADING}>상벌점 관리</Title>
-        <IconWrapper onClick={handleClickCreateModal}>
-          <PlusIcon />
-        </IconWrapper>
+        <Text
+          onClick={() => delRewardsMutation.mutate()}
+          style={FONT.SUBTITLE1}
+        >
+          상벌점 초기화
+          <IconWrapper onClick={handleClickCreateModal}>
+            <PlusIcon />
+          </IconWrapper>
+        </Text>
       </Top>
       {isOpenCreateModal && (
         <UserCreateRewardModal setIsOpenCreateModal={setIsOpenCreateModal} />
@@ -80,6 +88,13 @@ const UserItem = styled.div`
   height: 100%;
 
   cursor: pointer;
+`;
+
+const Text = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: ${COLOR.GREEN4};
 `;
 
 export default RewardUserList;

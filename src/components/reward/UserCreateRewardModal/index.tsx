@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import 'tw-elements';
 
 import { useState } from 'react';
 
@@ -16,9 +17,6 @@ import COLOR from '../../../constants/color';
 import { Title } from '../../common/pagetitle/style';
 
 import FONT from '../../../constants/fonts';
-import { RewardWithId } from '../../../interfaces/reward';
-import useCreateUserReward from '../../../hooks/reward/useCreateUserReward';
-import useDeleteAllUserReward from '../../../hooks/reward/useDeleteAllUserReward';
 
 import { waldregAxios } from '../../../apis/axios';
 
@@ -29,12 +27,11 @@ const UserCreateRewardModal = ({
 }) => {
   const userList = useUserList(1, 50)?.users;
   const rewardTags = useRewardTags();
-  const delRewardsMutation = useDeleteAllUserReward();
 
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
 
-  const [selectTag, setSelectTag] = useState<RewardWithId>();
+  const [selectTag, setSelectTag] = useState(rewardTags && rewardTags[0]);
 
   const searchUserList =
     value === ''
@@ -51,91 +48,161 @@ const UserCreateRewardModal = ({
 
   return (
     <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={'big'}>
-      <Top>
-        <Title style={FONT.HEADING}>유저 목록</Title>
-        <InputFillThin
-          value={value}
-          placeholder={'유저 이름'}
-          onChange={handleChangeInput}
-          reset={reset}
-        />
-      </Top>
-
-      <Top>
-        <div>
-          {rewardTags?.map((tag) => (
-            <div key={tag.reward_tag_id} onClick={() => setSelectTag(tag)}>
-              {tag.reward_tag_title}
-            </div>
-          ))}
-        </div>
-        <button onClick={() => delRewardsMutation.mutate()}>
-          상벌점 초기화
-        </button>
-      </Top>
-
-      <UserItems>
-        {searchUserList?.length === 0 || searchUserList === undefined ? (
-          <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
-        ) : (
-          <UserCheckBox
-            data={searchUserList || []}
-            updateCheckList={updateCheckList}
-            type="grid"
+      <Content>
+        <Top>
+          <Title style={FONT.HEADING}>유저 목록</Title>
+          <InputFillThin
+            value={value}
+            placeholder={'유저 이름'}
+            onChange={handleChangeInput}
+            reset={reset}
           />
-        )}
-      </UserItems>
+        </Top>
 
-      <Description>
-        <div style={FONT.SUBTITLE1}>
-          {checkedList.length === 0 ? (
-            <></>
-          ) : checkedList.length === 1 ? (
-            <div>
-              {checkedList[0].name} 유저에게 {selectTag?.reward_tag_title}{' '}
-              태그를 부여합니다
-            </div>
+        <DropDown>
+          <RewardBtn
+            style={FONT.SUBTITLE1}
+            data-bs-toggle="collapse"
+            data-bs-target="#Menu"
+            aria-controls="Menu"
+          >
+            {selectTag
+              ? selectTag.reward_tag_title
+              : '상벌점 태그를 선택하세요'}
+          </RewardBtn>
+
+          <RewardItems className="accordion-collapse collapse" id="Menu">
+            {rewardTags?.map((tag) => (
+              <RewardItem
+                style={FONT.SUBTITLE1}
+                key={tag.reward_tag_id}
+                onClick={() => setSelectTag(tag)}
+                data-bs-toggle="collapse"
+                data-bs-target="#Menu"
+                className="overflow-hidden text-ellipsis whitespace-nowrap transition duration-300 ease-in-out"
+                id={`menu-item-${tag.reward_tag_id}`}
+              >
+                {tag.reward_tag_title}
+              </RewardItem>
+            ))}
+          </RewardItems>
+        </DropDown>
+        <UserItems>
+          {searchUserList?.length === 0 || searchUserList === undefined ? (
+            <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
           ) : (
-            <div>
-              {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저에게{' '}
-              {selectTag?.reward_tag_title} 태그를 부여합니다
-            </div>
+            <UserCheckBox
+              data={searchUserList || []}
+              updateCheckList={updateCheckList}
+              type="grid"
+            />
           )}
-        </div>
-      </Description>
+        </UserItems>
+      </Content>
 
-      <Buttons>
-        <ButtonBig
-          content={'취소'}
-          color={COLOR.GRAY2}
-          onClick={() => setIsOpenCreateModal(false)}
-        />
-        <ButtonBig
-          content={'추가'}
-          color={COLOR.GREEN4}
-          onClick={() => {
-            checkedList.map((user) => handleClickSubmit(user.id));
-            setIsOpenCreateModal(false);
-          }}
-        />
-      </Buttons>
+      <Bottom>
+        <Description>
+          <div style={FONT.SUBTITLE1}>
+            {checkedList.length === 0 ? (
+              <></>
+            ) : checkedList.length === 1 ? (
+              <div>
+                {checkedList[0].name} 유저에게 {selectTag?.reward_tag_title}{' '}
+                태그를 부여합니다
+              </div>
+            ) : (
+              <div>
+                {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저에게{' '}
+                {selectTag?.reward_tag_title} 태그를 부여합니다
+              </div>
+            )}
+          </div>
+        </Description>
+
+        <Buttons>
+          <ButtonBig
+            content={'취소'}
+            color={COLOR.GRAY2}
+            onClick={() => setIsOpenCreateModal(false)}
+          />
+          <ButtonBig
+            content={'추가'}
+            color={COLOR.GREEN4}
+            onClick={() => {
+              checkedList.map((user) => handleClickSubmit(user.id));
+              setIsOpenCreateModal(false);
+            }}
+          />
+        </Buttons>
+      </Bottom>
     </Modal>
   );
 };
 
 const Top = styled.div`
   width: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: 6rem;
   display: flex;
   align-items: center;
   gap: 5rem;
 `;
 
+const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const DropDown = styled.div`
+  position: absolute;
+  top: 6.5rem;
+
+  width: 10rem;
+  padding-bottom: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1rem;
+`;
+
+const RewardBtn = styled.button`
+  width: 100%;
+  padding: 0.8rem 2rem;
+
+  text-align: left;
+
+  border-radius: 0.5rem;
+  background: ${COLOR.GRAY0};
+`;
+
+const RewardItems = styled.div`
+  width: 100%;
+
+  border-radius: 0.5rem;
+  position: relative;
+`;
+
+const RewardItem = styled.div`
+  padding: 0.8rem 2rem;
+  background: ${COLOR.GRAY0};
+
+  cursor: pointer;
+`;
+
 const UserItems = styled.div`
   width: 100%;
-  height: 100%;
 
   overflow: auto;
+`;
+
+const Bottom = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Description = styled.div`
