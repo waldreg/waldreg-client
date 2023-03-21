@@ -23,7 +23,12 @@ export const UserReward = ({
           <UserId style={FONT.SUBTITLE2}>{user?.user_id}</UserId>
         </Name>
         <Point>
-          <div style={FONT.NUMBER1}>{user?.reward}</div>
+          <Num
+            style={FONT.NUMBER1}
+            positive={user?.reward === undefined ? true : user?.reward >= 0}
+          >
+            {user?.reward}
+          </Num>
           <div style={FONT.SUBTITLE2}>점</div>
         </Point>
       </Content>
@@ -96,6 +101,10 @@ const Point = styled.div`
   justify-content: center;
 
   gap: 1rem;
+`;
+
+const Num = styled.div<{ positive: boolean }>`
+  color: ${(props) => (props.positive ? COLOR.GREEN4 : COLOR.RED2)};
 `;
 
 const Left = styled.div`

@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import useUserList from '../../../hooks/user/useUserList';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
+import useCreateUserReward from '../../../hooks/reward/useCreateUserReward';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
 
@@ -18,8 +19,6 @@ import { Title } from '../../common/pagetitle/style';
 
 import FONT from '../../../constants/fonts';
 
-import { waldregAxios } from '../../../apis/axios';
-
 const UserCreateRewardModal = ({
   setIsOpenCreateModal,
 }: {
@@ -32,6 +31,8 @@ const UserCreateRewardModal = ({
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
 
   const [selectTag, setSelectTag] = useState(rewardTags && rewardTags[0]);
+  // const [userArr, setUserArr] = useState<number[]>([]);
+  let userArr: number[] = [];
 
   const searchUserList =
     value === ''
@@ -40,10 +41,13 @@ const UserCreateRewardModal = ({
           user.name.toLowerCase().includes(value.toLowerCase())
         );
 
-  const handleClickSubmit = async (userId: number) => {
-    await waldregAxios.get(
-      `/reward-tag/users?id=${userId}&reward-tag-id=${selectTag?.reward_tag_id}`
-    );
+  const createMutation = useCreateUserReward(
+    userArr,
+    selectTag?.reward_tag_id || 1
+  );
+
+  const handleClickSubmit = () => {
+    createMutation.mutate();
   };
 
   return (
@@ -129,7 +133,8 @@ const UserCreateRewardModal = ({
             content={'추가'}
             color={COLOR.GREEN4}
             onClick={() => {
-              checkedList.map((user) => handleClickSubmit(user.id));
+              checkedList.map((user) => userArr.push(user.id));
+              handleClickSubmit();
               setIsOpenCreateModal(false);
             }}
           />
