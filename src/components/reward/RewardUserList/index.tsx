@@ -17,8 +17,6 @@ import FONT from '../../../constants/fonts';
 import UserCreateRewardModal from '../UserCreateRewardModal';
 import { UserRewards } from '../../user/UserRewards';
 
-import useUserReward from '../../../hooks/reward/useUserReward';
-
 const RewardUserList = ({ setUser }: { setUser: any }) => {
   const userList = useUserList(1, 50)?.users;
 
@@ -34,15 +32,17 @@ const RewardUserList = ({ setUser }: { setUser: any }) => {
     <Container>
       <Top>
         <Title style={FONT.HEADING}>상벌점 관리</Title>
-        <Text
-          onClick={() => delRewardsMutation.mutate()}
-          style={FONT.SUBTITLE1}
-        >
-          상벌점 초기화
+        <Btns>
+          <Text
+            onClick={() => delRewardsMutation.mutate()}
+            style={FONT.SUBTITLE1}
+          >
+            상벌점 초기화
+          </Text>
           <IconWrapper onClick={handleClickCreateModal}>
             <PlusIcon />
           </IconWrapper>
-        </Text>
+        </Btns>
       </Top>
       {isOpenCreateModal && (
         <UserCreateRewardModal setIsOpenCreateModal={setIsOpenCreateModal} />
@@ -102,10 +102,13 @@ const UserItem = styled.div<{ positive: boolean }>`
   cursor: pointer;
 `;
 
-const Text = styled.button`
+const Btns = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+`;
+
+const Text = styled.button`
   color: ${COLOR.GREEN4};
 `;
 

@@ -4,11 +4,17 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 import { UserRewards } from '../../../interfaces/reward';
 
-import { Tags, Tag, Text } from '../../reward/RewardTagList/style';
+import { Tag, Text } from '../../reward/RewardTagList/style';
 import { RoundDelIcon } from '../../Icons/BasicIcons';
 import { IconWrapper } from '../../character/CharacterList/style';
 
-export const UserReward = ({ user }: { user?: UserRewards }) => {
+export const UserReward = ({
+  user,
+  icon,
+}: {
+  user?: UserRewards;
+  icon?: boolean;
+}) => {
   return (
     <Container>
       <Content>
@@ -17,7 +23,12 @@ export const UserReward = ({ user }: { user?: UserRewards }) => {
           <UserId style={FONT.SUBTITLE2}>{user?.user_id}</UserId>
         </Name>
         <Point>
-          <div style={FONT.NUMBER1}>{user?.reward}</div>
+          <Num
+            style={FONT.NUMBER1}
+            positive={user?.reward === undefined ? true : user?.reward >= 0}
+          >
+            {user?.reward}
+          </Num>
           <div style={FONT.SUBTITLE2}>점</div>
         </Point>
       </Content>
@@ -41,9 +52,11 @@ export const UserReward = ({ user }: { user?: UserRewards }) => {
                 {reward.reward_presented_at.split('T')[0]}
               </Date>
             </Text>
-            <IconWrapper>
-              <RoundDelIcon />
-            </IconWrapper>
+            {icon && (
+              <IconWrapper>
+                <RoundDelIcon />
+              </IconWrapper>
+            )}
           </Tag>
         ))}
       </Tags>
@@ -53,6 +66,7 @@ export const UserReward = ({ user }: { user?: UserRewards }) => {
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -90,11 +104,26 @@ const Point = styled.div`
   gap: 1rem;
 `;
 
+const Num = styled.div<{ positive: boolean }>`
+  color: ${(props) => (props.positive ? COLOR.GREEN4 : COLOR.RED2)};
+`;
+
 const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+`;
+
+const Tags = styled.div`
+  width: 100%;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  overflow: auto;
 `;
 
 const PointTag = styled.div<{ positive: boolean }>`

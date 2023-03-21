@@ -209,8 +209,9 @@ const NavBar = () => {
               </li>
               <li className="relative">
                 <Link
-                  to="/"
+                  to="/reward"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
+                  selected={location === '/reward'}
                 >
                   <MedalIcon />
                   <Text style={FONT.SUBTITLE2}>상벌점</Text>
