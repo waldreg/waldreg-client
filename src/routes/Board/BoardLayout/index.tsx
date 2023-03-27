@@ -5,7 +5,7 @@ import { Container, Title } from "./style";
 const BoardLayout = () => {
   return (
     <Container>
-      <Title style={FONT.HEADING}>공지사항</Title>
+      <Title style={FONT.HEADING}>게시판 이름</Title>
       <Outlet />
     </Container>
   );

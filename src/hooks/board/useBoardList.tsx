@@ -1,6 +1,6 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "./../../apis/axios";
-import { boardCategoryKeys, boardKeys } from "../../types/boardKey";
+import { boardKeys } from "../../types/boardKey";
 import { BoardLists } from "../../interfaces/board";
 
 async function getBoardList(
@@ -23,9 +23,17 @@ export function useBoardList(
   from: number,
   to: number
 ): UseBoardList {
+  const queryClient = useQueryClient();
+
   const { data: boardList } = useQuery<BoardLists>(
     [boardKeys.withCategory, category_id],
-    () => getBoardList(category_id, from, to)
+    () => getBoardList(category_id, from, to),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([boardKeys.withCategory, category_id]);
+      },
+    }
   );
+  console.log(boardList);
   return { boardList };
 }
