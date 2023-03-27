@@ -27,13 +27,13 @@ export function useBoardList(
 
   const { data: boardList } = useQuery<BoardLists>(
     [boardKeys.withCategory, category_id],
-    () => getBoardList(category_id, from, to),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([boardKeys.withCategory, category_id]);
-      },
-    }
+    () => getBoardList(category_id, from, to)
+    // {
+    //   onSuccess: () => {
+    //     queryClient.invalidateQueries([boardKeys.withCategory, category_id]);
+    //   },
+    // }
   );
-  console.log(boardList);
+
   return { boardList };
 }
