@@ -23,16 +23,9 @@ export function useBoardList(
   from: number,
   to: number
 ): UseBoardList {
-  const queryClient = useQueryClient();
-
   const { data: boardList } = useQuery<BoardLists>(
-    [boardKeys.withCategory, category_id],
+    boardKeys.withCategory(category_id),
     () => getBoardList(category_id, from, to)
-    // {
-    //   onSuccess: () => {
-    //     queryClient.invalidateQueries([boardKeys.withCategory, category_id]);
-    //   },
-    // }
   );
 
   return { boardList };
