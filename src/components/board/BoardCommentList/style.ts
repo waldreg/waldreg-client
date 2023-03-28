@@ -2,12 +2,12 @@ import styled from "styled-components";
 import COLOR from "../../../constants/color";
 
 const CommentDetail = styled.div`
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 `;
 
 const CommentInformation = styled.div`
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 0.4rem;
   color: ${COLOR.GRAY3};
 `;
 

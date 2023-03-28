@@ -11,7 +11,7 @@ const BoardTitleInput = styled.input`
 
 const BoardContentTextArea = styled.textarea`
   width: 100%;
-  height: 20rem;
+  height: 15rem;
   border: 2px solid ${COLOR.GRAY0};
   padding: 1rem;
   border-radius: 0.5rem;

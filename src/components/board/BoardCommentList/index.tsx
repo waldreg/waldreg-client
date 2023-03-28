@@ -16,7 +16,6 @@ const BoardCommentList = () => {
   const { id } = useParams();
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 5);
-
   const commentDelete = useCommentDelete(parseInt(id!!));
 
   return (
