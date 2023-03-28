@@ -8,7 +8,7 @@ interface BoardCategoryProps {
 }
 
 function BoardCategory({ boardCategoryList }: BoardCategoryProps) {
-  const location = useLocation().pathname;
+  const location = useLocation();
 
   return (
     <Items
@@ -23,7 +23,9 @@ function BoardCategory({ boardCategoryList }: BoardCategoryProps) {
             <Link
               to={`board/${category.category_id}`}
               className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
-              selected={location === `/board/${category.category_id}`}
+              selected={location.pathname.startsWith(
+                `/board/${category.category_id}`
+              )}
             >
               <Blank />
               <Text style={FONT.BODY1}>{category.category_name}</Text>

@@ -3,7 +3,7 @@ import COLOR from "../../../constants/color";
 
 const CommentInput = styled.input`
   width: 100%;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   outline: none;
   border: 2px solid ${COLOR.GRAY0};
   border-radius: 0.5rem;
