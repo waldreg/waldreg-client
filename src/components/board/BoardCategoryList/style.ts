@@ -7,7 +7,6 @@ const Category = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.1rem 0;
-  margin: 0.3rem 0;
 `;
 
 const CategoryTitle = styled.div`
@@ -18,4 +17,8 @@ const CategoryButton = styled.button`
   color: ${COLOR.GREEN4};
 `;
 
-export { Category, CategoryTitle, CategoryButton };
+const SettingBlank = styled.div`
+  height: 10px;
+`;
+
+export { Category, CategoryTitle, CategoryButton, SettingBlank };
