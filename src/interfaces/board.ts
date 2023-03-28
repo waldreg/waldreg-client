@@ -1,7 +1,7 @@
 export interface Board {
   id?: number;
   title: string;
-  category: string;
+  category: number;
   content: string;
   author: {
     user_id: string;
