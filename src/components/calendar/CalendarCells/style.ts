@@ -35,17 +35,6 @@ const CalendarCell = styled.div<CalendarCellsProps>`
     border-radius: 50%;
     background-color: ${COLOR.GREEN4};
   }
-
-  :hover {
-    &::before {
-      display: block;
-      width: 2rem;
-      height: 2rem;
-      cursor: pointer;
-      background-color: ${COLOR.WHITE}
-      border-radius: 0.5rem;
-    }
-  }
 `;
 
 const CalendarRow = styled.div`
@@ -55,4 +44,21 @@ const CalendarRow = styled.div`
   height: 5rem;
 `;
 
-export { CalendarCell, CalendarRow };
+const CalendarPlusButton = styled.div`
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.15rem;
+  color: ${COLOR.GREEN4};
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 6%;
+  left: 5%;
+  position: absolute;
+  cursor: pointer;
+  background-color: ${COLOR.WHITE};
+  border: 1px solid ${COLOR.GREEN4};
+  border-radius: 0.4rem;
+  display: block;
+`;
+
+export { CalendarCell, CalendarRow, CalendarPlusButton };
