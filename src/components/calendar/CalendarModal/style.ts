@@ -5,8 +5,10 @@ const DialogBox = styled.dialog`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 30rem;
-  height: 35rem;
+  width: 50%;
+  min-width: 25rem;
+  height: 70%;
+  min-height: 30rem;
   padding: 4rem;
   border: none;
   border-radius: 0.2rem;
