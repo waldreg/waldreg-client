@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import COLOR from "../../../constants/color";
 
 const DialogBox = styled.dialog`
   display: flex;
@@ -28,4 +29,19 @@ const Backdrop = styled.div`
   z-index: 2;
 `;
 
-export { DialogBox, Backdrop };
+const DialogButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const DialogButton = styled.button`
+  width: 100%;
+  height: 3rem;
+  margin: 0 0.3rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: ${COLOR.GRAY1};
+`;
+
+export { DialogBox, Backdrop, DialogButtonBox, DialogButton };
