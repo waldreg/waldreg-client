@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import COLOR from "../../constants/color";
+import COLOR from "../../../constants/color";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -9,7 +9,12 @@ const HomeContainer = styled.div`
   width: 100%;
   height: 85%;
   padding: 2rem;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 `;
 
-export { HomeContainer };
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export { HomeContainer, ButtonContainer };

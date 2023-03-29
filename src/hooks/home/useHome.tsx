@@ -5,7 +5,7 @@ import { waldregAxios as axios } from "./../../apis/axios";
 import { homeKeys } from "./../../types/homeKeys";
 
 async function getHome(): Promise<Home> {
-  const { data } = await axios.get(`/application/home`);
+  const { data } = await axios.get("/application/home");
   return data;
 }
 

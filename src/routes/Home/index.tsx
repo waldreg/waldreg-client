@@ -1,18 +1,16 @@
-import React from "react";
-import Button from "../../components/common/button";
-import { Container } from "../Board/BoardLayout/style";
-import { useHome } from "./../../hooks/home/useHome";
-import { HomeContainer } from "./style";
+import { Routes, Route } from "react-router-dom";
+import HomeUpdate from "../../components/home/HomeUpdate";
+import HomeLayout from "./HomeLayout";
+import HomePage from "./HomePage";
 
 const Home = () => {
-  const { home } = useHome();
-  const handleUpdateButtonClick = () => {};
-
   return (
-    <Container>
-      <HomeContainer>{home?.content}</HomeContainer>
-      <Button onClick={handleUpdateButtonClick}>글 수정하기</Button>
-    </Container>
+    <Routes>
+      <Route element={<HomeLayout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/update" element={<HomeUpdate />} />
+      </Route>
+    </Routes>
   );
 };
 

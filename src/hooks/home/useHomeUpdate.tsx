@@ -3,7 +3,7 @@ import { waldregAxios as axios } from "./../../apis/axios";
 import { homeKeys } from "./../../types/homeKeys";
 
 async function homeUpdate(content: string): Promise<void> {
-  await axios.post(`/application/home`, {
+  await axios.post("/application/home", {
     content: content,
   });
 }
