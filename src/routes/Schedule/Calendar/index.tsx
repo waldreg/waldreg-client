@@ -31,6 +31,12 @@ const Calendar = () => {
   const scheduleData = {
     schedule_title: title,
     schedule_content: content,
+    started_at: "2023-01-24T20:52",
+    finish_at: "2023-01-31T23:59",
+    repeat: {
+      cycle: 123,
+      repeat_finish_at: "2023-12-31T23:59",
+    },
   };
 
   const createMutation = useScheduleCreate(scheduleData);
