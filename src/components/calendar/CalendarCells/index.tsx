@@ -8,7 +8,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { CalendarCell, CalendarCellsStyle } from "./style";
+import { CalendarCell, CalendarRow } from "./style";
 
 type RenderCellsProps = {
   currentMonth: Date;
@@ -26,18 +26,23 @@ const CalendarCells = ({ currentMonth }: RenderCellsProps) => {
 
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
+      const isWeekend = getDay(day) === 0 || getDay(day) === 6;
+      const isToday = isSameDay(day, new Date());
+      const isWithinMonth = day >= monthStart && day <= monthEnd;
+
       days.push(
-        <CalendarCellsStyle
+        <CalendarCell
           key={i}
-          isWeekend={getDay(day) === 0 || getDay(day) === 6}
-          isToday={isSameDay(day, new Date())}
+          isWeekend={isWeekend}
+          isToday={isToday}
+          isWithinMonth={isWithinMonth}
         >
           {format(day, "d")}
-        </CalendarCellsStyle>
+        </CalendarCell>
       );
       day = addDays(day, 1);
     }
-    rows.push(<CalendarCell key={rows.length}>{days}</CalendarCell>);
+    rows.push(<CalendarRow key={rows.length}>{days}</CalendarRow>);
     days = [];
   }
   return <div>{rows}</div>;
