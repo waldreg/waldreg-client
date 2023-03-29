@@ -9,7 +9,14 @@ import {
   startOfWeek,
 } from "date-fns";
 import { useState } from "react";
-import { CalendarCell, CalendarPlusButton, CalendarRow } from "./style";
+import {
+  CalendarCell,
+  CalendarContentTextarea,
+  CalendarPlusButton,
+  CalendarRow,
+  CalendarTitleInput,
+} from "./style";
+import CalendarModal from "./../CalendarModal/index";
 
 type CalendarCellsProps = {
   currentMonth: Date;
@@ -21,6 +28,7 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
   const handleMouseEnter = (index: number) => {
@@ -28,6 +36,10 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
   };
   const handleMouseLeave = () => {
     setHoverIndex(-1);
+  };
+
+  const handlePlusButtonClick = () => {
+    setIsOpenCreateModal(!isOpenCreateModal);
   };
 
   const rows = [];
@@ -50,7 +62,11 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
         >
-          {hoverIndex === index && <CalendarPlusButton>+</CalendarPlusButton>}
+          {hoverIndex === index && (
+            <CalendarPlusButton onClick={handlePlusButtonClick}>
+              +
+            </CalendarPlusButton>
+          )}
           {format(day, "d")}
         </CalendarCell>
       );
@@ -59,7 +75,18 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
     rows.push(<CalendarRow key={rows.length}>{days}</CalendarRow>);
     days = [];
   }
-  return <div>{rows}</div>;
+
+  return (
+    <>
+      <div>{rows}</div>
+      {isOpenCreateModal && (
+        <CalendarModal onClickToggleModal={handlePlusButtonClick}>
+          <CalendarTitleInput type="text" placeholder="제목 없음" />
+          <CalendarContentTextarea placeholder="내용을 추가하세요" />
+        </CalendarModal>
+      )}
+    </>
+  );
 };
 
 export default CalendarCells;
