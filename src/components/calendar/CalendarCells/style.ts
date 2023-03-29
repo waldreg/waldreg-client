@@ -61,28 +61,4 @@ const CalendarPlusButton = styled.div`
   display: block;
 `;
 
-const CalendarTitleInput = styled.input`
-  width: 100%;
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 3rem;
-`;
-
-const CalendarContentTextarea = styled.textarea`
-  width: 100%;
-  height: 100%;
-  font-size: 1.3rem;
-  font-weight: 400;
-  resize: none;
-  border: none;
-  outline: none;
-  padding: 0;
-`;
-
-export {
-  CalendarCell,
-  CalendarRow,
-  CalendarPlusButton,
-  CalendarTitleInput,
-  CalendarContentTextarea,
-};
+export { CalendarCell, CalendarRow, CalendarPlusButton };

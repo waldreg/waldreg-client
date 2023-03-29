@@ -3,10 +3,11 @@ import styled from "styled-components";
 const DialogBox = styled.dialog`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  width: 36rem;
-  height: 20rem;
-  padding: 5rem;
+  width: 30rem;
+  height: 35rem;
+  padding: 4rem;
   border: none;
   border-radius: 0.2rem;
   box-shadow: 0 0 3rem rgba(30, 30, 30, 0.185);

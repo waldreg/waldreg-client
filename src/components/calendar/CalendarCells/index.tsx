@@ -9,26 +9,24 @@ import {
   startOfWeek,
 } from "date-fns";
 import { useState } from "react";
-import {
-  CalendarCell,
-  CalendarContentTextarea,
-  CalendarPlusButton,
-  CalendarRow,
-  CalendarTitleInput,
-} from "./style";
-import CalendarModal from "./../CalendarModal/index";
+import { CalendarCell, CalendarPlusButton, CalendarRow } from "./style";
 
 type CalendarCellsProps = {
   currentMonth: Date;
+  isOpenCreateModal: boolean;
+  setIsOpenCreateModal: (isOpenCreateModal: boolean) => void;
 };
 
-const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
+const CalendarCells = ({
+  currentMonth,
+  isOpenCreateModal,
+  setIsOpenCreateModal,
+}: CalendarCellsProps) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
-  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
   const handleMouseEnter = (index: number) => {
@@ -37,7 +35,6 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
   const handleMouseLeave = () => {
     setHoverIndex(-1);
   };
-
   const handlePlusButtonClick = () => {
     setIsOpenCreateModal(!isOpenCreateModal);
   };
@@ -76,17 +73,7 @@ const CalendarCells = ({ currentMonth }: CalendarCellsProps) => {
     days = [];
   }
 
-  return (
-    <>
-      <div>{rows}</div>
-      {isOpenCreateModal && (
-        <CalendarModal onClickToggleModal={handlePlusButtonClick}>
-          <CalendarTitleInput type="text" placeholder="제목 없음" />
-          <CalendarContentTextarea placeholder="내용을 추가하세요" />
-        </CalendarModal>
-      )}
-    </>
-  );
+  return <div>{rows}</div>;
 };
 
 export default CalendarCells;
