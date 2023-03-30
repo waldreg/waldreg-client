@@ -28,14 +28,17 @@ const Calendar = () => {
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [startDate, setStartDate] = useState<string>("");
-  const [endDate, setEndDate] = useState<string>("");
+  const [startAt, setStartAt] = useState<Date | null>();
+  const [endAt, setEndAt] = useState<Date | null>();
+
+  const startDateString = startAt?.toISOString().slice(0, -5);
+  const endDateString = endAt?.toISOString().slice(0, -5);
 
   const scheduleData = {
     schedule_title: title,
     schedule_content: content,
-    started_at: startDate,
-    finish_at: endDate,
+    started_at: startDateString!!,
+    finish_at: endDateString!!,
     repeat: {
       cycle: 123,
       repeat_finish_at: "2023-12-31T23:59",
@@ -79,10 +82,7 @@ const Calendar = () => {
               setTitle(e.target.value);
             }}
           />
-          <CalendarDatePicker
-            setStartDate={setStartDate}
-            setEndDate={setEndDate}
-          />
+          <CalendarDatePicker setStartDate={setStartAt} setEndDate={setEndAt} />
           <CalendarContentTextarea
             placeholder="내용을 추가하세요"
             onChange={(e) => {

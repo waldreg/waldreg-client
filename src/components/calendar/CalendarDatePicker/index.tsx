@@ -10,24 +10,27 @@ import {
 } from "./style";
 
 interface CalendarDatePickerProps {
-  setStartDate: (date: string) => void;
-  setEndDate: (date: string) => void;
+  setStartDate: (date: Date) => void;
+  setEndDate: (date: Date) => void;
 }
 
 const CalendarDatePicker = ({
   setStartDate,
   setEndDate,
 }: CalendarDatePickerProps) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startAt, setStartAt] = useState(new Date());
+  const [endAt, setEndAt] = useState(new Date());
 
   return (
     <CalendarDateContainer>
       <CalendarDateBox>
         <CalendarDateSpan style={FONT.BODY1}>시작일</CalendarDateSpan>
         <SDatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date as Date)}
+          selected={startAt}
+          onChange={(date) => {
+            setStartAt(date as Date);
+            setStartDate(date as Date);
+          }}
           locale={ko}
           dateFormat="yyyy년 MM월 dd일"
         />
@@ -36,8 +39,11 @@ const CalendarDatePicker = ({
       <CalendarDateBox>
         <CalendarDateSpan style={FONT.BODY1}>종료일</CalendarDateSpan>
         <SDatePicker
-          selected={endDate}
-          onChange={(date) => setEndDate(date as Date)}
+          selected={endAt}
+          onChange={(date) => {
+            setEndAt(date as Date);
+            setEndDate(date as Date);
+          }}
           locale={ko}
           dateFormat="yyyy년 MM월 dd일"
         />
