@@ -2,14 +2,27 @@ import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import FONT from "./../../../constants/fonts";
 import { ko } from "date-fns/esm/locale";
-import { CalendarDateBox, CalendarDateSpan, SDatePicker } from "./style";
+import {
+  CalendarDateBox,
+  CalendarDateContainer,
+  CalendarDateSpan,
+  SDatePicker,
+} from "./style";
 
-const CalendarDatePicker = () => {
+interface CalendarDatePickerProps {
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
+}
+
+const CalendarDatePicker = ({
+  setStartDate,
+  setEndDate,
+}: CalendarDatePickerProps) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <>
+    <CalendarDateContainer>
       <CalendarDateBox>
         <CalendarDateSpan style={FONT.BODY1}>시작일</CalendarDateSpan>
         <SDatePicker
@@ -29,7 +42,7 @@ const CalendarDatePicker = () => {
           dateFormat="yyyy년 MM월 dd일"
         />
       </CalendarDateBox>
-    </>
+    </CalendarDateContainer>
   );
 };
 

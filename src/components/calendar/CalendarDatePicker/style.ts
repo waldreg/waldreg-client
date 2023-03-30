@@ -2,6 +2,12 @@ import styled from "styled-components";
 import COLOR from "../../../constants/color";
 import DatePicker from "react-datepicker";
 
+const CalendarDateContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+`;
+
 const CalendarDateBox = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -10,8 +16,8 @@ const CalendarDateBox = styled.div`
 `;
 
 const CalendarDateSpan = styled.span`
-  margin-right: 1rem;
-  width: 3.2rem;
+  margin-right: 0.4rem;
+  width: 3.5rem;
 `;
 
 const SDatePicker = styled(DatePicker)`
@@ -19,9 +25,14 @@ const SDatePicker = styled(DatePicker)`
   padding: 0.3rem;
   border-radius: 0.2rem;
   border: 2px solid ${COLOR.GRAY1};
-  font-size: 1rem;
-  width: 9rem;
+  font-size: 0.9rem;
+  width: 8rem;
   cursor: pointer;
 `;
 
-export { CalendarDateBox, CalendarDateSpan, SDatePicker };
+export {
+  CalendarDateContainer,
+  CalendarDateBox,
+  CalendarDateSpan,
+  SDatePicker,
+};

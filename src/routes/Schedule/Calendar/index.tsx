@@ -10,6 +10,7 @@ import CalendarDays from "../../../components/calendar/CalendarDays";
 import CalendarCells from "../../../components/calendar/CalendarCells";
 import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
+import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -27,8 +28,8 @@ const Calendar = () => {
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   const scheduleData = {
     schedule_title: title,
@@ -70,8 +71,6 @@ const Calendar = () => {
         <CalendarModal
           onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
           handleSubmit={handleSubmit}
-          // setStartDate={setStartDate}
-          // setEndDate={setEndDate}
         >
           <CalendarTitleInput
             type="text"
@@ -79,6 +78,10 @@ const Calendar = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+          />
+          <CalendarDatePicker
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
           />
           <CalendarContentTextarea
             placeholder="내용을 추가하세요"
