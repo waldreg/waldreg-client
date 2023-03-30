@@ -1,24 +1,90 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ScheduleList from "../../../components/schedule/ScheduleList";
-import { useScheduleDetail } from "../../../hooks/schedule/useScheduleDetail";
-import { useScheduleList } from "./../../../hooks/schedule/useScheduleList";
+import { useState } from "react";
+import { addMonths, subMonths } from "date-fns";
+import {
+  CalendarContainer,
+  CalendarContentTextarea,
+  CalendarTitleInput,
+} from "./style";
+import CalendarHeader from "../../../components/calendar/CalendarHeader";
+import CalendarDays from "../../../components/calendar/CalendarDays";
+import CalendarCells from "../../../components/calendar/CalendarCells";
+import CalendarModal from "../../../components/calendar/CalendarModal";
+import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 
 const Calendar = () => {
-  const [year, setYear] = useState(2023);
-  const [month, setMonth] = useState(1);
-  const [day, setDay] = useState(24);
-  const navigate = useNavigate();
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
-  const { scheduleList } = useScheduleList(year, month, day);
+  const prevMonth = () => {
+    setCurrentMonth(subMonths(currentMonth, 1));
+  };
+  const nextMonth = () => {
+    setCurrentMonth(addMonths(currentMonth, 1));
+  };
+  const handleTodayClick = () => {
+    setCurrentMonth(new Date());
+  };
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const scheduleData = {
+    schedule_title: title,
+    schedule_content: content,
+    started_at: "2023-01-24T20:52",
+    finish_at: "2023-01-31T23:59",
+    repeat: {
+      cycle: 123,
+      repeat_finish_at: "2023-12-31T23:59",
+    },
+  };
+
+  const createMutation = useScheduleCreate(scheduleData);
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    createMutation.mutate();
+    setIsOpenCreateModal(false);
+  };
 
   return (
-    <div>
-      <div>스케줄 리스트</div>
-      <hr />
-      {scheduleList && <ScheduleList scheduleList={scheduleList} />}
-      <button onClick={() => navigate("/schedule/create")}>스케줄 생성</button>
-    </div>
+    <>
+      <CalendarContainer>
+        <CalendarHeader
+          currentMonth={currentMonth}
+          prevMonth={prevMonth}
+          nextMonth={nextMonth}
+          today={handleTodayClick}
+        />
+        <CalendarDays />
+        <CalendarCells
+          currentMonth={currentMonth}
+          isOpenCreateModal={isOpenCreateModal}
+          setIsOpenCreateModal={setIsOpenCreateModal}
+        />
+      </CalendarContainer>
+
+      {isOpenCreateModal && (
+        <CalendarModal
+          onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
+          handleSubmit={handleSubmit}
+        >
+          <CalendarTitleInput
+            type="text"
+            placeholder="제목 없음"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <CalendarContentTextarea
+            placeholder="내용을 추가하세요"
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+          />
+        </CalendarModal>
+      )}
+    </>
   );
 };
 
