@@ -10,16 +10,20 @@ import {
 } from "./style";
 
 interface CalendarDatePickerProps {
+  startDate: Date;
+  endDate: Date;
   setStartDate: (date: Date) => void;
   setEndDate: (date: Date) => void;
 }
 
 const CalendarDatePicker = ({
+  startDate,
+  endDate,
   setStartDate,
   setEndDate,
 }: CalendarDatePickerProps) => {
-  const [startAt, setStartAt] = useState(new Date());
-  const [endAt, setEndAt] = useState(new Date());
+  const [startAt, setStartAt] = useState(startDate);
+  const [endAt, setEndAt] = useState(endDate);
 
   return (
     <CalendarDateContainer>

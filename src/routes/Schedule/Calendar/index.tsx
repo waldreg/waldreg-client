@@ -53,6 +53,11 @@ const Calendar = () => {
     setIsOpenCreateModal(false);
   };
 
+  const handleDateClick = (day: Date) => {
+    setStartAt(day);
+    setEndAt(day);
+  };
+
   return (
     <>
       <CalendarContainer>
@@ -67,6 +72,7 @@ const Calendar = () => {
           currentMonth={currentMonth}
           isOpenCreateModal={isOpenCreateModal}
           setIsOpenCreateModal={setIsOpenCreateModal}
+          handleDateClick={handleDateClick}
         />
       </CalendarContainer>
 
@@ -82,7 +88,12 @@ const Calendar = () => {
               setTitle(e.target.value);
             }}
           />
-          <CalendarDatePicker setStartDate={setStartAt} setEndDate={setEndAt} />
+          <CalendarDatePicker
+            startDate={startAt!!}
+            endDate={endAt!!}
+            setStartDate={setStartAt}
+            setEndDate={setEndAt}
+          />
           <CalendarContentTextarea
             placeholder="내용을 추가하세요"
             onChange={(e) => {

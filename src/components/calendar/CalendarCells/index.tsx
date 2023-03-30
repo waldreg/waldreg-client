@@ -15,12 +15,14 @@ type CalendarCellsProps = {
   currentMonth: Date;
   isOpenCreateModal: boolean;
   setIsOpenCreateModal: (isOpenCreateModal: boolean) => void;
+  handleDateClick: (day: Date) => void;
 };
 
 const CalendarCells = ({
   currentMonth,
   isOpenCreateModal,
   setIsOpenCreateModal,
+  handleDateClick,
 }: CalendarCellsProps) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
@@ -35,8 +37,11 @@ const CalendarCells = ({
   const handleMouseLeave = () => {
     setHoverIndex(-1);
   };
-  const handlePlusButtonClick = () => {
+  const handlePlusButtonClick = (index: number) => {
     setIsOpenCreateModal(!isOpenCreateModal);
+    const day = addDays(startDate, index);
+    handleDateClick(day);
+    console.log(day);
   };
 
   const rows = [];
@@ -48,7 +53,7 @@ const CalendarCells = ({
       const isWeekend = getDay(day) === 0 || getDay(day) === 6;
       const isToday = isSameDay(day, new Date());
       const isWithinMonth = day >= monthStart && day <= monthEnd;
-      const index = rows.length * 7 + i; // 셀의 전체 인덱스
+      const index = rows.length * 7 + i;
 
       days.push(
         <CalendarCell
@@ -60,7 +65,7 @@ const CalendarCells = ({
           onMouseLeave={handleMouseLeave}
         >
           {hoverIndex === index && (
-            <CalendarPlusButton onClick={handlePlusButtonClick}>
+            <CalendarPlusButton onClick={() => handlePlusButtonClick(index)}>
               +
             </CalendarPlusButton>
           )}
