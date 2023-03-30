@@ -25,14 +25,16 @@ const Calendar = () => {
     setCurrentMonth(new Date());
   };
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const scheduleData = {
     schedule_title: title,
     schedule_content: content,
-    started_at: "2023-01-24T20:52",
-    finish_at: "2023-01-31T23:59",
+    started_at: startDate,
+    finish_at: endDate,
     repeat: {
       cycle: 123,
       repeat_finish_at: "2023-12-31T23:59",
@@ -68,6 +70,8 @@ const Calendar = () => {
         <CalendarModal
           onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
           handleSubmit={handleSubmit}
+          // setStartDate={setStartDate}
+          // setEndDate={setEndDate}
         >
           <CalendarTitleInput
             type="text"

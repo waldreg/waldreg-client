@@ -4,7 +4,7 @@ import COLOR from "../../../constants/color";
 const DialogBox = styled.dialog`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
   width: 50%;
   min-width: 25rem;
