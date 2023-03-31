@@ -1,19 +1,20 @@
-import React from "react";
-import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import GlobalStyle from "./styles/GlobalStyle";
-import Setting from "./routes/Setting";
-import Board from "./routes/Board";
-import Layout from "./components/global/Layout/index";
-import Schedule from "./routes/Schedule";
-import JoiningPool from "./routes/JoiningPool";
-import SignupForm from "./components/auth/signup/SignupForm";
-import LoginForm from "./components/auth/login/LoginForm";
-import AuthContext from "./states/auth-context";
-import RewardPage from "./routes/Reward";
-import Home from "./routes/Home";
+import React from 'react';
+import { useContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import GlobalStyle from './styles/GlobalStyle';
+import Setting from './routes/Setting';
+import Board from './routes/Board';
+import Layout from './components/global/Layout/index';
+import Schedule from './routes/Schedule';
+import JoiningPool from './routes/JoiningPool';
+import SignupForm from './components/auth/signup/SignupForm';
+import LoginForm from './components/auth/login/LoginForm';
+import AuthContext from './states/auth-context';
+import RewardPage from './routes/Reward';
+import Home from './routes/Home';
+import Attendance from './routes/Attendance';
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/schedule/*" element={<Schedule />} />
                 <Route path="/joiningpool" element={<JoiningPool />} />
                 <Route path="/reward" element={<RewardPage />} />
+                <Route path="/attendance/*" element={<Attendance />} />
               </>
             )}
           </Route>
