@@ -1,4 +1,3 @@
-import React from "react";
 import { Backdrop, DialogBox, DialogButton, DialogButtonBox } from "./style";
 
 type CalendarModalProps = {

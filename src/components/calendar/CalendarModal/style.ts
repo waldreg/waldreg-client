@@ -4,11 +4,11 @@ import COLOR from "../../../constants/color";
 const DialogBox = styled.dialog`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
   min-width: 25rem;
-  height: 70%;
+  height: 80%;
   min-height: 30rem;
   padding: 4rem;
   border: none;

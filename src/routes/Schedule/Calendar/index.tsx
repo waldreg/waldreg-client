@@ -10,6 +10,7 @@ import CalendarDays from "../../../components/calendar/CalendarDays";
 import CalendarCells from "../../../components/calendar/CalendarCells";
 import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
+import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -25,14 +26,19 @@ const Calendar = () => {
     setCurrentMonth(new Date());
   };
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [startAt, setStartAt] = useState<Date | null>();
+  const [endAt, setEndAt] = useState<Date | null>();
+
+  const startDateString = startAt?.toISOString().slice(0, -5);
+  const endDateString = endAt?.toISOString().slice(0, -5);
 
   const scheduleData = {
     schedule_title: title,
     schedule_content: content,
-    started_at: "2023-01-24T20:52",
-    finish_at: "2023-01-31T23:59",
+    started_at: startDateString!!,
+    finish_at: endDateString!!,
     repeat: {
       cycle: 123,
       repeat_finish_at: "2023-12-31T23:59",
@@ -45,6 +51,11 @@ const Calendar = () => {
     e.preventDefault();
     createMutation.mutate();
     setIsOpenCreateModal(false);
+  };
+
+  const handleDateClick = (day: Date) => {
+    setStartAt(day);
+    setEndAt(day);
   };
 
   return (
@@ -61,6 +72,7 @@ const Calendar = () => {
           currentMonth={currentMonth}
           isOpenCreateModal={isOpenCreateModal}
           setIsOpenCreateModal={setIsOpenCreateModal}
+          handleDateClick={handleDateClick}
         />
       </CalendarContainer>
 
@@ -75,6 +87,12 @@ const Calendar = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+          />
+          <CalendarDatePicker
+            startDate={startAt!!}
+            endDate={endAt!!}
+            setStartDate={setStartAt}
+            setEndDate={setEndAt}
           />
           <CalendarContentTextarea
             placeholder="내용을 추가하세요"
