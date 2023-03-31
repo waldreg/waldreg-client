@@ -2,9 +2,13 @@ import React from "react";
 import { PencilWhiteIcon } from "../../Icons/BoardIcons";
 import { Button } from "./style";
 
-const CreateButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+interface CreateButtonProps {
+  onSubmit: (e: React.SyntheticEvent) => void;
+}
+
+const CreateButton = ({ onSubmit }: CreateButtonProps) => {
   return (
-    <Button>
+    <Button onSubmit={onSubmit}>
       <PencilWhiteIcon style={{ marginRight: "0.5rem" }} /> 작성
     </Button>
   );

@@ -9,7 +9,7 @@ const Board = () => {
   return (
     <Routes>
       <Route element={<BoardLayout />}>
-        <Route path="/:categoryId" element={<BoardPage />} />
+        <Route path="/:categoryId/" element={<BoardPage />} />
         <Route path="/:categoryId/create" element={<BoardCreate />} />
         <Route path="/:categoryId/update/:id" element={<BoardUpdate />} />
         <Route path="/:categoryId/detail/:id" element={<BoardDetail />} />
