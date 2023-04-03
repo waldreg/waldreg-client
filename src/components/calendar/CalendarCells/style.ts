@@ -61,4 +61,22 @@ const CalendarPlusButton = styled.div`
   display: block;
 `;
 
-export { CalendarCell, CalendarRow, CalendarPlusButton };
+const ScheduleBox = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  bottom: 0.1rem;
+  left: 0.1rem;
+  right: 0.1rem;
+`;
+
+const Schedule = styled.div`
+  background: ${COLOR.GREEN3};
+  padding: 0 0.1rem;
+  border-radius: 0.2rem;
+  bottom: 0;
+  font-size: 0.6rem;
+  margin-top: 0.1rem;
+`;
+
+export { CalendarCell, CalendarRow, CalendarPlusButton, ScheduleBox, Schedule };

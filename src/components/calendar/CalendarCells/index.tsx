@@ -9,7 +9,13 @@ import {
   startOfWeek,
 } from "date-fns";
 import { useState } from "react";
-import { CalendarCell, CalendarPlusButton, CalendarRow } from "./style";
+import {
+  CalendarCell,
+  CalendarPlusButton,
+  CalendarRow,
+  Schedule,
+  ScheduleBox,
+} from "./style";
 import FONT from "../../../constants/fonts";
 import { useScheduleList } from "../../../hooks/schedule/useScheduleList";
 
@@ -85,13 +91,35 @@ const CalendarCells = ({
             scheduleList.scheduleList.schedules.some((schedule: any) => {
               const started_at = new Date(schedule.started_at);
               const finish_at = new Date(schedule.finish_at);
+              const title = schedule.schedule_title;
+
               return (
                 started_at.getFullYear() === year &&
                 started_at.getMonth() === month - 1 &&
                 started_at.getDate() <= day.getDate() - 1 &&
                 finish_at.getDate() >= day.getDate() - 1
               );
-            }) && <span style={{ color: "red" }}>X</span>}
+            }) && (
+              <ScheduleBox>
+                {scheduleList.scheduleList.schedules
+                  .filter((schedule: any) => {
+                    const started_at = new Date(schedule.started_at);
+                    const finish_at = new Date(schedule.finish_at);
+
+                    return (
+                      started_at.getFullYear() === year &&
+                      started_at.getMonth() === month - 1 &&
+                      started_at.getDate() <= day.getDate() - 1 &&
+                      finish_at.getDate() >= day.getDate() - 1
+                    );
+                  })
+                  .map((schedule: any) => (
+                    <Schedule key={schedule.id}>
+                      {schedule.schedule_title}
+                    </Schedule>
+                  ))}
+              </ScheduleBox>
+            )}
           {format(day, "d")}
         </CalendarCell>
       );
