@@ -8,14 +8,18 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CalendarCell, CalendarPlusButton, CalendarRow } from "./style";
+import FONT from "../../../constants/fonts";
+import { useScheduleList } from "../../../hooks/schedule/useScheduleList";
 
 type CalendarCellsProps = {
   currentMonth: Date;
   isOpenCreateModal: boolean;
   setIsOpenCreateModal: (isOpenCreateModal: boolean) => void;
   handleDateClick: (day: Date) => void;
+  year: number;
+  month: number;
 };
 
 const CalendarCells = ({
@@ -23,6 +27,8 @@ const CalendarCells = ({
   isOpenCreateModal,
   setIsOpenCreateModal,
   handleDateClick,
+  year,
+  month,
 }: CalendarCellsProps) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
@@ -41,8 +47,9 @@ const CalendarCells = ({
     setIsOpenCreateModal(!isOpenCreateModal);
     const day = addDays(startDate, index);
     handleDateClick(day);
-    console.log(day);
   };
+
+  const scheduleList = useScheduleList(year, month);
 
   const rows = [];
   let days = [];
@@ -63,12 +70,27 @@ const CalendarCells = ({
           isWithinMonth={isWithinMonth}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
+          style={FONT.DETAIL1}
         >
           {hoverIndex === index && (
-            <CalendarPlusButton onClick={() => handlePlusButtonClick(index)}>
+            <CalendarPlusButton
+              onClick={() => handlePlusButtonClick(index)}
+              style={FONT.SUBTITLE2}
+            >
               +
             </CalendarPlusButton>
           )}
+          {scheduleList &&
+            scheduleList.scheduleList &&
+            scheduleList.scheduleList.schedules.some((schedule: any) => {
+              const started_at = new Date(schedule.started_at);
+              const finish_at = new Date(schedule.finish_at);
+              return (
+                started_at.getFullYear() === year &&
+                started_at.getMonth() === month - 1 &&
+                started_at.getDate() === day.getDate() - 1
+              );
+            }) && <span style={{ color: "red" }}>X</span>}
           {format(day, "d")}
         </CalendarCell>
       );

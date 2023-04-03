@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addMonths, subMonths } from "date-fns";
 import {
   CalendarContainer,
@@ -11,6 +11,7 @@ import CalendarCells from "../../../components/calendar/CalendarCells";
 import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
+import { useScheduleList } from "../../../hooks/schedule/useScheduleList";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -73,6 +74,8 @@ const Calendar = () => {
           isOpenCreateModal={isOpenCreateModal}
           setIsOpenCreateModal={setIsOpenCreateModal}
           handleDateClick={handleDateClick}
+          year={currentMonth.getFullYear()}
+          month={currentMonth.getMonth() + 1}
         />
       </CalendarContainer>
 

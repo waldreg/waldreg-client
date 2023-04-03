@@ -27,11 +27,11 @@ const CalendarCell = styled.div<CalendarCellsProps>`
     content: "";
     z-index: -1;
     position: absolute;
-    top: 21.5%;
-    right: 1.5%;
+    top: 22.4%;
+    right: 0.8%;
     transform: translateY(-50%);
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.4rem;
+    height: 1.4rem;
     border-radius: 50%;
     background-color: ${COLOR.GREEN4};
   }
@@ -52,7 +52,7 @@ const CalendarPlusButton = styled.div`
   width: 1.6rem;
   height: 1.6rem;
   top: 6%;
-  left: 5%;
+  left: 6%;
   position: absolute;
   cursor: pointer;
   background-color: ${COLOR.WHITE};
