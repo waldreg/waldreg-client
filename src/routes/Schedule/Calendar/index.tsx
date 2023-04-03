@@ -15,6 +15,13 @@ import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker"
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
+  const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
+  const [detail, setDetail] = useState({
+    title: "",
+    content: "",
+    started_at: new Date(),
+    finish_at: new Date(),
+  });
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -51,6 +58,8 @@ const Calendar = () => {
     e.preventDefault();
     createMutation.mutate();
     setIsOpenCreateModal(false);
+    setTitle("");
+    setContent("");
   };
 
   const handleDateClick = (day: Date) => {
@@ -71,8 +80,13 @@ const Calendar = () => {
         <CalendarCells
           currentMonth={currentMonth}
           isOpenCreateModal={isOpenCreateModal}
+          isOpenDetailModal={isOpenDetailModal}
           setIsOpenCreateModal={setIsOpenCreateModal}
+          setIsOpenDetailModal={setIsOpenDetailModal}
           handleDateClick={handleDateClick}
+          year={currentMonth.getFullYear()}
+          month={currentMonth.getMonth() + 1}
+          setDetail={setDetail}
         />
       </CalendarContainer>
 
@@ -100,6 +114,22 @@ const Calendar = () => {
               setContent(e.target.value);
             }}
           />
+        </CalendarModal>
+      )}
+
+      {isOpenDetailModal && (
+        <CalendarModal
+          onClickToggleModal={() => setIsOpenDetailModal(!isOpenDetailModal)}
+          handleSubmit={handleSubmit}
+        >
+          <CalendarTitleInput type="text" value={detail.title} />
+          <CalendarDatePicker
+            startDate={new Date(detail.started_at)}
+            endDate={new Date(detail.finish_at)}
+            setStartDate={setStartAt}
+            setEndDate={setEndAt}
+          />
+          <CalendarContentTextarea value={detail.content} />
         </CalendarModal>
       )}
     </>
