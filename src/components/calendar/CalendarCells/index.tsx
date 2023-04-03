@@ -22,19 +22,25 @@ import { useScheduleList } from "../../../hooks/schedule/useScheduleList";
 type CalendarCellsProps = {
   currentMonth: Date;
   isOpenCreateModal: boolean;
+  isOpenDetailModal: boolean;
   setIsOpenCreateModal: (isOpenCreateModal: boolean) => void;
+  setIsOpenDetailModal: (isOpenDetailModal: boolean) => void;
   handleDateClick: (day: Date) => void;
   year: number;
   month: number;
+  setDetail: (detail: any) => void;
 };
 
 const CalendarCells = ({
   currentMonth,
   isOpenCreateModal,
+  isOpenDetailModal,
   setIsOpenCreateModal,
+  setIsOpenDetailModal,
   handleDateClick,
   year,
   month,
+  setDetail,
 }: CalendarCellsProps) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
@@ -53,6 +59,16 @@ const CalendarCells = ({
     setIsOpenCreateModal(!isOpenCreateModal);
     const day = addDays(startDate, index);
     handleDateClick(day);
+  };
+
+  const handleScheduleClick = (schedule: any) => {
+    setIsOpenDetailModal(!isOpenDetailModal);
+    setDetail({
+      title: schedule.schedule_title,
+      content: schedule.schedule_content,
+      started_at: new Date(schedule.started_at),
+      finish_at: new Date(schedule.finish_at),
+    });
   };
 
   const scheduleList = useScheduleList(year, month);
@@ -91,7 +107,6 @@ const CalendarCells = ({
             scheduleList.scheduleList.schedules.some((schedule: any) => {
               const started_at = new Date(schedule.started_at);
               const finish_at = new Date(schedule.finish_at);
-              const title = schedule.schedule_title;
 
               return (
                 started_at.getFullYear() === year &&
@@ -114,7 +129,10 @@ const CalendarCells = ({
                     );
                   })
                   .map((schedule: any) => (
-                    <Schedule key={schedule.id}>
+                    <Schedule
+                      onClick={() => handleScheduleClick(schedule)}
+                      key={schedule.id}
+                    >
                       {schedule.schedule_title}
                     </Schedule>
                   ))}

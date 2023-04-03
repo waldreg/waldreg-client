@@ -77,6 +77,7 @@ const Schedule = styled.div`
   bottom: 0;
   font-size: 0.6rem;
   margin-top: 0.1rem;
+  cursor: pointer;
 `;
 
 export { CalendarCell, CalendarRow, CalendarPlusButton, ScheduleBox, Schedule };

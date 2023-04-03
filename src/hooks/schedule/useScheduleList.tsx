@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "../../apis/axios";
-import { scheduleKeys } from "../../types/scheduleKye";
+import { scheduleKeys } from "../../types/scheduleKeys";
 
 async function getScheduleList(year: number, month: number): Promise<any> {
   const { data } = await axios.get(`/calendar?year=${year}&month=${month}`);

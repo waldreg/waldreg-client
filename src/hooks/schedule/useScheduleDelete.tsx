@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "../../apis/axios";
-import { scheduleKeys } from "../../types/scheduleKye";
+import { scheduleKeys } from "../../types/scheduleKeys";
 
 async function scheduleDelete(scheduleId: number): Promise<void> {
   await axios.delete(`/schedule/${scheduleId}`);
