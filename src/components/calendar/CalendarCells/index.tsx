@@ -8,7 +8,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CalendarCell, CalendarPlusButton, CalendarRow } from "./style";
 import FONT from "../../../constants/fonts";
 import { useScheduleList } from "../../../hooks/schedule/useScheduleList";
@@ -88,7 +88,8 @@ const CalendarCells = ({
               return (
                 started_at.getFullYear() === year &&
                 started_at.getMonth() === month - 1 &&
-                started_at.getDate() === day.getDate() - 1
+                started_at.getDate() <= day.getDate() - 1 &&
+                finish_at.getDate() >= day.getDate() - 1
               );
             }) && <span style={{ color: "red" }}>X</span>}
           {format(day, "d")}
