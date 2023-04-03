@@ -58,6 +58,8 @@ const Calendar = () => {
     e.preventDefault();
     createMutation.mutate();
     setIsOpenCreateModal(false);
+    setTitle("");
+    setContent("");
   };
 
   const handleDateClick = (day: Date) => {
