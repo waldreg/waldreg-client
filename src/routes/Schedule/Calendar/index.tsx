@@ -3,9 +3,7 @@ import { addMonths, subMonths } from "date-fns";
 import {
   CalendarContainer,
   CalendarContentTextarea,
-  CalendarOption,
-  CalendarOptionIcon,
-  CalendarOptionBox,
+  CalendarDeleteButton,
   CalendarTitleInput,
 } from "./style";
 import CalendarHeader from "../../../components/calendar/CalendarHeader";
@@ -15,17 +13,26 @@ import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
 import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
+import { useNavigate } from "react-router-dom";
+import { useScheduleDelete } from "../../../hooks/schedule/useScheduleDelete";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
   const [detail, setDetail] = useState({
+    id: 0,
     title: "",
     content: "",
     started_at: new Date(),
     finish_at: new Date(),
   });
+
+  const scheduleDelete = useScheduleDelete(detail.id);
+  const handleDeleteButtonClick = () => {
+    scheduleDelete.mutate();
+    setIsOpenDetailModal(!isOpenDetailModal);
+  };
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -125,14 +132,13 @@ const Calendar = () => {
 
       {isOpenDetailModal && (
         <CalendarModal
-          onClickToggleModal={() => setIsOpenDetailModal(!isOpenDetailModal)}
-          handleSubmit={handleSubmit}
+          onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
           buttonName1="취소"
           buttonName2="수정"
         >
-          <CalendarOptionIcon>
-            <TrashcanIcon width={25} height={25} />
-          </CalendarOptionIcon>
+          <CalendarDeleteButton onClick={handleDeleteButtonClick}>
+            <TrashcanIcon width={30} height={30} />
+          </CalendarDeleteButton>
 
           <CalendarTitleInput type="text" value={detail.title} />
           <CalendarDatePicker

@@ -64,6 +64,7 @@ const CalendarCells = ({
   const handleScheduleClick = (schedule: any) => {
     setIsOpenDetailModal(!isOpenDetailModal);
     setDetail({
+      id: schedule.id,
       title: schedule.schedule_title,
       content: schedule.schedule_content,
       started_at: new Date(schedule.started_at),

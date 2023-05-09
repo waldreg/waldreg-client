@@ -3,7 +3,7 @@ import { Backdrop, DialogBox, DialogButton, DialogButtonBox } from "./style";
 type CalendarModalProps = {
   onClickToggleModal: () => void;
   children: React.ReactNode;
-  handleSubmit: (e: React.SyntheticEvent) => void;
+  handleSubmit?: (e: React.SyntheticEvent) => void;
   buttonName1: string;
   buttonName2: string;
 };
