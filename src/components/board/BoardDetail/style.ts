@@ -8,6 +8,7 @@ const BoardContainer = styled.div`
   background: ${COLOR.WHITE};
   padding: 2rem 1.7rem;
   margin: 1.4rem 0;
+  min-width: 35rem;
 `;
 
 const BoardTitle = styled.div`
@@ -19,7 +20,7 @@ const BoardTopBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 
@@ -47,7 +48,7 @@ const BoardButton = styled.button`
 
 const BoardContent = styled.div`
   color: ${COLOR.GRAY5};
-  padding: 2rem 0 4rem;
+  padding: 1rem 0 3rem;
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 

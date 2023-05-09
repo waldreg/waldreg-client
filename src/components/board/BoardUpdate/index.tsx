@@ -66,7 +66,7 @@ const BoardUpdate = () => {
         <BoardFileUpload formData={formData} />
 
         <BoardButtonContainer>
-          <CreateButton onSubmit={handleUpdateSubmit} style={FONT.SUBTITLE1} />
+          <CreateButton onSubmit={handleUpdateSubmit} />
         </BoardButtonContainer>
       </form>
     </BoardContainer>

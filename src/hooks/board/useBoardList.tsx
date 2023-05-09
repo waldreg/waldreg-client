@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "./../../apis/axios";
 import { boardKeys } from "../../types/boardKey";
 import { BoardLists } from "../../interfaces/board";
@@ -23,8 +23,10 @@ export function useBoardList(
   from: number,
   to: number
 ): UseBoardList {
-  const { data: boardList } = useQuery<BoardLists>(boardKeys.all, () =>
-    getBoardList(category_id, from, to)
+  const { data: boardList } = useQuery<BoardLists>(
+    boardKeys.withCategory(category_id),
+    () => getBoardList(category_id, from, to)
   );
+
   return { boardList };
 }
