@@ -63,6 +63,8 @@ const Name = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  white-space: nowrap;
 `;
 
 const UserName = styled.div`
@@ -88,6 +90,8 @@ const Tag = styled.div<{ size: string }>`
   background: ${(props) => (props.size === 'small' ? COLOR.WHITE : '')};
 `;
 
-const Subtitle = styled.div``;
+const Subtitle = styled.div`
+  white-space: nowrap;
+`;
 
 export default UserInfo;

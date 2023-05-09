@@ -44,6 +44,7 @@ const CharacterSetting = ({
     'Attendance',
     'Teambuilding',
   ];
+
   const [perTheme, setPerTheme] = useState(perThemeList[0]);
 
   checkedList.sort((prev, cur) => {
@@ -113,7 +114,7 @@ const CharacterSetting = ({
 };
 
 const Container = styled.div`
-  width: 140%;
+  width: 40vw;
   height: 100%;
   background: ${COLOR.WHITE};
 
@@ -126,6 +127,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -133,6 +135,13 @@ const Content = styled.div`
 `;
 
 const PerThemeList = styled.div`
+  max-width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   display: flex;
   gap: 1rem;
 `;
