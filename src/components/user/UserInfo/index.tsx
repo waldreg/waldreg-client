@@ -15,11 +15,7 @@ const UserInfo = ({ user, size }: { user: User; size: string }) => {
       </Name>
       <Tags size={size}>
         <Tags size="small">
-          {size === 'big' && (
-            <Tag style={FONT.SUBTITLE1} size={size}>
-              역할
-            </Tag>
-          )}
+          {size === 'big' && <Subtitle style={FONT.SUBTITLE1}>역할</Subtitle>}
           <Tag style={FONT.SUBTITLE1} size={size}>
             {user.character}
           </Tag>
@@ -27,25 +23,21 @@ const UserInfo = ({ user, size }: { user: User; size: string }) => {
 
         <Tags size="small">
           {size === 'big' && (
-            <Tag style={FONT.SUBTITLE1} size={size}>
-              전화번호
-            </Tag>
-          )}
-          <Tag style={FONT.SUBTITLE1} size={size}>
-            {user.phone_number}
-          </Tag>
-        </Tags>
-
-        <Tags size="small">
-          {size === 'big' && (
-            <Tag style={FONT.SUBTITLE1} size={size}>
-              가입날짜
-            </Tag>
+            <Subtitle style={FONT.SUBTITLE1}>가입날짜</Subtitle>
           )}
           <Tag style={FONT.SUBTITLE1} size={size}>
             {user.created_at}
           </Tag>
         </Tags>
+
+        {size === 'big' && (
+          <Tags size="small">
+            <Subtitle style={FONT.SUBTITLE1}>전화번호</Subtitle>
+            <Tag style={FONT.SUBTITLE1} size={size}>
+              {user.phone_number}
+            </Tag>
+          </Tags>
+        )}
       </Tags>
     </Content>
   );
@@ -62,7 +54,9 @@ const Content = styled.div<{ size: string }>`
   justify-content: space-between;
   gap: ${(props) => (props.size === 'small' ? '0' : `2rem`)};
 
-  background: ${COLOR.GRAY0};
+  background: ${(props) =>
+    props.size === 'small' ? COLOR.GRAY0 : COLOR.WHITE};
+  border: ${(props) => props.size === 'big' && `2.5px solid ${COLOR.GRAY0}`};
 `;
 
 const Name = styled.div`
@@ -81,6 +75,7 @@ const UserId = styled.div`
 const Tags = styled.div<{ size: string }>`
   display: flex;
   flex-direction: ${(props) => (props.size === 'small' ? `row` : `column`)};
+  align-items: ${(props) => (props.size === 'small' ? `center` : `column`)};
   gap: 1rem;
 `;
 
@@ -88,11 +83,11 @@ const Tag = styled.div<{ size: string }>`
   width: max-content;
   padding: 0.4rem 1rem;
 
-  border: ${(props) => (props.size === 'small' ? '1.5px' : `0`)} solid
-    ${COLOR.GREEN3};
   border-radius: 0.5rem;
-  color: ${(props) => (props.size === 'small' ? COLOR.GREEN4 : COLOR.GRAY4)};
-  background: ${(props) => (props.size === 'small' ? COLOR.GREEN1 : '')};
+  color: ${COLOR.GREEN4};
+  background: ${(props) => (props.size === 'small' ? COLOR.WHITE : '')};
 `;
+
+const Subtitle = styled.div``;
 
 export default UserInfo;
