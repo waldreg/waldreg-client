@@ -3,6 +3,9 @@ import { addMonths, subMonths } from "date-fns";
 import {
   CalendarContainer,
   CalendarContentTextarea,
+  CalendarOption,
+  CalendarOptionIcon,
+  CalendarOptionBox,
   CalendarTitleInput,
 } from "./style";
 import CalendarHeader from "../../../components/calendar/CalendarHeader";
@@ -11,6 +14,7 @@ import CalendarCells from "../../../components/calendar/CalendarCells";
 import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
+import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -94,6 +98,8 @@ const Calendar = () => {
         <CalendarModal
           onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
           handleSubmit={handleSubmit}
+          buttonName1="취소"
+          buttonName2="생성"
         >
           <CalendarTitleInput
             type="text"
@@ -121,7 +127,13 @@ const Calendar = () => {
         <CalendarModal
           onClickToggleModal={() => setIsOpenDetailModal(!isOpenDetailModal)}
           handleSubmit={handleSubmit}
+          buttonName1="취소"
+          buttonName2="수정"
         >
+          <CalendarOptionIcon>
+            <TrashcanIcon width={25} height={25} />
+          </CalendarOptionIcon>
+
           <CalendarTitleInput type="text" value={detail.title} />
           <CalendarDatePicker
             startDate={new Date(detail.started_at)}

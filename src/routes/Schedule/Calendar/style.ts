@@ -27,4 +27,48 @@ const CalendarContentTextarea = styled.textarea`
   margin-top: 2rem;
 `;
 
-export { CalendarContainer, CalendarTitleInput, CalendarContentTextarea };
+const CalendarOptionIcon = styled.div`
+  display: flex;
+  justify-content: right;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+`;
+
+const CalendarOptionBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  background: ${COLOR.WHITE};
+  top: 3.2rem;
+  right: 0.5rem;
+  z-index: 1;
+  box-shadow: 0 0 0 1px ${COLOR.GRAY2};
+  border-radius: 0.2rem;
+`;
+
+const CalendarOption = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.5rem;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background: ${COLOR.GRAY1};
+    transition: 0.2s;
+  }
+`;
+
+export {
+  CalendarContainer,
+  CalendarTitleInput,
+  CalendarContentTextarea,
+  CalendarOptionIcon,
+  CalendarOptionBox,
+  CalendarOption,
+};
