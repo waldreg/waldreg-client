@@ -13,7 +13,6 @@ import CalendarModal from "../../../components/calendar/CalendarModal";
 import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
 import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
-import { useNavigate } from "react-router-dom";
 import { useScheduleDelete } from "../../../hooks/schedule/useScheduleDelete";
 
 const Calendar = () => {
@@ -132,7 +131,7 @@ const Calendar = () => {
 
       {isOpenDetailModal && (
         <CalendarModal
-          onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
+          onClickToggleModal={() => setIsOpenDetailModal(!isOpenDetailModal)}
           buttonName1="취소"
           buttonName2="수정"
         >
