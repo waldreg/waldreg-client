@@ -5,11 +5,9 @@ import useDeleteAllUserReward from '../../../hooks/reward/useDeleteAllUserReward
 
 import Modal from '../../common/modal';
 
+import { Title } from '../../common/pagetitle/style';
 import { ButtonBig } from '../../common/buttons/button_big';
 import COLOR from '../../../constants/color';
-
-import { Title } from '../../common/pagetitle/style';
-
 import FONT from '../../../constants/fonts';
 
 const ResetRewardModal = ({
