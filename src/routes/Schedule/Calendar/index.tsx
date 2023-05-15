@@ -14,6 +14,7 @@ import { useScheduleCreate } from "../../../hooks/schedule/useScheduleCreate";
 import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker";
 import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
 import { useScheduleDelete } from "../../../hooks/schedule/useScheduleDelete";
+import { useScheduleUpdate } from "../../../hooks/schedule/useScheduleUpdate";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -63,10 +64,19 @@ const Calendar = () => {
   };
 
   const createMutation = useScheduleCreate(scheduleData);
+  const updateMutation = useScheduleUpdate(detail.id, scheduleData);
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     createMutation.mutate();
+    setIsOpenCreateModal(false);
+    setTitle("");
+    setContent("");
+  };
+
+  const handleUpdateSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    updateMutation.mutate();
     setIsOpenCreateModal(false);
     setTitle("");
     setContent("");
@@ -103,7 +113,7 @@ const Calendar = () => {
       {isOpenCreateModal && (
         <CalendarModal
           onClickToggleModal={() => setIsOpenCreateModal(!isOpenCreateModal)}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleCreateSubmit}
           buttonName1="취소"
           buttonName2="생성"
         >
@@ -132,6 +142,7 @@ const Calendar = () => {
       {isOpenDetailModal && (
         <CalendarModal
           onClickToggleModal={() => setIsOpenDetailModal(!isOpenDetailModal)}
+          handleSubmit={handleUpdateSubmit}
           buttonName1="취소"
           buttonName2="수정"
         >
@@ -139,14 +150,21 @@ const Calendar = () => {
             <TrashcanIcon width={30} height={30} />
           </CalendarDeleteButton>
 
-          <CalendarTitleInput type="text" value={detail.title} />
+          <CalendarTitleInput
+            type="text"
+            value={detail.title}
+            onChange={(e) => setDetail({ ...detail, title: e.target.value })}
+          />
           <CalendarDatePicker
             startDate={new Date(detail.started_at)}
             endDate={new Date(detail.finish_at)}
             setStartDate={setStartAt}
             setEndDate={setEndAt}
           />
-          <CalendarContentTextarea value={detail.content} />
+          <CalendarContentTextarea
+            value={detail.content}
+            onChange={(e) => setDetail({ ...detail, content: e.target.value })}
+          />
         </CalendarModal>
       )}
     </>
