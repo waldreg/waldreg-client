@@ -111,11 +111,14 @@ const CalendarCells = ({
               const started_at = new Date(schedule.started_at);
               const finish_at = new Date(schedule.finish_at);
 
+              const startDay = started_at.getDate() - 1;
+              const endDay = finish_at.getDate() - 1;
+
               return (
                 started_at.getFullYear() === year &&
                 started_at.getMonth() === month - 1 &&
-                started_at.getDate() <= day.getDate() - 1 &&
-                finish_at.getDate() >= day.getDate() - 1
+                startDay <= day.getDate() - 1 &&
+                endDay >= day.getDate() - 1
               );
             }) && (
               <ScheduleBox>
@@ -125,11 +128,14 @@ const CalendarCells = ({
                     const started_at = new Date(schedule.started_at);
                     const finish_at = new Date(schedule.finish_at);
 
+                    const startDay = started_at.getDate() - 1;
+                    const endDay = finish_at.getDate() - 1;
+
                     return (
                       started_at.getFullYear() === year &&
                       started_at.getMonth() === month - 1 &&
-                      started_at.getDate() <= day.getDate() - 1 &&
-                      finish_at.getDate() >= day.getDate() - 1
+                      startDay <= day.getDate() - 1 &&
+                      endDay >= day.getDate() - 1
                     );
                   })
                   .map((schedule: any) => (

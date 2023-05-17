@@ -22,7 +22,7 @@ export function useScheduleUpdate(
 
   const { mutate } = useMutation(() => ScheduleUpdate(schedule_id, schedule), {
     onSuccess: () => {
-      queryClient.invalidateQueries(scheduleKeys.detail(schedule_id));
+      queryClient.invalidateQueries(scheduleKeys.all);
     },
   });
 

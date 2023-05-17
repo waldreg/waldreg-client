@@ -103,7 +103,6 @@ const Calendar = () => {
   const handleUpdateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     updateMutation.mutate();
-    console.log(scheduleData);
     setIsOpenDetailModal(false);
     setTitle("");
     setContent("");
@@ -190,6 +189,7 @@ const Calendar = () => {
             endDate={new Date(detail.finish_at)}
             setStartDate={setStartAt}
             setEndDate={setEndAt}
+            detail={detail}
           />
           <CalendarContentTextarea
             value={detail.content}
