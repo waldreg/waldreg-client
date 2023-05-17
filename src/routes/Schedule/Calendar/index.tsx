@@ -20,6 +20,12 @@ const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
+
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [startAt, setStartAt] = useState<Date | null>();
+  const [endAt, setEndAt] = useState<Date | null>();
+
   const [detail, setDetail] = useState({
     id: 0,
     title: "",
@@ -28,11 +34,8 @@ const Calendar = () => {
     finish_at: new Date(),
   });
 
-  const scheduleDelete = useScheduleDelete(detail.id);
-  const handleDeleteButtonClick = () => {
-    scheduleDelete.mutate();
-    setIsOpenDetailModal(!isOpenDetailModal);
-  };
+  const startDateString = startAt?.toISOString().slice(0, -5);
+  const endDateString = endAt?.toISOString().slice(0, -5);
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -43,14 +46,10 @@ const Calendar = () => {
   const handleTodayClick = () => {
     setCurrentMonth(new Date());
   };
-
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const [startAt, setStartAt] = useState<Date | null>();
-  const [endAt, setEndAt] = useState<Date | null>();
-
-  const startDateString = startAt?.toISOString().slice(0, -5);
-  const endDateString = endAt?.toISOString().slice(0, -5);
+  const handleDateClick = (day: Date) => {
+    setStartAt(day);
+    setEndAt(day);
+  };
 
   const scheduleData = {
     schedule_title: title,
@@ -63,8 +62,20 @@ const Calendar = () => {
     },
   };
 
+  const scheduleUpdateData = {
+    schedule_title: detail.title,
+    schedule_content: detail.content,
+    started_at: startDateString!!,
+    finish_at: endDateString!!,
+    repeat: {
+      cycle: 123,
+      repeat_finish_at: "2023-12-31T23:59",
+    },
+  };
+
   const createMutation = useScheduleCreate(scheduleData);
-  const updateMutation = useScheduleUpdate(detail.id, scheduleData);
+  const updateMutation = useScheduleUpdate(detail.id, scheduleUpdateData);
+  const scheduleDelete = useScheduleDelete(detail.id);
 
   const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -77,14 +88,15 @@ const Calendar = () => {
   const handleUpdateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     updateMutation.mutate();
-    setIsOpenCreateModal(false);
+    console.log(scheduleData);
+    setIsOpenDetailModal(false);
     setTitle("");
     setContent("");
   };
 
-  const handleDateClick = (day: Date) => {
-    setStartAt(day);
-    setEndAt(day);
+  const handleDeleteButtonClick = () => {
+    scheduleDelete.mutate();
+    setIsOpenDetailModal(!isOpenDetailModal);
   };
 
   return (
@@ -153,7 +165,10 @@ const Calendar = () => {
           <CalendarTitleInput
             type="text"
             value={detail.title}
-            onChange={(e) => setDetail({ ...detail, title: e.target.value })}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              detail.title = e.target.value;
+            }}
           />
           <CalendarDatePicker
             startDate={new Date(detail.started_at)}
@@ -163,7 +178,10 @@ const Calendar = () => {
           />
           <CalendarContentTextarea
             value={detail.content}
-            onChange={(e) => setDetail({ ...detail, content: e.target.value })}
+            onChange={(e) => {
+              setContent(e.target.value);
+              detail.content = e.target.value;
+            }}
           />
         </CalendarModal>
       )}

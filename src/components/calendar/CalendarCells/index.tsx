@@ -70,6 +70,7 @@ const CalendarCells = ({
       started_at: new Date(schedule.started_at),
       finish_at: new Date(schedule.finish_at),
     });
+    console.log(schedule);
   };
 
   const scheduleList = useScheduleList(year, month);
