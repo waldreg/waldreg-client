@@ -5,7 +5,7 @@ import { scheduleKeys } from "../../types/scheduleKeys";
 
 async function ScheduleUpdate(
   schedule_id: number,
-  schedule: Schedule
+  schedule: any
 ): Promise<void> {
   await axios.put(`/schedule/${schedule_id}`, schedule);
 }
@@ -16,7 +16,7 @@ interface UseScheduleUpdate {
 
 export function useScheduleUpdate(
   schedule_id: number,
-  schedule: Schedule
+  schedule: any
 ): UseScheduleUpdate {
   const queryClient = useQueryClient();
 

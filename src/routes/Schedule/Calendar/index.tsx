@@ -34,8 +34,23 @@ const Calendar = () => {
     finish_at: new Date(),
   });
 
-  const startDateString = startAt?.toISOString().slice(0, -5);
-  const endDateString = endAt?.toISOString().slice(0, -5);
+  const updatedStartAt = startAt ? new Date(startAt) : null;
+  const updatedEndAt = endAt ? new Date(endAt) : null;
+
+  if (updatedStartAt) {
+    updatedStartAt.setUTCDate(updatedStartAt.getUTCDate() + 1);
+  }
+
+  if (updatedEndAt) {
+    updatedEndAt.setUTCDate(updatedEndAt.getUTCDate() + 1);
+  }
+
+  const startDateString = updatedStartAt
+    ? updatedStartAt.toISOString().slice(0, -5)
+    : null;
+  const endDateString = updatedEndAt
+    ? updatedEndAt.toISOString().slice(0, -5)
+    : null;
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -65,8 +80,8 @@ const Calendar = () => {
   const scheduleUpdateData = {
     schedule_title: detail.title,
     schedule_content: detail.content,
-    started_at: startDateString!!,
-    finish_at: endDateString!!,
+    started_at: detail.started_at,
+    finish_at: detail.finish_at,
     repeat: {
       cycle: 123,
       repeat_finish_at: "2023-12-31T23:59",

@@ -67,8 +67,8 @@ const CalendarCells = ({
       id: schedule.id,
       title: schedule.schedule_title,
       content: schedule.schedule_content,
-      started_at: new Date(schedule.started_at),
-      finish_at: new Date(schedule.finish_at),
+      started_at: schedule.started_at,
+      finish_at: schedule.finish_at,
     });
     console.log(schedule);
   };
@@ -106,6 +106,7 @@ const CalendarCells = ({
           )}
           {scheduleList &&
             scheduleList.scheduleList &&
+            // eslint-disable-next-line no-loop-func
             scheduleList.scheduleList.schedules.some((schedule: any) => {
               const started_at = new Date(schedule.started_at);
               const finish_at = new Date(schedule.finish_at);
@@ -119,6 +120,7 @@ const CalendarCells = ({
             }) && (
               <ScheduleBox>
                 {scheduleList.scheduleList.schedules
+                  // eslint-disable-next-line no-loop-func
                   .filter((schedule: any) => {
                     const started_at = new Date(schedule.started_at);
                     const finish_at = new Date(schedule.finish_at);
