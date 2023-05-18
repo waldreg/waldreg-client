@@ -14,6 +14,7 @@ interface CalendarDatePickerProps {
   endDate: Date;
   setStartDate: (date: Date) => void;
   setEndDate: (date: Date) => void;
+  detail?: any;
 }
 
 const CalendarDatePicker = ({
@@ -21,6 +22,7 @@ const CalendarDatePicker = ({
   endDate,
   setStartDate,
   setEndDate,
+  detail,
 }: CalendarDatePickerProps) => {
   const [startAt, setStartAt] = useState(startDate);
   const [endAt, setEndAt] = useState(endDate);
@@ -32,8 +34,11 @@ const CalendarDatePicker = ({
         <SDatePicker
           selected={startAt}
           onChange={(date) => {
-            setStartAt(date as Date);
-            setStartDate(date as Date);
+            if (date) {
+              setStartAt(date as Date);
+              setStartDate(date as Date);
+              detail.started_at = (date as Date).toISOString().slice(0, -5);
+            }
           }}
           locale={ko}
           dateFormat="yyyy년 MM월 dd일"
@@ -47,6 +52,7 @@ const CalendarDatePicker = ({
           onChange={(date) => {
             setEndAt(date as Date);
             setEndDate(date as Date);
+            detail.finish_at = (date as Date).toISOString().slice(0, -5);
           }}
           locale={ko}
           dateFormat="yyyy년 MM월 dd일"
