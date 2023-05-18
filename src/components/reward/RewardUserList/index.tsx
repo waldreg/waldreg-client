@@ -90,7 +90,7 @@ const UserItem = styled.div<{ positive: boolean }>`
 
   border-radius: 0.5rem;
 
-  background: ${(props) => (props.positive ? COLOR.GREEN1 : COLOR.RED1)};
+  background: ${COLOR.GRAY0};
   color: ${(props) => (props.positive ? COLOR.GREEN4 : COLOR.RED2)};
   cursor: pointer;
 `;
