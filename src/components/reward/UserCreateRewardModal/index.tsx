@@ -3,7 +3,7 @@ import 'tw-elements';
 
 import { useState } from 'react';
 
-import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
 import useCreateUserReward from '../../../hooks/reward/useCreateUserReward';
 import { useInput } from '../../../hooks/common/useInput';
@@ -24,7 +24,7 @@ const UserCreateRewardModal = ({
 }: {
   setIsOpenCreateModal: any;
 }) => {
-  const userList = useUserList(1, 50)?.users;
+  const userList = useAllUserList(1, 50)?.users;
   const rewardTags = useRewardTags();
 
   const { value, handleChangeInput, reset } = useInput('');

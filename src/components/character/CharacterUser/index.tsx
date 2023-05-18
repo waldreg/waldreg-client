@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
 import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
@@ -29,7 +29,7 @@ const CharacterUser = ({ name }: { name: string }) => {
     };
   }, [name]);
 
-  const userList = useUserList(1, 50);
+  const userList = useAllUserList(1, 50);
   const filterUserList = userList?.users.filter(
     (user) => user.character === name
   );

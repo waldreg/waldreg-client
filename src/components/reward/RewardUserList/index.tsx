@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { useState } from 'react';
-import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 
 import { User } from '../../../interfaces/user';
 
@@ -18,7 +18,7 @@ import { UserRewards } from '../../user/UserRewards';
 import RewardReset from '../RewardReset';
 
 const RewardUserList = ({ setUser }: { setUser: any }) => {
-  const userList = useUserList(1, 50)?.users;
+  const userList = useAllUserList(1, 50)?.users;
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
