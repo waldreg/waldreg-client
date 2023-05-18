@@ -1,56 +1,44 @@
 import styled from 'styled-components';
+import { QueryInfiniteScroll } from 'react-query-infinite-scroll';
 
 import useUserList from '../../../hooks/user/useUserList';
-import useAllUserList from '../../../hooks/user/useAllUserList';
 import { useInput } from '../../../hooks/common/useInput';
 
-import { User } from '../../../interfaces/user';
+import { UserItems } from '../UserItems';
 
 import { InputFillThin } from '../../common/inputs/input_fill';
-import UserInfo from '../UserInfo';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
-  const allUserList = useAllUserList(1, 100)?.users;
-  const userList = useUserList(1, 100)?.users;
-
   const { value, handleChangeInput, reset } = useInput('');
-
-  const filterList =
-    value === ''
-      ? userList
-      : allUserList?.filter((user) =>
-          user.name.toLowerCase().includes(value.toLowerCase())
-        );
+  const query = useUserList();
 
   return (
     <Container>
+      <Top>
+        <Title style={FONT.HEADING}>유저 목록</Title>
+        <InputFillThin
+          value={value}
+          placeholder={'유저 이름'}
+          onChange={handleChangeInput}
+          reset={reset}
+        />
+      </Top>
+
       <Content>
-        <Top>
-          <Title style={FONT.HEADING}>유저 목록</Title>
-          <InputFillThin
-            value={value}
-            placeholder={'유저 이름'}
-            onChange={handleChangeInput}
-            reset={reset}
-          />
-        </Top>
-        <UserItems>
-          {filterList?.length === 0 || filterList === undefined ? (
-            <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
-          ) : (
-            filterList.map((user: User) => (
-              <UserItem
-                key={user.id}
-                onClick={() => handleClickChangeUser(user.user_id)}
-              >
-                <UserInfo user={user} size={'small'} />
-              </UserItem>
-            ))
-          )}
-        </UserItems>
+        <QueryInfiniteScroll query={query} observer={<div>loading</div>}>
+          {query.isFetched &&
+            query.userList?.pages.map((users, i) => (
+              <UserItems
+                key={i}
+                handleClickChangeUser={handleClickChangeUser}
+                allUserList={users.data.users}
+                value={value}
+              />
+            ))}
+        </QueryInfiniteScroll>
       </Content>
     </Container>
   );
@@ -66,7 +54,7 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 2rem;
 `;
 
 const Content = styled.div`
@@ -75,6 +63,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+
+  overflow: auto;
 `;
 
 const Title = styled.div`
@@ -88,25 +78,6 @@ const Top = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const UserItems = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-
-  overflow: auto;
-`;
-
-const UserItem = styled.div`
-  width: 100%;
-  height: 100%;
-
-  cursor: pointer;
 `;
 
 export default UserList;
