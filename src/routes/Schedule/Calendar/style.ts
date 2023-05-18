@@ -27,4 +27,19 @@ const CalendarContentTextarea = styled.textarea`
   margin-top: 2rem;
 `;
 
-export { CalendarContainer, CalendarTitleInput, CalendarContentTextarea };
+const CalendarDeleteButton = styled.div`
+  display: flex;
+  justify-content: right;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+`;
+
+export {
+  CalendarContainer,
+  CalendarTitleInput,
+  CalendarContentTextarea,
+  CalendarDeleteButton,
+};

@@ -64,11 +64,13 @@ const CalendarCells = ({
   const handleScheduleClick = (schedule: any) => {
     setIsOpenDetailModal(!isOpenDetailModal);
     setDetail({
+      id: schedule.id,
       title: schedule.schedule_title,
       content: schedule.schedule_content,
-      started_at: new Date(schedule.started_at),
-      finish_at: new Date(schedule.finish_at),
+      started_at: schedule.started_at,
+      finish_at: schedule.finish_at,
     });
+    console.log(schedule);
   };
 
   const scheduleList = useScheduleList(year, month);
@@ -104,28 +106,36 @@ const CalendarCells = ({
           )}
           {scheduleList &&
             scheduleList.scheduleList &&
+            // eslint-disable-next-line no-loop-func
             scheduleList.scheduleList.schedules.some((schedule: any) => {
               const started_at = new Date(schedule.started_at);
               const finish_at = new Date(schedule.finish_at);
 
+              const startDay = started_at.getDate() - 1;
+              const endDay = finish_at.getDate() - 1;
+
               return (
                 started_at.getFullYear() === year &&
                 started_at.getMonth() === month - 1 &&
-                started_at.getDate() <= day.getDate() - 1 &&
-                finish_at.getDate() >= day.getDate() - 1
+                startDay <= day.getDate() - 1 &&
+                endDay >= day.getDate() - 1
               );
             }) && (
               <ScheduleBox>
                 {scheduleList.scheduleList.schedules
+                  // eslint-disable-next-line no-loop-func
                   .filter((schedule: any) => {
                     const started_at = new Date(schedule.started_at);
                     const finish_at = new Date(schedule.finish_at);
 
+                    const startDay = started_at.getDate() - 1;
+                    const endDay = finish_at.getDate() - 1;
+
                     return (
                       started_at.getFullYear() === year &&
                       started_at.getMonth() === month - 1 &&
-                      started_at.getDate() <= day.getDate() - 1 &&
-                      finish_at.getDate() >= day.getDate() - 1
+                      startDay <= day.getDate() - 1 &&
+                      endDay >= day.getDate() - 1
                     );
                   })
                   .map((schedule: any) => (
