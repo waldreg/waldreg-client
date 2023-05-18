@@ -17,7 +17,7 @@ const RewardUser = ({ user }: { user: number }) => {
       <Top>
         <Title style={FONT.HEADING}>유저 상벌점</Title>
       </Top>
-      <UserReward user={userReward} />
+      <UserReward user={userReward} icon={true} />
     </Container>
   );
 };
