@@ -114,6 +114,8 @@ const Top = styled.div`
 const UserItems = styled.div`
   width: 100%;
   height: 100%;
+
+  overflow: auto;
 `;
 
 const Description = styled.div`
