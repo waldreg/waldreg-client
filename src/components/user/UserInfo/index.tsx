@@ -5,14 +5,13 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserInfo = ({ user, size }: { user: User; size: string }) => {
-  console.log(user);
-
   return (
     <Content size={size}>
       <Name>
         <UserName style={FONT.SUBTITLE3}>{user.name}</UserName>
         <UserId style={FONT.SUBTITLE2}>{user.user_id}</UserId>
       </Name>
+      {size === 'big' && <Line />}
       <Tags size={size}>
         <Tags size="small">
           {size === 'big' && <Subtitle style={FONT.SUBTITLE1}>역할</Subtitle>}
@@ -45,7 +44,7 @@ const UserInfo = ({ user, size }: { user: User; size: string }) => {
 
 const Content = styled.div<{ size: string }>`
   width: 100%;
-  padding: ${(props) => (props.size === 'small' ? `1.1rem` : `2rem`)};
+  padding: ${(props) => (props.size === 'small' ? `1.1rem` : `2.4rem`)};
 
   border-radius: 0.5rem;
   display: flex;
@@ -54,9 +53,7 @@ const Content = styled.div<{ size: string }>`
   justify-content: space-between;
   gap: ${(props) => (props.size === 'small' ? '0' : `2rem`)};
 
-  background: ${(props) =>
-    props.size === 'small' ? COLOR.GRAY0 : COLOR.WHITE};
-  border: ${(props) => props.size === 'big' && `2.5px solid ${COLOR.GRAY0}`};
+  background: ${COLOR.GRAY0};
 `;
 
 const Name = styled.div`
@@ -87,11 +84,17 @@ const Tag = styled.div<{ size: string }>`
 
   border-radius: 0.5rem;
   color: ${COLOR.GREEN4};
-  background: ${(props) => (props.size === 'small' ? COLOR.WHITE : '')};
+  border: ${(props) => props.size === 'small' && `1.8px solid ${COLOR.GREEN4}`};
 `;
 
 const Subtitle = styled.div`
   white-space: nowrap;
+`;
+
+const Line = styled.hr`
+  width: 100%;
+  height: 2px;
+  background-color: ${COLOR.GRAY2};
 `;
 
 export default UserInfo;
