@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 
 import useUserList from '../../../hooks/user/useUserList';
 import useAllUserList from '../../../hooks/user/useAllUserList';
@@ -14,16 +13,8 @@ import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
-  const NUMBER = 7;
-
-  const [page, setPage] = useState<number>(1);
   const allUserList = useAllUserList(1, 100)?.users;
-  const userList = useUserList(page, page + (NUMBER - 1))?.users;
-  const max = useUserList(page, page + (NUMBER - 1))?.max_idx || 1;
-  const numPages = Math.ceil(max / NUMBER);
-  const pageNums = Array(numPages)
-    .fill(0)
-    .map((v, i) => i + 1);
+  const userList = useUserList(1, 100)?.users;
 
   const { value, handleChangeInput, reset } = useInput('');
 
@@ -61,20 +52,6 @@ const UserList = ({ handleClickChangeUser }: any) => {
           )}
         </UserItems>
       </Content>
-      <PageNav>
-        {pageNums.map((num) => (
-          <PageBtn
-            key={num}
-            onClick={(e: any) => {
-              setPage(Number(e.target.innerText) * NUMBER - (NUMBER - 1));
-            }}
-            style={FONT.DETAIL1}
-            selected={num * NUMBER - (NUMBER - 1) === page}
-          >
-            {num}
-          </PageBtn>
-        ))}
-      </PageNav>
     </Container>
   );
 };
@@ -93,6 +70,8 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -113,13 +92,14 @@ const Top = styled.div`
 
 const UserItems = styled.div`
   width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const UserItem = styled.div`
@@ -127,24 +107,6 @@ const UserItem = styled.div`
   height: 100%;
 
   cursor: pointer;
-`;
-
-const PageNav = styled.div`
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-`;
-
-const PageBtn = styled.button<{ selected: boolean }>`
-  width: 30px;
-  height: 30px;
-
-  border-radius: 0.5rem;
-  color: ${(props) => (props.selected ? `${COLOR.GREEN4}` : `${COLOR.GRAY4}`)};
-  background: ${(props) =>
-    props.selected ? `${COLOR.GREEN1}` : `${COLOR.GRAY0}`};
 `;
 
 export default UserList;
