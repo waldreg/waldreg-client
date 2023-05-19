@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import useDeleteUserReward from '../../../hooks/reward/useDeleteUserReward';
+
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 import { UserRewards } from '../../../interfaces/reward';
@@ -15,6 +17,8 @@ export const UserReward = ({
   user?: UserRewards;
   icon?: boolean;
 }) => {
+  const deleteMutaion = useDeleteUserReward(user?.id || 0);
+
   return (
     <Container>
       <Content>
@@ -53,7 +57,9 @@ export const UserReward = ({
               </Date>
             </Text>
             {icon && (
-              <IconWrapper>
+              <IconWrapper
+                onClick={() => deleteMutaion.mutate(reward.reward_id)}
+              >
                 <RoundDelIcon />
               </IconWrapper>
             )}

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import useRewardTags from '../../../hooks/reward/useRewardTags';
-import useDeleteRewardTag from '../../../hooks/reward/useDeleteRewardTag';
 
 import RewardTagCreateModal from '../../../components/reward/RewardTagCreateModal';
+import RewardTagEditModal from '../RewardTagEditModal';
+import RewardTagDeleteModal from '../RewardTagDeleteModal';
 
 import { Top } from '../../../components/character/CharacterList/style';
 import { Title } from '../../../components/common/pagetitle/style';
@@ -11,22 +12,17 @@ import { PlusIcon } from '../../../components/Icons/SettingIcons';
 
 import FONT from '../../../constants/fonts';
 import { RoundDelIcon, RoundEditIcon } from '../../Icons/BasicIcons';
-import RewardTagEditModal from '../RewardTagEditModal';
 import { RewardWithId } from '../../../interfaces/reward';
 
 import * as S from './style';
 
 const RewardTagList = () => {
   const rewards = useRewardTags();
-  const deleteMutation = useDeleteRewardTag();
-
-  const handleClickDelete = (id: number) => {
-    deleteMutation.mutate(id);
-  };
 
   const [curReward, setCurReward] = useState<RewardWithId>();
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   const handleClickCreateModal = () => {
     setIsOpenCreateModal(!isOpenCreateModal);
@@ -34,6 +30,10 @@ const RewardTagList = () => {
 
   const handleClickEditModal = () => {
     setIsOpenEditModal(!isOpenEditModal);
+  };
+
+  const handleClickDeleteModal = () => {
+    setIsOpenDeleteModal(!isOpenDeleteModal);
   };
 
   return (
@@ -50,6 +50,12 @@ const RewardTagList = () => {
       {isOpenEditModal && (
         <RewardTagEditModal
           setIsOpenEditModal={setIsOpenEditModal}
+          reward={curReward}
+        />
+      )}
+      {isOpenDeleteModal && (
+        <RewardTagDeleteModal
+          setIsOpenDeleteModal={setIsOpenDeleteModal}
           reward={curReward}
         />
       )}
@@ -70,7 +76,10 @@ const RewardTagList = () => {
                 <RoundEditIcon />
               </IconWrapper>
               <IconWrapper
-                onClick={() => handleClickDelete(reward.reward_tag_id)}
+                onClick={() => {
+                  handleClickDeleteModal();
+                  setCurReward(reward);
+                }}
               >
                 <RoundDelIcon />
               </IconWrapper>
