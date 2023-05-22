@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
-import { useRecoilValue } from "recoil";
-import { boardCategoryState } from "../../../states/board";
 import FONT from "../../../constants/fonts";
 import {
   BoardButtonContainer,
@@ -16,7 +14,6 @@ import BoardFileUpload from "../BoardFileUpload";
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [fileList, setFileList] = useState<File[]>([]);
   const { categoryId } = useParams();
   const navigate = useNavigate();
 

@@ -50,7 +50,7 @@ const FileDetailBox = styled.div`
   background: ${COLOR.GRAY1};
   border: 1px solid ${COLOR.GRAY3};
   border-radius: 0.7rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.3rem 0.5rem;
   margin-right: 0.5rem;
   display: flex;
   align-items: center;

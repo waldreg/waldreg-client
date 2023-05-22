@@ -1,4 +1,3 @@
-import React from "react";
 import { ChangeEvent, DragEvent, useState } from "react";
 import { FileDeleteIcon, FileIcon } from "../../Icons/BoardIcons";
 import { PlusIcon } from "../../Icons/SettingIcons";
@@ -39,8 +38,8 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
   const handleUpdateFiles = (files: FileList) => {
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
-      setFileList([...fileList, file]);
       formData.append("file", file);
+      setFileList([...fileList, file]);
     }
   };
 

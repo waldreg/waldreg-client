@@ -25,6 +25,11 @@ import {
   SettingSaveButton,
   SettingTitle,
 } from "../../../routes/Setting/Board/style";
+import {
+  FileDetailBox,
+  FileDetailTitle,
+  FileListBox,
+} from "../BoardFileUpload/style";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -47,10 +52,12 @@ const BoardDetail = () => {
   };
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
+  const files: File[] | undefined = board?.files;
+  console.log(board?.files);
 
   return (
     <BoardContainer>
-      <BoardTitle style={FONT.SUBTITLE1}>{board?.title}</BoardTitle>
+      <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
       <BoardTopBox>
         <BoardInformationBox>
           <BoardInformation style={FONT.SUBTITLE1}>
@@ -68,6 +75,7 @@ const BoardDetail = () => {
             조회수 : {board?.views}
           </BoardInformation>
         </BoardInformationBox>
+
         <BoardButtonBox>
           <BoardButton style={FONT.SUBTITLE1} onClick={handleUpdateButtonClick}>
             수정
@@ -80,6 +88,19 @@ const BoardDetail = () => {
           </BoardButton>
         </BoardButtonBox>
       </BoardTopBox>
+
+      {files && (
+        <FileListBox>
+          {files.map((file, i) => {
+            return (
+              <FileDetailBox key={i}>
+                <FileDetailTitle>{file.name}</FileDetailTitle>
+              </FileDetailBox>
+            );
+          })}
+        </FileListBox>
+      )}
+
       <BoardContent style={FONT.BODY1}>{board?.content}</BoardContent>
 
       <BoardCommentCount style={FONT.SUBTITLE2}>

@@ -18,7 +18,6 @@ const BoardUpdate = () => {
 
   const [title, setTitle] = useState(board?.title);
   const [content, setContent] = useState(board?.content);
-  const [fileList, setFileList] = useState<File[]>([]);
   const formData = new FormData();
   const navigate = useNavigate();
 
