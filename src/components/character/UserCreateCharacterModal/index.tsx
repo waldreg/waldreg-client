@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
@@ -22,7 +22,7 @@ const UserCreateCharacterModal = ({
   setIsOpenCreateModal: any;
   name: string;
 }) => {
-  const userList = useUserList(1, 50);
+  const userList = useAllUserList(1, 50);
   const { mutate } = useEditUserCharacter();
 
   const { value, handleChangeInput, reset } = useInput('');
@@ -114,6 +114,8 @@ const Top = styled.div`
 const UserItems = styled.div`
   width: 100%;
   height: 100%;
+
+  overflow: auto;
 `;
 
 const Description = styled.div`

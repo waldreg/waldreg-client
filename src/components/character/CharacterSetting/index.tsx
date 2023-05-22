@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useCharacter from '../../../hooks/character/useCharacter';
 import useEditCharacter from '../../../hooks/character/useEditCharacter';
 import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
+import usePermissionList from '../../../hooks/character/usePermissionList';
 import { useInput } from '../../../hooks/common/useInput';
 import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
@@ -25,6 +26,7 @@ const CharacterSetting = ({
   name: string;
   setChar: any;
 }) => {
+  const perList = usePermissionList();
   const character = useCharacter(name);
   const editMutation = useEditCharacter(name);
   const deleteMutation = useDeleteCharacter();
@@ -34,11 +36,15 @@ const CharacterSetting = ({
   );
 
   const perThemeList = [
-    { name: '유저', range: [0, 3] },
-    { name: '게시판', range: [4, 15] },
-    { name: '일정', range: [16, 18] },
-    { name: '상벌점', range: [19, 19] },
+    'User',
+    'Character',
+    'Board',
+    'Schedule',
+    'Reward',
+    'Attendance',
+    'Teambuilding',
   ];
+
   const [perTheme, setPerTheme] = useState(perThemeList[0]);
 
   checkedList.sort((prev, cur) => {
@@ -70,21 +76,17 @@ const CharacterSetting = ({
         <PerThemeList style={FONT.SUBTITLE2}>
           {perThemeList.map((theme) => (
             <Item
-              key={theme.name}
+              key={theme}
               onClick={() => setPerTheme(theme)}
-              selected={theme.name === perTheme.name}
+              selected={theme === perTheme}
             >
-              {theme.name}
+              {theme}
             </Item>
           ))}
         </PerThemeList>
         <Items>
           {checkedList
-            .filter(
-              (per) =>
-                per.permission_id >= perTheme.range[0] &&
-                per.permission_id <= perTheme.range[1]
-            )
+            .filter((per) => per.permission_service === perTheme)
             .map((permission: Permission) => (
               <PermissionItem
                 key={permission.permission_id}
@@ -112,7 +114,7 @@ const CharacterSetting = ({
 };
 
 const Container = styled.div`
-  width: 140%;
+  width: 40vw;
   height: 100%;
   background: ${COLOR.WHITE};
 
@@ -125,6 +127,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -132,6 +135,13 @@ const Content = styled.div`
 `;
 
 const PerThemeList = styled.div`
+  max-width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   display: flex;
   gap: 1rem;
 `;

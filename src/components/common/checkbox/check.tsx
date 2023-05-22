@@ -76,6 +76,7 @@ const CheckWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 `;
 
 const CheckBox = styled.input<{ checked: boolean }>`
@@ -96,8 +97,8 @@ const CheckBox = styled.input<{ checked: boolean }>`
 const IconWrapper = styled.div`
   padding: 5px;
 
-  position: absolute;
   pointer-events: none;
+  position: absolute;
 `;
 
 const Text = styled.label``;
