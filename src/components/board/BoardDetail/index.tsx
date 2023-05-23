@@ -53,7 +53,6 @@ const BoardDetail = () => {
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
   const files: File[] | undefined = board?.files;
-  console.log(board?.files);
 
   return (
     <BoardContainer>

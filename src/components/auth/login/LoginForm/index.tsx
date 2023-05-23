@@ -54,7 +54,6 @@ const LoginForm = () => {
         navigate("/login");
       }, TOKEN_EXPIRE_TIME - 10);
     } catch (e: any) {
-      console.log(e);
       setError(
         "userId",
         {
