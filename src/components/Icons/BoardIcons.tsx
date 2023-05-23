@@ -106,7 +106,11 @@ export const FileIcon = () => {
   );
 };
 
-export const FileDeleteIcon = (props: React.SVGProps<SVGSVGElement>) => {
+type FileDeleteIconProps = {
+  onClick?: () => void;
+};
+
+export const FileDeleteIcon = ({ onClick }: FileDeleteIconProps) => {
   return (
     <svg
       width="18"
@@ -114,6 +118,8 @@ export const FileDeleteIcon = (props: React.SVGProps<SVGSVGElement>) => {
       viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+      cursor={"pointer"}
     >
       <path
         fillRule="evenodd"

@@ -39,7 +39,7 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
       formData.append("file", file);
-      setFileList([...fileList, file]);
+      setFileList((prev) => [...prev, file]);
     }
   };
 
@@ -76,14 +76,10 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
           {fileList.map((e, i) => {
             return (
               <FileDetailBox key={i}>
-                <FileDetailTitle>{e.name}</FileDetailTitle>
-                {/* TODO: 파일 삭제 아이콘에 이벤트 등록 */}
-                <span
-                  onClick={() => handleDeleteFile(i)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <FileDeleteIcon />
-                </span>
+                <FileDetailTitle style={FONT.SUBTITLE1}>
+                  {e.name}
+                </FileDetailTitle>
+                <FileDeleteIcon onClick={() => handleDeleteFile(i)} />
               </FileDetailBox>
             );
           })}

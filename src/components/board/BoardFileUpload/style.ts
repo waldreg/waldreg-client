@@ -68,7 +68,7 @@ const FilePlusLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 `;
 
 export {
