@@ -60,7 +60,6 @@ const SignupForm = () => {
       await authAPI.signup(newUser);
       navigate("/login");
     } catch (e: any) {
-      console.log(e);
       setError(
         "userId",
         {

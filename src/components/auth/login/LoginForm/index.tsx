@@ -45,7 +45,6 @@ const LoginForm = () => {
   }) => {
     try {
       const response = await authAPI.login(userId, userPassword);
-      console.log(response);
       authCtx.login(response.access_token);
       navigate("/");
       const TOKEN_EXPIRE_TIME = 60 * 60 * 1000;
