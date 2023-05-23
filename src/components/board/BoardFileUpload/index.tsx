@@ -1,4 +1,4 @@
-import { ChangeEvent, DragEvent, useState } from "react";
+import { ChangeEvent, DragEvent, useEffect, useState } from "react";
 import { FileDeleteIcon, FileIcon } from "../../Icons/BoardIcons";
 import { PlusIcon } from "../../Icons/SettingIcons";
 import FONT from "./../../../constants/fonts";
@@ -22,7 +22,6 @@ interface BoardFileUploadProps {
 const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
   const [fileList, setFileList] = useState<File[]>([]);
 
-  // TODO: 파일 다중 업로드 구현
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = e.target.files;
@@ -36,11 +35,18 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
   };
 
   const handleUpdateFiles = (files: FileList) => {
+    const newFileList: File[] = [];
+
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
+      newFileList.push(file);
       formData.append("file", file);
-      setFileList((prev) => [...prev, file]);
     }
+    for (let i = 0; i < newFileList.length; i++) {
+      const file: File = newFileList[i];
+      formData.append("file", file);
+    }
+    setFileList([...fileList, ...newFileList]);
   };
 
   const handleDeleteFile = (index: number) => {
