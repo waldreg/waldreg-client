@@ -38,7 +38,6 @@ const BoardCreate = () => {
     e.preventDefault();
     createMutation.mutate();
     navigate(-1);
-    console.log(formData.get("file"));
   };
 
   return (
