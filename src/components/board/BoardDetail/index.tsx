@@ -32,6 +32,7 @@ import {
 } from "../BoardFileUpload/style";
 import { FileDownLoadIcon } from "../../Icons/BoardIcons";
 import axios from "axios";
+import React from "react";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -73,6 +74,13 @@ const BoardDetail = () => {
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
   const files = board?.files;
+
+  const replaceValue = board?.content.split("\n").map((line, i) => (
+    <React.Fragment key={i}>
+      {line}
+      <br />
+    </React.Fragment>
+  ));
 
   return (
     <BoardContainer>
@@ -124,7 +132,7 @@ const BoardDetail = () => {
         </FileListBox>
       )}
 
-      <BoardContent style={FONT.BODY1}>{board?.content}</BoardContent>
+      <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
 
       <BoardCommentCount style={FONT.SUBTITLE2}>
         {commentLists?.max_idx}개의 댓글
