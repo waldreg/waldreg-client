@@ -46,7 +46,7 @@ const FileListBox = styled.div`
   margin-top: 0.8rem;
 `;
 
-const FileDetailBox = styled.div`
+const FileDetailBox = styled.a`
   background: ${COLOR.GRAY1};
   border: 1px solid ${COLOR.GRAY3};
   border-radius: 0.7rem;
@@ -56,10 +56,11 @@ const FileDetailBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 0.4rem;
+  cursor: pointer;
 `;
 
 const FileDetailTitle = styled.div`
-  color: ${COLOR.GRAY4};
+  color: ${COLOR.GRAY3};
   margin-right: 0.3rem;
 `;
 

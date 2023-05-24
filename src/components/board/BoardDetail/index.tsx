@@ -30,6 +30,8 @@ import {
   FileDetailTitle,
   FileListBox,
 } from "../BoardFileUpload/style";
+import { FileDownLoadIcon } from "../../Icons/BoardIcons";
+import axios from "axios";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -51,8 +53,26 @@ const BoardDetail = () => {
     navigate(-1);
   };
 
+  async function getBoardDownload(file_id: string): Promise<any> {
+    const { data } = await axios.get(`/file/${file_id}`, {
+      responseType: "blob",
+    });
+    return data;
+  }
+  const handleDownloadButtonClick = async (file_id: string) => {
+    const fileData = await getBoardDownload(file_id);
+    const downloadUrl = URL.createObjectURL(fileData);
+
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "filename.extension"; // 여기서 'filename.extension'을 실제 파일 이름과 확장자로 대체하세요
+    link.click();
+
+    URL.revokeObjectURL(downloadUrl);
+  };
+
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
-  const files: File[] | undefined = board?.files;
+  const files = board?.files;
 
   return (
     <BoardContainer>
@@ -92,8 +112,12 @@ const BoardDetail = () => {
         <FileListBox>
           {files.map((file, i) => {
             return (
-              <FileDetailBox key={i}>
-                <FileDetailTitle>{file.name}</FileDetailTitle>
+              <FileDetailBox
+                key={i}
+                onClick={() => handleDownloadButtonClick(file)}
+              >
+                <FileDetailTitle style={FONT.SUBTITLE1}>{file}</FileDetailTitle>
+                <FileDownLoadIcon />
               </FileDetailBox>
             );
           })}

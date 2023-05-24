@@ -40,7 +40,6 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
     for (let i = 0; i < files.length; i++) {
       const file: File = files[i];
       newFileList.push(file);
-      formData.append("file", file);
     }
     for (let i = 0; i < newFileList.length; i++) {
       const file: File = newFileList[i];
