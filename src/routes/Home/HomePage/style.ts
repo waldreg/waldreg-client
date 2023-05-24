@@ -8,8 +8,9 @@ const HomeContainer = styled.div`
   background: ${COLOR.WHITE};
   width: 100%;
   height: 85%;
-  padding: 2rem;
+  padding: 1.7rem;
   margin-bottom: 1rem;
+  min-width: 30rem;
 `;
 
 const ButtonContainer = styled.div`

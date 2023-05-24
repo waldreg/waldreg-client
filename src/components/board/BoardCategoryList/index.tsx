@@ -56,7 +56,7 @@ function BoardCategoryList({ boardCategoryList }: BoardCategoryListsProps) {
                   {category.category_name}
                 </CategoryTitle>
                 <div onClick={handleClickDeleteModal}>
-                  <TrashcanIcon />
+                  <TrashcanIcon width={25} height={25} />
                 </div>
               </Category>
             </Item>
