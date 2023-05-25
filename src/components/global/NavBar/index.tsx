@@ -45,6 +45,8 @@ const NavBar = () => {
   };
 
   const { boardCategoryList } = useBoardCategoryList();
+  const firstCategoryId = boardCategoryList?.categories[0].category_id;
+
   const curUser = useCurUser();
 
   const [width, setWidth] = useState(true);
@@ -180,8 +182,9 @@ const NavBar = () => {
                 </Items>
               </Item>
               <Item className="relative" id="sidenavSecEx4">
+                {/* TODO: 게시판이 없다면 카테고리 만들라는 페이지로 이동 */}
                 <BaseLink
-                  onClick={() => navigate("/board/1")}
+                  onClick={() => navigate(`/board/${firstCategoryId}`)}
                   className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseSidenavSecEx4"
