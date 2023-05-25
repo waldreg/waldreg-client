@@ -12,12 +12,14 @@ const HomePage = () => {
     navigate("update");
   };
 
-  const replaceValue = home?.content.split("\n").map((line, i) => (
-    <React.Fragment key={i}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
+  const replaceValue = home?.content
+    ? home.content.split("\n").map((line, i) => (
+        <React.Fragment key={i}>
+          {line}
+          <br />
+        </React.Fragment>
+      ))
+    : null;
 
   return (
     <>

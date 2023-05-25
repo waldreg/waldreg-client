@@ -75,12 +75,14 @@ const BoardDetail = () => {
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
   const files = board?.files;
 
-  const replaceValue = board?.content.split("\n").map((line, i) => (
-    <React.Fragment key={i}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
+  const replaceValue = board?.content
+    ? board.content.split("\n").map((line, i) => (
+        <React.Fragment key={i}>
+          {line}
+          <br />
+        </React.Fragment>
+      ))
+    : null;
 
   return (
     <BoardContainer>
@@ -88,16 +90,19 @@ const BoardDetail = () => {
       <BoardTopBox>
         <BoardInformationBox>
           <BoardInformation style={FONT.SUBTITLE1}>
-            {board?.author.name}
+            {board?.author && board?.author.name}
           </BoardInformation>
           <BoardInformation style={FONT.SUBTITLE1}>
-            작성일 : {board?.created_at.slice(0, 10)}
+            작성일 : {board?.created_at && board?.created_at.slice(0, 10)}
           </BoardInformation>
-          {board?.created_at !== board?.last_modified_at && (
-            <BoardInformation style={FONT.SUBTITLE1}>
-              수정일 : {board?.last_modified_at.slice(0, 10)}
-            </BoardInformation>
-          )}
+          {board?.created_at &&
+            board?.created_at !== board?.last_modified_at && (
+              <BoardInformation style={FONT.SUBTITLE1}>
+                수정일 :{" "}
+                {board?.last_modified_at &&
+                  board?.last_modified_at.slice(0, 10)}
+              </BoardInformation>
+            )}
           <BoardInformation style={FONT.SUBTITLE1}>
             조회수 : {board?.views}
           </BoardInformation>
