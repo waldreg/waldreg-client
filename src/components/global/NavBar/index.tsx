@@ -49,7 +49,6 @@ const NavBar = () => {
 
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
-  const startLocation = location.split("/")[1];
 
   const navigate = useNavigate();
 
@@ -85,12 +84,12 @@ const NavBar = () => {
               {curUser?.character === "Admin" && (
                 <Item className="relative" id="sidenavSecEx2">
                   <BaseLink
+                    onClick={() => navigate("/setting/user")}
                     className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseSidenavSecEx2"
                     aria-expanded="false"
                     aria-controls="collapseSidenavSecEx2"
-                    selected={startLocation === "setting"}
                   >
                     <SettingIcon />
                     <Text style={FONT.SUBTITLE2}>설정</Text>
@@ -104,7 +103,6 @@ const NavBar = () => {
                     <Item className="relative">
                       <Link
                         to="/setting/user"
-                        className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
                         selected={location === "/setting/user"}
                       >
                         <Blank />
@@ -114,7 +112,6 @@ const NavBar = () => {
                     <Item className="relative">
                       <Link
                         to="/setting/character"
-                        className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover:bg-blue-50 transition duration-300 ease-in-out"
                         selected={location === "/setting/character"}
                       >
                         <Blank />
@@ -144,6 +141,7 @@ const NavBar = () => {
               )}
               <Item className="relative" id="sidenavSecEx3">
                 <BaseLink
+                  onClick={() => navigate("/attendance/today")}
                   className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseSidenavSecEx3"
@@ -161,8 +159,9 @@ const NavBar = () => {
                 >
                   <Item className="relative">
                     <Link
-                      to="/"
+                      to="/attendance/today"
                       className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
+                      selected={location === "/attendance/today"}
                     >
                       <Blank />
                       <Text style={FONT.BODY1}>일별출석현황</Text>
@@ -170,8 +169,9 @@ const NavBar = () => {
                   </Item>
                   <Item className="relative">
                     <Link
-                      to="/"
+                      to="/attendance/month"
                       className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
+                      selected={location === "/attendance/month"}
                     >
                       <Blank />
                       <Text style={FONT.BODY1}>월별출석현황</Text>
@@ -181,12 +181,12 @@ const NavBar = () => {
               </Item>
               <Item className="relative" id="sidenavSecEx4">
                 <BaseLink
-                  className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded cursor-pointer"
+                  onClick={() => navigate("/board/1")}
+                  className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseSidenavSecEx4"
                   aria-expanded="false"
                   aria-controls="collapseSidenavSecEx4"
-                  selected={startLocation === "board"}
                 >
                   <BoardIcon />
                   <Text style={FONT.SUBTITLE2}>게시판</Text>
