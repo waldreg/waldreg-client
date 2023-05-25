@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import BoardCategoryList from "../../../components/board/BoardCategoryList";
 import { PlusIcon } from "../../../components/Icons/SettingIcons";
 import { useBoardCategoryCreate } from "../../../hooks/board/category/useBoardCategoryCreate";
@@ -37,6 +37,15 @@ const BoardManagement = () => {
   const categoryId = useRecoilValue(settingCategoryId);
   const [categoryName, setCategoryName] = useRecoilState(settingCategoryName);
 
+  useEffect(() => {
+    const category = boardCategoryList?.categories.find(
+      (category) => category.category_id === 1
+    );
+    if (category) {
+      setCategoryName(category.category_name);
+    }
+  }, []);
+
   const createMutation = useBoardCategoryCreate(boardName);
   const categoryUpdate = useBoardCategoryUpdate(categoryId, categoryName);
 
@@ -69,9 +78,7 @@ const BoardManagement = () => {
       <SettingContainer style={{ width: "30%" }}>
         <SettingTop>
           <SettingTitle style={FONT.HEADING}>게시판</SettingTitle>
-          <button onClick={handleClickCreateModal}>
-            <PlusIcon />
-          </button>
+          <PlusIcon onClick={handleClickCreateModal} />
         </SettingTop>
         <CategoryListBox>
           {boardCategoryList && (

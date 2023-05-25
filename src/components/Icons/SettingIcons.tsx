@@ -1,4 +1,8 @@
-export const PlusIcon = () => {
+interface PlusIconProps {
+  onClick?: () => void;
+}
+
+export const PlusIcon = ({ onClick }: PlusIconProps) => {
   return (
     <svg
       width="30"
@@ -6,6 +10,8 @@ export const PlusIcon = () => {
       viewBox="0 0 34 34"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+      style={{ cursor: "pointer" }}
     >
       <path
         fillRule="evenodd"
