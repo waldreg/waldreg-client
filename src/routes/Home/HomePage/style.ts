@@ -11,6 +11,8 @@ const HomeContainer = styled.div`
   padding: 1.7rem;
   margin-bottom: 1rem;
   min-width: 30rem;
+  overflow: scroll;
+  overflow-x: hidden;
 `;
 
 const ButtonContainer = styled.div`
