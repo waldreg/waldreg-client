@@ -10,7 +10,9 @@ import {
   settingCategoryName,
 } from "./../../../states/board";
 import {
-  CategoryDeleteButton,
+  CategoryDeleteText,
+  CategoryDeleteContent,
+  CategoryDeleteSpan,
   CategoryListBox,
   SettingButtonBox,
   SettingCancelButton,
@@ -20,9 +22,11 @@ import {
   SettingSaveButton,
   SettingTitle,
   SettingTop,
+  CategoryDeleteButton,
 } from "./style";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
+import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
 
 const BoardManagement = () => {
   const [boardName, setBoardName] = useState<string>("");
@@ -47,6 +51,19 @@ const BoardManagement = () => {
     setBoardName("");
   }, [isOpenCreateModal]);
 
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const categoryDelete = useBoardCategoryDelete();
+
+  const handleDeleteCategory = () => {
+    categoryDelete.mutate(categoryId);
+    setCategoryName("");
+    setIsOpenDeleteModal(false);
+  };
+
+  const handleClickDeleteModal = useCallback(() => {
+    setIsOpenDeleteModal(!isOpenDeleteModal);
+  }, [isOpenDeleteModal]);
+
   return (
     <>
       <SettingContainer style={{ width: "30%" }}>
@@ -67,6 +84,12 @@ const BoardManagement = () => {
         <div>
           <SettingTop>
             <SettingTitle style={FONT.HEADING}>설정</SettingTitle>
+            <CategoryDeleteText
+              style={FONT.BODY_2}
+              onClick={handleClickDeleteModal}
+            >
+              삭제
+            </CategoryDeleteText>
           </SettingTop>
           <SettingInput
             type="text"
@@ -77,16 +100,14 @@ const BoardManagement = () => {
             }
           />
         </div>
-        <div>
-          <CategoryDeleteButton
-            style={FONT.SUBTITLE2}
-            onClick={() => {
-              categoryUpdate.mutate();
-            }}
-          >
-            변경사항 저장
-          </CategoryDeleteButton>
-        </div>
+        <CategoryDeleteButton
+          style={FONT.SUBTITLE2}
+          onClick={() => {
+            categoryUpdate.mutate();
+          }}
+        >
+          변경사항 저장
+        </CategoryDeleteButton>
       </SettingFormContainer>
 
       {isOpenCreateModal && (
@@ -111,6 +132,30 @@ const BoardManagement = () => {
             <SettingSaveButton
               style={FONT.SUBTITLE2}
               onClick={handleCreateCategory}
+            >
+              확인
+            </SettingSaveButton>
+          </SettingButtonBox>
+        </Modal>
+      )}
+
+      {isOpenDeleteModal && (
+        <Modal onClickToggleModal={handleClickDeleteModal} size={"small"}>
+          <SettingTitle style={FONT.HEADING}>게시판 삭제</SettingTitle>
+          <CategoryDeleteContent style={FONT.SUBTITLE2}>
+            <CategoryDeleteSpan>{categoryName}</CategoryDeleteSpan> 게시판을
+            삭제하시겠습니까?
+          </CategoryDeleteContent>
+          <SettingButtonBox>
+            <SettingCancelButton
+              style={FONT.SUBTITLE2}
+              onClick={handleClickDeleteModal}
+            >
+              취소
+            </SettingCancelButton>
+            <SettingSaveButton
+              style={FONT.SUBTITLE2}
+              onClick={handleDeleteCategory}
             >
               확인
             </SettingSaveButton>
