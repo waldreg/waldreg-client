@@ -34,7 +34,7 @@ const BoardManagement = () => {
 
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
-  const categoryId = useRecoilValue(settingCategoryId);
+  const [categoryId, setCategoryId] = useRecoilState(settingCategoryId);
   const [categoryName, setCategoryName] = useRecoilState(settingCategoryName);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const BoardManagement = () => {
       (category) => category.category_id === 1
     );
     if (category) {
+      setCategoryId(1);
       setCategoryName(category.category_name);
     }
   }, []);
