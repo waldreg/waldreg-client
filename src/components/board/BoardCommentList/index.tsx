@@ -11,12 +11,15 @@ import {
   CommentInformation,
   CommentUser,
 } from "./style";
+import useCurUser from "../../../hooks/curuser/useCurUser";
 
 const BoardCommentList = () => {
   const { id } = useParams();
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 5);
   const commentDelete = useCommentDelete(parseInt(id!!));
+
+  const currentUser = useCurUser();
 
   return (
     <div>
@@ -30,15 +33,17 @@ const BoardCommentList = () => {
           </CommentInformation>
           <CommentContentBox style={FONT.BODY1}>
             <div>{comment.content}</div>
-            <CommentButtonBox>
-              <CommentButton style={FONT.SUBTITLE1}>수정</CommentButton>
-              <CommentButton
-                style={FONT.SUBTITLE1}
-                onClick={() => commentDelete.mutate(comment.id!!)}
-              >
-                삭제
-              </CommentButton>
-            </CommentButtonBox>
+            {currentUser!!.name === comment.name && (
+              <CommentButtonBox>
+                <CommentButton style={FONT.SUBTITLE1}>수정</CommentButton>
+                <CommentButton
+                  style={FONT.SUBTITLE1}
+                  onClick={() => commentDelete.mutate(comment.id!!)}
+                >
+                  삭제
+                </CommentButton>
+              </CommentButtonBox>
+            )}
           </CommentContentBox>
         </CommentDetail>
       ))}
