@@ -4,7 +4,6 @@ import COLOR from "../../../constants/color";
 
 const Wrapper = styled.div<{ open: boolean }>`
   width: ${(props) => (props.open ? `18rem` : `0`)};
-  min-width: 13rem;
   height: 100vh;
   padding: ${(props) => (props.open ? `1.5rem` : `0`)};
   z-index: 1;
