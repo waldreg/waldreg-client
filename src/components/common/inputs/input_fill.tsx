@@ -12,7 +12,6 @@ export const InputFillThin = (props: UseInput) => {
         onChange={props.onChange}
         theme={'thin'}
         style={FONT.SUBTITLE2}
-        autoFocus
       />
     </>
   );
