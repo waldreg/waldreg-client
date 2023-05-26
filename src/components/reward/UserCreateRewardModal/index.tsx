@@ -171,6 +171,8 @@ const DropDown = styled.div`
   flex-direction: column;
   text-align: left;
   gap: 1rem;
+
+  z-index: 1;
 `;
 
 const RewardBtn = styled.button`
@@ -214,6 +216,7 @@ const Bottom = styled.div`
 
 const Description = styled.div`
   height: 2rem;
+  padding-top: 1rem;
   bottom: 0;
 
   color: ${COLOR.GRAY3};
