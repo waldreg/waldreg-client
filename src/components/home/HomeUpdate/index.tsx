@@ -5,6 +5,7 @@ import { useHomeUpdate } from "../../../hooks/home/useHomeUpdate";
 import { ButtonContainer } from "../../../routes/Home/HomePage/style";
 import CreateButton from "../../common/createbutton";
 import { HomeTextarea } from "./style";
+import FONT from "../../../constants/fonts";
 
 function HomeUpdate() {
   const { home } = useHome();
@@ -21,12 +22,15 @@ function HomeUpdate() {
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     setContent(e.currentTarget.value);
-    console.log(content);
   };
 
   return (
     <form onSubmit={handleUpdateSubmit}>
-      <HomeTextarea onChange={handleChange} value={content} />
+      <HomeTextarea
+        style={FONT.BODY1}
+        onChange={handleChange}
+        value={content}
+      />
       <ButtonContainer>
         <CreateButton onSubmit={handleUpdateSubmit} />
       </ButtonContainer>

@@ -25,6 +25,14 @@ import {
   SettingSaveButton,
   SettingTitle,
 } from "../../../routes/Setting/Board/style";
+import {
+  FileDetailBox,
+  FileDetailTitle,
+  FileListBox,
+} from "../BoardFileUpload/style";
+import { FileDownLoadIcon } from "../../Icons/BoardIcons";
+import axios from "axios";
+import React from "react";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -46,28 +54,60 @@ const BoardDetail = () => {
     navigate(-1);
   };
 
+  async function getBoardDownload(file_id: string): Promise<any> {
+    const { data } = await axios.get(`/file/${file_id}`, {
+      responseType: "blob",
+    });
+    return data;
+  }
+  const handleDownloadButtonClick = async (file_id: string) => {
+    const fileData = await getBoardDownload(file_id);
+    const downloadUrl = URL.createObjectURL(fileData);
+
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "filename.extension"; // 여기서 'filename.extension'을 실제 파일 이름과 확장자로 대체하세요
+    link.click();
+
+    URL.revokeObjectURL(downloadUrl);
+  };
+
   const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
+  const files = board?.files;
+
+  const replaceValue = board?.content
+    ? board.content.split("\n").map((line, i) => (
+        <React.Fragment key={i}>
+          {line}
+          <br />
+        </React.Fragment>
+      ))
+    : null;
 
   return (
     <BoardContainer>
-      <BoardTitle style={FONT.SUBTITLE1}>{board?.title}</BoardTitle>
+      <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
       <BoardTopBox>
         <BoardInformationBox>
           <BoardInformation style={FONT.SUBTITLE1}>
-            {board?.author.name}
+            {board?.author && board?.author.name}
           </BoardInformation>
           <BoardInformation style={FONT.SUBTITLE1}>
-            작성일 : {board?.created_at.slice(0, 10)}
+            작성일 : {board?.created_at && board?.created_at.slice(0, 10)}
           </BoardInformation>
-          {board?.created_at !== board?.last_modified_at && (
-            <BoardInformation style={FONT.SUBTITLE1}>
-              수정일 : {board?.last_modified_at.slice(0, 10)}
-            </BoardInformation>
-          )}
+          {board?.created_at &&
+            board?.created_at !== board?.last_modified_at && (
+              <BoardInformation style={FONT.SUBTITLE1}>
+                수정일 :{" "}
+                {board?.last_modified_at &&
+                  board?.last_modified_at.slice(0, 10)}
+              </BoardInformation>
+            )}
           <BoardInformation style={FONT.SUBTITLE1}>
             조회수 : {board?.views}
           </BoardInformation>
         </BoardInformationBox>
+
         <BoardButtonBox>
           <BoardButton style={FONT.SUBTITLE1} onClick={handleUpdateButtonClick}>
             수정
@@ -80,7 +120,24 @@ const BoardDetail = () => {
           </BoardButton>
         </BoardButtonBox>
       </BoardTopBox>
-      <BoardContent style={FONT.BODY1}>{board?.content}</BoardContent>
+
+      {files && (
+        <FileListBox>
+          {files.map((file, i) => {
+            return (
+              <FileDetailBox
+                key={i}
+                onClick={() => handleDownloadButtonClick(file)}
+              >
+                <FileDetailTitle style={FONT.SUBTITLE1}>{file}</FileDetailTitle>
+                <FileDownLoadIcon />
+              </FileDetailBox>
+            );
+          })}
+        </FileListBox>
+      )}
+
+      <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
 
       <BoardCommentCount style={FONT.SUBTITLE2}>
         {commentLists?.max_idx}개의 댓글

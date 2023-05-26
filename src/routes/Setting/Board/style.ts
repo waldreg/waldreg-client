@@ -75,6 +75,11 @@ const CategoryDeleteButton = styled.button`
   border-radius: 0.5rem;
 `;
 
+const CategoryDeleteText = styled.div`
+  color: ${COLOR.GREEN4};
+  cursor: pointer;
+`;
+
 const CategoryDeleteContent = styled.div`
   color: ${COLOR.GRAY5};
 `;
@@ -96,5 +101,6 @@ export {
   CategoryListBox,
   CategoryDeleteButton,
   CategoryDeleteContent,
+  CategoryDeleteText,
   CategoryDeleteSpan,
 };

@@ -6,12 +6,12 @@ const BoardTitleInput = styled.input`
   height: 3rem;
   border: none;
   border-bottom: 2px solid ${COLOR.GRAY0};
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const BoardContentTextArea = styled.textarea`
   width: 100%;
-  height: 15rem;
+  height: 13rem;
   border: 2px solid ${COLOR.GRAY0};
   padding: 1rem;
   border-radius: 0.5rem;

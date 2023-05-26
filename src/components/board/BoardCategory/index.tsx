@@ -22,7 +22,6 @@ function BoardCategory({ boardCategoryList }: BoardCategoryProps) {
           <Item className="relative" key={category.category_id}>
             <Link
               to={`board/${category.category_id}`}
-              className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out"
               selected={location.pathname.startsWith(
                 `/board/${category.category_id}`
               )}

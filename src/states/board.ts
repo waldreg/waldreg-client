@@ -22,7 +22,7 @@ export const settingFromState = atom({
 
 export const settingCategoryId = atom({
   key: "settingCategoryId",
-  default: 0,
+  default: 1,
 });
 
 export const settingCategoryName = atom({
