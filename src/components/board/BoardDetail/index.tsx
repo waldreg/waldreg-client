@@ -33,6 +33,7 @@ import {
 import { FileDownLoadIcon } from "../../Icons/BoardIcons";
 import axios from "axios";
 import React from "react";
+import useCurUser from "./../../../hooks/curuser/useCurUser";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -84,6 +85,8 @@ const BoardDetail = () => {
       ))
     : null;
 
+  const currentUser = useCurUser();
+
   return (
     <BoardContainer>
       <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
@@ -98,7 +101,7 @@ const BoardDetail = () => {
           {board?.created_at &&
             board?.created_at !== board?.last_modified_at && (
               <BoardInformation style={FONT.SUBTITLE1}>
-                수정일 :{" "}
+                수정일 :
                 {board?.last_modified_at &&
                   board?.last_modified_at.slice(0, 10)}
               </BoardInformation>
@@ -108,17 +111,22 @@ const BoardDetail = () => {
           </BoardInformation>
         </BoardInformationBox>
 
-        <BoardButtonBox>
-          <BoardButton style={FONT.SUBTITLE1} onClick={handleUpdateButtonClick}>
-            수정
-          </BoardButton>
-          <BoardButton
-            style={FONT.SUBTITLE1}
-            onClick={() => setIsOpenDeleteModal((prev) => !prev)}
-          >
-            삭제
-          </BoardButton>
-        </BoardButtonBox>
+        {currentUser!!.name === board?.author.name && (
+          <BoardButtonBox>
+            <BoardButton
+              style={FONT.SUBTITLE1}
+              onClick={handleUpdateButtonClick}
+            >
+              수정
+            </BoardButton>
+            <BoardButton
+              style={FONT.SUBTITLE1}
+              onClick={() => setIsOpenDeleteModal((prev) => !prev)}
+            >
+              삭제
+            </BoardButton>
+          </BoardButtonBox>
+        )}
       </BoardTopBox>
 
       {files && (
