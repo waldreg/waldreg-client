@@ -31,6 +31,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   height: 100%;
   width: 100%;
+  overflow-y: auto;
   padding: 6.5rem 2.2rem 2.2rem 2.2rem;
 
   background: ${COLOR.BG};
