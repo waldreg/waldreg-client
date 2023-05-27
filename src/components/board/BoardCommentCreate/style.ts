@@ -14,10 +14,12 @@ const CommentLabel = styled.label`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   button {
     position: absolute;
     right: 1rem;
+    top: 26.5%;
   }
 `;
 

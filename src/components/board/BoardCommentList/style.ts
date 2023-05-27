@@ -34,12 +34,12 @@ const CommnetUpdateBox = styled.div`
 
 const CommnetUpdateTextarea = styled.textarea`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   resize: none;
   outline: none;
   border: 2px solid ${COLOR.GRAY0};
   border-radius: 0.5rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.7rem;
 `;
 
 const CommentButtonBox = styled.div`
