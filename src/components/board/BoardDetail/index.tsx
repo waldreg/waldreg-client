@@ -111,22 +111,24 @@ const BoardDetail = () => {
           </BoardInformation>
         </BoardInformationBox>
 
-        {currentUser!!.name === board?.author.name && (
-          <BoardButtonBox>
-            <BoardButton
-              style={FONT.SUBTITLE1}
-              onClick={handleUpdateButtonClick}
-            >
-              수정
-            </BoardButton>
-            <BoardButton
-              style={FONT.SUBTITLE1}
-              onClick={() => setIsOpenDeleteModal((prev) => !prev)}
-            >
-              삭제
-            </BoardButton>
-          </BoardButtonBox>
-        )}
+        {currentUser &&
+          currentUser.name &&
+          currentUser.name === board?.author?.name && (
+            <BoardButtonBox>
+              <BoardButton
+                style={FONT.SUBTITLE1}
+                onClick={handleUpdateButtonClick}
+              >
+                수정
+              </BoardButton>
+              <BoardButton
+                style={FONT.SUBTITLE1}
+                onClick={() => setIsOpenDeleteModal((prev) => !prev)}
+              >
+                삭제
+              </BoardButton>
+            </BoardButtonBox>
+          )}
       </BoardTopBox>
 
       {files && (
