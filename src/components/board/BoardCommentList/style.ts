@@ -25,14 +25,32 @@ const CommentContentBox = styled.div`
 
 const CommentContent = styled.div``;
 
+const CommnetUpdateBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CommnetUpdateTextarea = styled.textarea`
+  width: 100%;
+  height: 5rem;
+  resize: none;
+  outline: none;
+  border: 2px solid ${COLOR.GRAY0};
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+`;
+
 const CommentButtonBox = styled.div`
   display: flex;
-  color: ${COLOR.GRAY3};
 `;
 
 const CommentButton = styled.button`
+  width: 2rem;
   cursor: pointer;
   margin-left: 1rem;
+  color: ${COLOR.GRAY3};
 `;
 
 export {
@@ -42,6 +60,8 @@ export {
   CommentDate,
   CommentContentBox,
   CommentContent,
+  CommnetUpdateTextarea,
+  CommnetUpdateBox,
   CommentButtonBox,
   CommentButton,
 };

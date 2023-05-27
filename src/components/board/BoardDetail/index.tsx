@@ -67,13 +67,13 @@ const BoardDetail = () => {
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "filename.extension"; // 여기서 'filename.extension'을 실제 파일 이름과 확장자로 대체하세요
+    link.download = "filename.extension";
     link.click();
 
     URL.revokeObjectURL(downloadUrl);
   };
 
-  const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
+  const { commentLists } = useCommentList(parseInt(id!!), 1, 99);
   const files = board?.files;
 
   const replaceValue = board?.content
@@ -107,7 +107,7 @@ const BoardDetail = () => {
               </BoardInformation>
             )}
           <BoardInformation style={FONT.SUBTITLE1}>
-            조회수 : {board?.views}
+            조회수 : {board?.views && board?.views}
           </BoardInformation>
         </BoardInformationBox>
 
