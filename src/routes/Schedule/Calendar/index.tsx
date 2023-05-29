@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addMonths, subMonths } from "date-fns";
 import {
+  CalendarBox,
   CalendarContentTextarea,
   CalendarDeleteButton,
   CalendarTitleInput,
@@ -115,25 +116,27 @@ const Calendar = () => {
 
   return (
     <>
-      <Container height="default">
-        <CalendarHeader
-          currentMonth={currentMonth}
-          prevMonth={prevMonth}
-          nextMonth={nextMonth}
-          today={handleTodayClick}
-        />
-        <CalendarDays />
-        <CalendarCells
-          currentMonth={currentMonth}
-          isOpenCreateModal={isOpenCreateModal}
-          isOpenDetailModal={isOpenDetailModal}
-          setIsOpenCreateModal={setIsOpenCreateModal}
-          setIsOpenDetailModal={setIsOpenDetailModal}
-          handleDateClick={handleDateClick}
-          year={currentMonth.getFullYear()}
-          month={currentMonth.getMonth() + 1}
-          setDetail={setDetail}
-        />
+      <Container>
+        <CalendarBox>
+          <CalendarHeader
+            currentMonth={currentMonth}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
+            today={handleTodayClick}
+          />
+          <CalendarDays />
+          <CalendarCells
+            currentMonth={currentMonth}
+            isOpenCreateModal={isOpenCreateModal}
+            isOpenDetailModal={isOpenDetailModal}
+            setIsOpenCreateModal={setIsOpenCreateModal}
+            setIsOpenDetailModal={setIsOpenDetailModal}
+            handleDateClick={handleDateClick}
+            year={currentMonth.getFullYear()}
+            month={currentMonth.getMonth() + 1}
+            setDetail={setDetail}
+          />
+        </CalendarBox>
       </Container>
 
       {isOpenCreateModal && (

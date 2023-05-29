@@ -37,11 +37,15 @@ const CalendarCell = styled.div<CalendarCellsProps>`
   }
 `;
 
+const Calendar = styled.div<{ height: string }>`
+  height: ${(props) => props.height};
+`;
+
 const CalendarRow = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 5rem;
+  height: 100%;
 `;
 
 const CalendarPlusButton = styled.div`
@@ -80,4 +84,11 @@ const Schedule = styled.div`
   cursor: pointer;
 `;
 
-export { CalendarCell, CalendarRow, CalendarPlusButton, ScheduleBox, Schedule };
+export {
+  Calendar,
+  CalendarCell,
+  CalendarRow,
+  CalendarPlusButton,
+  ScheduleBox,
+  Schedule,
+};

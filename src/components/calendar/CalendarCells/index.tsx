@@ -10,6 +10,7 @@ import {
 } from "date-fns";
 import { useState } from "react";
 import {
+  Calendar,
   CalendarCell,
   CalendarPlusButton,
   CalendarRow,
@@ -156,7 +157,7 @@ const CalendarCells = ({
     days = [];
   }
 
-  return <div>{rows}</div>;
+  return <Calendar height={100 / rows.length - 2.2 + "%"}>{rows}</Calendar>;
 };
 
 export default CalendarCells;
