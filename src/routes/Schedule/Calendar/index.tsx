@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { addMonths, subMonths } from "date-fns";
 import {
-  CalendarContainer,
   CalendarContentTextarea,
   CalendarDeleteButton,
   CalendarTitleInput,
@@ -15,6 +14,7 @@ import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker"
 import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
 import { useScheduleDelete } from "../../../hooks/schedule/useScheduleDelete";
 import { useScheduleUpdate } from "../../../hooks/schedule/useScheduleUpdate";
+import Container from "../../../components/common/container";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -115,7 +115,7 @@ const Calendar = () => {
 
   return (
     <>
-      <CalendarContainer>
+      <Container height="default">
         <CalendarHeader
           currentMonth={currentMonth}
           prevMonth={prevMonth}
@@ -134,7 +134,7 @@ const Calendar = () => {
           month={currentMonth.getMonth() + 1}
           setDetail={setDetail}
         />
-      </CalendarContainer>
+      </Container>
 
       {isOpenCreateModal && (
         <CalendarModal
