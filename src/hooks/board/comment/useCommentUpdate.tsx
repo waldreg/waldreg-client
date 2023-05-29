@@ -1,11 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
 import { waldregAxios as axios } from "../../../apis/axios";
 import { boardCommentKeys } from "../../../types/boardKey";
-import { BoardComment } from "./../../../interfaces/board";
 
 async function commentUpdate(
   comment_id: number,
-  comment: BoardComment
+  comment: string
 ): Promise<void> {
   await axios.put(`/comment/${comment_id}`, {
     content: comment,
@@ -18,7 +17,7 @@ interface UseCommentUpdate {
 
 export function useCommentUpdate(
   comment_id: number,
-  comment: BoardComment
+  comment: string
 ): UseCommentUpdate {
   const queryClient = useQueryClient();
 

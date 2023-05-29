@@ -6,7 +6,7 @@ const BoardContainer = styled.div`
   flex-direction: column;
   border-radius: 0.8rem;
   background: ${COLOR.WHITE};
-  padding: 2rem 1.7rem;
+  padding: 2rem 1.7rem 1rem 1.7rem;
   margin: 1.4rem 0;
   min-width: 35rem;
 `;

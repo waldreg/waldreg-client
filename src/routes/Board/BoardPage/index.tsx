@@ -14,14 +14,14 @@ const BoardPage = () => {
   };
 
   return (
-    <div>
+    <>
       <BoardContainer>
         {boardList && <BoardList boardList={boardList} />}
       </BoardContainer>
       <BoardButtonContainer>
         <Button onClick={handleCreateButtonClick}>글 작성하기</Button>
       </BoardButtonContainer>
-    </div>
+    </>
   );
 };
 

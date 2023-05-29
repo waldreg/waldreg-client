@@ -10,16 +10,41 @@ import {
   CommentDetail,
   CommentInformation,
   CommentUser,
+  CommnetUpdateBox,
+  CommnetUpdateTextarea,
 } from "./style";
+import useCurUser from "../../../hooks/curuser/useCurUser";
+import { useState } from "react";
+import { useCommentUpdate } from "../../../hooks/board/comment/useCommentUpdate";
 
 const BoardCommentList = () => {
   const { id } = useParams();
+  const currentUser = useCurUser();
 
-  const { commentLists } = useCommentList(parseInt(id!!), 1, 5);
+  const { commentLists } = useCommentList(parseInt(id!!), 1, 99);
   const commentDelete = useCommentDelete(parseInt(id!!));
 
+  const [commentUpdate, setCommentUpdate] = useState<boolean[]>([]);
+  const [commentContent, setCommentContent] = useState("");
+  const [commentId, setCommentId] = useState<number>(0);
+
+  const handleCommentUpdateToggle = (comment_id: number) => {
+    const updatedCommentUpdate = [...commentUpdate];
+    updatedCommentUpdate[comment_id] = !updatedCommentUpdate[comment_id];
+    setCommentUpdate(updatedCommentUpdate);
+    setCommentId(comment_id);
+  };
+
+  const updateMutation = useCommentUpdate(commentId, commentContent);
+
+  const handleUpdateSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    updateMutation.mutate();
+    setCommentContent("");
+  };
+
   return (
-    <div>
+    <>
       {commentLists?.comments.map((comment) => (
         <CommentDetail key={comment.id}>
           <CommentInformation>
@@ -29,20 +54,49 @@ const BoardCommentList = () => {
             </CommentDate>
           </CommentInformation>
           <CommentContentBox style={FONT.BODY1}>
-            <div>{comment.content}</div>
-            <CommentButtonBox>
-              <CommentButton style={FONT.SUBTITLE1}>수정</CommentButton>
-              <CommentButton
-                style={FONT.SUBTITLE1}
-                onClick={() => commentDelete.mutate(comment.id!!)}
-              >
-                삭제
-              </CommentButton>
-            </CommentButtonBox>
+            {commentUpdate[comment.id!!] ? (
+              <CommnetUpdateBox>
+                <CommnetUpdateTextarea
+                  value={commentContent || comment.content}
+                  onChange={(e) => {
+                    setCommentContent(e.target.value);
+                  }}
+                ></CommnetUpdateTextarea>
+                <CommentButton
+                  onClick={(e) => {
+                    handleCommentUpdateToggle(comment.id!!);
+                    handleUpdateSubmit(e);
+                  }}
+                  style={FONT.SUBTITLE1}
+                >
+                  완료
+                </CommentButton>
+              </CommnetUpdateBox>
+            ) : (
+              <>
+                <div>{comment.content}</div>
+                {currentUser!!.name === comment.name && (
+                  <CommentButtonBox>
+                    <CommentButton
+                      onClick={() => handleCommentUpdateToggle(comment.id!!)}
+                      style={FONT.SUBTITLE1}
+                    >
+                      수정
+                    </CommentButton>
+                    <CommentButton
+                      style={FONT.SUBTITLE1}
+                      onClick={() => commentDelete.mutate(comment.id!!)}
+                    >
+                      삭제
+                    </CommentButton>
+                  </CommentButtonBox>
+                )}
+              </>
+            )}
           </CommentContentBox>
         </CommentDetail>
       ))}
-    </div>
+    </>
   );
 };
 
