@@ -5,4 +5,11 @@ const BoardButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-export { BoardButtonContainer };
+const PaginationBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+`;
+
+export { PaginationBox, BoardButtonContainer };
