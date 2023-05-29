@@ -9,17 +9,18 @@ type ContainerProps = {
   width?: string;
   height?: string;
   children?: ReactElement[] | ReactElement | React.ReactNode;
-  style?: React.CSSProperties;
+  style?: any;
 };
 
-const Container = ({ width, height, children }: ContainerProps) => {
+const Container = ({ width, height, children, style }: ContainerProps) => {
   return (
     <Wrapper
+      width={width || "100%"}
+      height={height || "100%"}
       initial="hidden"
       animate="visible"
       variants={ContainerAnimation}
-      width={width || "100%"}
-      height={height || "100%"}
+      style={style}
     >
       {children}
     </Wrapper>
@@ -29,6 +30,7 @@ const Container = ({ width, height, children }: ContainerProps) => {
 const Wrapper = styled(motion.div)<ContainerProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  style: ${(props) => props.style};
   background: ${COLOR.WHITE};
 
   border-radius: 1rem;
