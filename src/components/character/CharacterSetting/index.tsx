@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import useCharacter from '../../../hooks/character/useCharacter';
 import useEditCharacter from '../../../hooks/character/useEditCharacter';
@@ -13,6 +14,7 @@ import { InputLine } from '../../common/inputs/input_line';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
 import { Top, Item } from '../CharacterList/style';
+import Container from '../../common/container';
 
 import { Permission } from '../../../interfaces/character';
 
@@ -53,7 +55,7 @@ const CharacterSetting = ({
   });
 
   return (
-    <Container>
+    <Container width="36vw">
       <Content>
         <Top>
           <Title style={FONT.HEADING}>설정</Title>
@@ -112,19 +114,6 @@ const CharacterSetting = ({
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 40vw;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
 
 const Content = styled.div`
   width: 100%;

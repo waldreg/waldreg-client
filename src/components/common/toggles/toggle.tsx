@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 import COLOR from '../../../constants/color';
+import { motion } from 'framer-motion';
 
 const Toggle = (props: any) => {
   return (
     <ToggleContainer onClick={props.onClick} selected={props.toggle}>
-      <Circle selected={props.toggle} />
+      <Circle
+        selected={props.toggle}
+        layout
+        transition={{
+          type: 'spring',
+          stiffness: 600,
+          damping: 20,
+          bounce: 0.4,
+        }}
+      />
     </ToggleContainer>
   );
 };
@@ -23,11 +33,10 @@ const ToggleContainer = styled.div<{ selected: boolean }>`
       : `background: ${COLOR.GRAY1};`}
 `;
 
-const Circle = styled.div<{ selected: boolean }>`
+const Circle = styled(motion.div)<{ selected: boolean }>`
   position: absolute;
   top: 2px;
   ${(props) => (props.selected ? `right: 2px` : `left:2px`)};
-  transition: 0.5s;
 
   width: 1.25rem;
   height: 1.25rem;

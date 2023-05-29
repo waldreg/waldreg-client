@@ -34,7 +34,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  width: 30%;
+  width: 35%;
+  min-width: 20rem;
   height: 100%;
   background: ${COLOR.WHITE};
 

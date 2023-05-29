@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import COLOR from '../../../constants/color';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   width: 50%;
   height: 100%;
   background: ${COLOR.WHITE};
@@ -25,6 +26,7 @@ export const Content = styled.div`
 
 export const Top = styled.div`
   width: 100%;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: space-between;
 `;
@@ -32,10 +34,11 @@ export const Top = styled.div`
 export const IconWrapper = styled.button``;
 
 export const Items = styled.div`
+  height: 100%;
+  padding-top: 1rem;
+
   display: flex;
   flex-direction: column;
-  algin-items: center;
-  justify-content: center;
   gap: 0.5rem;
 `;
 

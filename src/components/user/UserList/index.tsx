@@ -4,11 +4,11 @@ import { QueryInfiniteScroll } from 'react-query-infinite-scroll';
 import useUserList from '../../../hooks/user/useUserList';
 import { useInput } from '../../../hooks/common/useInput';
 
+import Container from '../../common/container';
 import { UserItems } from '../UserItems';
 
 import { InputFillThin } from '../../common/inputs/input_fill';
 
-import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserList = ({ handleClickChangeUser }: any) => {
@@ -44,19 +44,6 @@ const UserList = ({ handleClickChangeUser }: any) => {
   );
 };
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
-
 const Content = styled.div`
   width: 100%;
   height: 100%;
@@ -75,6 +62,7 @@ const Title = styled.div`
 
 const Top = styled.div`
   width: 100%;
+  padding-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

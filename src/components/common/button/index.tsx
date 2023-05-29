@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
-import { PencilGreenIcon } from "../../Icons/BoardIcons";
-import { ButtonStyle } from "./style";
+import React, { ReactNode } from 'react';
+import { PencilGreenIcon } from '../../Icons/BoardIcons';
+import { ButtonStyle } from './style';
+import FONT from '../../../constants/fonts';
 
 interface ButtonProps {
   children: ReactNode;
@@ -9,7 +10,7 @@ interface ButtonProps {
 
 const Button = ({ children, onClick }: ButtonProps) => {
   return (
-    <ButtonStyle onClick={onClick}>
+    <ButtonStyle onClick={onClick} style={FONT.SUBTITLE1}>
       <PencilGreenIcon />
       {children}
     </ButtonStyle>

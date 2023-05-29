@@ -10,6 +10,7 @@ import CharacterRadio from '../../common/radio';
 import { Top } from '../../character/CharacterList/style';
 import UserInfo from '../UserInfo';
 import UserDelModal from '../UserDelModal';
+import Container from '../../common/container';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
@@ -30,7 +31,7 @@ const UserSetting = ({ name }: { name: string }) => {
   };
 
   return (
-    <Container>
+    <Container width="40%">
       {user === undefined ? (
         <div>해당 유저가 존재하지 않습니다</div>
       ) : (
@@ -65,20 +66,6 @@ const UserSetting = ({ name }: { name: string }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 40%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-`;
 
 const Content = styled.div`
   display: flex;
