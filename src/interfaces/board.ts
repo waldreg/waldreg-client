@@ -13,7 +13,12 @@ export interface Board {
   comment_count: number;
   images?: [];
   exist_file: boolean;
-  files?: [];
+  files?: [
+    {
+      origin: string;
+      uuid: string;
+    }
+  ];
   reactions?: {
     good: number;
     bad: number;
