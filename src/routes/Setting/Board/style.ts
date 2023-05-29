@@ -1,21 +1,6 @@
 import styled from "styled-components";
 import COLOR from "../../../constants/color";
 
-const SettingContainer = styled.div`
-  height: 100%;
-  background: ${COLOR.WHITE};
-  padding: 2rem;
-  border-radius: 1rem;
-  min-width: 15rem;
-`;
-
-const SettingFormContainer = styled(SettingContainer)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 15rem;
-`;
-
 const SettingTop = styled.div`
   display: flex;
   align-items: center;
@@ -63,8 +48,7 @@ const SettingSaveButton = styled.button`
 `;
 
 const CategoryListBox = styled.div`
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 `;
 
 const CategoryDeleteButton = styled.button`
@@ -89,8 +73,6 @@ const CategoryDeleteSpan = styled.span`
 `;
 
 export {
-  SettingContainer,
-  SettingFormContainer,
   SettingTop,
   SettingTitle,
   SettingInput,
