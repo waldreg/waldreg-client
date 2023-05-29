@@ -4,6 +4,7 @@ import useRewardTags from '../../../hooks/reward/useRewardTags';
 import RewardTagCreateModal from '../../../components/reward/RewardTagCreateModal';
 import RewardTagEditModal from '../RewardTagEditModal';
 import RewardTagDeleteModal from '../RewardTagDeleteModal';
+import Container from '../../common/container';
 
 import { Top } from '../../../components/character/CharacterList/style';
 import { Title } from '../../../components/common/pagetitle/style';
@@ -37,13 +38,7 @@ const RewardTagList = () => {
   };
 
   return (
-    <S.Container>
-      <Top>
-        <Title style={FONT.HEADING}>상벌점 태그</Title>
-        <IconWrapper onClick={handleClickCreateModal}>
-          <PlusIcon />
-        </IconWrapper>
-      </Top>
+    <>
       {isOpenCreateModal && (
         <RewardTagCreateModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
@@ -59,37 +54,46 @@ const RewardTagList = () => {
           reward={curReward}
         />
       )}
-      <S.Tags>
-        {rewards?.length ? (
-          rewards?.map((reward) => (
-            <S.Tag key={reward.reward_tag_id}>
-              <S.Text style={FONT.SUBTITLE2}>
-                <Title>{reward.reward_tag_title}</Title>
-                <S.Point>{reward.reward_point}</S.Point>
-              </S.Text>
-              <IconWrapper
-                onClick={() => {
-                  handleClickEditModal();
-                  setCurReward(reward);
-                }}
-              >
-                <RoundEditIcon />
-              </IconWrapper>
-              <IconWrapper
-                onClick={() => {
-                  handleClickDeleteModal();
-                  setCurReward(reward);
-                }}
-              >
-                <RoundDelIcon />
-              </IconWrapper>
-            </S.Tag>
-          ))
-        ) : (
-          <div style={FONT.SUBTITLE1}>상벌점 태그가 없어요</div>
-        )}
-      </S.Tags>
-    </S.Container>
+      <Container width="30%">
+        <Top>
+          <Title style={FONT.HEADING}>상벌점 태그</Title>
+          <IconWrapper onClick={handleClickCreateModal}>
+            <PlusIcon />
+          </IconWrapper>
+        </Top>
+
+        <S.Tags>
+          {rewards?.length ? (
+            rewards?.map((reward) => (
+              <S.Tag key={reward.reward_tag_id}>
+                <S.Text style={FONT.SUBTITLE2}>
+                  <Title>{reward.reward_tag_title}</Title>
+                  <S.Point>{reward.reward_point}</S.Point>
+                </S.Text>
+                <IconWrapper
+                  onClick={() => {
+                    handleClickEditModal();
+                    setCurReward(reward);
+                  }}
+                >
+                  <RoundEditIcon />
+                </IconWrapper>
+                <IconWrapper
+                  onClick={() => {
+                    handleClickDeleteModal();
+                    setCurReward(reward);
+                  }}
+                >
+                  <RoundDelIcon />
+                </IconWrapper>
+              </S.Tag>
+            ))
+          ) : (
+            <div style={FONT.SUBTITLE1}>상벌점 태그가 없어요</div>
+          )}
+        </S.Tags>
+      </Container>
+    </>
   );
 };
 

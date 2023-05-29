@@ -9,6 +9,7 @@ import { Top } from '../../../components/character/CharacterList/style';
 import { Title } from '../../../components/common/pagetitle/style';
 import { IconWrapper } from '../../../components/character/CharacterList/style';
 import { PlusIcon } from '../../../components/Icons/SettingIcons';
+import Container from '../../common/container';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
@@ -27,50 +28,40 @@ const RewardUserList = ({ setUser }: { setUser: any }) => {
   };
 
   return (
-    <Container>
-      <Top>
-        <Title style={FONT.HEADING}>상벌점 관리</Title>
-        <Btns>
-          <RewardReset />
-          <IconWrapper onClick={handleClickCreateModal}>
-            <PlusIcon />
-          </IconWrapper>
-        </Btns>
-      </Top>
+    <>
       {isOpenCreateModal && (
         <UserCreateRewardModal setIsOpenCreateModal={setIsOpenCreateModal} />
       )}
-      <UserItems>
-        {userList?.length === 0 || userList === undefined ? (
-          <></>
-        ) : (
-          userList.map((user: User) => (
-            <UserItem
-              key={user.id}
-              onClick={() => setUser(user.id)}
-              positive={user.reward_point >= 0}
-            >
-              <UserRewards user={user} size={'small'} />
-            </UserItem>
-          ))
-        )}
-      </UserItems>
-    </Container>
+      <Container width="80%">
+        <Top>
+          <Title style={FONT.HEADING}>상벌점 관리</Title>
+          <Btns>
+            <RewardReset />
+            <IconWrapper onClick={handleClickCreateModal}>
+              <PlusIcon />
+            </IconWrapper>
+          </Btns>
+        </Top>
+
+        <UserItems>
+          {userList?.length === 0 || userList === undefined ? (
+            <></>
+          ) : (
+            userList.map((user: User) => (
+              <UserItem
+                key={user.id}
+                onClick={() => setUser(user.id)}
+                positive={user.reward_point >= 0}
+              >
+                <UserRewards user={user} size={'small'} />
+              </UserItem>
+            ))
+          )}
+        </UserItems>
+      </Container>
+    </>
   );
 };
-
-const Container = styled.div`
-  width: 80%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
 
 const UserItems = styled.div`
   width: 100%;

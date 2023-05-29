@@ -11,6 +11,7 @@ import { InputFillThin } from '../../common/inputs/input_fill';
 import { UserCheckBox } from '../../common/checkbox/checkbox';
 import UserCreateCharacterModal from '../UserCreateCharacterModal';
 import { ButtonBig } from '../../common/buttons/button_big';
+import Container from '../../common/container';
 
 import { Title } from '../../common/pagetitle/style';
 import COLOR from '../../../constants/color';
@@ -92,20 +93,6 @@ const CharacterUser = ({ name }: { name: string }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-`;
 
 const IconWrapper = styled.button``;
 
