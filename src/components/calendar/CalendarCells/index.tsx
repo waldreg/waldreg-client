@@ -12,6 +12,7 @@ import { useState } from "react";
 import {
   Calendar,
   CalendarCell,
+  CalendarDay,
   CalendarPlusButton,
   CalendarRow,
   Schedule,
@@ -90,7 +91,6 @@ const CalendarCells = ({
         <CalendarCell
           key={i}
           isWeekend={isWeekend}
-          isToday={isToday}
           isWithinMonth={isWithinMonth}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
@@ -148,7 +148,7 @@ const CalendarCells = ({
                   ))}
               </ScheduleBox>
             )}
-          {format(day, "d")}
+          <CalendarDay isToday={isToday}>{format(day, "d")}</CalendarDay>
         </CalendarCell>
       );
       day = addDays(day, 1);

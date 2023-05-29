@@ -3,7 +3,6 @@ import COLOR from "../../../constants/color";
 
 type CalendarCellsProps = {
   isWeekend: boolean;
-  isToday: boolean;
   isWithinMonth: boolean;
 };
 
@@ -12,29 +11,24 @@ const CalendarCell = styled.div<CalendarCellsProps>`
   height: 100%;
   display: flex;
   justify-content: flex-end;
+  position: relative;
   border: 1px solid ${COLOR.GRAY1};
   padding: 0.5rem;
   font-size: 0.9rem;
   background-color: ${(props) =>
     props.isWeekend ? COLOR.GRAY0 : "transparent"};
-  color: ${(props) =>
-    (props.isToday && COLOR.WHITE) || (!props.isWithinMonth && COLOR.GRAY2)};
-  position: relative;
-  z-index: 1;
+`;
 
-  &::before {
-    display: ${(props) => (props.isToday ? "block" : "none")};
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: 22.4%;
-    right: 0.8%;
-    transform: translateY(-50%);
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 50%;
-    background-color: ${COLOR.GREEN4};
-  }
+const CalendarDay = styled.div<{ isToday: boolean }>`
+  ${(props) =>
+    props.isToday &&
+    ` width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: #EB5757;
+      color: ${COLOR.WHITE};
+      text-align: center;
+      line-height: 1.5rem;`}
 `;
 
 const Calendar = styled.div<{ height: string }>`
@@ -72,6 +66,7 @@ const ScheduleBox = styled.div`
   bottom: 0.1rem;
   left: 0.1rem;
   right: 0.1rem;
+  color: ${COLOR.BLACK};
 `;
 
 const Schedule = styled.div`
@@ -86,6 +81,7 @@ const Schedule = styled.div`
 
 export {
   Calendar,
+  CalendarDay,
   CalendarCell,
   CalendarRow,
   CalendarPlusButton,
