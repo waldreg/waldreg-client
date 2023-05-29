@@ -33,6 +33,7 @@ import {
 import { FileDownLoadIcon } from "../../Icons/BoardIcons";
 import axios from "axios";
 import React from "react";
+import useCurUser from "./../../../hooks/curuser/useCurUser";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -66,13 +67,13 @@ const BoardDetail = () => {
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "filename.extension"; // 여기서 'filename.extension'을 실제 파일 이름과 확장자로 대체하세요
+    link.download = "filename.extension";
     link.click();
 
     URL.revokeObjectURL(downloadUrl);
   };
 
-  const { commentLists } = useCommentList(parseInt(id!!), 1, 4);
+  const { commentLists } = useCommentList(parseInt(id!!), 1, 99);
   const files = board?.files;
 
   const replaceValue = board?.content
@@ -83,6 +84,8 @@ const BoardDetail = () => {
         </React.Fragment>
       ))
     : null;
+
+  const currentUser = useCurUser();
 
   return (
     <BoardContainer>
@@ -98,27 +101,34 @@ const BoardDetail = () => {
           {board?.created_at &&
             board?.created_at !== board?.last_modified_at && (
               <BoardInformation style={FONT.SUBTITLE1}>
-                수정일 :{" "}
+                수정일 :
                 {board?.last_modified_at &&
                   board?.last_modified_at.slice(0, 10)}
               </BoardInformation>
             )}
           <BoardInformation style={FONT.SUBTITLE1}>
-            조회수 : {board?.views}
+            조회수 : {board?.views && board?.views}
           </BoardInformation>
         </BoardInformationBox>
 
-        <BoardButtonBox>
-          <BoardButton style={FONT.SUBTITLE1} onClick={handleUpdateButtonClick}>
-            수정
-          </BoardButton>
-          <BoardButton
-            style={FONT.SUBTITLE1}
-            onClick={() => setIsOpenDeleteModal((prev) => !prev)}
-          >
-            삭제
-          </BoardButton>
-        </BoardButtonBox>
+        {currentUser &&
+          currentUser.name &&
+          currentUser.name === board?.author?.name && (
+            <BoardButtonBox>
+              <BoardButton
+                style={FONT.SUBTITLE1}
+                onClick={handleUpdateButtonClick}
+              >
+                수정
+              </BoardButton>
+              <BoardButton
+                style={FONT.SUBTITLE1}
+                onClick={() => setIsOpenDeleteModal((prev) => !prev)}
+              >
+                삭제
+              </BoardButton>
+            </BoardButtonBox>
+          )}
       </BoardTopBox>
 
       {files && (

@@ -3,7 +3,6 @@ import { useCommentCreate } from "../../../hooks/board/comment/useCommentCreate"
 import { useParams } from "react-router-dom";
 import CreateButton from "../../common/createbutton";
 import { CommentInput, CommentLabel } from "./style";
-import FONT from "../../../constants/fonts";
 
 const BoardCommentCreate = () => {
   const [comment, setComment] = useState("");

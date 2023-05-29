@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import COLOR from "../../../constants/color";
@@ -29,8 +29,9 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  height: 100%;
   width: 100%;
+  height: 100vh;
+  overflow: auto;
   padding: 6.5rem 2.2rem 2.2rem 2.2rem;
 
   background: ${COLOR.BG};
