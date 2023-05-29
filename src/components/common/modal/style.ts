@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const DialogBox = styled.dialog<{ size?: string }>`
+const DialogBox = styled(motion.dialog)<{ size?: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
