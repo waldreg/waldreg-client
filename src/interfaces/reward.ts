@@ -10,3 +10,19 @@ export interface RewardWithId extends Reward {
 export interface Rewards {
   reward_tags: RewardWithId[];
 }
+
+export interface UserRewards {
+  id: number;
+  name: string;
+  user_id: string;
+  reward: number;
+  reward_infos: RewardInfos[];
+}
+
+export interface RewardInfos {
+  reward_id: number;
+  reward_tag_id: number;
+  reward_tag_title: string;
+  reward_presented_at: string;
+  reward_point: number;
+}

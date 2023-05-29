@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import useUserList from '../../../hooks/user/useUserList';
+import useAllUserList from '../../../hooks/user/useAllUserList';
 import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 import { useInput } from '../../../hooks/common/useInput';
 import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
@@ -17,19 +17,31 @@ import FONT from '../../../constants/fonts';
 
 const UserCreateCharacterModal = ({
   setIsOpenCreateModal,
+  name,
 }: {
   setIsOpenCreateModal: any;
+  name: string;
 }) => {
-  const userList = useUserList(1, 50);
+  const userList = useAllUserList(1, 50);
   const { mutate } = useEditUserCharacter();
 
   const { value, handleChangeInput, reset } = useInput('');
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
 
-  const handleClickEditUserChar = () => {
-    // mutate({ id: Date.now(), character_name: value, permissions: checkedList });
-    // reset();
-    // checkReset();
+  const filterUserList = userList?.users.filter(
+    (user) => user.character !== name
+  );
+  const searchUserList =
+    value === ''
+      ? filterUserList
+      : filterUserList?.filter((user) =>
+          user.name.toLowerCase().includes(value.toLowerCase())
+        );
+
+  const handleClickEditUserChar = (id: number) => {
+    mutate({ id: id, character: name });
+    reset();
+    checkReset();
   };
 
   return (
@@ -43,24 +55,35 @@ const UserCreateCharacterModal = ({
           reset={reset}
         />
       </Top>
-      {/* <UserItems>
-        {filterList?.length === 0 || filterList === undefined ? (
-          <div>검색된 유저가 없습니다</div>
+
+      <UserItems>
+        {searchUserList?.length === 0 || searchUserList === undefined ? (
+          <div style={FONT.BODY1}>검색된 유저가 없습니다</div>
         ) : (
-          filterList.map((user: User) => (
-            <UserItem
-              key={user.id}
-              onClick={() => handleClickChangeUser(user.user_id)}
-            >
-              <UserInfo user={user} size={'small'} />
-            </UserItem>
-          ))
+          <UserCheckBox
+            data={searchUserList || []}
+            updateCheckList={updateCheckList}
+          />
         )}
-      </UserItems> */}
-      <UserCheckBox
-        data={userList?.users || []}
-        updateCheckList={updateCheckList}
-      />
+      </UserItems>
+
+      <Description>
+        <div style={FONT.SUBTITLE1}>
+          {checkedList.length === 0 ? (
+            <></>
+          ) : checkedList.length === 1 ? (
+            <div>
+              {checkedList[0].name} 유저의 역할을 {name} 으로 전환합니다
+            </div>
+          ) : (
+            <div>
+              {checkedList[0].name} 외 {checkedList.length - 1} 명의 유저의
+              역할을 {name} 으로 전환합니다
+            </div>
+          )}
+        </div>
+      </Description>
+
       <Buttons>
         <ButtonBig
           content={'취소'}
@@ -71,7 +94,7 @@ const UserCreateCharacterModal = ({
           content={'추가'}
           color={COLOR.GREEN4}
           onClick={() => {
-            handleClickEditUserChar();
+            checkedList.map((user) => handleClickEditUserChar(user.id));
             setIsOpenCreateModal(false);
           }}
         />
@@ -82,15 +105,29 @@ const UserCreateCharacterModal = ({
 
 const Top = styled.div`
   width: 100%;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 5rem;
 `;
 
+const UserItems = styled.div`
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+`;
+
+const Description = styled.div`
+  height: 2rem;
+  bottom: 0;
+
+  color: ${COLOR.GRAY3};
+`;
+
 const Buttons = styled.div`
   width: 100%;
-  padding-top: 2rem;
+  padding-top: 1rem;
 
   display: flex;
   gap: 2rem;

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
-import { useRecoilValue } from "recoil";
-import { boardCategoryState } from "../../../states/board";
 import FONT from "../../../constants/fonts";
 import {
   BoardButtonContainer,
@@ -16,8 +14,7 @@ import BoardFileUpload from "../BoardFileUpload";
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [fileList, setFileList] = useState<File[]>([]);
-  const category_id = useRecoilValue(boardCategoryState);
+  const { categoryId } = useParams();
   const navigate = useNavigate();
 
   const formData = new FormData();
@@ -25,7 +22,7 @@ const BoardCreate = () => {
   const data = {
     title: title,
     content: content,
-    category_id: category_id,
+    category_id: categoryId,
     views: 0,
     comment_count: 0,
   };
@@ -63,7 +60,7 @@ const BoardCreate = () => {
         />
         <BoardFileUpload formData={formData} />
         <BoardButtonContainer>
-          <CreateButton style={FONT.SUBTITLE1} onSubmit={handleCreateSubmit} />
+          <CreateButton onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>
       </form>
     </BoardContainer>

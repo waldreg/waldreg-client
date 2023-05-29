@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useUser from '../../../hooks/user/useUser';
-import useKickUser from '../../../hooks/user/useKickUser';
 import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
 import useCharacterList from '../../../hooks/character/useCharacterList';
 
@@ -10,19 +9,21 @@ import { ButtonBig } from '../../common/buttons/button_big';
 import CharacterRadio from '../../common/radio';
 import { Top } from '../../character/CharacterList/style';
 import UserInfo from '../UserInfo';
+import UserDelModal from '../UserDelModal';
+import Container from '../../common/container';
 
 import COLOR from '../../../constants/color';
 import FONT from '../../../constants/fonts';
 
 const UserSetting = ({ name }: { name: string }) => {
   const user = useUser(name);
-  const kickMutation = useKickUser();
   const editMutation = useEditUserCharacter();
   const characterList = useCharacterList();
   const [selected, setSelected] = useState(user?.character || 'Admin');
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
-  const handleClickKickUser = (id: number) => {
-    kickMutation.mutate(id);
+  const handleClickModal = () => {
+    setIsOpenCreateModal(!isOpenCreateModal);
   };
 
   const handleClickEditUser = (id: number, char: string) => {
@@ -30,18 +31,21 @@ const UserSetting = ({ name }: { name: string }) => {
   };
 
   return (
-    <Container>
+    <Container width="40%">
       {user === undefined ? (
         <div>해당 유저가 존재하지 않습니다</div>
       ) : (
         <>
           <Content>
+            {isOpenCreateModal && (
+              <UserDelModal
+                setIsOpenCreateModal={setIsOpenCreateModal}
+                user={user}
+              />
+            )}
             <Top>
               <Title style={FONT.HEADING}>유저 관리</Title>
-              <Text
-                onClick={() => handleClickKickUser(user.id)}
-                style={FONT.SUBTITLE2}
-              >
+              <Text onClick={() => handleClickModal()} style={FONT.SUBTITLE2}>
                 유저 강제 퇴장
               </Text>
             </Top>
@@ -62,20 +66,6 @@ const UserSetting = ({ name }: { name: string }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 40%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-`;
 
 const Content = styled.div`
   display: flex;

@@ -6,12 +6,14 @@ const SettingContainer = styled.div`
   background: ${COLOR.WHITE};
   padding: 2rem;
   border-radius: 1rem;
+  min-width: 15rem;
 `;
 
 const SettingFormContainer = styled(SettingContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 15rem;
 `;
 
 const SettingTop = styled.div`
@@ -73,6 +75,11 @@ const CategoryDeleteButton = styled.button`
   border-radius: 0.5rem;
 `;
 
+const CategoryDeleteText = styled.div`
+  color: ${COLOR.GREEN4};
+  cursor: pointer;
+`;
+
 const CategoryDeleteContent = styled.div`
   color: ${COLOR.GRAY5};
 `;
@@ -94,5 +101,6 @@ export {
   CategoryListBox,
   CategoryDeleteButton,
   CategoryDeleteContent,
+  CategoryDeleteText,
   CategoryDeleteSpan,
 };

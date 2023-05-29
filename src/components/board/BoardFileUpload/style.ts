@@ -46,20 +46,21 @@ const FileListBox = styled.div`
   margin-top: 0.8rem;
 `;
 
-const FileDetailBox = styled.div`
+const FileDetailBox = styled.a`
   background: ${COLOR.GRAY1};
   border: 1px solid ${COLOR.GRAY3};
   border-radius: 0.7rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.3rem 0.5rem;
   margin-right: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.4rem;
+  cursor: pointer;
 `;
 
 const FileDetailTitle = styled.div`
-  color: ${COLOR.GRAY4};
+  color: ${COLOR.GRAY3};
   margin-right: 0.3rem;
 `;
 
@@ -68,7 +69,7 @@ const FilePlusLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 `;
 
 export {

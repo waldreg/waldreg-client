@@ -36,7 +36,9 @@ export const PermissionCheck = (props: IProps) => {
         onChange={(e: any) => handleToggleCheck(e, props.item)}
         checked={isChecked}
       />
-      <IconWrapper>{isChecked && <CheckIcon />}</IconWrapper>
+      <IconWrapper>
+        <CheckIcon isChecked={isChecked} />
+      </IconWrapper>
 
       <Text htmlFor={props.item.permission_name} style={FONT.SUBTITLE2}>
         {props.item.permission_name}
@@ -62,7 +64,9 @@ export const UserCheck = (props: UserProps) => {
         onChange={(e: any) => handleToggleCheck(e, props.item)}
         checked={isChecked}
       />
-      <IconWrapper>{isChecked && <CheckIcon />}</IconWrapper>
+      <IconWrapper>
+        <CheckIcon isChecked={isChecked} />
+      </IconWrapper>
 
       <Text htmlFor={props.item.name} style={FONT.SUBTITLE2}>
         {props.item.name}
@@ -76,6 +80,7 @@ const CheckWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 `;
 
 const CheckBox = styled.input<{ checked: boolean }>`
@@ -96,8 +101,8 @@ const CheckBox = styled.input<{ checked: boolean }>`
 const IconWrapper = styled.div`
   padding: 5px;
 
-  position: absolute;
   pointer-events: none;
+  position: absolute;
 `;
 
 const Text = styled.label``;

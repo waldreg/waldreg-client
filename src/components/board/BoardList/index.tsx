@@ -21,32 +21,33 @@ function BoardList({ boardList }: BoardListProps) {
 
   return (
     <>
-      {boardList.boards.map((board) => (
-        <BoardContainer
-          key={board.id}
-          onClick={() => navigate(`detail/${board.id}`)}
-        >
-          <BoardInformationBox>
-            <BoardInformation style={FONT.SUBTITLE1}>
-              {board.author.name}
-            </BoardInformation>
-            <BoardInformation style={FONT.SUBTITLE1}>
-              {board.created_at.slice(0, 10)}
-            </BoardInformation>
-          </BoardInformationBox>
-          <BoardContentBox>
-            <BoardTitle style={FONT.SUBTITLE2}>{board.title}</BoardTitle>
-            <BoardContent style={FONT.SUBTITLE2}>
-              <CommentIcon />
-              {board.comment_count}
-            </BoardContent>
-            <BoardContent style={FONT.SUBTITLE2}>
-              <ViewIcon />
-              <BoardInformationText>{board.views}</BoardInformationText>
-            </BoardContent>
-          </BoardContentBox>
-        </BoardContainer>
-      ))}
+      {boardList?.boards &&
+        boardList.boards.map((board) => (
+          <BoardContainer
+            key={board.id}
+            onClick={() => navigate(`detail/${board.id}`)}
+          >
+            <BoardInformationBox>
+              <BoardInformation style={FONT.SUBTITLE1}>
+                {board.author.name}
+              </BoardInformation>
+              <BoardInformation style={FONT.SUBTITLE1}>
+                {board.created_at.slice(0, 10)}
+              </BoardInformation>
+            </BoardInformationBox>
+            <BoardContentBox>
+              <BoardTitle style={FONT.SUBTITLE2}>{board.title}</BoardTitle>
+              <BoardContent style={FONT.SUBTITLE2}>
+                <CommentIcon />
+                {board.comment_count}
+              </BoardContent>
+              <BoardContent style={FONT.SUBTITLE2}>
+                <ViewIcon />
+                <BoardInformationText>{board.views}</BoardInformationText>
+              </BoardContent>
+            </BoardContentBox>
+          </BoardContainer>
+        ))}
     </>
   );
 }

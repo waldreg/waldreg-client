@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import useCharacter from '../../../hooks/character/useCharacter';
 import useEditCharacter from '../../../hooks/character/useEditCharacter';
 import useDeleteCharacter from '../../../hooks/character/useDeleteCharacter';
+import usePermissionList from '../../../hooks/character/usePermissionList';
 import { useInput } from '../../../hooks/common/useInput';
 import { useToggleBox } from '../../../hooks/common/useCheckBox';
 
@@ -12,6 +14,7 @@ import { InputLine } from '../../common/inputs/input_line';
 import { ButtonBig } from '../../common/buttons/button_big';
 import PermissionItem from '../Permission';
 import { Top, Item } from '../CharacterList/style';
+import Container from '../../common/container';
 
 import { Permission } from '../../../interfaces/character';
 
@@ -25,6 +28,7 @@ const CharacterSetting = ({
   name: string;
   setChar: any;
 }) => {
+  const perList = usePermissionList();
   const character = useCharacter(name);
   const editMutation = useEditCharacter(name);
   const deleteMutation = useDeleteCharacter();
@@ -34,11 +38,15 @@ const CharacterSetting = ({
   );
 
   const perThemeList = [
-    { name: '유저', range: [0, 3] },
-    { name: '게시판', range: [4, 15] },
-    { name: '일정', range: [16, 18] },
-    { name: '상벌점', range: [19, 19] },
+    'User',
+    'Character',
+    'Board',
+    'Schedule',
+    'Reward',
+    'Attendance',
+    'Teambuilding',
   ];
+
   const [perTheme, setPerTheme] = useState(perThemeList[0]);
 
   checkedList.sort((prev, cur) => {
@@ -47,23 +55,18 @@ const CharacterSetting = ({
   });
 
   return (
-    <Container>
+    <Container width="36vw">
       <Content>
         <Top>
           <Title style={FONT.HEADING}>설정</Title>
           <Text
             onClick={() => {
-              editMutation.mutate({
-                name: name,
-                newChar: {
-                  character_name: value,
-                  permissions: character?.permissions || [],
-                },
-              });
+              deleteMutation.mutate(name);
+              setChar('Admin');
             }}
             style={FONT.SUBTITLE2}
           >
-            변경사항 저장
+            역할 삭제
           </Text>
         </Top>
         <InputLine
@@ -75,21 +78,17 @@ const CharacterSetting = ({
         <PerThemeList style={FONT.SUBTITLE2}>
           {perThemeList.map((theme) => (
             <Item
-              key={theme.name}
+              key={theme}
               onClick={() => setPerTheme(theme)}
-              selected={theme.name === perTheme.name}
+              selected={theme === perTheme}
             >
-              {theme.name}
+              {theme}
             </Item>
           ))}
         </PerThemeList>
         <Items>
           {checkedList
-            .filter(
-              (per) =>
-                per.permission_id >= perTheme.range[0] &&
-                per.permission_id <= perTheme.range[1]
-            )
+            .filter((per) => per.permission_service === perTheme)
             .map((permission: Permission) => (
               <PermissionItem
                 key={permission.permission_id}
@@ -100,31 +99,24 @@ const CharacterSetting = ({
         </Items>
       </Content>
       <ButtonBig
-        content={'역할 삭제하기'}
+        content={'변경사항 저장'}
         color={COLOR.GREEN4}
         onClick={() => {
-          deleteMutation.mutate(name);
-          setChar('Admin');
+          editMutation.mutate({
+            name: name,
+            newChar: {
+              character_name: value,
+              permissions: character?.permissions || [],
+            },
+          });
         }}
       />
     </Container>
   );
 };
 
-const Container = styled.div`
-  width: 140%;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
 const Content = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -132,6 +124,13 @@ const Content = styled.div`
 `;
 
 const PerThemeList = styled.div`
+  max-width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   display: flex;
   gap: 1rem;
 `;

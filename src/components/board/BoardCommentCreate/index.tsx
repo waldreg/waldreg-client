@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { useCommentCreate } from '../../../hooks/board/comment/useCommentCreate';
-import { useParams } from 'react-router-dom';
-import CreateButton from '../../common/createbutton';
-import { CommentInput, CommentLabel } from './style';
-import FONT from '../../../constants/fonts';
+import { useState } from "react";
+import { useCommentCreate } from "../../../hooks/board/comment/useCommentCreate";
+import { useParams } from "react-router-dom";
+import CreateButton from "../../common/createbutton";
+import { CommentInput, CommentLabel } from "./style";
 
 const BoardCommentCreate = () => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const { id } = useParams();
 
   const createMutation = useCommentCreate(parseInt(id!!), comment);
@@ -14,7 +13,7 @@ const BoardCommentCreate = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     createMutation.mutate();
-    setComment('');
+    setComment("");
   };
 
   return (
@@ -28,7 +27,7 @@ const BoardCommentCreate = () => {
             setComment(e.target.value);
           }}
         />
-        <CreateButton style={FONT.SUBTITLE1} onClick={handleSubmit} />
+        <CreateButton onSubmit={handleSubmit} />
       </CommentLabel>
     </form>
   );

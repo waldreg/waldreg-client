@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -116,18 +116,21 @@ const GlobalStyle = createGlobalStyle`
   section {
     display: block;
   }
+
+  html, body{
+    padding: 0;
+    margin: 0;
+  }
+
   html {
     width: 100%;
-    height: 100%;
+    height: 100vh;
   }
   body {
     width: 100%;
     height: 100%;
-
-    line-height: 1;
-    font-family: "Open Sans", sans-serif;
-    color: #444444;
   }
+
   ol,
   ul {
     list-style: none;

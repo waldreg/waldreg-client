@@ -10,13 +10,12 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  window.onload = function() {
-    localStorage.clear();
-  };
+  // window.onload = function() {
+  //   localStorage.clear();
+  // };
   const initialToken = localStorage.getItem("accessToken");
   const [token, setToken] = useState(initialToken);
 
-  console.log(token);
   const userIsLoggedIn = !!token;
 
   axios.defaults.withCredentials = true;
