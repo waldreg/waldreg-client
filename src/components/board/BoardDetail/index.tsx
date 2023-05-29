@@ -4,7 +4,6 @@ import {
   BoardButton,
   BoardButtonBox,
   BoardCommentCount,
-  BoardContainer,
   BoardContent,
   BoardInformation,
   BoardInformationBox,
@@ -34,6 +33,7 @@ import { FileDownLoadIcon } from "../../Icons/BoardIcons";
 import axios from "axios";
 import React from "react";
 import useCurUser from "./../../../hooks/curuser/useCurUser";
+import Container from "../../common/container";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -88,7 +88,14 @@ const BoardDetail = () => {
   const currentUser = useCurUser();
 
   return (
-    <BoardContainer>
+    <Container
+      height="default"
+      style={{
+        padding: "2rem 1.7rem 1rem",
+        margin: "1.4rem 0",
+        minWidth: "35rem",
+      }}
+    >
       <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
       <BoardTopBox>
         <BoardInformationBox>
@@ -180,7 +187,7 @@ const BoardDetail = () => {
           </SettingButtonBox>
         </Modal>
       )}
-    </BoardContainer>
+    </Container>
   );
 };
 
