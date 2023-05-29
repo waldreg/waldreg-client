@@ -38,8 +38,7 @@ const BoardButton = styled.button`
 
 const BoardContent = styled.div`
   color: ${COLOR.GRAY5};
-  padding: 1rem 0 3rem;
-  border-bottom: 2px solid ${COLOR.GRAY0};
+  padding: 2rem 0 3rem;
 `;
 
 const BoardCommentCount = styled.div`
