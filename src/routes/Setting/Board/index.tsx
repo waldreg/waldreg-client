@@ -16,17 +16,16 @@ import {
   CategoryListBox,
   SettingButtonBox,
   SettingCancelButton,
-  SettingContainer,
-  SettingFormContainer,
   SettingInput,
   SettingSaveButton,
   SettingTitle,
   SettingTop,
   CategoryDeleteButton,
 } from "./style";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useBoardCategoryUpdate } from "../../../hooks/board/category/useBoardCategoryUpdate";
 import { useBoardCategoryDelete } from "../../../hooks/board/category/useBoardCategoryDelete";
+import Container from "../../../components/common/container";
 
 const BoardManagement = () => {
   const [boardName, setBoardName] = useState<string>("");
@@ -76,7 +75,7 @@ const BoardManagement = () => {
 
   return (
     <>
-      <SettingContainer style={{ width: "30%" }}>
+      <Container width="30%">
         <SettingTop>
           <SettingTitle style={FONT.HEADING}>게시판</SettingTitle>
           <PlusIcon onClick={handleClickCreateModal} />
@@ -86,9 +85,9 @@ const BoardManagement = () => {
             <BoardCategoryList boardCategoryList={boardCategoryList} />
           )}
         </CategoryListBox>
-      </SettingContainer>
+      </Container>
 
-      <SettingFormContainer style={{ width: "50%" }}>
+      <Container width="50%">
         <div>
           <SettingTop>
             <SettingTitle style={FONT.HEADING}>설정</SettingTitle>
@@ -116,7 +115,7 @@ const BoardManagement = () => {
         >
           변경사항 저장
         </CategoryDeleteButton>
-      </SettingFormContainer>
+      </Container>
 
       {isOpenCreateModal && (
         <Modal onClickToggleModal={handleClickCreateModal} size={"small"}>

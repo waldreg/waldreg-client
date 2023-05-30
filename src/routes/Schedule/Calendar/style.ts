@@ -1,12 +1,4 @@
 import styled from "styled-components";
-import COLOR from "../../../constants/color";
-
-const CalendarContainer = styled.div`
-  background: ${COLOR.WHITE};
-  width: 100%;
-  padding: 1.8rem 2rem;
-  min-width: 45rem;
-`;
 
 const CalendarTitleInput = styled.input`
   width: 100%;
@@ -37,9 +29,4 @@ const CalendarDeleteButton = styled.div`
   padding: 1rem;
 `;
 
-export {
-  CalendarContainer,
-  CalendarTitleInput,
-  CalendarContentTextarea,
-  CalendarDeleteButton,
-};
+export { CalendarTitleInput, CalendarContentTextarea, CalendarDeleteButton };

@@ -7,9 +7,9 @@ import {
   BoardContentTextArea,
   BoardTitleInput,
 } from "./style";
-import { BoardContainer } from "../BoardDetail/style";
 import CreateButton from "../../common/createbutton";
 import BoardFileUpload from "../BoardFileUpload";
+import Container from "../../common/container";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
@@ -41,7 +41,14 @@ const BoardCreate = () => {
   };
 
   return (
-    <BoardContainer>
+    <Container
+      height="default"
+      style={{
+        padding: "2rem 1.7rem 1rem",
+        margin: "1.4rem 0",
+        minWidth: "35rem",
+      }}
+    >
       <form onSubmit={handleCreateSubmit}>
         <BoardTitleInput
           style={FONT.SUBTITLE2}
@@ -63,7 +70,7 @@ const BoardCreate = () => {
           <CreateButton onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>
       </form>
-    </BoardContainer>
+    </Container>
   );
 };
 
