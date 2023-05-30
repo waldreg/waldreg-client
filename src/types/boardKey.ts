@@ -1,7 +1,8 @@
 export const boardKeys = {
   all: ["boards"] as const,
   detail: (id: number) => [...boardKeys.all, id] as const,
-  withCategory: (categoryId: number) => [...boardKeys.all, categoryId] as const,
+  withCategory: (categoryId: number, currentPage: number) =>
+    [...boardKeys.all, categoryId, currentPage] as const,
 };
 
 export const boardCategoryKeys = {
