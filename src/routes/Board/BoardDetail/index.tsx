@@ -61,13 +61,16 @@ const BoardDetail = () => {
     });
     return data;
   }
-  const handleDownloadButtonClick = async (file_id: string) => {
-    const fileData = await getBoardDownload(file_id);
+  const handleDownloadButtonClick = async (file: {
+    origin: string;
+    uuid: string;
+  }) => {
+    const fileData = await getBoardDownload(file.uuid);
     const downloadUrl = URL.createObjectURL(fileData);
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "filename.extension";
+    link.download = file.origin;
     link.click();
 
     URL.revokeObjectURL(downloadUrl);
@@ -148,7 +151,9 @@ const BoardDetail = () => {
                 key={i}
                 onClick={() => handleDownloadButtonClick(file)}
               >
-                <FileDetailTitle style={FONT.SUBTITLE1}>{file}</FileDetailTitle>
+                <FileDetailTitle style={FONT.SUBTITLE1}>
+                  {file.origin}
+                </FileDetailTitle>
                 <FileDownLoadIcon />
               </FileDetailBox>
             );
