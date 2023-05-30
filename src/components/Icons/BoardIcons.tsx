@@ -154,3 +154,54 @@ export const FileDownLoadIcon = () => {
     </svg>
   );
 };
+
+interface LeftRightIconProps {
+  disable?: boolean;
+  onClick: () => void;
+}
+
+export const LeftIcon = ({ disable, onClick }: LeftRightIconProps) => {
+  return (
+    <svg
+      width="25"
+      height="24"
+      viewBox="0 0 25 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ visibility: disable ? "hidden" : "visible" }}
+      onClick={onClick}
+      cursor="pointer"
+    >
+      <path
+        d="M15.5 7L10.5 12L15.5 17"
+        stroke="#555555"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const RightIcon = ({ disable, onClick }: LeftRightIconProps) => {
+  return (
+    <svg
+      width="25"
+      height="24"
+      viewBox="0 0 25 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      cursor="pointer"
+      style={{ visibility: disable ? "hidden" : "visible" }}
+      onClick={onClick}
+    >
+      <path
+        d="M10.5 7L15.5 12L10.5 17"
+        stroke="#555555"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

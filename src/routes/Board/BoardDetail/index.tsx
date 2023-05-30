@@ -1,39 +1,39 @@
 import { Params, useNavigate, useParams } from "react-router-dom";
-import { useBoardDetail } from "./../../../hooks/board/useBoardDetail";
+import { useBoardDetail } from "../../../hooks/board/useBoardDetail";
+import { useState } from "react";
+import { useBoardDelete } from "../../../hooks/board/useBoardDelete";
+import { waldregAxios as axios } from "../../../apis/axios";
+import { useCommentList } from "../../../hooks/board/comment/useCommentList";
+import React from "react";
+import useCurUser from "../../../hooks/curuser/useCurUser";
+import Container from "../../../components/common/container";
 import {
   BoardButton,
   BoardButtonBox,
   BoardCommentCount,
-  BoardContainer,
   BoardContent,
   BoardInformation,
   BoardInformationBox,
   BoardTitle,
   BoardTopBox,
 } from "./style";
-import { useBoardDelete } from "./../../../hooks/board/useBoardDelete";
-import FONT from "./../../../constants/fonts";
-import BoardCommentCreate from "./../BoardCommentCreate/index";
-import BoardCommentList from "./../BoardCommentList/index";
-import { useCommentList } from "../../../hooks/board/comment/useCommentList";
-import { useState } from "react";
-import Modal from "../../common/modal";
+import FONT from "../../../constants/fonts";
+import {
+  FileDetailBox,
+  FileDetailTitle,
+  FileListBox,
+} from "../../../components/board/BoardFileUpload/style";
+import { FileDownLoadIcon } from "../../../components/Icons/BoardIcons";
+import BoardCommentCreate from "../../../components/board/BoardCommentCreate";
+import BoardCommentList from "../../../components/board/BoardCommentList";
+import Modal from "../../../components/common/modal";
 import {
   CategoryDeleteContent,
   SettingButtonBox,
   SettingCancelButton,
   SettingSaveButton,
   SettingTitle,
-} from "../../../routes/Setting/Board/style";
-import {
-  FileDetailBox,
-  FileDetailTitle,
-  FileListBox,
-} from "../BoardFileUpload/style";
-import { FileDownLoadIcon } from "../../Icons/BoardIcons";
-import axios from "axios";
-import React from "react";
-import useCurUser from "./../../../hooks/curuser/useCurUser";
+} from "../../Setting/Board/style";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -88,7 +88,14 @@ const BoardDetail = () => {
   const currentUser = useCurUser();
 
   return (
-    <BoardContainer>
+    <Container
+      height="default"
+      style={{
+        padding: "2rem 1.7rem 1rem",
+        margin: "1.4rem 0",
+        minWidth: "35rem",
+      }}
+    >
       <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
       <BoardTopBox>
         <BoardInformationBox>
@@ -131,6 +138,8 @@ const BoardDetail = () => {
           )}
       </BoardTopBox>
 
+      <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
+
       {files && (
         <FileListBox>
           {files.map((file, i) => {
@@ -146,8 +155,6 @@ const BoardDetail = () => {
           })}
         </FileListBox>
       )}
-
-      <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
 
       <BoardCommentCount style={FONT.SUBTITLE2}>
         {commentLists?.max_idx}개의 댓글
@@ -180,7 +187,7 @@ const BoardDetail = () => {
           </SettingButtonBox>
         </Modal>
       )}
-    </BoardContainer>
+    </Container>
   );
 };
 

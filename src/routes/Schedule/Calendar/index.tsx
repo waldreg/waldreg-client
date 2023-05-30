@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addMonths, subMonths } from "date-fns";
 import {
-  CalendarContainer,
+  CalendarBox,
   CalendarContentTextarea,
   CalendarDeleteButton,
   CalendarTitleInput,
@@ -15,6 +15,7 @@ import CalendarDatePicker from "../../../components/calendar/CalendarDatePicker"
 import { TrashcanIcon } from "../../../components/Icons/SettingIcons";
 import { useScheduleDelete } from "../../../hooks/schedule/useScheduleDelete";
 import { useScheduleUpdate } from "../../../hooks/schedule/useScheduleUpdate";
+import Container from "../../../components/common/container";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -115,26 +116,28 @@ const Calendar = () => {
 
   return (
     <>
-      <CalendarContainer>
-        <CalendarHeader
-          currentMonth={currentMonth}
-          prevMonth={prevMonth}
-          nextMonth={nextMonth}
-          today={handleTodayClick}
-        />
-        <CalendarDays />
-        <CalendarCells
-          currentMonth={currentMonth}
-          isOpenCreateModal={isOpenCreateModal}
-          isOpenDetailModal={isOpenDetailModal}
-          setIsOpenCreateModal={setIsOpenCreateModal}
-          setIsOpenDetailModal={setIsOpenDetailModal}
-          handleDateClick={handleDateClick}
-          year={currentMonth.getFullYear()}
-          month={currentMonth.getMonth() + 1}
-          setDetail={setDetail}
-        />
-      </CalendarContainer>
+      <Container>
+        <CalendarBox>
+          <CalendarHeader
+            currentMonth={currentMonth}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
+            today={handleTodayClick}
+          />
+          <CalendarDays />
+          <CalendarCells
+            currentMonth={currentMonth}
+            isOpenCreateModal={isOpenCreateModal}
+            isOpenDetailModal={isOpenDetailModal}
+            setIsOpenCreateModal={setIsOpenCreateModal}
+            setIsOpenDetailModal={setIsOpenDetailModal}
+            handleDateClick={handleDateClick}
+            year={currentMonth.getFullYear()}
+            month={currentMonth.getMonth() + 1}
+            setDetail={setDetail}
+          />
+        </CalendarBox>
+      </Container>
 
       {isOpenCreateModal && (
         <CalendarModal

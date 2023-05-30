@@ -8,9 +8,9 @@ import {
   BoardContentTextArea,
   BoardTitleInput,
 } from "../BoardCreate/style";
-import { BoardContainer } from "../BoardDetail/style";
 import BoardFileUpload from "../BoardFileUpload";
 import { useBoardUpdate } from "./../../../hooks/board/useBoardUpdate";
+import Container from "../../common/container";
 
 const BoardUpdate = () => {
   const { id, categoryId } = useParams<Params>();
@@ -42,7 +42,14 @@ const BoardUpdate = () => {
   };
 
   return (
-    <BoardContainer>
+    <Container
+      height="default"
+      style={{
+        padding: "2rem 1.7rem 1rem",
+        margin: "1.4rem 0",
+        minWidth: "35rem",
+      }}
+    >
       <form onSubmit={handleUpdateSubmit}>
         <BoardTitleInput
           style={FONT.SUBTITLE2}
@@ -65,7 +72,7 @@ const BoardUpdate = () => {
           <CreateButton onSubmit={handleUpdateSubmit} />
         </BoardButtonContainer>
       </form>
-    </BoardContainer>
+    </Container>
   );
 };
 
