@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const CalendarBox = styled.div`
+  height: 100%;
+`;
+
 const CalendarTitleInput = styled.input`
   width: 100%;
   font-size: 2.2rem;
@@ -29,4 +33,9 @@ const CalendarDeleteButton = styled.div`
   padding: 1rem;
 `;
 
-export { CalendarTitleInput, CalendarContentTextarea, CalendarDeleteButton };
+export {
+  CalendarBox,
+  CalendarTitleInput,
+  CalendarContentTextarea,
+  CalendarDeleteButton,
+};

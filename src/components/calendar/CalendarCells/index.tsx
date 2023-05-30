@@ -10,7 +10,9 @@ import {
 } from "date-fns";
 import { useState } from "react";
 import {
+  Calendar,
   CalendarCell,
+  CalendarDay,
   CalendarPlusButton,
   CalendarRow,
   Schedule,
@@ -89,7 +91,6 @@ const CalendarCells = ({
         <CalendarCell
           key={i}
           isWeekend={isWeekend}
-          isToday={isToday}
           isWithinMonth={isWithinMonth}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
@@ -147,7 +148,7 @@ const CalendarCells = ({
                   ))}
               </ScheduleBox>
             )}
-          {format(day, "d")}
+          <CalendarDay isToday={isToday}>{format(day, "d")}</CalendarDay>
         </CalendarCell>
       );
       day = addDays(day, 1);
@@ -156,7 +157,7 @@ const CalendarCells = ({
     days = [];
   }
 
-  return <div>{rows}</div>;
+  return <Calendar height={100 / rows.length - 2.2 + "%"}>{rows}</Calendar>;
 };
 
 export default CalendarCells;
