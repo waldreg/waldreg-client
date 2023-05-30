@@ -48,9 +48,21 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
     setFileList([...fileList, ...newFileList]);
   };
 
-  const handleDeleteFile = (index: number) => {
-    setFileList(fileList.filter((_, i) => i !== index));
+  const handleDeleteFile = (idx: number) => {
+    const deletedFile = fileList[idx];
+
+    setFileList((prevFileList) => {
+      const updatedFileList = [...prevFileList];
+      updatedFileList.splice(idx, 1);
+      return updatedFileList;
+    });
+
     formData.delete("file");
+    fileList.forEach((file) => {
+      if (file !== deletedFile) {
+        formData.append("file", file);
+      }
+    });
   };
 
   const dragOver = (e: DragEvent<HTMLDivElement>) => {
