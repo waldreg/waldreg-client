@@ -17,10 +17,17 @@ import {
 
 interface BoardFileUploadProps {
   formData: FormData;
+  files?: any;
 }
 
-const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
+const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
   const [fileList, setFileList] = useState<File[]>([]);
+
+  useEffect(() => {
+    if (files) {
+      setFileList(files);
+    }
+  }, [files]);
 
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -90,11 +97,11 @@ const BoardFileUpload = ({ formData }: BoardFileUploadProps) => {
         </>
       ) : (
         <FileListBox>
-          {fileList.map((e, i) => {
+          {fileList.map((e: any, i) => {
             return (
               <FileDetailBox key={i}>
                 <FileDetailTitle style={FONT.SUBTITLE1}>
-                  {e.name}
+                  {e.name} {e.origin}
                 </FileDetailTitle>
                 <FileDeleteIcon onClick={() => handleDeleteFile(i)} />
               </FileDetailBox>
