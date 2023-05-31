@@ -29,8 +29,8 @@ const JoiningpoolModal = ({
   const handleJoining = (type: string) => {
     checkedList.forEach((user) => {
       type === "승인"
-        ? apporveMutate({ id: Date.now(), user_id: user.user_id })
-        : discardMutate({ id: Date.now(), user_id: user.user_id });
+        ? apporveMutate(user.user_id)
+        : discardMutate(user.user_id);
     });
   };
 

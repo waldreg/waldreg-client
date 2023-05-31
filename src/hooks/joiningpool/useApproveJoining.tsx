@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from "react-query";
 
-import { JoiningpoolUser } from "../../interfaces/joiningpoolUser";
-import { joiningpoolKeys } from "../../types/joiningpoolKeys";
+import { joiningpoolUserKeys } from "../../types/joiningpoolKeys";
 import { waldregAxios } from "../../apis/axios";
 
-const approveJoining = async (user: JoiningpoolUser) => {
-  await waldregAxios.get(`/user/joiningpool/${user.user_id}`);
+const approveJoining = async (userId: string) => {
+  await waldregAxios.get(`/user/joiningpool/${userId}`);
 };
 
 const useApproveJoining = () => {
   const queryClient = useQueryClient();
+
   return useMutation(approveJoining, {
     onSuccess: () => {
-      queryClient.invalidateQueries(joiningpoolKeys.all);
+      queryClient.invalidateQueries(joiningpoolUserKeys.all);
     },
     onError: (error) => {
       console.log(error);

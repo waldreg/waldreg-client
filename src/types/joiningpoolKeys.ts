@@ -1,4 +1,6 @@
-export const joiningpoolKeys = {
+export const joiningpoolUserKeys = {
   all: ["joiningpoolUsers"] as const,
-  detail: (user_id: string) => [...joiningpoolKeys.all, user_id] as const,
+  search: ["joiningpoolUsers", "search"] as const,
+  detail: (id: string) => [...joiningpoolUserKeys.all, id] as const,
+  page: (num: number) => [...joiningpoolUserKeys.all, num] as const,
 };

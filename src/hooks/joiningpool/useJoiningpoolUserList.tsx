@@ -1,6 +1,6 @@
-import { Users } from "../../interfaces/user";
+import { JoiningpoolUsers } from "../../interfaces/joiningpoolUser";
+import { joiningpoolUserKeys } from "../../types/joiningpoolKeys";
 import { useQuery } from "react-query";
-import { userKeys } from "../../types/userKeys";
 import { waldregAxios } from "../../apis/axios";
 
 const getJoiningpoolUserList = async (startIdx: number, endIdx: number) => {
@@ -11,8 +11,9 @@ const getJoiningpoolUserList = async (startIdx: number, endIdx: number) => {
 };
 
 const useJoiningpoolUserList = (startIdx: number, endIdx: number) => {
-  const { data } = useQuery<Users>(userKeys.page(startIdx), () =>
-    getJoiningpoolUserList(startIdx, endIdx)
+  const { data } = useQuery<JoiningpoolUsers>(
+    joiningpoolUserKeys.page(startIdx),
+    () => getJoiningpoolUserList(startIdx, endIdx)
   );
   return data;
 };

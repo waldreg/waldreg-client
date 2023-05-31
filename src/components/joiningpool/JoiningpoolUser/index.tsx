@@ -1,3 +1,7 @@
+import {
+  JoiningpoolUserCheckBox,
+  UserCheckBox,
+} from "../../common/checkbox/checkbox";
 import React, { useEffect, useState } from "react";
 
 import { ButtonBig } from "../../common/buttons/button_big";
@@ -8,7 +12,6 @@ import { InputFillThin } from "../../common/inputs/input_fill";
 import JoiningpoolModal from "../JoiningpoolModal";
 import { Title } from "../../common/pagetitle/style";
 import { Top } from "./style";
-import { UserCheckBox } from "../../common/checkbox/checkbox";
 import { useInput } from "../../../hooks/common/useInput";
 import { useJoiningpoolUserCheckBox } from "../../../hooks/common/useCheckBox";
 import useJoiningpoolUserList from "../../../hooks/joiningpool/useJoiningpoolUserList";
@@ -69,7 +72,7 @@ const JoiningpoolUser = () => {
           }}
         />
       </Top>
-      <UserCheckBox
+      <JoiningpoolUserCheckBox
         data={searchJoiningpoolUserList || []}
         updateCheckList={updateCheckList}
       />
