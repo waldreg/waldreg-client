@@ -1,4 +1,4 @@
-import { ButtonContainer, Contents, Description, Top } from "./style";
+import { ButtonContainer, CheckBox, Contents, Description, Top } from "./style";
 import { useEffect, useState } from "react";
 
 import { ButtonBig } from "../../common/buttons/button_big";
@@ -45,6 +45,7 @@ const JoiningpoolUser = () => {
             setIsOpenModal={setIsOpenModal}
             type={modalType}
             checkedList={checkedList}
+            checkReset={checkReset}
           />
         )}
         <InputFillThin

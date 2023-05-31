@@ -26,3 +26,18 @@ export const ButtonContainer = styled.div`
 
   width: 20rem;
 `;
+
+export const CheckBox = styled.input<{ checked: boolean }>`
+  width: 25px;
+  height: 25px;
+
+  border: 2px solid
+    ${(props) =>
+      props.checked === true ? `${COLOR.GREEN4}` : `${COLOR.GRAY2}`};
+  border-radius: 0.5rem;
+
+  background: ${(props) =>
+    props.checked === true ? `${COLOR.GREEN4}` : "white"};
+
+  cursor: pointer;
+`;

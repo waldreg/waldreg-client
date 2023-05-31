@@ -11,7 +11,6 @@ import {
 import FONT from "../../../constants/fonts";
 import { JoiningpoolUser } from "../../../interfaces/joiningpoolUser";
 import Modal from "../../common/modal";
-import { User } from "../../../interfaces/user";
 import useApproveJoining from "../../../hooks/joiningpool/useApproveJoining";
 import useDiscardJoining from "../../../hooks/joiningpool/useDiscardJoining";
 
@@ -19,10 +18,12 @@ const JoiningpoolModal = ({
   setIsOpenModal,
   type,
   checkedList,
+  checkReset,
 }: {
   setIsOpenModal: any;
   type: string;
   checkedList: JoiningpoolUser[];
+  checkReset: () => void;
 }) => {
   const { mutate: apporveMutate } = useApproveJoining();
   const { mutate: discardMutate } = useDiscardJoining();
@@ -33,6 +34,7 @@ const JoiningpoolModal = ({
         ? apporveMutate(user.user_id)
         : discardMutate(user.user_id);
     });
+    checkReset();
   };
 
   return (
