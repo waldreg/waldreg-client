@@ -45,6 +45,7 @@ const JoiningpoolModal = ({
           취소
         </SettingCancelButton>
         <SettingSaveButton
+          modalType={type}
           style={FONT.SUBTITLE2}
           onClick={() => {
             console.log("hi");

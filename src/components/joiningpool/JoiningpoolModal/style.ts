@@ -48,8 +48,9 @@ export const SettingCancelButton = styled.button`
   margin-right: 1rem;
 `;
 
-export const SettingSaveButton = styled.button`
-  background: ${COLOR.GREEN4};
+export const SettingSaveButton = styled.button<{ modalType: string }>`
+  background: ${({ modalType }) =>
+    modalType === "승인" ? COLOR.GREEN4 : COLOR.RED2};
   color: ${COLOR.WHITE};
   width: 50%;
   padding: 0.7rem 0;
