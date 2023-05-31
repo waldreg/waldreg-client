@@ -1,17 +1,9 @@
-import { useState } from 'react';
-
-import JoiningPoolUserList from '../../components/joiningpool/JoiningPoolUserList';
+import JoiningpoolUser from "../../components/joiningpool/JoiningpoolUser";
 
 const JoiningPool = () => {
-  const [user, setUser] = useState('Admin');
-
-  const handleClickChangeUser = (name: string) => {
-    setUser(name);
-  };
-
   return (
     <>
-      <JoiningPoolUserList handleClickChangeUser={handleClickChangeUser} />
+      <JoiningpoolUser />
     </>
   );
 };

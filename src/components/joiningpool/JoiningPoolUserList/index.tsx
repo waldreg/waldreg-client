@@ -1,19 +1,14 @@
-import styled from 'styled-components';
-import { useState } from 'react';
-
-import useUserList from '../../../hooks/joiningpool/useUserList';
-import useAllUserList from '../../../hooks/user/useAllUserList';
-import { useInput } from '../../../hooks/common/useInput';
-
-import { User } from '../../../interfaces/user';
-
-import { InputFillThin } from '../../common/inputs/input_fill';
-import JoiningPoolUserInfo from '../JoiningPoolUserInfo';
-import COLOR from '../../../constants/color';
-import FONT from '../../../constants/fonts';
-import { ButtonBig } from '../../common/buttons/button_big';
-
-import { authAPI } from '../../../apis/authAPI';
+import COLOR from "../../../constants/color";
+import FONT from "../../../constants/fonts";
+import { InputFillThin } from "../../common/inputs/input_fill";
+import JoiningPoolUserInfo from "../JoiningPoolUserInfo";
+import { User } from "../../../interfaces/user";
+import { authAPI } from "../../../apis/authAPI";
+import styled from "styled-components";
+import useAllUserList from "../../../hooks/user/useAllUserList";
+import { useInput } from "../../../hooks/common/useInput";
+import { useState } from "react";
+import useUserList from "../../../hooks/joiningpool/useJoiningpoolUserList";
 
 const JoiningPoolUserList = ({ handleClickChangeUser }: any) => {
   const [page, setPage] = useState<number>(1);
@@ -25,10 +20,10 @@ const JoiningPoolUserList = ({ handleClickChangeUser }: any) => {
     .fill(0)
     .map((v, i) => i + 1);
 
-  const { value, handleChangeInput, reset } = useInput('');
+  const { value, handleChangeInput, reset } = useInput("");
 
   const filterList =
-    value === ''
+    value === ""
       ? userList
       : allUserList?.filter((user) =>
           user.name.toLowerCase().includes(value.toLowerCase())
@@ -40,7 +35,7 @@ const JoiningPoolUserList = ({ handleClickChangeUser }: any) => {
         <Title style={FONT.HEADING}>승인 대기 유저 목록</Title>
         <InputFillThin
           value={value}
-          placeholder={'유저 이름'}
+          placeholder={"유저 이름"}
           onChange={handleChangeInput}
           reset={reset}
         />
@@ -54,10 +49,10 @@ const JoiningPoolUserList = ({ handleClickChangeUser }: any) => {
               key={user.id}
               onClick={() => {
                 authAPI.join(user.user_id);
-                filterList.splice(user.id,1);
-            }}
+                filterList.splice(user.id, 1);
+              }}
             >
-              <JoiningPoolUserInfo user={user} size={'small'} />
+              <JoiningPoolUserInfo user={user} size={"small"} />
             </UserItem>
           ))
         )}

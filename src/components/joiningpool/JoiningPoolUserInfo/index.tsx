@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import { User } from '../../../interfaces/user';
-
-import COLOR from '../../../constants/color';
-import FONT from '../../../constants/fonts';
+import COLOR from "../../../constants/color";
+import FONT from "../../../constants/fonts";
+import { User } from "../../../interfaces/user";
+import styled from "styled-components";
 
 const JoiningPoolUserInfo = ({ user, size }: { user: User; size: string }) => {
   return (
@@ -11,14 +10,13 @@ const JoiningPoolUserInfo = ({ user, size }: { user: User; size: string }) => {
         <UserName style={FONT.SUBTITLE3}>{user.name}</UserName>
         <UserId style={FONT.SUBTITLE2}>{user.user_id}</UserId>
       </Name>
-      <Tag style={FONT.SUBTITLE1}>{user.character}</Tag>
     </Content>
   );
 };
 
 const Content = styled.div<{ size: string }>`
   width: 100%;
-  padding: ${(props) => (props.size === 'small' ? `1.1rem` : `2rem`)};
+  padding: ${(props) => (props.size === "small" ? `1.1rem` : `2rem`)};
 
   border-radius: 0.5rem;
   display: flex;
