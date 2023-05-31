@@ -1,6 +1,7 @@
-import React, { PropsWithChildren } from 'react';
-import { Backdrop, DialogBox } from './style';
+import { Backdrop, DialogBox } from "./style";
+import React, { PropsWithChildren } from "react";
 
+import styled from "styled-components";
 interface ModalDefaultType {
   size?: string;
   onClickToggleModal: () => void;

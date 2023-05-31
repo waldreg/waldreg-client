@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
 const DialogBox = styled(motion.dialog)<{ size?: string }>`
   display: flex;
@@ -7,14 +7,22 @@ const DialogBox = styled(motion.dialog)<{ size?: string }>`
   align-items: center;
   justify-content: space-between;
 
-  ${(props) =>
-    props.size === 'small'
-      ? `  
-      width: 28rem;
-      height: 19rem;`
-      : `
-      width: 36rem;
-      height: 40rem;`}
+  ${(props) => {
+    switch (props.size) {
+      case "small":
+        return `  
+        width: 28rem;
+        height: 19rem;`;
+      case "middle":
+        return `
+        width:28rem;
+        height:25rem;`;
+      case "big":
+        return `
+        width:36rem;
+        height:40rem;`;
+    }
+  }}
 
   padding: 2rem;
   border: none;

@@ -1,7 +1,8 @@
-import { useLocation } from "react-router";
-import FONT from "../../../constants/fonts";
+import { Blank, Item, Items, Link, Text } from "../../global/NavBar/style";
+
 import { BoardCategoryLists } from "../../../interfaces/board";
-import { Blank, Items, Item, Text, Link } from "../../global/NavBar/style";
+import FONT from "../../../constants/fonts";
+import { useLocation } from "react-router";
 
 interface BoardCategoryProps {
   boardCategoryList: BoardCategoryLists;
