@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import COLOR from '../../../constants/color';
-import FONT from '../../../constants/fonts';
+import COLOR from "../../../constants/color";
+import FONT from "../../../constants/fonts";
+import styled from "styled-components";
 
 export const ButtonBig = ({
   content,

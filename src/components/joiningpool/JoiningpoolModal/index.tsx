@@ -9,6 +9,7 @@ import {
 } from "./style";
 
 import FONT from "../../../constants/fonts";
+import { JoiningpoolUser } from "../../../interfaces/joiningpoolUser";
 import Modal from "../../common/modal";
 import { User } from "../../../interfaces/user";
 import useApproveJoining from "../../../hooks/joiningpool/useApproveJoining";
@@ -21,7 +22,7 @@ const JoiningpoolModal = ({
 }: {
   setIsOpenModal: any;
   type: string;
-  checkedList: User[];
+  checkedList: JoiningpoolUser[];
 }) => {
   const { mutate: apporveMutate } = useApproveJoining();
   const { mutate: discardMutate } = useDiscardJoining();

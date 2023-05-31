@@ -55,7 +55,7 @@ export const UserCheckBox = (props: UsersProps) => {
 
 export const JoiningpoolUserCheckBox = (props: JoiningpoolUsersProps) => {
   return (
-    <UserItems type={props.type}>
+    <JoiningpoolUserItems>
       {props.data.map((item: JoiningpoolUser) => {
         return (
           <UserItem key={item.user_id}>
@@ -66,7 +66,7 @@ export const JoiningpoolUserCheckBox = (props: JoiningpoolUsersProps) => {
           </UserItem>
         );
       })}
-    </UserItems>
+    </JoiningpoolUserItems>
   );
 };
 
@@ -90,6 +90,12 @@ const UserItems = styled.div<{ type: any }>`
   grid-template-columns: 1fr 1fr;
   row-gap: 1rem;
   column-gap: 1rem;
+`;
+
+const JoiningpoolUserItems = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const UserItem = styled.div`

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { JoiningpoolUser } from "../../interfaces/joiningpoolUser";
 import { Permission } from "../../interfaces/character";
 import { User } from "../../interfaces/user";
 
@@ -45,9 +46,9 @@ export const useUserCheckBox = () => {
 };
 
 export const useJoiningpoolUserCheckBox = () => {
-  const [checkedList, setCheckedList] = useState<User[]>([]);
+  const [checkedList, setCheckedList] = useState<JoiningpoolUser[]>([]);
 
-  const updateCheckList = (isChecked: boolean, item: User) => {
+  const updateCheckList = (isChecked: boolean, item: JoiningpoolUser) => {
     if (isChecked) {
       setCheckedList([...checkedList, item]);
     } else {
