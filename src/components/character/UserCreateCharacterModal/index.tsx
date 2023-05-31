@@ -1,19 +1,15 @@
-import styled from 'styled-components';
-
-import useAllUserList from '../../../hooks/user/useAllUserList';
-import useEditUserCharacter from '../../../hooks/user/useEditUserCharacter';
-import { useInput } from '../../../hooks/common/useInput';
-import { useUserCheckBox } from '../../../hooks/common/useCheckBox';
-
-import Modal from '../../common/modal';
-import { InputFillThin } from '../../common/inputs/input_fill';
-import { UserCheckBox } from '../../common/checkbox/checkbox';
-import { ButtonBig } from '../../common/buttons/button_big';
-import COLOR from '../../../constants/color';
-
-import { Title } from '../../common/pagetitle/style';
-
-import FONT from '../../../constants/fonts';
+import { ButtonBig } from "../../common/buttons/button_big";
+import COLOR from "../../../constants/color";
+import FONT from "../../../constants/fonts";
+import { InputFillThin } from "../../common/inputs/input_fill";
+import Modal from "../../common/modal";
+import { Title } from "../../common/pagetitle/style";
+import { UserCheckBox } from "../../common/checkbox/checkbox";
+import styled from "styled-components";
+import useAllUserList from "../../../hooks/user/useAllUserList";
+import useEditUserCharacter from "../../../hooks/user/useEditUserCharacter";
+import { useInput } from "../../../hooks/common/useInput";
+import { useUserCheckBox } from "../../../hooks/common/useCheckBox";
 
 const UserCreateCharacterModal = ({
   setIsOpenCreateModal,
@@ -25,14 +21,14 @@ const UserCreateCharacterModal = ({
   const userList = useAllUserList(1, 50);
   const { mutate } = useEditUserCharacter();
 
-  const { value, handleChangeInput, reset } = useInput('');
+  const { value, handleChangeInput, reset } = useInput("");
   const { checkedList, updateCheckList, checkReset } = useUserCheckBox();
 
   const filterUserList = userList?.users.filter(
     (user) => user.character !== name
   );
   const searchUserList =
-    value === ''
+    value === ""
       ? filterUserList
       : filterUserList?.filter((user) =>
           user.name.toLowerCase().includes(value.toLowerCase())
@@ -45,12 +41,12 @@ const UserCreateCharacterModal = ({
   };
 
   return (
-    <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={'big'}>
+    <Modal onClickToggleModal={() => setIsOpenCreateModal(false)} size={"big"}>
       <Top>
         <Title style={FONT.HEADING}>유저 목록</Title>
         <InputFillThin
           value={value}
-          placeholder={'유저 이름'}
+          placeholder={"유저 이름"}
           onChange={handleChangeInput}
           reset={reset}
         />
@@ -86,12 +82,12 @@ const UserCreateCharacterModal = ({
 
       <Buttons>
         <ButtonBig
-          content={'취소'}
+          content={"취소"}
           color={COLOR.GRAY2}
           onClick={() => setIsOpenCreateModal(false)}
         />
         <ButtonBig
-          content={'추가'}
+          content={"추가"}
           color={COLOR.GREEN4}
           onClick={() => {
             checkedList.map((user) => handleClickEditUserChar(user.id));

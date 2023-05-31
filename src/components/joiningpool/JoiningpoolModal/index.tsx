@@ -11,6 +11,8 @@ import {
 import FONT from "../../../constants/fonts";
 import Modal from "../../common/modal";
 import { User } from "../../../interfaces/user";
+import useApproveJoining from "../../../hooks/joiningpool/useApproveJoining";
+import useDiscardJoining from "../../../hooks/joiningpool/useDiscardJoining";
 
 const JoiningpoolModal = ({
   setIsOpenModal,
@@ -21,6 +23,17 @@ const JoiningpoolModal = ({
   type: string;
   checkedList: User[];
 }) => {
+  const { mutate: apporveMutate } = useApproveJoining();
+  const { mutate: discardMutate } = useDiscardJoining();
+
+  const handleJoining = (type: string) => {
+    checkedList.forEach((user) => {
+      type === "승인"
+        ? apporveMutate({ id: Date.now(), user_id: user.user_id })
+        : discardMutate({ id: Date.now(), user_id: user.user_id });
+    });
+  };
+
   return (
     <Modal onClickToggleModal={() => setIsOpenModal(false)} size={"middle"}>
       <SettingTitle style={FONT.HEADING}>가입 {type}</SettingTitle>
@@ -29,7 +42,7 @@ const JoiningpoolModal = ({
       </ConfirmMessage>
       <UserInfoListContainer>
         {checkedList.map((user) => (
-          <UserInfoContainer style={FONT.SUBTITLE2}>
+          <UserInfoContainer key={user.user_id} style={FONT.SUBTITLE2}>
             <span className="name">{user.name}</span>
             <span className="userId">{user.user_id}</span>
           </UserInfoContainer>
@@ -38,9 +51,7 @@ const JoiningpoolModal = ({
       <SettingButtonBox>
         <SettingCancelButton
           style={FONT.SUBTITLE2}
-          onClick={() => {
-            console.log("hi");
-          }}
+          onClick={() => setIsOpenModal(false)}
         >
           취소
         </SettingCancelButton>
@@ -48,7 +59,8 @@ const JoiningpoolModal = ({
           modalType={type}
           style={FONT.SUBTITLE2}
           onClick={() => {
-            console.log("hi");
+            handleJoining(type);
+            setIsOpenModal(false);
           }}
         >
           확인
