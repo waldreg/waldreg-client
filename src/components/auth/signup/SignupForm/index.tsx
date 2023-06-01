@@ -218,7 +218,9 @@ const SignupForm = () => {
                   style={FONT.SUBTITLE1}
                   type="string"
                   placeholder="전화번호를 입력하세요."
-                  helpText={!isSubmitted && "하이픈(-) 제외 11자리 숫자"}
+                  helpText={
+                    !isSubmitted && "하이픈(-) 제외 10 ~ 11 자리의 숫자"
+                  }
                   hasError={!!errors.phoneNumber}
                   {...field}
                 />

@@ -65,7 +65,7 @@ export function getSignupFormFieldErrorMessage(
         case "required":
           return "필수 항목입니다";
         case "pattern":
-          return "10 ~ 11 자리의 숫자만 입력 가능합니다";
+          return "하이픈(-) 제외 10 ~ 11 자리의 숫자만 입력 가능합니다";
         default:
           throw new Error();
       }
