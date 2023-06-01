@@ -7,7 +7,6 @@ const getUserList = async (startIdx: number, endIdx: number) => {
   const response = await waldregAxios.get(
     `/users?from=${startIdx}&to=${endIdx}`
   );
-  console.log(response.data);
   return response.data;
 };
 
