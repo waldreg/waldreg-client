@@ -85,6 +85,7 @@ const SignupForm = () => {
               name="userId"
               rules={{
                 required: true,
+                maxLength: 50,
               }}
               render={({ field }) => (
                 <AuthFormInput
@@ -180,6 +181,7 @@ const SignupForm = () => {
               name="name"
               rules={{
                 required: true,
+                maxLength: 50,
               }}
               render={({ field }) => (
                 <AuthFormInput

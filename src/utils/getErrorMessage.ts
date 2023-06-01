@@ -18,6 +18,8 @@ export function getSignupFormFieldErrorMessage(
           return "필수 항목입니다";
         case "duplicated":
           return "이미 등록된 아이디입니다";
+        case "maxLength":
+          return "아이디는 50자를 초과할 수 없습니다.";
         case "etc":
           return "아이디 중복 확인 중 문제가 발생했습니다";
         default:
@@ -52,6 +54,8 @@ export function getSignupFormFieldErrorMessage(
       switch (errorType) {
         case "required":
           return "필수 항목입니다";
+        case "maxLength":
+          return "이름은 50자를 초과할 수 없습니다.";
         default:
           throw new Error();
       }
