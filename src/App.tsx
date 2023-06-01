@@ -25,14 +25,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          {!authCtx.isLoggedIn && (
-            <>
-              <Route path="/signup" element={<SignupForm />} />
-              <Route path="/login" element={<LoginForm />} />
-            </>
-          )}
-
-          {authCtx.isLoggedIn && (
+          {authCtx.isLoggedIn ? (
             <Route element={<Layout />}>
               <Route path="/*" element={<Home />} />
               <Route path="/board/*" element={<Board />} />
@@ -41,6 +34,12 @@ function App() {
               <Route path="/joiningpool" element={<JoiningPool />} />
               <Route path="/reward" element={<RewardPage />} />
             </Route>
+          ) : (
+            <>
+              <Route path="/*" element={<Home />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/login" element={<LoginForm />} />
+            </>
           )}
         </Routes>
       </BrowserRouter>
