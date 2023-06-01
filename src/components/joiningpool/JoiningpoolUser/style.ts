@@ -9,7 +9,10 @@ export const Top = styled.div`
 `;
 
 export const Description = styled.h2`
-  color: ${COLOR.GRAY5};
+  color: ${COLOR.GRAY4};
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 export const Contents = styled.main`

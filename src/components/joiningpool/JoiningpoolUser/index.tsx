@@ -78,7 +78,7 @@ const JoiningpoolUser = () => {
         </ButtonContainer>
       </Top>
       <Contents>
-        {searchJoiningpoolUserList ? (
+        {searchJoiningpoolUserList?.length ? (
           <JoiningpoolUserCheckBox
             data={searchJoiningpoolUserList || []}
             updateCheckList={updateCheckList}
