@@ -33,7 +33,6 @@ export const useUserCheckBox = () => {
     if (isChecked) {
       setCheckedList([...checkedList, item]);
     } else {
-      console.log(item);
       setCheckedList(checkedList.filter((prev) => prev.id !== item.id));
     }
   };
@@ -52,7 +51,6 @@ export const useJoiningpoolUserCheckBox = () => {
     if (isChecked) {
       setCheckedList([...checkedList, item]);
     } else {
-      console.log(item);
       setCheckedList(
         checkedList.filter((prev) => prev.user_id !== item.user_id)
       );

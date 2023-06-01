@@ -41,7 +41,6 @@ const BoardUpdate = () => {
     e.preventDefault();
     updateMutation.mutate();
     navigate(-1);
-    console.log(data.delete_file_urls);
   };
 
   return (
