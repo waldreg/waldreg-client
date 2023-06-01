@@ -1,20 +1,20 @@
-import { Controller, useForm, SubmitHandler } from "react-hook-form";
-import { authAPI } from "../../../../apis/authAPI";
-import useSignupFormData from "../../../../hooks/signup/useSignupFormData";
-import { getSignupFormFieldErrorMessage } from "../../../../utils/getErrorMessage";
-import { REGEX } from "../../../../utils/regex";
-import AuthFormInput from "../../../common/authforminput";
-import { useNavigate } from "react-router-dom";
-import ErrorMessage from "../../../common/errormessage";
 import {
-  Container,
-  Form,
-  Fields,
-  Field,
-  Label,
   Button,
+  Container,
+  Field,
+  Fields,
+  Form,
+  Label,
 } from "../../login/LoginForm/style";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+
+import AuthFormInput from "../../../common/authforminput";
+import ErrorMessage from "../../../common/errormessage";
 import FONT from "../../../../constants/fonts";
+import { REGEX } from "../../../../utils/regex";
+import { authAPI } from "../../../../apis/authAPI";
+import { getSignupFormFieldErrorMessage } from "../../../../utils/getErrorMessage";
+import { useNavigate } from "react-router-dom";
 
 interface SignupForm {
   name: string;
@@ -43,7 +43,6 @@ const SignupForm = () => {
   });
   const userPassword = watch("userPassword");
 
-  const [data, setData] = useSignupFormData();
   const onSubmit: SubmitHandler<SignupForm> = async ({
     name,
     userId,
@@ -217,6 +216,7 @@ const SignupForm = () => {
                   style={FONT.SUBTITLE1}
                   type="string"
                   placeholder="전화번호를 입력하세요."
+                  helpText={!isSubmitted && "하이픈(-) 제외 11자리 숫자"}
                   hasError={!!errors.phoneNumber}
                   {...field}
                 />
