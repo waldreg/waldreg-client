@@ -86,8 +86,7 @@ const NavBar = () => {
                   <HomeIcon />
                   <Text style={FONT.SUBTITLE2}>홈</Text>
                 </Link>
-              </Item>{" "}
-              ``
+              </Item>
               {curUser?.character === "Admin" && (
                 <Item className="relative" id="sidenavSecEx2">
                   <BaseLink
