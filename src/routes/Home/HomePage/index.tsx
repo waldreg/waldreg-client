@@ -16,7 +16,7 @@ const HomePage = () => {
   const handleUpdateButtonClick = () => {
     navigate("update");
   };
-  console.log(authCtx.isLoggedIn);
+
   if (!authCtx.isLoggedIn) {
     navigate("/login");
   }

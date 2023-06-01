@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import AuthContext from "./states/auth-context";
 import Board from "./routes/Board";
+import Error from "./routes/Error";
 import GlobalStyle from "./styles/GlobalStyle";
 import Home from "./routes/Home";
 import JoiningPool from "./routes/Setting/JoiningPool";
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           {authCtx.isLoggedIn ? (
             <Route element={<Layout />}>
-              <Route path="/*" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/board/*" element={<Board />} />
               <Route path="/setting/*" element={<Setting />} />
               <Route path="/schedule/*" element={<Schedule />} />
@@ -36,11 +37,12 @@ function App() {
             </Route>
           ) : (
             <>
-              <Route path="/*" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/login" element={<LoginForm />} />
             </>
           )}
+          <Route path="/*" element={<Error />} />
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools />
