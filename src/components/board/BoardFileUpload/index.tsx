@@ -42,17 +42,27 @@ const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
   };
 
   const handleUpdateFiles = (files: FileList) => {
-    const newFileList: File[] = [];
+    const newFileList: File[] = Array.from(files);
 
-    for (let i = 0; i < files.length; i++) {
-      const file: File = files[i];
-      newFileList.push(file);
-    }
-    for (let i = 0; i < newFileList.length; i++) {
-      const file: File = newFileList[i];
-      formData.append("file", file);
-    }
+    newFileList.forEach((file) => {
+      const fileType = getFileType(file);
+      if (fileType === "file") {
+        formData.append("file", file);
+      } else if (fileType === "image") {
+        formData.append("image", file);
+      }
+    });
+
     setFileList([...fileList, ...newFileList]);
+  };
+
+  const getFileType = (file: File): string => {
+    const fileType = file.type;
+    if (fileType.startsWith("image/")) {
+      return "image";
+    } else {
+      return "file";
+    }
   };
 
   const handleDeleteFile = (idx: number) => {
@@ -64,10 +74,20 @@ const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
       return updatedFileList;
     });
 
-    formData.delete("file");
+    const fileType = getFileType(deletedFile);
+    if (fileType === "file") {
+      formData.delete("file");
+    } else if (fileType === "image") {
+      formData.delete("image");
+    }
+
     fileList.forEach((file) => {
       if (file !== deletedFile) {
-        formData.append("file", file);
+        if (fileType === "file") {
+          formData.append("file", file);
+        } else if (fileType === "image") {
+          formData.append("image", file);
+        }
       }
     });
   };

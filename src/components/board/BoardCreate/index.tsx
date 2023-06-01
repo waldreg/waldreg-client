@@ -23,8 +23,6 @@ const BoardCreate = () => {
     title: title,
     content: content,
     category_id: categoryId,
-    views: 0,
-    comment_count: 0,
   };
 
   formData.append(

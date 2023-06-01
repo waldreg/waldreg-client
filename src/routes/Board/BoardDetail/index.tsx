@@ -78,6 +78,7 @@ const BoardDetail = () => {
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 99);
   const files = board?.files;
+  const images = board?.images;
 
   const replaceValue = board?.content
     ? board.content.split("\n").map((line, i) => (
@@ -143,9 +144,9 @@ const BoardDetail = () => {
 
       <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
 
-      {files && (
+      {(files || images) && (
         <FileListBox>
-          {files.map((file, i) => {
+          {files?.map((file, i) => {
             return (
               <FileDetailBox
                 key={i}
@@ -153,6 +154,19 @@ const BoardDetail = () => {
               >
                 <FileDetailTitle style={FONT.SUBTITLE1}>
                   {file.origin}
+                </FileDetailTitle>
+                <FileDownLoadIcon />
+              </FileDetailBox>
+            );
+          })}
+          {images?.map((image, i) => {
+            return (
+              <FileDetailBox
+                key={i}
+                onClick={() => handleDownloadButtonClick(image)}
+              >
+                <FileDetailTitle style={FONT.SUBTITLE1}>
+                  {image.origin}
                 </FileDetailTitle>
                 <FileDownLoadIcon />
               </FileDetailBox>
