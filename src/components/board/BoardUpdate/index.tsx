@@ -16,7 +16,7 @@ const BoardUpdate = () => {
   const { id, categoryId } = useParams<Params>();
   const { board } = useBoardDetail(id ? parseInt(id) : 0);
 
-  const files = board?.files || board?.images;
+  const files = [...(board?.files ?? []), ...(board?.images ?? [])];
 
   const [title, setTitle] = useState(board?.title);
   const [content, setContent] = useState(board?.content);
