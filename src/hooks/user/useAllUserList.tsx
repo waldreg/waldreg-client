@@ -1,13 +1,13 @@
-import { useQuery } from 'react-query';
-
-import { waldregAxios } from '../../apis/axios';
-import { Users } from '../../interfaces/user';
-import { userKeys } from '../../types/userKeys';
+import { Users } from "../../interfaces/user";
+import { useQuery } from "react-query";
+import { userKeys } from "../../types/userKeys";
+import { waldregAxios } from "../../apis/axios";
 
 const getUserList = async (startIdx: number, endIdx: number) => {
   const response = await waldregAxios.get(
     `/users?from=${startIdx}&to=${endIdx}`
   );
+  console.log(response.data);
   return response.data;
 };
 

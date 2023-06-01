@@ -1,7 +1,8 @@
+import { Container, Title } from "./style";
 import { Outlet, useParams } from "react-router-dom";
+
 import FONT from "../../../constants/fonts";
 import { useBoardCategory } from "../../../hooks/board/category/useBoardCategory";
-import { Container, Title } from "./style";
 
 const BoardLayout = () => {
   const { categoryId } = useParams();

@@ -1,13 +1,11 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
-import { Permission } from '../../../interfaces/character';
-import { User } from '../../../interfaces/user';
-
-import { CheckIcon } from '../../Icons/BasicIcons';
-
-import COLOR from '../../../constants/color';
-import FONT from '../../../constants/fonts';
+import COLOR from "../../../constants/color";
+import { CheckIcon } from "../../Icons/BasicIcons";
+import FONT from "../../../constants/fonts";
+import { JoiningpoolUser } from "../../../interfaces/joiningpoolUser";
+import { Permission } from "../../../interfaces/character";
+import { User } from "../../../interfaces/user";
+import styled from "styled-components";
+import { useState } from "react";
 
 export interface IProps {
   item: Permission;
@@ -16,6 +14,11 @@ export interface IProps {
 
 export interface UserProps {
   item: User;
+  updateCheckList: any;
+}
+
+export interface JoiningpoolUserProps {
+  item: JoiningpoolUser;
   updateCheckList: any;
 }
 
@@ -76,11 +79,44 @@ export const UserCheck = (props: UserProps) => {
   );
 };
 
+export const JoiningpoolUserCheck = (props: JoiningpoolUserProps) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleToggleCheck = (e: any, item: JoiningpoolUser) => {
+    setIsChecked(!isChecked);
+    props.updateCheckList(e.target.checked, item);
+  };
+
+  return (
+    <CheckWrapper>
+      <CheckBox
+        id={props.item.user_id}
+        type="checkbox"
+        value={props.item.name}
+        onChange={(e: any) => handleToggleCheck(e, props.item)}
+        checked={isChecked}
+      />
+      <IconWrapper>
+        <CheckIcon isChecked={isChecked} />
+      </IconWrapper>
+
+      <Text htmlFor={props.item.name} style={FONT.SUBTITLE2}>
+        {props.item.name}
+      </Text>
+      <Id style={FONT.SUBTITLE2}>{props.item.user_id}</Id>
+    </CheckWrapper>
+  );
+};
+
 const CheckWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   position: relative;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 2px solid #f4f5f3;
 `;
 
 const CheckBox = styled.input<{ checked: boolean }>`
@@ -93,7 +129,7 @@ const CheckBox = styled.input<{ checked: boolean }>`
   border-radius: 0.5rem;
 
   background: ${(props) =>
-    props.checked === true ? `${COLOR.GREEN4}` : 'white'};
+    props.checked === true ? `${COLOR.GREEN4}` : "white"};
 
   cursor: pointer;
 `;
@@ -105,8 +141,10 @@ const IconWrapper = styled.div`
   position: absolute;
 `;
 
-const Text = styled.label``;
+const Text = styled.label`
+  color: ${COLOR.GRAY5};
+`;
 
 const Id = styled.div`
-  color: ${COLOR.GRAY2};
+  color: ${COLOR.GRAY5};
 `;
