@@ -17,10 +17,21 @@ import {
 
 interface BoardFileUploadProps {
   formData: FormData;
+  setFormData?: React.Dispatch<React.SetStateAction<FormData>>;
   files?: any;
+  deleteFile?: string[];
+  create?: boolean;
+  update?: boolean;
 }
 
-const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
+const BoardFileUpload = ({
+  formData,
+  setFormData,
+  files,
+  deleteFile,
+  create,
+  update,
+}: BoardFileUploadProps) => {
   const [fileList, setFileList] = useState<File[]>([]);
 
   useEffect(() => {
@@ -58,7 +69,7 @@ const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
 
   const getFileType = (file: File): string => {
     const fileType = file.type;
-    if (fileType.startsWith("image/")) {
+    if (fileType.startsWith("image")) {
       return "image";
     } else {
       return "file";
@@ -66,7 +77,11 @@ const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
   };
 
   const handleDeleteFile = (idx: number) => {
-    const deletedFile = fileList[idx];
+    const deletedFile: any = fileList[idx];
+
+    if (update) {
+      deleteFile?.push(deletedFile.uuid);
+    }
 
     setFileList((prevFileList) => {
       const updatedFileList = [...prevFileList];
@@ -74,22 +89,30 @@ const BoardFileUpload = ({ formData, files }: BoardFileUploadProps) => {
       return updatedFileList;
     });
 
-    const fileType = getFileType(deletedFile);
-    if (fileType === "file") {
-      formData.delete("file");
-    } else if (fileType === "image") {
-      formData.delete("image");
-    }
+    if (create) {
+      const fileType = getFileType(deletedFile);
+      const updatedFormData = new FormData();
 
-    fileList.forEach((file) => {
-      if (file !== deletedFile) {
-        if (fileType === "file") {
-          formData.append("file", file);
-        } else if (fileType === "image") {
-          formData.append("image", file);
-        }
+      if (fileType === "file") {
+        formData.delete("file");
+      } else if (fileType === "image") {
+        formData.delete("image");
       }
-    });
+
+      fileList.forEach((file) => {
+        if (file !== deletedFile) {
+          if (fileType === "file") {
+            updatedFormData.append("file", file);
+          } else if (fileType === "image") {
+            updatedFormData.append("image", file);
+          }
+        }
+      });
+
+      if (setFormData) {
+        setFormData(updatedFormData);
+      }
+    }
   };
 
   const dragOver = (e: DragEvent<HTMLDivElement>) => {

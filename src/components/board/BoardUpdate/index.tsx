@@ -41,6 +41,7 @@ const BoardUpdate = () => {
     e.preventDefault();
     updateMutation.mutate();
     navigate(-1);
+    console.log(data.delete_file_urls);
   };
 
   return (
@@ -68,7 +69,12 @@ const BoardUpdate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileUpload formData={formData} files={files} />
+        <BoardFileUpload
+          formData={formData}
+          files={files}
+          deleteFile={data.delete_file_urls}
+          update={true}
+        />
 
         <BoardButtonContainer>
           <CreateButton onSubmit={handleUpdateSubmit} />
