@@ -1,4 +1,4 @@
-import JoiningpoolUser from "../../components/joiningpool/JoiningpoolUser";
+import JoiningpoolUser from "../../../components/joiningpool/JoiningpoolUser";
 
 const JoiningPool = () => {
   return (

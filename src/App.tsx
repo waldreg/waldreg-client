@@ -1,19 +1,20 @@
-import React from "react";
-import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import GlobalStyle from "./styles/GlobalStyle";
-import Setting from "./routes/Setting";
-import Board from "./routes/Board";
-import Layout from "./components/global/Layout/index";
-import Schedule from "./routes/Schedule";
-import JoiningPool from "./routes/JoiningPool";
-import SignupForm from "./components/auth/signup/SignupForm";
-import LoginForm from "./components/auth/login/LoginForm";
+
 import AuthContext from "./states/auth-context";
-import RewardPage from "./routes/Reward";
+import Board from "./routes/Board";
+import GlobalStyle from "./styles/GlobalStyle";
 import Home from "./routes/Home";
+import JoiningPool from "./routes/Setting/JoiningPool";
+import Layout from "./components/global/Layout/index";
+import LoginForm from "./components/auth/login/LoginForm";
+import React from "react";
+import { ReactQueryDevtools } from "react-query/devtools";
+import RewardPage from "./routes/Reward";
+import Schedule from "./routes/Schedule";
+import Setting from "./routes/Setting";
+import SignupForm from "./components/auth/signup/SignupForm";
+import { useContext } from "react";
 
 const queryClient = new QueryClient();
 
