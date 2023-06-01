@@ -17,7 +17,7 @@ const BoardCreate = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<FormData>(new FormData());
+  const formData = new FormData();
 
   const data = {
     title: title,
@@ -63,11 +63,7 @@ const BoardCreate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileUpload
-          formData={formData}
-          setFormData={setFormData}
-          create={true}
-        />
+        <BoardFileUpload formData={formData} create={true} />
         <BoardButtonContainer>
           <CreateButton onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>

@@ -17,7 +17,6 @@ import {
 
 interface BoardFileUploadProps {
   formData: FormData;
-  setFormData?: React.Dispatch<React.SetStateAction<FormData>>;
   files?: any;
   deleteFile?: string[];
   create?: boolean;
@@ -26,7 +25,6 @@ interface BoardFileUploadProps {
 
 const BoardFileUpload = ({
   formData,
-  setFormData,
   files,
   deleteFile,
   create,
@@ -108,10 +106,11 @@ const BoardFileUpload = ({
           }
         }
       });
-
-      if (setFormData) {
-        setFormData(updatedFormData);
-      }
+      formData.delete("file");
+      formData.delete("image");
+      updatedFormData.forEach((value, key) => {
+        formData.append(key, value);
+      });
     }
   };
 
