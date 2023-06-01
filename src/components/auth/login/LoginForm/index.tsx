@@ -1,23 +1,24 @@
-import { Controller, useForm, SubmitHandler } from "react-hook-form";
+import {
+  Button,
+  Container,
+  Field,
+  Fields,
+  Form,
+  Label,
+  Signup,
+  SignupButton,
+  Text,
+} from "./style";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+
+import AuthContext from "../../../../states/auth-context";
+import AuthFormInput from "../../../common/authforminput";
+import ErrorMessage from "../../../common/errormessage";
+import FONT from "../../../../constants/fonts";
 import { authAPI } from "../../../../apis/authAPI";
 import { getLoginFormFieldErrorMessage } from "../../../../utils/getErrorMessage";
-import AuthFormInput from "../../../common/authforminput";
-import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "../../../../states/auth-context";
-import ErrorMessage from "../../../common/errormessage";
-import {
-  Container,
-  Form,
-  Fields,
-  Field,
-  Label,
-  Button,
-  Text,
-  SignupButton,
-  Signup,
-} from "./style";
-import FONT from "../../../../constants/fonts";
 
 interface LoginForm {
   userId: string;
@@ -47,7 +48,7 @@ const LoginForm = () => {
       const response = await authAPI.login(userId, userPassword);
       authCtx.login(response.access_token);
       navigate("/");
-      const TOKEN_EXPIRE_TIME = 60 * 60 * 1000;
+      const TOKEN_EXPIRE_TIME = 1000 * 60 * 60; //60분
       setTimeout(() => {
         window.alert("로그인 유지 토큰이 만료되어 로그아웃됩니다.");
         authCtx.logout();

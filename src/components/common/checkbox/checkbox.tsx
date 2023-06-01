@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { PermissionCheck, UserCheck } from './check';
+import { JoiningpoolUserCheck, PermissionCheck, UserCheck } from "./check";
 
-import { Permission } from '../../../interfaces/character';
-import { User } from '../../../interfaces/user';
+import { JoiningpoolUser } from "../../../interfaces/joiningpoolUser";
+import { Permission } from "../../../interfaces/character";
+import { User } from "../../../interfaces/user";
+import styled from "styled-components";
 
 export interface IProps {
   data: Permission[];
@@ -11,6 +12,12 @@ export interface IProps {
 
 export interface UsersProps {
   data: User[];
+  updateCheckList: any;
+  type?: string;
+}
+
+export interface JoiningpoolUsersProps {
+  data: JoiningpoolUser[];
   updateCheckList: any;
   type?: string;
 }
@@ -46,6 +53,23 @@ export const UserCheckBox = (props: UsersProps) => {
   );
 };
 
+export const JoiningpoolUserCheckBox = (props: JoiningpoolUsersProps) => {
+  return (
+    <JoiningpoolUserItems>
+      {props.data.map((item: JoiningpoolUser) => {
+        return (
+          <UserItem key={item.user_id}>
+            <JoiningpoolUserCheck
+              item={item}
+              updateCheckList={props.updateCheckList}
+            />
+          </UserItem>
+        );
+      })}
+    </JoiningpoolUserItems>
+  );
+};
+
 const PermissionItems = styled.div`
   width: 100%;
   padding: 1rem;
@@ -59,13 +83,19 @@ const PermissionItems = styled.div`
 
 const UserItems = styled.div<{ type: any }>`
   width: 100%;
-  display: ${(props) => (props.type === 'grid' ? 'grid' : 'flex')};
+  display: ${(props) => (props.type === "grid" ? "grid" : "flex")};
   flex-direction: column;
   gap: 1rem;
 
   grid-template-columns: 1fr 1fr;
   row-gap: 1rem;
   column-gap: 1rem;
+`;
+
+const JoiningpoolUserItems = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const UserItem = styled.div`

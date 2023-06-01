@@ -1,40 +1,39 @@
-import { useContext, useState } from "react";
-import AuthContext from "../../../states/auth-context";
-import { useLocation, useNavigate } from "react-router-dom";
 import "tw-elements";
 
-import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
-import useCurUser from "../../../hooks/curuser/useCurUser";
-import BoardCategory from "../../board/BoardCategory";
-
-import FONT from "../../../constants/fonts";
-
-import { LogoIcon } from "../../Icons/LogoIcons";
 import {
+  BaseLink,
+  Blank,
+  Bottom,
+  Item,
+  Items,
+  Link,
+  Links,
+  RightIconWrapper,
+  Text,
+  Top,
+  Wrapper,
+} from "./style";
+import {
+  BoardIcon,
+  CalIcon,
+  CheckRoundIcon,
   DoubleLeftIcon,
   DoubleRightIcon,
   HomeIcon,
-  CheckRoundIcon,
-  BoardIcon,
-  CalIcon,
+  LogOutIcon,
   MedalIcon,
   SettingIcon,
-  LogOutIcon,
 } from "../../Icons/BasicIcons";
-import {
-  Wrapper,
-  Top,
-  Bottom,
-  Links,
-  Items,
-  Item,
-  BaseLink,
-  Link,
-  Text,
-  Blank,
-  RightIconWrapper,
-} from "./style";
+import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import AuthContext from "../../../states/auth-context";
+import BoardCategory from "../../board/BoardCategory";
+import FONT from "../../../constants/fonts";
 import { IconWrapper } from "../../character/CharacterList/style";
+import { LogoIcon } from "../../Icons/LogoIcons";
+import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
+import useCurUser from "../../../hooks/curuser/useCurUser";
 
 const NavBar = () => {
   const authCtx = useContext(AuthContext);
@@ -114,6 +113,15 @@ const NavBar = () => {
                       >
                         <Blank />
                         <Text style={FONT.BODY1}>유저 관리</Text>
+                      </Link>
+                    </Item>
+                    <Item className="relative">
+                      <Link
+                        to="/setting/joiningpool"
+                        selected={location === "/setting/joiningpool"}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>가입 승인</Text>
                       </Link>
                     </Item>
                     <Item className="relative">
@@ -222,15 +230,6 @@ const NavBar = () => {
                 >
                   <MedalIcon />
                   <Text style={FONT.SUBTITLE2}>상벌점</Text>
-                </Link>
-              </li>
-              <li className="relative">
-                <Link
-                  to="/joiningpool"
-                  className="overflow-hidden text-ellipsis whitespace-nowrap rounded hover: transition duration-300 ease-in-out cursor-pointer"
-                >
-                  <MedalIcon />
-                  <Text style={FONT.SUBTITLE2}>가입 승인</Text>
                 </Link>
               </li>
             </Items>

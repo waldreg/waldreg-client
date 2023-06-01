@@ -1,8 +1,9 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { BoardCategoryLists } from "../../../interfaces/board";
-import { settingCategoryId, settingCategoryName } from "../../../states/board";
-import FONT from "./../../../constants/fonts";
 import { Category, CategoryTitle, SettingBlank } from "./style";
+import { settingCategoryId, settingCategoryName } from "../../../states/board";
+import { useRecoilState, useSetRecoilState } from "recoil";
+
+import { BoardCategoryLists } from "../../../interfaces/board";
+import FONT from "./../../../constants/fonts";
 import { Item } from "../../character/CharacterList/style";
 
 interface BoardCategoryListsProps {
