@@ -43,7 +43,6 @@ const FileListBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 0.8rem;
 `;
 
 const FileDetailBox = styled.a`
@@ -51,11 +50,10 @@ const FileDetailBox = styled.a`
   border: 1px solid ${COLOR.GRAY3};
   border-radius: 0.7rem;
   padding: 0.3rem 0.5rem;
-  margin-right: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.4rem;
   cursor: pointer;
 `;
 

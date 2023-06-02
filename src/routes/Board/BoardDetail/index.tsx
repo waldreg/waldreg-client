@@ -61,13 +61,16 @@ const BoardDetail = () => {
     });
     return data;
   }
-  const handleDownloadButtonClick = async (file_id: string) => {
-    const fileData = await getBoardDownload(file_id);
+  const handleDownloadButtonClick = async (file: {
+    origin: string;
+    uuid: string;
+  }) => {
+    const fileData = await getBoardDownload(file.uuid);
     const downloadUrl = URL.createObjectURL(fileData);
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "filename.extension";
+    link.download = file.origin;
     link.click();
 
     URL.revokeObjectURL(downloadUrl);
@@ -75,6 +78,7 @@ const BoardDetail = () => {
 
   const { commentLists } = useCommentList(parseInt(id!!), 1, 99);
   const files = board?.files;
+  const images = board?.images;
 
   const replaceValue = board?.content
     ? board.content.split("\n").map((line, i) => (
@@ -140,15 +144,30 @@ const BoardDetail = () => {
 
       <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
 
-      {files && (
+      {(files || images) && (
         <FileListBox>
-          {files.map((file, i) => {
+          {files?.map((file, i) => {
             return (
               <FileDetailBox
                 key={i}
                 onClick={() => handleDownloadButtonClick(file)}
               >
-                <FileDetailTitle style={FONT.SUBTITLE1}>{file}</FileDetailTitle>
+                <FileDetailTitle style={FONT.SUBTITLE1}>
+                  {file.origin}
+                </FileDetailTitle>
+                <FileDownLoadIcon />
+              </FileDetailBox>
+            );
+          })}
+          {images?.map((image, i) => {
+            return (
+              <FileDetailBox
+                key={i}
+                onClick={() => handleDownloadButtonClick(image)}
+              >
+                <FileDetailTitle style={FONT.SUBTITLE1}>
+                  {image.origin}
+                </FileDetailTitle>
                 <FileDownLoadIcon />
               </FileDetailBox>
             );

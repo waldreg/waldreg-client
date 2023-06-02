@@ -11,9 +11,19 @@ export interface Board {
   last_modified_at: string;
   views: number;
   comment_count: number;
-  images?: [];
+  images?: [
+    {
+      origin: string;
+      uuid: string;
+    }
+  ];
   exist_file: boolean;
-  files?: [];
+  files?: [
+    {
+      origin: string;
+      uuid: string;
+    }
+  ];
   reactions?: {
     good: number;
     bad: number;

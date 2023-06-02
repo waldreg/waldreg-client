@@ -23,8 +23,6 @@ const BoardCreate = () => {
     title: title,
     content: content,
     category_id: categoryId,
-    views: 0,
-    comment_count: 0,
   };
 
   formData.append(
@@ -65,7 +63,7 @@ const BoardCreate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileUpload formData={formData} />
+        <BoardFileUpload formData={formData} create={true} />
         <BoardButtonContainer>
           <CreateButton onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>

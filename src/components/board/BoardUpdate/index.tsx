@@ -16,6 +16,8 @@ const BoardUpdate = () => {
   const { id, categoryId } = useParams<Params>();
   const { board } = useBoardDetail(id ? parseInt(id) : 0);
 
+  const files = [...(board?.files ?? []), ...(board?.images ?? [])];
+
   const [title, setTitle] = useState(board?.title);
   const [content, setContent] = useState(board?.content);
   const formData = new FormData();
@@ -66,7 +68,12 @@ const BoardUpdate = () => {
             setContent(e.currentTarget.value)
           }
         />
-        <BoardFileUpload formData={formData} />
+        <BoardFileUpload
+          formData={formData}
+          files={files}
+          deleteFile={data.delete_file_urls}
+          update={true}
+        />
 
         <BoardButtonContainer>
           <CreateButton onSubmit={handleUpdateSubmit} />
