@@ -52,7 +52,7 @@ const CharacterUser = ({ name }: { name: string }) => {
   };
 
   return (
-    <Container>
+    <Container width="20vw">
       <Content>
         <Top>
           <Title style={FONT.HEADING}>소속 유저</Title>
