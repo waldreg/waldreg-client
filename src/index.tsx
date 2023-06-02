@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import { AuthContextProvider } from './states/auth-context';
 import './index.css';
+import GlobalModal from './components/common/globalModal';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <RecoilRoot>
+        <GlobalModal />
         <App />
       </RecoilRoot>
     </AuthContextProvider>
