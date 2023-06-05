@@ -1,17 +1,25 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../../components/common/button";
-import { useHome } from "../../../hooks/home/useHome";
 import { ButtonContainer, HomeText } from "./style";
-import FONT from "../../../constants/fonts";
+
+import AuthContext from "../../../states/auth-context";
+import Button from "../../../components/common/button";
 import Container from "../../../components/common/container";
+import FONT from "../../../constants/fonts";
+import React from "react";
+import { useContext } from "react";
+import { useHome } from "../../../hooks/home/useHome";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const authCtx = useContext(AuthContext);
   const { home } = useHome();
   const navigate = useNavigate();
   const handleUpdateButtonClick = () => {
     navigate("update");
   };
+
+  if (!authCtx.isLoggedIn) {
+    navigate("/login");
+  }
 
   const replaceValue = home?.content
     ? home.content.split("\n").map((line, i) => (
