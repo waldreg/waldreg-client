@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import AuthContext from "./states/auth-context";
 import Board from "./routes/Board";
@@ -15,11 +15,24 @@ import Schedule from "./routes/Schedule";
 import Setting from "./routes/Setting";
 import SignupForm from "./components/auth/signup/SignupForm";
 import { useContext } from "react";
+import useApiError from './hooks/error/useApiError';
 
 const queryClient = new QueryClient();
 
 function App() {
   const authCtx = useContext(AuthContext);
+    
+  const { handleError } = useApiError();
+  queryClient.setDefaultOptions({
+    queries: { onError: (error: any) => handleError(error) },
+    mutations: {
+      onError: (error: any) => {
+        console.log('에러 app', error);
+        handleError(error);
+      },
+    },
+  });
+
 
   return (
     <QueryClientProvider client={queryClient}>

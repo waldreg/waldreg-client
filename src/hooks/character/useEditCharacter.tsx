@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { waldregAxios } from '../../apis/axios';
 import { Permission } from '../../interfaces/character';
 import { characterKeys, permissionKeys } from '../../types/settingKeys';
+import useApiError from '../error/useApiError';
 
 const editCharacter = async ({
   name,
@@ -19,12 +20,14 @@ const editCharacter = async ({
 
 const useEditCharacter = (name: string) => {
   const queryClient = useQueryClient();
+  const { handleError } = useApiError();
+
   return useMutation(editCharacter, {
     onSuccess: () => {
       queryClient.invalidateQueries(characterKeys.detail(name));
     },
-    onError: (error) => {
-      console.error(error);
+    onError: (error: any) => {
+      handleError(error);
     },
   });
 };

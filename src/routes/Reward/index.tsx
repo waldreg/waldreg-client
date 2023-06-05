@@ -8,6 +8,7 @@ import FONT from '../../constants/fonts';
 import useUserReward from '../../hooks/reward/useUserReward';
 import useCurUser from '../../hooks/curuser/useCurUser';
 import { UserReward } from '../../components/user/UserReward';
+import Container from '../../components/common/container';
 
 const RewardPage = () => {
   const user = useCurUser();
@@ -15,7 +16,7 @@ const RewardPage = () => {
 
   return (
     <Wrapper>
-      <Container>
+      <Container width="35%">
         <Top>
           <Title style={FONT.HEADING}>내 상벌점</Title>
         </Top>
@@ -31,20 +32,6 @@ const Wrapper = styled.div`
 
   display: flex;
   justify-content: center;
-`;
-
-const Container = styled.div`
-  width: 35%;
-  min-width: 20rem;
-  height: 100%;
-  background: ${COLOR.WHITE};
-
-  border-radius: 1rem;
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
 `;
 
 const Title = styled.div``;

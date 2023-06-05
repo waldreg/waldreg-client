@@ -55,7 +55,7 @@ const CharacterSetting = ({
   });
 
   return (
-    <Container width="36vw">
+    <Container width="32vw">
       <Content>
         <Top>
           <Title style={FONT.HEADING}>설정</Title>

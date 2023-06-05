@@ -28,7 +28,7 @@ const CharacterList = ({
   };
 
   return (
-    <Container width="50%">
+    <Container width="20vw">
       <Top>
         <Title style={FONT.HEADING}>역할</Title>
         {isOpenCreateModal && (

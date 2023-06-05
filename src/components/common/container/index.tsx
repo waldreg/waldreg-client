@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import { ReactElement } from 'react';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-import COLOR from "../../../constants/color";
-import { ContainerAnimation } from "../../../constants/animation";
+import COLOR from '../../../constants/color';
+import { ContainerAnimation } from '../../../constants/animation';
 
 type ContainerProps = {
   width?: string;
@@ -15,8 +15,8 @@ type ContainerProps = {
 const Container = ({ width, height, children, style }: ContainerProps) => {
   return (
     <Wrapper
-      width={width || "100%"}
-      height={height || "100%"}
+      width={width || '100%'}
+      height={height || '100%'}
       initial="hidden"
       animate="visible"
       variants={ContainerAnimation}
@@ -29,6 +29,7 @@ const Container = ({ width, height, children, style }: ContainerProps) => {
 
 const Wrapper = styled(motion.div)<ContainerProps>`
   width: ${(props) => props.width};
+  min-width: 20rem;
   height: ${(props) => props.height};
   style: ${(props) => props.style};
   background: ${COLOR.WHITE};
