@@ -211,7 +211,6 @@ const NavBar = () => {
                   <BoardCategory boardCategoryList={boardCategoryList} />
                 )}
               </Item>
-
               <li className="relative">
                 <Link
                   to="/schedule"
