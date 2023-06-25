@@ -7,9 +7,14 @@ const HomeTextarea = styled.textarea`
   padding: 1.7rem;
   border-radius: 0.5rem;
   outline-color: ${COLOR.GRAY0};
-  margin-bottom: 1rem;
   resize: none;
   scrollbar-width: none;
 `;
 
-export { HomeTextarea };
+const CharacterCount = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem;
+`;
+
+export { HomeTextarea, CharacterCount };
