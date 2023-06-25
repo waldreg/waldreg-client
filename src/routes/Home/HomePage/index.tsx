@@ -1,5 +1,4 @@
 import { ButtonContainer, HomeText } from "./style";
-
 import AuthContext from "../../../states/auth-context";
 import Button from "../../../components/common/button";
 import Container from "../../../components/common/container";

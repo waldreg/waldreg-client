@@ -55,6 +55,7 @@ const NavBar = () => {
 
   const [width, setWidth] = useState(true);
   const location = useLocation().pathname;
+  const isHomeSelected = location.startsWith("/home");
 
   const navigate = useNavigate();
 
@@ -68,7 +69,7 @@ const NavBar = () => {
       {width ? (
         <>
           <Top>
-            <IconWrapper onClick={() => navigate("/")}>
+            <IconWrapper onClick={() => navigate("/home")}>
               <LogoIcon />
             </IconWrapper>
             <IconWrapper onClick={() => setWidth(false)}>
@@ -79,9 +80,9 @@ const NavBar = () => {
             <Items className="relative px-1">
               <Item className="relative">
                 <Link
-                  to="/"
+                  to="/home"
                   className="overflow-hidden text-ellipsis whitespace-nowrap rounded transition duration-300 ease-in-out cursor-pointer"
-                  selected={location === "/"}
+                  selected={isHomeSelected}
                 >
                   <HomeIcon />
                   <Text style={FONT.SUBTITLE2}>홈</Text>
