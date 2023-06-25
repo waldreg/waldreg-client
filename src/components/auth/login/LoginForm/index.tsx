@@ -47,7 +47,7 @@ const LoginForm = () => {
     try {
       const response = await authAPI.login(userId, userPassword);
       authCtx.login(response.access_token);
-      navigate("/");
+      navigate("/home");
       const TOKEN_EXPIRE_TIME = 1000 * 60 * 60; //60분
       setTimeout(() => {
         window.alert("로그인 유지 토큰이 만료되어 로그아웃됩니다.");
