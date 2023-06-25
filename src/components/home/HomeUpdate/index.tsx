@@ -6,6 +6,7 @@ import { ButtonContainer } from "../../../routes/Home/HomePage/style";
 import CreateButton from "../../common/createbutton";
 import { CharacterCount, HomeTextarea } from "./style";
 import FONT from "../../../constants/fonts";
+import Container from "../../common/container";
 
 function HomeUpdate() {
   const { home } = useHome();
@@ -16,8 +17,7 @@ function HomeUpdate() {
 
   const updateMutation = useHomeUpdate(content!!);
 
-  const handleUpdateSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handleUpdateSubmit = () => {
     updateMutation.mutate();
     navigate(-1);
   };
@@ -29,20 +29,28 @@ function HomeUpdate() {
   };
 
   return (
-    <form onSubmit={handleUpdateSubmit}>
-      <HomeTextarea
-        style={FONT.BODY1}
-        onChange={handleChange}
-        value={content}
-        maxLength={MAX_CHARACTER_COUNT}
-      />
+    <>
+      <Container
+        height="85%"
+        style={{
+          marginBottom: "1rem",
+          overflowX: "hidden",
+        }}
+      >
+        <HomeTextarea
+          style={FONT.BODY1}
+          onChange={handleChange}
+          value={content}
+          maxLength={MAX_CHARACTER_COUNT}
+        />
+      </Container>
       <CharacterCount style={FONT.BODY1}>
         {characterCount}/{MAX_CHARACTER_COUNT}
       </CharacterCount>
       <ButtonContainer>
-        <CreateButton onSubmit={handleUpdateSubmit} />
+        <CreateButton onClick={handleUpdateSubmit} />
       </ButtonContainer>
-    </form>
+    </>
   );
 }
 
