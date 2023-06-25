@@ -1,5 +1,4 @@
 import { ButtonContainer, HomeText } from "./style";
-
 import AuthContext from "../../../states/auth-context";
 import Button from "../../../components/common/button";
 import Container from "../../../components/common/container";
@@ -33,10 +32,10 @@ const HomePage = () => {
   return (
     <>
       <Container
+        width="100%"
         height="85%"
         style={{
           marginBottom: "1rem",
-          overflow: "scroll",
           overflowX: "hidden",
           wordBreak: "break-all",
         }}

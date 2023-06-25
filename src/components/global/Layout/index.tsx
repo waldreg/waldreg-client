@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import COLOR from "../../../constants/color";
 
-import NavBar from '../NavBar';
-import TopBar from '../TopBar';
+import NavBar from "../NavBar";
+import TopBar from "../TopBar";
 
 const Layout = ({ children }: { children?: ReactElement }) => {
   return (
@@ -23,10 +23,8 @@ const Layout = ({ children }: { children?: ReactElement }) => {
 };
 
 const Wrapper = styled.div`
-  width: max-content;
   min-width: 100vw;
   height: 100%;
-
   display: flex;
   position: relative;
 `;
