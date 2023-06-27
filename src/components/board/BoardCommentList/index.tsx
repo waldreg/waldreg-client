@@ -45,57 +45,60 @@ const BoardCommentList = () => {
 
   return (
     <>
-      {commentLists?.comments.map((comment) => (
-        <CommentDetail key={comment.id}>
-          <CommentInformation>
-            <CommentUser style={FONT.SUBTITLE1}>{comment.name}</CommentUser>
-            <CommentDate style={FONT.SUBTITLE1}>
-              {comment.created_at.slice(0, 10)}
-            </CommentDate>
-          </CommentInformation>
-          <CommentContentBox style={FONT.BODY1}>
-            {commentUpdate[comment.id!!] ? (
-              <CommnetUpdateBox>
-                <CommnetUpdateTextarea
-                  value={commentContent || comment.content}
-                  onChange={(e) => {
-                    setCommentContent(e.target.value);
-                  }}
-                ></CommnetUpdateTextarea>
-                <CommentButton
-                  onClick={(e) => {
-                    handleCommentUpdateToggle(comment.id!!);
-                    handleUpdateSubmit(e);
-                  }}
-                  style={FONT.SUBTITLE1}
-                >
-                  완료
-                </CommentButton>
-              </CommnetUpdateBox>
-            ) : (
-              <>
-                <div>{comment.content}</div>
-                {currentUser!!.name === comment.name && (
-                  <CommentButtonBox>
-                    <CommentButton
-                      onClick={() => handleCommentUpdateToggle(comment.id!!)}
-                      style={FONT.SUBTITLE1}
-                    >
-                      수정
-                    </CommentButton>
-                    <CommentButton
-                      style={FONT.SUBTITLE1}
-                      onClick={() => commentDelete.mutate(comment.id!!)}
-                    >
-                      삭제
-                    </CommentButton>
-                  </CommentButtonBox>
-                )}
-              </>
-            )}
-          </CommentContentBox>
-        </CommentDetail>
-      ))}
+      {commentLists?.comments
+        .slice()
+        .reverse()
+        .map((comment) => (
+          <CommentDetail key={comment.id}>
+            <CommentInformation>
+              <CommentUser style={FONT.SUBTITLE1}>{comment.name}</CommentUser>
+              <CommentDate style={FONT.SUBTITLE1}>
+                {comment.created_at.slice(0, 10)}
+              </CommentDate>
+            </CommentInformation>
+            <CommentContentBox style={FONT.BODY1}>
+              {commentUpdate[comment.id!!] ? (
+                <CommnetUpdateBox>
+                  <CommnetUpdateTextarea
+                    value={commentContent || comment.content}
+                    onChange={(e) => {
+                      setCommentContent(e.target.value);
+                    }}
+                  ></CommnetUpdateTextarea>
+                  <CommentButton
+                    onClick={(e) => {
+                      handleCommentUpdateToggle(comment.id!!);
+                      handleUpdateSubmit(e);
+                    }}
+                    style={FONT.SUBTITLE1}
+                  >
+                    완료
+                  </CommentButton>
+                </CommnetUpdateBox>
+              ) : (
+                <>
+                  <div>{comment.content}</div>
+                  {currentUser!!.name === comment.name && (
+                    <CommentButtonBox>
+                      <CommentButton
+                        onClick={() => handleCommentUpdateToggle(comment.id!!)}
+                        style={FONT.SUBTITLE1}
+                      >
+                        수정
+                      </CommentButton>
+                      <CommentButton
+                        style={FONT.SUBTITLE1}
+                        onClick={() => commentDelete.mutate(comment.id!!)}
+                      >
+                        삭제
+                      </CommentButton>
+                    </CommentButtonBox>
+                  )}
+                </>
+              )}
+            </CommentContentBox>
+          </CommentDetail>
+        ))}
     </>
   );
 };
