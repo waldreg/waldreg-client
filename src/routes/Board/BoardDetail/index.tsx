@@ -94,9 +94,10 @@ const BoardDetail = () => {
     <Container
       height="default"
       style={{
-        padding: "2rem 1.7rem 1rem",
+        minHeight: "80%",
         margin: "1.4rem 0",
         minWidth: "35rem",
+        justifyContent: "unset",
       }}
     >
       <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>

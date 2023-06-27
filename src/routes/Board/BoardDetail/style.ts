@@ -3,14 +3,14 @@ import COLOR from "../../../constants/color";
 
 const BoardTitle = styled.div`
   color: ${COLOR.GRAY5};
-  margin-bottom: 1rem;
+  margin: 0.5rem 0 1rem 0;
 `;
 
 const BoardTopBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 
@@ -38,7 +38,7 @@ const BoardButton = styled.button`
 
 const BoardContent = styled.div`
   color: ${COLOR.GRAY5};
-  padding: 2rem 0 3rem;
+  padding: 2rem 0;
 `;
 
 const BoardCommentCount = styled.div`
