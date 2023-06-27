@@ -49,10 +49,9 @@ const BoardDetail = () => {
     setIsOpenDeleteModal((prev) => !prev);
   };
 
-  const boardDelete = useBoardDelete(parseInt(id!!));
+  const deleteMutation = useBoardDelete(parseInt(id!!), parseInt(categoryId!!));
   const handleDeleteButtonClick = () => {
-    boardDelete.mutate();
-    navigate(-1);
+    deleteMutation.mutate();
   };
 
   async function getBoardDownload(file_id: string): Promise<any> {

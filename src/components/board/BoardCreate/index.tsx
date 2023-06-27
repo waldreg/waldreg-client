@@ -35,7 +35,6 @@ const BoardCreate = () => {
   const handleCreateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     createMutation.mutate();
-    navigate(-1);
   };
 
   return (
