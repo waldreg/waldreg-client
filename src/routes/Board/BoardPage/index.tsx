@@ -55,7 +55,7 @@ const BoardPage = () => {
           setCurrentPage={setCurrentPage}
         />
         <RightIcon
-          disable={currentPage === 3}
+          disable={currentPage === Math.ceil(itemsCount!! / 6)}
           onClick={() => {
             setCurrentPage(currentPage + 1);
           }}
