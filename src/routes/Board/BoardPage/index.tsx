@@ -23,6 +23,9 @@ const BoardPage = () => {
     currentPage
   );
 
+  let itemsCount = boardList?.max_idx;
+  if (!itemsCount) itemsCount = 1;
+
   const navigate = useNavigate();
   const handleCreateButtonClick = () => {
     navigate("create");
@@ -41,7 +44,7 @@ const BoardPage = () => {
           }}
         />
         <Pagination
-          pageNumber={3}
+          pageNumber={itemsCount!! / 6}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
