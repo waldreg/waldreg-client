@@ -33,7 +33,12 @@ const BoardPage = () => {
 
   return (
     <>
-      <Container height={"default"} style={{ margin: "1rem 0" }}>
+      <Container
+        height={"82%"}
+        style={{
+          margin: "1rem 0",
+        }}
+      >
         {boardList && <BoardList boardList={boardList} />}
       </Container>
       <PaginationBox>

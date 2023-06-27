@@ -4,10 +4,12 @@ import COLOR from "../../../constants/color";
 const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-bottom: 2px solid ${COLOR.GRAY1};
-  padding: 0.8rem 0;
   cursor: pointer;
   min-width: 30rem;
+  height: 13.3333%;
+  padding: 0.5rem 0 1rem 0;
 `;
 
 const BoardInformationBox = styled.div`
