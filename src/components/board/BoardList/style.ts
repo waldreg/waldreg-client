@@ -8,14 +8,14 @@ const BoardContainer = styled.div`
   border-bottom: 2px solid ${COLOR.GRAY1};
   cursor: pointer;
   min-width: 30rem;
-  height: 13.3333%;
-  padding: 0.5rem 0 1rem 0;
+  height: 16.6%;
+  padding: 0.5rem 0;
 `;
 
 const BoardInformationBox = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 `;
 
 const BoardInformation = styled.div`

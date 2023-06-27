@@ -37,6 +37,7 @@ const BoardPage = () => {
         height={"82%"}
         style={{
           margin: "1rem 0",
+          justifyContent: "flex-start",
         }}
       >
         {boardList && <BoardList boardList={boardList} />}

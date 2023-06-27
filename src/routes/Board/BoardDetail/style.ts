@@ -14,6 +14,16 @@ const BoardTopBox = styled.div`
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 
+const BoardFlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const BoardTop = styled.div``;
+
+const BoardBottom = styled.div``;
+
 const BoardInformationBox = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -49,6 +59,9 @@ const BoardCommentCount = styled.div`
 
 export {
   BoardTitle,
+  BoardFlexBox,
+  BoardTop,
+  BoardBottom,
   BoardTopBox,
   BoardInformationBox,
   BoardInformation,

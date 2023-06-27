@@ -8,13 +8,16 @@ import React from "react";
 import useCurUser from "../../../hooks/curuser/useCurUser";
 import Container from "../../../components/common/container";
 import {
+  BoardBottom,
   BoardButton,
   BoardButtonBox,
   BoardCommentCount,
   BoardContent,
+  BoardFlexBox,
   BoardInformation,
   BoardInformationBox,
   BoardTitle,
+  BoardTop,
   BoardTopBox,
 } from "./style";
 import FONT from "../../../constants/fonts";
@@ -100,86 +103,90 @@ const BoardDetail = () => {
         justifyContent: "unset",
       }}
     >
-      <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
-      <BoardTopBox>
-        <BoardInformationBox>
-          <BoardInformation style={FONT.SUBTITLE1}>
-            {board?.author && board?.author.name}
-          </BoardInformation>
-          <BoardInformation style={FONT.SUBTITLE1}>
-            작성일 : {board?.created_at && board?.created_at.slice(0, 10)}
-          </BoardInformation>
-          {board?.created_at &&
-            board?.created_at !== board?.last_modified_at && (
+      <BoardFlexBox>
+        <BoardTop>
+          <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
+          <BoardTopBox>
+            <BoardInformationBox>
               <BoardInformation style={FONT.SUBTITLE1}>
-                수정일 :
-                {board?.last_modified_at &&
-                  board?.last_modified_at.slice(0, 10)}
+                {board?.author && board?.author.name}
               </BoardInformation>
-            )}
-          <BoardInformation style={FONT.SUBTITLE1}>
-            조회수 : {board?.views && board?.views}
-          </BoardInformation>
-        </BoardInformationBox>
+              <BoardInformation style={FONT.SUBTITLE1}>
+                작성일 : {board?.created_at && board?.created_at.slice(0, 10)}
+              </BoardInformation>
+              {board?.created_at &&
+                board?.created_at !== board?.last_modified_at && (
+                  <BoardInformation style={FONT.SUBTITLE1}>
+                    수정일 :
+                    {board?.last_modified_at &&
+                      board?.last_modified_at.slice(0, 10)}
+                  </BoardInformation>
+                )}
+              <BoardInformation style={FONT.SUBTITLE1}>
+                조회수 : {board?.views && board?.views}
+              </BoardInformation>
+            </BoardInformationBox>
 
-        {currentUser &&
-          currentUser.name &&
-          currentUser.name === board?.author?.name && (
-            <BoardButtonBox>
-              <BoardButton
-                style={FONT.SUBTITLE1}
-                onClick={handleUpdateButtonClick}
-              >
-                수정
-              </BoardButton>
-              <BoardButton
-                style={FONT.SUBTITLE1}
-                onClick={() => setIsOpenDeleteModal((prev) => !prev)}
-              >
-                삭제
-              </BoardButton>
-            </BoardButtonBox>
+            {currentUser &&
+              currentUser.name &&
+              currentUser.name === board?.author?.name && (
+                <BoardButtonBox>
+                  <BoardButton
+                    style={FONT.SUBTITLE1}
+                    onClick={handleUpdateButtonClick}
+                  >
+                    수정
+                  </BoardButton>
+                  <BoardButton
+                    style={FONT.SUBTITLE1}
+                    onClick={() => setIsOpenDeleteModal((prev) => !prev)}
+                  >
+                    삭제
+                  </BoardButton>
+                </BoardButtonBox>
+              )}
+          </BoardTopBox>
+          <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
+        </BoardTop>
+
+        <BoardBottom>
+          {(files || images) && (
+            <FileListBox>
+              {files?.map((file, i) => {
+                return (
+                  <FileDetailBox
+                    key={i}
+                    onClick={() => handleDownloadButtonClick(file)}
+                  >
+                    <FileDetailTitle style={FONT.SUBTITLE1}>
+                      {file.origin}
+                    </FileDetailTitle>
+                    <FileDownLoadIcon />
+                  </FileDetailBox>
+                );
+              })}
+              {images?.map((image, i) => {
+                return (
+                  <FileDetailBox
+                    key={i}
+                    onClick={() => handleDownloadButtonClick(image)}
+                  >
+                    <FileDetailTitle style={FONT.SUBTITLE1}>
+                      {image.origin}
+                    </FileDetailTitle>
+                    <FileDownLoadIcon />
+                  </FileDetailBox>
+                );
+              })}
+            </FileListBox>
           )}
-      </BoardTopBox>
-
-      <BoardContent style={FONT.BODY1}>{replaceValue}</BoardContent>
-
-      {(files || images) && (
-        <FileListBox>
-          {files?.map((file, i) => {
-            return (
-              <FileDetailBox
-                key={i}
-                onClick={() => handleDownloadButtonClick(file)}
-              >
-                <FileDetailTitle style={FONT.SUBTITLE1}>
-                  {file.origin}
-                </FileDetailTitle>
-                <FileDownLoadIcon />
-              </FileDetailBox>
-            );
-          })}
-          {images?.map((image, i) => {
-            return (
-              <FileDetailBox
-                key={i}
-                onClick={() => handleDownloadButtonClick(image)}
-              >
-                <FileDetailTitle style={FONT.SUBTITLE1}>
-                  {image.origin}
-                </FileDetailTitle>
-                <FileDownLoadIcon />
-              </FileDetailBox>
-            );
-          })}
-        </FileListBox>
-      )}
-
-      <BoardCommentCount style={FONT.SUBTITLE2}>
-        {commentLists?.max_idx}개의 댓글
-      </BoardCommentCount>
-      <BoardCommentCreate />
-      <BoardCommentList />
+          <BoardCommentCount style={FONT.SUBTITLE2}>
+            {commentLists?.max_idx}개의 댓글
+          </BoardCommentCount>
+          <BoardCommentCreate />
+          <BoardCommentList />
+        </BoardBottom>
+      </BoardFlexBox>
 
       {isOpenDeleteModal && (
         <Modal onClickToggleModal={handleIsOpenDeleteModal} size={"small"}>
