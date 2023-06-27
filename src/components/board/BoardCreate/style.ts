@@ -11,12 +11,13 @@ const BoardTitleInput = styled.input`
 
 const BoardContentTextArea = styled.textarea`
   width: 100%;
-  height: 13rem;
+  height: 18rem;
+  border-radius: 0.5rem;
   border: 2px solid ${COLOR.GRAY0};
   padding: 1rem;
-  border-radius: 0.5rem;
-  outline-color: ${COLOR.GRAY0};
+  resize: none;
   margin-bottom: 1rem;
+  overflow: auto;
 `;
 
 const BoardButtonContainer = styled.div`

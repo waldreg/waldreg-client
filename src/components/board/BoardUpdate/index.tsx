@@ -44,11 +44,11 @@ const BoardUpdate = () => {
 
   return (
     <Container
-      height="default"
       style={{
         padding: "2rem 1.7rem 1rem",
         margin: "1.4rem 0",
         minWidth: "35rem",
+        maxHeight: "38rem",
       }}
     >
       <form onSubmit={handleUpdateSubmit}>
