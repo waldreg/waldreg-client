@@ -28,45 +28,42 @@ function BoardList({ boardList }: BoardListProps) {
   return (
     <>
       {boardList?.boards &&
-        boardList.boards
-          .slice()
-          .reverse()
-          .map((board) => (
-            <BoardContainer
-              key={board.id}
-              onClick={() => navigate(`detail/${board.id}`)}
-            >
-              <BoardLeft>
-                <BoardInformationBox>
-                  <BoardInformation style={FONT.SUBTITLE1}>
-                    {board.author.name}
-                  </BoardInformation>
-                  <BoardInformation style={FONT.SUBTITLE1}>
-                    {board.created_at.slice(0, 10)}
-                  </BoardInformation>
-                </BoardInformationBox>
-                <BoardContentBox>
-                  <BoardTitle style={FONT.SUBTITLE2}>{board.title}</BoardTitle>
-                  <BoardContent style={FONT.SUBTITLE2}>
-                    <CommentIcon />
-                    {board.comment_count}
-                  </BoardContent>
+        boardList.boards.map((board) => (
+          <BoardContainer
+            key={board.id}
+            onClick={() => navigate(`detail/${board.id}`)}
+          >
+            <BoardLeft>
+              <BoardInformationBox>
+                <BoardInformation style={FONT.SUBTITLE1}>
+                  {board.author.name}
+                </BoardInformation>
+                <BoardInformation style={FONT.SUBTITLE1}>
+                  {board.created_at.slice(0, 10)}
+                </BoardInformation>
+              </BoardInformationBox>
+              <BoardContentBox>
+                <BoardTitle style={FONT.SUBTITLE2}>{board.title}</BoardTitle>
+                <BoardContent style={FONT.SUBTITLE2}>
+                  <CommentIcon />
+                  {board.comment_count}
+                </BoardContent>
 
-                  <BoardContent style={FONT.SUBTITLE2}>
-                    <ViewIcon />
-                    <BoardInformationText>{board.views}</BoardInformationText>
-                  </BoardContent>
-                </BoardContentBox>
-              </BoardLeft>
+                <BoardContent style={FONT.SUBTITLE2}>
+                  <ViewIcon />
+                  <BoardInformationText>{board.views}</BoardInformationText>
+                </BoardContent>
+              </BoardContentBox>
+            </BoardLeft>
 
-              <BoardRight>
-                {(board.images && board.images.length > 0) ||
-                (board.files && board.files.length > 0) ? (
-                  <AttachmentIcon />
-                ) : null}
-              </BoardRight>
-            </BoardContainer>
-          ))}
+            <BoardRight>
+              {(board.images && board.images.length > 0) ||
+              (board.files && board.files.length > 0) ? (
+                <AttachmentIcon />
+              ) : null}
+            </BoardRight>
+          </BoardContainer>
+        ))}
     </>
   );
 }

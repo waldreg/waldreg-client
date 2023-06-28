@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import COLOR from "../../../constants/color";
 
+const BoardTitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const BoardTitle = styled.div`
   color: ${COLOR.GRAY5};
-  margin: 0.5rem 0 1rem 0;
+  margin: 0.5rem 0 1.5rem 0;
 `;
 
 const BoardTopBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 2px solid ${COLOR.GRAY0};
 `;
 
@@ -59,6 +64,7 @@ const BoardCommentCount = styled.div`
 `;
 
 export {
+  BoardTitleBox,
   BoardTitle,
   BoardFlexBox,
   BoardTop,

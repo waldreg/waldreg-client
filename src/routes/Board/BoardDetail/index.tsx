@@ -17,6 +17,7 @@ import {
   BoardInformation,
   BoardInformationBox,
   BoardTitle,
+  BoardTitleBox,
   BoardTop,
   BoardTopBox,
 } from "./style";
@@ -37,6 +38,7 @@ import {
   SettingSaveButton,
   SettingTitle,
 } from "../../Setting/Board/style";
+import BoardListButton from "../../../components/board/BoardListButton";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -98,14 +100,17 @@ const BoardDetail = () => {
       height="default"
       style={{
         minHeight: "80%",
-        margin: "1.4rem 0",
+        margin: "0.6rem 0",
         minWidth: "35rem",
         justifyContent: "unset",
       }}
     >
       <BoardFlexBox>
         <BoardTop>
-          <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
+          <BoardTitleBox>
+            <BoardTitle style={FONT.SUBTITLE2}>{board?.title}</BoardTitle>
+            <BoardListButton />
+          </BoardTitleBox>
           <BoardTopBox>
             <BoardInformationBox>
               <BoardInformation style={FONT.SUBTITLE1}>
