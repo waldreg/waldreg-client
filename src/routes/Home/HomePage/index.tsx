@@ -32,7 +32,6 @@ const HomePage = () => {
   return (
     <>
       <Container
-        width="100%"
         height="85%"
         style={{
           marginBottom: "1rem",

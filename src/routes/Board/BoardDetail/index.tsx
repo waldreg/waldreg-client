@@ -103,6 +103,7 @@ const BoardDetail = () => {
         margin: "0.6rem 0",
         minWidth: "35rem",
         justifyContent: "unset",
+        wordBreak: "break-all",
       }}
     >
       <BoardFlexBox>
