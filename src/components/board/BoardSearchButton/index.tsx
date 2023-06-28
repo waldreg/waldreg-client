@@ -1,3 +1,4 @@
+import FONT from "../../../constants/fonts";
 import { SearchIcon } from "../../Icons/BoardIcons";
 import { SearchButton, SearchText } from "./style";
 
@@ -9,7 +10,7 @@ const BoardSearchButton = ({ onClick }: ButtonProps) => {
   return (
     <SearchButton onClick={onClick}>
       <SearchIcon />
-      <SearchText>검색</SearchText>
+      <SearchText style={FONT.SUBTITLE1}>검색</SearchText>
     </SearchButton>
   );
 };

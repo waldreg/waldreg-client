@@ -6,7 +6,7 @@ const SearchButton = styled.button`
   align-items: center;
   color: ${COLOR.WHITE};
   background: ${COLOR.GREEN4};
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
