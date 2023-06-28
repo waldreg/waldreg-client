@@ -36,7 +36,8 @@ const BoardPage = () => {
       <Container
         height={"82%"}
         style={{
-          margin: "1rem 0",
+          margin: "0.6rem 0",
+          padding: "1rem 2rem",
           justifyContent: "flex-start",
         }}
       >

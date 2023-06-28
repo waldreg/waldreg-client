@@ -10,6 +10,10 @@ const BoardContainer = styled.div`
   min-width: 30rem;
   height: 16.6%;
   padding: 0.5rem 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const BoardInformationBox = styled.div`
