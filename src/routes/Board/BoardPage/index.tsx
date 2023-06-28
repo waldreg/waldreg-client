@@ -7,6 +7,7 @@ import Container from "../../../components/common/container";
 import Pagination from "../../../components/common/pagination";
 import { useState } from "react";
 import { LeftIcon, RightIcon } from "../../../components/Icons/BoardIcons";
+import BoardSearchButton from "../../../components/board/BoardSearchButton";
 
 const BoardPage = () => {
   const { categoryId } = useParams();
@@ -29,6 +30,10 @@ const BoardPage = () => {
   const navigate = useNavigate();
   const handleCreateButtonClick = () => {
     navigate("create");
+  };
+
+  const handleSearchButtonClick = () => {
+    navigate("/board/search");
   };
 
   return (
@@ -63,6 +68,7 @@ const BoardPage = () => {
         />
       </PaginationBox>
       <BoardButtonContainer>
+        <BoardSearchButton onClick={handleSearchButtonClick} />
         <Button onClick={handleCreateButtonClick}>글 작성하기</Button>
       </BoardButtonContainer>
     </>

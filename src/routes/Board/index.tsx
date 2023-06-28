@@ -4,6 +4,7 @@ import BoardLayout from "./BoardLayout/index";
 import BoardPage from "./BoardPage";
 import BoardUpdate from "./../../components/board/BoardUpdate/index";
 import BoardDetail from "./BoardDetail";
+import BoardSearch from "./BoardSearch";
 
 const Board = () => {
   return (
@@ -14,6 +15,7 @@ const Board = () => {
         <Route path="/:categoryId/update/:id" element={<BoardUpdate />} />
         <Route path="/:categoryId/detail/:id" element={<BoardDetail />} />
       </Route>
+      <Route path="/search" element={<BoardSearch />} />
     </Routes>
   );
 };
