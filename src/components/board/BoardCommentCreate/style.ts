@@ -7,7 +7,7 @@ const CommentInput = styled.input`
   outline: none;
   border: 2px solid ${COLOR.GRAY0};
   border-radius: 0.5rem;
-  margin: 1rem 0 1.5rem;
+  margin-top: 0.7rem;
 `;
 
 const CommentLabel = styled.label`
@@ -18,8 +18,8 @@ const CommentLabel = styled.label`
 
   button {
     position: absolute;
-    right: 1rem;
-    top: 26.5%;
+    right: 0.5rem;
+    top: 1.2rem;
   }
 `;
 

@@ -183,8 +183,8 @@ const BoardDetail = () => {
           <BoardCommentCount style={FONT.SUBTITLE2}>
             {commentLists?.max_idx}개의 댓글
           </BoardCommentCount>
-          <BoardCommentCreate />
           <BoardCommentList />
+          <BoardCommentCreate />
         </BoardBottom>
       </BoardFlexBox>
 

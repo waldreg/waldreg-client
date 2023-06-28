@@ -53,8 +53,9 @@ const BoardContent = styled.div`
 
 const BoardCommentCount = styled.div`
   color: ${COLOR.GRAY3};
-  padding: 1rem 0;
+  padding-bottom: 0.5rem;
   border-bottom: 2px solid ${COLOR.GRAY0};
+  margin: 3rem 0 0.5rem 0;
 `;
 
 export {

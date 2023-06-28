@@ -7,7 +7,7 @@ const CommentDetail = styled.div`
 
 const CommentInformation = styled.div`
   display: flex;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
   color: ${COLOR.GRAY3};
 `;
 
