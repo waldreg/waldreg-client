@@ -4,11 +4,11 @@ import COLOR from "../../../constants/color";
 const BoardTitleBox = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0.5rem 0 1.4rem 0;
 `;
 
 const BoardTitle = styled.div`
   color: ${COLOR.GRAY5};
-  margin: 0.5rem 0 1.5rem 0;
 `;
 
 const BoardTopBox = styled.div`

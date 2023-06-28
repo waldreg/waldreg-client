@@ -10,6 +10,7 @@ import {
 import CreateButton from "../../common/createbutton";
 import BoardFileUpload from "../BoardFileUpload";
 import Container from "../../common/container";
+import BoardListButton from "../BoardListButton";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");
@@ -41,9 +42,9 @@ const BoardCreate = () => {
     <Container
       style={{
         padding: "2rem 1.7rem 1rem",
-        margin: "1.4rem 0",
+        margin: "0.6rem 0",
         minWidth: "35rem",
-        maxHeight: "38rem",
+        maxHeight: "40rem",
       }}
     >
       <form onSubmit={handleCreateSubmit}>
@@ -64,6 +65,7 @@ const BoardCreate = () => {
         />
         <BoardFileUpload formData={formData} create={true} />
         <BoardButtonContainer>
+          <BoardListButton />
           <CreateButton onSubmit={handleCreateSubmit} />
         </BoardButtonContainer>
       </form>

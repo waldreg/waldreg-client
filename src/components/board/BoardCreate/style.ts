@@ -23,6 +23,7 @@ const BoardContentTextArea = styled.textarea`
 const BoardButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 const BoardCreateButton = styled.button`
