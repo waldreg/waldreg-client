@@ -3,8 +3,8 @@ import COLOR from "../../../constants/color";
 
 const BoardContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
   border-bottom: 2px solid ${COLOR.GRAY1};
   cursor: pointer;
   min-width: 30rem;
@@ -43,6 +43,14 @@ const BoardContent = styled.div`
   margin-right: 0.5rem;
 `;
 
+const BoardLeft = styled.div`
+  width: 95%;
+`;
+
+const BoardRight = styled.div`
+  width: 5%;
+`;
+
 export {
   BoardContainer,
   BoardInformationBox,
@@ -51,4 +59,6 @@ export {
   BoardContentBox,
   BoardTitle,
   BoardContent,
+  BoardLeft,
+  BoardRight,
 };
