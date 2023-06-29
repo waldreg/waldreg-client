@@ -40,7 +40,6 @@ const BoardUpdate = () => {
   const handleUpdateSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     updateMutation.mutate();
-    navigate(-1);
   };
 
   return (
