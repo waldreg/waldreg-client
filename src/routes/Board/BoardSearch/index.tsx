@@ -66,7 +66,9 @@ const BoardSearch = () => {
             }
           }}
         ></SearchInput>
-        <SerachButton onClick={handleSearchClick}>검색</SerachButton>
+        <SerachButton style={FONT.BODY1} onClick={handleSearchClick}>
+          검색
+        </SerachButton>
       </SearchBarBox>
 
       {searchOpen && (
