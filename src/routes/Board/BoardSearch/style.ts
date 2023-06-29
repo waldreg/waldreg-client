@@ -4,6 +4,7 @@ import COLOR from "../../../constants/color";
 const SearchBarBox = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const SearchTitle = styled.div`
@@ -22,17 +23,20 @@ const SearchBox = styled.div`
 
 const SelectBox = styled.select`
   width: 10rem;
-  height: 3rem;
-  border: 1px solid ${COLOR.GRAY2};
+  height: 3.2rem;
+  border: 2px solid ${COLOR.GRAY1};
   border-radius: 0.5rem;
   padding: 0 1rem;
   margin-right: 1rem;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SearchInput = styled.input`
   width: 30rem;
-  height: 3rem;
-  border: 1px solid ${COLOR.GRAY2};
+  height: 3.2rem;
+  border: 2px solid ${COLOR.GRAY1};
   border-radius: 0.5rem;
   padding: 0 1rem;
 `;
