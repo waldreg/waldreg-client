@@ -1,6 +1,6 @@
 import Container from "../../../components/common/container";
 import FONT from "../../../constants/fonts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BoardList from "../../../components/board/BoardList";
 import { waldregAxios as axios } from "../../../apis/axios";
 import {
@@ -39,9 +39,6 @@ const BoardSearch = () => {
   const itemsPerPage = 6;
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = currentPage * itemsPerPage;
-  let itemsCount = board?.max_idx;
-
-  if (!itemsCount) itemsCount = 1;
 
   const handleSearchClick = async () => {
     setSearchOpen(true);
@@ -51,6 +48,22 @@ const BoardSearch = () => {
     setBoardList(data);
     setBoard(data);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (searchOpen) {
+        const { data } = await axios.get(
+          `/board/search?type=${type}&keyword=${keyword}&from=${startItem}&to=${endItem}`
+        );
+        setBoardList(data);
+        setBoard(data);
+      }
+    };
+    fetchData();
+  }, [searchOpen, keyword, type, startItem, endItem]);
+
+  let itemsCount = board?.max_idx;
+  if (!itemsCount) itemsCount = 1;
 
   return (
     <SearchBox>
