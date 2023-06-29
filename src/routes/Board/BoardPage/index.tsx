@@ -68,8 +68,8 @@ const BoardPage = () => {
         />
       </PaginationBox>
       <BoardButtonContainer>
-        <BoardSearchButton onClick={handleSearchButtonClick} />
         <Button onClick={handleCreateButtonClick}>글 작성하기</Button>
+        <BoardSearchButton onClick={handleSearchButtonClick} />
       </BoardButtonContainer>
     </>
   );

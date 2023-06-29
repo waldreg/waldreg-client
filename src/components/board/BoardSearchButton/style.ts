@@ -10,7 +10,7 @@ const SearchButton = styled.button`
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  margin-left: 0.8rem;
 `;
 
 const SearchText = styled.div`

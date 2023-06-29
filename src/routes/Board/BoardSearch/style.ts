@@ -10,7 +10,7 @@ const SearchTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0;
 `;
 
 const SearchBox = styled.div`
@@ -52,6 +52,13 @@ const SerachButton = styled.button`
   }
 `;
 
+const SearchText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+`;
+
 export {
   SearchBarBox,
   SearchTitle,
@@ -59,4 +66,5 @@ export {
   SelectBox,
   SearchInput,
   SerachButton,
+  SearchText,
 };

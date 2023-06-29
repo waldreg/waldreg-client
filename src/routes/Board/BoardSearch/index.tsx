@@ -7,10 +7,14 @@ import {
   SearchBarBox,
   SearchBox,
   SearchInput,
+  SearchText,
   SearchTitle,
   SelectBox,
   SerachButton,
 } from "./style";
+import { PaginationBox } from "../BoardPage/style";
+import { LeftIcon, RightIcon } from "../../../components/Icons/BoardIcons";
+import Pagination from "../../../components/common/pagination";
 
 interface Option {
   value: string;
@@ -30,10 +34,19 @@ const BoardSearch = () => {
   const [boardList, setBoardList] = useState(undefined);
   const [board, setBoard] = useState({ boards: [], max_idx: 0 });
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 6;
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = currentPage * itemsPerPage;
+  let itemsCount = board?.max_idx;
+
+  if (!itemsCount) itemsCount = 1;
+
   const handleSearchClick = async () => {
     setSearchOpen(true);
     const { data } = await axios.get(
-      `/board/search?type=${type}&keyword=${keyword}&from=${1}&to=${999999}`
+      `/board/search?type=${type}&keyword=${keyword}&from=${startItem}&to=${endItem}`
     );
     setBoardList(data);
     setBoard(data);
@@ -57,19 +70,42 @@ const BoardSearch = () => {
       </SearchBarBox>
 
       {searchOpen && (
-        <Container
-          height={"default"}
-          style={{
-            margin: "2rem 0 1rem 0",
-            justifyContent: "space-around",
-          }}
-        >
-          {boardList && board.boards.length > 0 ? (
-            <BoardList boardList={boardList} />
-          ) : (
-            <div style={FONT.BODY1}>검색 결과가 없습니다.</div>
-          )}
-        </Container>
+        <>
+          <Container
+            height={"90%"}
+            style={{
+              margin: "1rem 0",
+              padding: "1rem 2rem",
+              justifyContent: "flex-start",
+            }}
+          >
+            {boardList && board.boards.length > 0 ? (
+              <BoardList boardList={boardList} />
+            ) : (
+              <SearchText style={FONT.BODY_2}>검색 결과가 없습니다.</SearchText>
+            )}
+          </Container>
+
+          <PaginationBox>
+            <LeftIcon
+              disable={currentPage === 1}
+              onClick={() => {
+                setCurrentPage(currentPage - 1);
+              }}
+            />
+            <Pagination
+              pageNumber={itemsCount!! / 6}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+            <RightIcon
+              disable={currentPage === Math.ceil(itemsCount!! / 6)}
+              onClick={() => {
+                setCurrentPage(currentPage + 1);
+              }}
+            />
+          </PaginationBox>
+        </>
       )}
     </SearchBox>
   );
