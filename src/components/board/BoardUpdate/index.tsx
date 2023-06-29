@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Params, useNavigate, useParams } from "react-router";
+import { Params, useParams } from "react-router";
 import FONT from "../../../constants/fonts";
 import { useBoardDetail } from "../../../hooks/board/useBoardDetail";
 import CreateButton from "../../common/createbutton";
@@ -11,6 +11,7 @@ import {
 import BoardFileUpload from "../BoardFileUpload";
 import { useBoardUpdate } from "./../../../hooks/board/useBoardUpdate";
 import Container from "../../common/container";
+import BoardListButton from "../BoardListButton";
 
 const BoardUpdate = () => {
   const { id, categoryId } = useParams<Params>();
@@ -21,7 +22,6 @@ const BoardUpdate = () => {
   const [title, setTitle] = useState(board?.title);
   const [content, setContent] = useState(board?.content);
   const formData = new FormData();
-  const navigate = useNavigate();
 
   const data = {
     title: title,
@@ -44,11 +44,11 @@ const BoardUpdate = () => {
 
   return (
     <Container
-      height="default"
       style={{
         padding: "2rem 1.7rem 1rem",
-        margin: "1.4rem 0",
+        margin: "0.6rem 0",
         minWidth: "35rem",
+        maxHeight: "40rem",
       }}
     >
       <form onSubmit={handleUpdateSubmit}>
@@ -75,6 +75,7 @@ const BoardUpdate = () => {
         />
 
         <BoardButtonContainer>
+          <BoardListButton />
           <CreateButton onSubmit={handleUpdateSubmit} />
         </BoardButtonContainer>
       </form>

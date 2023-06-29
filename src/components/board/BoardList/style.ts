@@ -3,17 +3,23 @@ import COLOR from "../../../constants/color";
 
 const BoardContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-bottom: 2px solid ${COLOR.GRAY1};
-  padding: 0.8rem 0;
   cursor: pointer;
   min-width: 30rem;
+  height: 16.6%;
+  padding: 0.5rem 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const BoardInformationBox = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 `;
 
 const BoardInformation = styled.div`
@@ -41,6 +47,14 @@ const BoardContent = styled.div`
   margin-right: 0.5rem;
 `;
 
+const BoardLeft = styled.div`
+  width: 95%;
+`;
+
+const BoardRight = styled.div`
+  width: 5%;
+`;
+
 export {
   BoardContainer,
   BoardInformationBox,
@@ -49,4 +63,6 @@ export {
   BoardContentBox,
   BoardTitle,
   BoardContent,
+  BoardLeft,
+  BoardRight,
 };

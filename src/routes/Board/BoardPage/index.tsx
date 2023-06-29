@@ -7,6 +7,7 @@ import Container from "../../../components/common/container";
 import Pagination from "../../../components/common/pagination";
 import { useState } from "react";
 import { LeftIcon, RightIcon } from "../../../components/Icons/BoardIcons";
+import BoardSearchButton from "../../../components/board/BoardSearchButton";
 
 const BoardPage = () => {
   const { categoryId } = useParams();
@@ -23,14 +24,28 @@ const BoardPage = () => {
     currentPage
   );
 
+  let itemsCount = boardList?.max_idx;
+  if (!itemsCount) itemsCount = 1;
+
   const navigate = useNavigate();
   const handleCreateButtonClick = () => {
     navigate("create");
   };
 
+  const handleSearchButtonClick = () => {
+    navigate("/board/search");
+  };
+
   return (
     <>
-      <Container height={"default"} style={{ margin: "1rem 0" }}>
+      <Container
+        height={"82%"}
+        style={{
+          margin: "0.6rem 0",
+          padding: "1rem 2rem",
+          justifyContent: "flex-start",
+        }}
+      >
         {boardList && <BoardList boardList={boardList} />}
       </Container>
       <PaginationBox>
@@ -41,12 +56,12 @@ const BoardPage = () => {
           }}
         />
         <Pagination
-          pageNumber={3}
+          pageNumber={itemsCount!! / 6}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
         <RightIcon
-          disable={currentPage === 3}
+          disable={currentPage === Math.ceil(itemsCount!! / 6)}
           onClick={() => {
             setCurrentPage(currentPage + 1);
           }}
@@ -54,6 +69,7 @@ const BoardPage = () => {
       </PaginationBox>
       <BoardButtonContainer>
         <Button onClick={handleCreateButtonClick}>글 작성하기</Button>
+        <BoardSearchButton onClick={handleSearchButtonClick} />
       </BoardButtonContainer>
     </>
   );

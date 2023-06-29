@@ -1,6 +1,7 @@
 import React from "react";
 import { PencilWhiteIcon } from "../../Icons/BoardIcons";
-import { Button } from "./style";
+import { Button, ButtonText } from "./style";
+import FONT from "../../../constants/fonts";
 
 interface CreateButtonProps {
   onClick?: (e: React.SyntheticEvent) => void;
@@ -9,8 +10,8 @@ interface CreateButtonProps {
 
 const CreateButton = ({ onClick, onSubmit }: CreateButtonProps) => {
   return (
-    <Button onClick={onClick} onSubmit={onSubmit}>
-      <PencilWhiteIcon style={{ marginRight: "0.5rem" }} /> 작성
+    <Button onClick={onClick} onSubmit={onSubmit} style={FONT.SUBTITLE1}>
+      <PencilWhiteIcon /> <ButtonText>작성</ButtonText>
     </Button>
   );
 };
