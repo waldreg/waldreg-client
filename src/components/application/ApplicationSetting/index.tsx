@@ -1,19 +1,15 @@
 import { Item, Top } from "../../character/CharacterList/style";
 
+import ApplicationFileUpload from "../ApplicationFileUpload";
 import COLOR from "../../../constants/color";
 import Container from "../../common/container";
 import FONT from "../../../constants/fonts";
-import { InputLine } from "../../common/inputs/input_line";
 import { Title } from "../../common/pagetitle/style";
 import styled from "styled-components";
-import useCharacter from "../../../hooks/character/useCharacter";
-import { useInput } from "../../../hooks/common/useInput";
 import { useState } from "react";
-import { useToggleBox } from "../../../hooks/common/useCheckBox";
 
 const ApplicationSetting = () => {
   const perThemeList = ["로고"];
-
   const [perTheme, setPerTheme] = useState(perThemeList[0]);
 
   return (
@@ -39,6 +35,7 @@ const ApplicationSetting = () => {
             png 또는 svg 형식의 이미지를 등록해주세요.
           </Subtitle>
         </SubtitleWrapper>
+        <ApplicationFileUpload />
       </Content>
     </Container>
   );
