@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import Application from "./Application";
 import BoardManagement from "./Board";
 import CharacterPage from "./Character";
 import JoiningPool from "./JoiningPool";
@@ -14,6 +15,7 @@ const Setting = () => {
       <Route path="/reward" element={<RewardSettingPage />} />
       <Route path="/board" element={<BoardManagement />} />
       <Route path="/joiningpool" element={<JoiningPool />} />
+      <Route path="/application" element={<Application />} />
     </Routes>
   );
 };

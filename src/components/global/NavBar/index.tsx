@@ -127,6 +127,15 @@ const NavBar = () => {
                     </Item>
                     <Item className="relative">
                       <Link
+                        to="/setting/application"
+                        selected={location === "/setting/application"}
+                      >
+                        <Blank />
+                        <Text style={FONT.BODY1}>서버 관리</Text>
+                      </Link>
+                    </Item>
+                    <Item className="relative">
+                      <Link
                         to="/setting/character"
                         selected={location === "/setting/character"}
                       >
