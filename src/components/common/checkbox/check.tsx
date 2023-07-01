@@ -88,7 +88,7 @@ export const JoiningpoolUserCheck = (props: JoiningpoolUserProps) => {
   };
 
   return (
-    <CheckWrapper>
+    <JoiningpoolCheckWrapper>
       <CheckBox
         id={props.item.user_id}
         type="checkbox"
@@ -104,11 +104,18 @@ export const JoiningpoolUserCheck = (props: JoiningpoolUserProps) => {
         {props.item.name}
       </Text>
       <Id style={FONT.SUBTITLE2}>{props.item.user_id}</Id>
-    </CheckWrapper>
+    </JoiningpoolCheckWrapper>
   );
 };
 
 const CheckWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+`;
+
+const JoiningpoolCheckWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
