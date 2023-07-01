@@ -56,6 +56,11 @@ const ApplicationFileUpload = () => {
     e.preventDefault();
   };
 
+  const handleDeleteFile = () => {
+    formData?.delete("logo");
+    setFile(undefined);
+  };
+
   const createMutation = useApplicationFileUpload(formData);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -90,7 +95,7 @@ const ApplicationFileUpload = () => {
               <FileDetailTitle style={FONT.SUBTITLE1}>
                 {file.name}
               </FileDetailTitle>
-              <FileDeleteIcon />
+              <FileDeleteIcon onClick={handleDeleteFile} />
             </FileDetailBox>
             <FileInput
               id="input_file"
