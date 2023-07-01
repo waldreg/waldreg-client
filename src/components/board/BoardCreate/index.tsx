@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
-import FONT from "../../../constants/fonts";
 import {
   BoardButtonContainer,
   BoardContentTextArea,
   BoardTitleInput,
 } from "./style";
-import CreateButton from "../../common/createbutton";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import BoardFileUpload from "../BoardFileUpload";
-import Container from "../../common/container";
 import BoardListButton from "../BoardListButton";
+import Container from "../../common/container";
+import CreateButton from "../../common/createbutton";
+import FONT from "../../../constants/fonts";
+import { useBoardCreate } from "../../../hooks/board/useBoardCreate";
 
 const BoardCreate = () => {
   const [title, setTitle] = useState<string>("");

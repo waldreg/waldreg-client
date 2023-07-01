@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
-import { boardKeys } from "../../types/boardKey";
+
 import { waldregAxios as axios } from "./../../apis/axios";
+import { boardKeys } from "../../types/boardKey";
 import { useNavigate } from "react-router-dom";
 
 async function boardCreate(board: any): Promise<void> {
