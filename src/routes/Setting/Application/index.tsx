@@ -1,5 +1,11 @@
+import ApplicationSetting from "../../../components/application/ApplicationSetting";
+
 const Application = () => {
-  return <div>index</div>;
+  return (
+    <>
+      <ApplicationSetting />
+    </>
+  );
 };
 
 export default Application;
