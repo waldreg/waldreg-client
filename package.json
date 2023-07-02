@@ -21,6 +21,7 @@
     "react-query-infinite-scroll": "^1.0.4",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
+    "react-svg": "^16.1.18",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
     "styled-components": "^5.3.6",

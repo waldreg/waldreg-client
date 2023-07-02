@@ -32,10 +32,15 @@ import BoardCategory from "../../board/BoardCategory";
 import FONT from "../../../constants/fonts";
 import { IconWrapper } from "../../character/CharacterList/style";
 import { LogoIcon } from "../../Icons/LogoIcons";
+import React from "react";
+import { ReactSVG } from "react-svg";
+import { useApplicationLogo } from "../../../hooks/application/useApplicationLogo";
 import { useBoardCategoryList } from "../../../hooks/board/category/useBoardCategoryList";
 import useCurUser from "../../../hooks/curuser/useCurUser";
 
 const NavBar = () => {
+  const { applicationLogo } = useApplicationLogo();
+
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
@@ -70,7 +75,9 @@ const NavBar = () => {
         <>
           <Top>
             <IconWrapper onClick={() => navigate("/home")}>
-              <LogoIcon />
+              {applicationLogo && (
+                <div dangerouslySetInnerHTML={{ __html: applicationLogo }} />
+              )}
             </IconWrapper>
             <IconWrapper onClick={() => setWidth(false)}>
               <DoubleLeftIcon />

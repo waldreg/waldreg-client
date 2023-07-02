@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import COLOR from '../../../constants/color';
+import COLOR from "../../../constants/color";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 const Wrapper = styled.div<{ open: boolean }>`
   width: ${(props) => (props.open ? `18rem` : `0`)};

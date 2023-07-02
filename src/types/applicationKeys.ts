@@ -1,3 +1,7 @@
 export const applicationFileKeys = {
-  all: ["applicatioFile"] as const,
+  all: ["applicationFile"] as const,
+};
+
+export const applicationLogoKeys = {
+  all: ["applicationLogo"] as const,
 };
